@@ -8,10 +8,11 @@ import { PreviewCatalogoComponent } from './shared/components/preview-catalogo/p
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FooterComponent, NavbarComponent, InfoBlock1Component, PreviewCatalogoComponent],
+  imports: [RouterOutlet, FooterComponent, NavbarComponent, DatoHomeComponent, HechosHomeComponent, InfoBlock1Component, PreviewCatalogoComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
   title = 'Frontend';
 }
