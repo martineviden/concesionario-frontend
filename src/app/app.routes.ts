@@ -1,12 +1,14 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from '../shared/components/login/login.component';
-import { RegistrarseComponent } from '../shared/components/registrarse/registrarse.component';
-import { ResenaFormComponent } from '../shared/components/resena-form/resena-form.component';
-import { VehiculosComponent } from '../shared/components/vehiculos/vehiculos.component';
-import { ReservaFormComponent } from '../shared/components/reserva-form/reserva-form.component';
-import { TipoVehiculoComponent } from '../shared/components/tipo-vehiculo/tipo-vehiculo.component';
-import { MisReservasComponent } from '../shared/components/mis-reservas/mis-reservas.component';
-import { AdminReservasComponent } from '../shared/components/admin-reservas/admin-reservas.component';
+import { LoginComponent } from './shared/components/login/login.component';
+import { RegistrarseComponent } from './shared/components/registrarse/registrarse.component';
+import { ResenaFormComponent } from './shared/components/resena-form/resena-form.component';
+import { VehiculosComponent } from './shared/components/vehiculos/vehiculos.component';
+import { ReservaFormComponent } from './shared/components/reserva-form/reserva-form.component';
+import { TipoVehiculoComponent } from './shared/components/tipo-vehiculo/tipo-vehiculo.component';
+import { MisReservasComponent } from './shared/components/mis-reservas/mis-reservas.component';
+import { AdminReservasComponent } from './shared/components/admin-reservas/admin-reservas.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { HomeBannerFirstComponent } from './shared/components/home-banner-first/home-banner-first.component';
 
 export const routes: Routes = [
  // // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' }, para que no me redireccione
@@ -19,7 +21,7 @@ export const routes: Routes = [
   { path: 'admin/reservas', component: AdminReservasComponent },
   { path: 'resena-form', component: ResenaFormComponent},
   { path: 'navbar', component: NavbarComponent},
-  { path: 'banner', component: HomeBannerFirstComponent}
+  { path: '', component: HomeBannerFirstComponent}
 
 
 ];
