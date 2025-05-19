@@ -9,6 +9,7 @@ import { MisReservasComponent } from './shared/components/mis-reservas/mis-reser
 import { AdminReservasComponent } from './shared/components/admin-reservas/admin-reservas.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { HomeBannerFirstComponent } from './shared/components/home-banner-first/home-banner-first.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 export const routes: Routes = [
  // // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' }, para que no me redireccione
@@ -21,7 +22,9 @@ export const routes: Routes = [
   { path: 'admin/reservas', component: AdminReservasComponent },
   { path: 'resena-form', component: ResenaFormComponent},
   { path: 'navbar', component: NavbarComponent},
-  { path: '', component: HomeBannerFirstComponent}
+  { path: '', component: HomeBannerFirstComponent},
+  { path: '', component: FooterComponent},
+
 
 
 ];
