@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Italiana&display=swap');
+
+
+.contenedor-banner-general{
+  max-width: 1440px;
+  margin: 0 auto;
+
+}
+
+.contenedor-banner{
+  background-color: #5937E0;
+  max-width: 1296px;
+  margin: 0px auto;
+  padding-left: 72px;
+
+  background-image: url("/assets/img/first_banner.png");
+  background-size: 698px, 418px;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  display: flex;
+  background-position: center;
+
+
+
+}
+.container-titulo-descripcion{
+color: #FFFFFF;
+/* padding-top: 68px;
+padding-left: 112px;
+padding-right: 333px; */
+display: block;
+
+}
+
+ .titulo{
+  font-family: "Italiana", sans-serif;
+  font-weight: 400;
+  font-size: 70px;
+  font-style: normal;
+  text-align: left;
+  margin-top: 68px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+
+}
+
+
+.parrafo{
+  text-align: left;
+  font-family: "Commissioner", sans-serif;
+  font-size: 24px;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "FLAR" 0,
+    "VOLM" 0;
+  margin: 0 auto;
+}
+
+
+.folmulario-banner{
+  background-color: #FFFFFF;
+  max-width: 416px;
+  border-radius: 10px;
+  margin-top: 239px;
+  margin-right: 0px;
+  margin-bottom: 92px;
+
+
+}
+
+.form-select{
+  width: 336px;
+  margin: 5px;
+  text-decoration: none;
+  border-style: none;
+
+}
+
+.titulo-formulario-banner{
+  padding: 0 40px;
+  display: flex;
+  justify-content: center;
+
+
+}
+.folmulario-banner-interior{
+
+  padding: 10px;
+  display: grid;
+  justify-content: center;
+
+}
+.boton-resultado{
+
+  display: block;
+  justify-self: center;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  border-style: none;
+  width: 336px;
+  height: 40px;
+  background-color: #FF9E0C;
+  color: #FFFFFF;
+
+}

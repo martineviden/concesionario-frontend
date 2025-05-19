@@ -7,9 +7,10 @@ import { ReservaFormComponent } from './shared/components/reserva-form/reserva-f
 import { TipoVehiculoComponent } from './shared/components/tipo-vehiculo/tipo-vehiculo.component';
 import { MisReservasComponent } from './shared/components/mis-reservas/mis-reservas.component';
 import { AdminReservasComponent } from './shared/components/admin-reservas/admin-reservas.component';
+import { HomeBannerFirstComponent } from './shared/components/home-banner-first/home-banner-first.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'vehiculos', pathMatch: 'full' },
+  // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'registrarse', component: RegistrarseComponent },
   { path: 'vehiculos', component: VehiculosComponent },
@@ -17,7 +18,8 @@ export const routes: Routes = [
   { path: 'reservar/:matricula', component: ReservaFormComponent },
   { path: 'mis-reservas', component: MisReservasComponent },
   { path: 'admin/reservas', component: AdminReservasComponent },
-  { path: 'resena-form', component: ResenaFormComponent}
+  { path: 'resena-form', component: ResenaFormComponent},
+  { path: 'banner', component: HomeBannerFirstComponent}
 
 
 ];
