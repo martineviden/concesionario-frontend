@@ -1,0 +1,26 @@
+.step-number {
+  display: inline-block;
+  background-color: #5937E0; /* Azul Bootstrap */
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  margin-right: 10px;
+}
+
+div ul li h5 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #000000; /* Azul Bootstrap */
+}
+
+div ul li p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #8c8c8c; /* Azul Bootstrap */
+}
+
