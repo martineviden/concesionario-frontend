@@ -10,8 +10,6 @@ import { AdminReservasComponent } from './shared/components/admin-reservas/admin
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { HomeBannerFirstComponent } from './shared/components/home-banner-first/home-banner-first.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { DatoHomeComponent } from './shared/components/dato-home/dato-home.component';
-import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home.component';
 
 export const routes: Routes = [
  // // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' }, para que no me redireccione
@@ -26,8 +24,6 @@ export const routes: Routes = [
   { path: 'navbar', component: NavbarComponent},
   { path: '', component: HomeBannerFirstComponent},
   { path: '', component: FooterComponent},
-  { path: '', component: DatoHomeComponent},
-  { path: '', component: HechosHomeComponent}
 
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatSelectModule} from '@angular/material/select';
 @Component({
   selector: 'app-home-banner-first',
   imports: [],
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HomeBannerFirstComponent implements OnInit{
+
+
 
 
   constructor(){
