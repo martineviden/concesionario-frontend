@@ -11,7 +11,7 @@ import { HechosHomeComponent } from "./shared/components/hechos-home/hechos-home
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FooterComponent, NavbarComponent, DatoHomeComponent, HechosHomeComponent,InfoBlock1Component],
+  imports: [RouterOutlet],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

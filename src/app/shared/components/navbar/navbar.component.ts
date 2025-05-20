@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -8,5 +8,14 @@ import { Component } from '@angular/core';
   
 })
 export class NavbarComponent {
+  @Output() loginClick = new EventEmitter<void>();
+  @Output() registroClick = new EventEmitter<void>();
 
+  abrirLogin() {
+    this.loginClick.emit();
+  }
+
+  abrirRegistro() {
+    this.registroClick.emit();
+  }
 }
