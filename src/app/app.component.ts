@@ -5,10 +5,11 @@ import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { PreviewCatalogoComponent } from './shared/components/preview-catalogo/preview-catalogo.component';
+import { MarcasBlockComponent } from "./shared/components/marcas-block/marcas-block.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FooterComponent, NavbarComponent, InfoBlock1Component],
+  imports: [RouterOutlet, MarcasBlockComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
