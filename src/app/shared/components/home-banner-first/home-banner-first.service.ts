@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import{TipoCoche} from '../home-banner-first/home-banner-first.model'
 
+
 @Injectable({
   providedIn:'root'
 })
@@ -11,14 +12,14 @@ export class TipoCocheServce{
   private http = inject(HttpClient);
 
   list(){
-    return this.http.get('localhost:8080/tipos-vehiculo');
+    return this.http.get('http://localhost:8080/tipos-vehiculo',{withCredentials:false});
   }
 
   get(id:number){
     return this.http.get(`http://localhost:8080/tipos-vehiculo/${id}`);
   }
-  create(tipoVehiculo: any){
-    return this.http.post('http://localhost:8080/tipos-vehiculo',tipoVehiculo);
+  create(vehiculo:TipoCoche){
+    return this.http.post('http://localhost:8080/tipos-vehiculo',vehiculo);
   }
   update(id:number,tipoVehiculo: any){
 

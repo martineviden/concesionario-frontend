@@ -26,7 +26,7 @@ export const routes: Routes = [
   { path: 'admin/reservas', component: AdminReservasComponent },
   { path: 'resena-form', component: ResenaFormComponent},
   { path: 'navbar', component: NavbarComponent},
-  { path: 'home', component: HomeComponent}
+  { path: '', component: HomeComponent}
 
 
 
