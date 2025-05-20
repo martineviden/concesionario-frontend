@@ -13,6 +13,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { DatoHomeComponent } from './shared/components/dato-home/dato-home.component';
 import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home.component';
 import { HomeComponent } from './vistas/home/home.component';
+import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
 
 export const routes: Routes = [
 
@@ -26,7 +27,8 @@ export const routes: Routes = [
   { path: 'admin/reservas', component: AdminReservasComponent },
   { path: 'resena-form', component: ResenaFormComponent},
   { path: 'navbar', component: NavbarComponent},
-  { path: 'home', component: HomeComponent}
+  { path: 'home', component: HomeComponent},
+  { path: 'catalogo', component: CatalogoComponent}
 
 
 
