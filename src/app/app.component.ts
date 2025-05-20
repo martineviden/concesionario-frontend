@@ -8,13 +8,6 @@ import { PreviewCatalogoComponent } from './shared/components/preview-catalogo/p
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FooterComponent, NavbarComponent,InfoBlock1Component, PreviewCatalogoComponent],
-})
-
-
-
-@Component({
-  selector: 'app-root',
   imports: [RouterOutlet, FooterComponent, NavbarComponent, InfoBlock1Component],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
