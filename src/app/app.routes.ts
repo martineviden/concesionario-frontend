@@ -10,6 +10,9 @@ import { AdminReservasComponent } from './shared/components/admin-reservas/admin
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { HomeBannerFirstComponent } from './shared/components/home-banner-first/home-banner-first.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { DatoHomeComponent } from './shared/components/dato-home/dato-home.component';
+import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home.component';
+import { HomeComponent } from './vistas/home/home.component';
 
 export const routes: Routes = [
 
@@ -22,9 +25,9 @@ export const routes: Routes = [
   { path: 'mis-reservas', component: MisReservasComponent },
   { path: 'admin/reservas', component: AdminReservasComponent },
   { path: 'resena-form', component: ResenaFormComponent},
-  // { path: 'nav', component: NavbarComponent},
-   { path: 'banner', component: HomeBannerFirstComponent},
-  // { path: '', component: FooterComponent},
+  { path: 'navbar', component: NavbarComponent},
+  { path: 'home', component: HomeComponent}
+
 
 
 ];
