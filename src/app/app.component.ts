@@ -9,7 +9,9 @@ import { MarcasBlockComponent } from "./shared/components/marcas-block/marcas-bl
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MarcasBlockComponent],
+
+  imports: [RouterOutlet],
+
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
