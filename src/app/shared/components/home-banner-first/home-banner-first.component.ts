@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 
-import {TipoCocheServce} from './home-banner-first.service'
-import { TipoCoche } from './home-banner-first.model';
-import { TipoVehiculo } from './TipoVehiculo';
+import {TipoCocheServce} from '../../../services/tipo-vehiculo.service'
+import { TipoCoche } from '../../../models/tipo-vehiculo.model';
+import { TipoVehiculo } from '../../../models/enums';
 
 
 @Component({

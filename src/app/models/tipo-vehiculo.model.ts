@@ -1,4 +1,4 @@
-import { TipoVehiculo } from "./TipoVehiculo";
+import { TipoVehiculo } from "./enums";
 
 export class TipoCoche{
 
@@ -12,7 +12,14 @@ export class TipoCoche{
 
 
 
-  constructor(id_vehiculo:number, precio_vehiculo:number,marca_vehiculo:string, modelo_vehiculo:string,imagen_vehiculo:string, tipoVH:TipoVehiculo){
+  constructor(
+    id_vehiculo:number,
+    precio_vehiculo:number,
+    marca_vehiculo:string,
+    modelo_vehiculo:string,
+    imagen_vehiculo:string,
+    tipoVH:TipoVehiculo){
+
     this.id = id_vehiculo;
     this.precio = precio_vehiculo;
     this.marca = marca_vehiculo;
@@ -32,6 +39,4 @@ export class TipoCoche{
 
 
 
-export class VehiculoModelo{
 
-}
