@@ -2,7 +2,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 110vh;
             margin: 0;
             background-color: #ffffff;
         }
@@ -12,13 +12,13 @@
             align-items: center;
             width: 80%;
             padding: 20px;
-            background-color: white;
+
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(37, 37, 37, 0.1);
+            box-shadow: 0 4px 8px rgba(80, 80, 80, 0.1);
         }
         .banner img {
-    max-height: 50px;
-    background-color: white;
+    max-height: 100px;
+
     padding: 5px;
     border-radius: 8px;
     transition: transform 0.3s ease;}
