@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
+import { TipoCoche } from './home-banner-first.model';
+import {TipoCocheServce} from './home-banner-first.service'
 @Component({
   selector: 'app-home-banner-first',
   imports: [],
@@ -9,14 +11,14 @@ import {MatSelectModule} from '@angular/material/select';
 
 export class HomeBannerFirstComponent implements OnInit{
 
+  private tipoCocheServce = inject(TipoCocheServce);
 
 
-
-  constructor(){
-
-  }
-  ngOnInit(): void {
-
-  }
+   ngOnInit(): void {
+       this.tipoCocheServce.list()
+       .subscribe(tipoCoches=>{
+        console.log(tipoCoches)
+       });
+   }
 
 }
