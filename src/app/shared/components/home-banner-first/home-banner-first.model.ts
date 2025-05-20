@@ -1,36 +1,22 @@
-import { TipoVehiculo } from "./TipoVehiculo";
+import { Vehiculo } from "./tipoVehiculo";
 
-export class TipoCoche{
-
+export class TipoVehiculo {
   id: number;
-  precio:number;
-  marca:string;
-  modelo:string;
-  imagen :string;
-  tipo:TipoVehiculo;
+  precio: number;
+  marca: string;
+  modelo: string;
+  imagen: string;
+  tipo: Vehiculo;
 
-
-
-
-  constructor(id_vehiculo:number, precio_vehiculo:number,marca_vehiculo:string, modelo_vehiculo:string,imagen_vehiculo:string, tipoVH:TipoVehiculo){
-    this.id = id_vehiculo;
-    this.precio = precio_vehiculo;
-    this.marca = marca_vehiculo;
-    this.modelo = modelo_vehiculo;
-    this.imagen = imagen_vehiculo;
-    this.tipo = tipoVH;
-
-
+  constructor(id_vh: number, precio_vh: number, marca_vh: string, modelo_vh: string, imagen_vh: string, tipo_vh: Vehiculo) {
+    this.id = id_vh;
+    this.precio = precio_vh;
+    this.marca = marca_vh;
+    this.modelo = modelo_vh;
+    this.imagen = imagen_vh;
+    this.tipo = tipo_vh;
   }
 }
-
-
-
-
-
-
-
-
 
 export class VehiculoModelo{
 
