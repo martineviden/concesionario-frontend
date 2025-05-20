@@ -1,21 +1,32 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from '../login/login.component';
+import { RegistrarseComponent } from '../registrarse/registrarse.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, LoginComponent, RegistrarseComponent],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css',
-
+  styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  @Output() loginClick = new EventEmitter<void>();
-  @Output() registroClick = new EventEmitter<void>();
+  showLoginModal = false;
+  showRegisterModal = false;
 
   abrirLogin() {
-    this.loginClick.emit();
+    this.showLoginModal = true;
   }
 
   abrirRegistro() {
-    this.registroClick.emit();
+    this.showRegisterModal = true;
+  }
+
+  cerrarLogin() {
+    this.showLoginModal = false;
+  }
+
+  cerrarRegistro() {
+    this.showRegisterModal = false;
   }
 }
