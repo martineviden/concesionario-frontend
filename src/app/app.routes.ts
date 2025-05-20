@@ -12,6 +12,7 @@ import { HomeBannerFirstComponent } from './shared/components/home-banner-first/
 import { FooterComponent } from './shared/components/footer/footer.component';
 
 export const routes: Routes = [
+
  // // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' }, para que no me redireccione
   { path: 'login', component: LoginComponent },
   { path: 'registrarse', component: RegistrarseComponent },
@@ -21,10 +22,9 @@ export const routes: Routes = [
   { path: 'mis-reservas', component: MisReservasComponent },
   { path: 'admin/reservas', component: AdminReservasComponent },
   { path: 'resena-form', component: ResenaFormComponent},
-  { path: 'navbar', component: NavbarComponent},
-  { path: '', component: HomeBannerFirstComponent},
-  { path: '', component: FooterComponent},
-
+  // { path: 'nav', component: NavbarComponent},
+   { path: 'banner', component: HomeBannerFirstComponent},
+  // { path: '', component: FooterComponent},
 
 
 ];

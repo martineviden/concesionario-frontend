@@ -8,7 +8,7 @@ import { PreviewCatalogoComponent } from './shared/components/preview-catalogo/p
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FooterComponent, NavbarComponent, InfoBlock1Component],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
