@@ -11,7 +11,7 @@ export class TipoCocheServce{
   private http = inject(HttpClient);
 
   list(){
-    return this.http.get('http://localhost:8080/tipos-vehiculo');
+    return this.http.get('localhost:8080/tipos-vehiculo');
   }
 
   get(id:number){
