@@ -1,28 +1,23 @@
-export class TipoCoche{
+import { Vehiculo } from "./tipoVehiculo";
 
-  id?: number;
-  precio?:number;
-  // enum Tipo_vehiculo{
-  //   COCHE,
-  //   MOTO,
-  //   FURGONETA
-  // };
-  imagen?:string;
-  marca?: string;
-  modelo? : string;
+export class TipoVehiculo {
+  id: number;
+  precio: number;
+  marca: string;
+  modelo: string;
+  imagen: string;
+  tipo: Vehiculo;
 
-  constructor(public id_tipoche :number, public precio_vh:number, public marca_vh:string, public modelo_vh:string){
-
-
-
-  //  this.id= id_tipoche;
-  //  this.precio = precio_vh;
-  //  this.marca = marca_vh;
-  //  this.modelo = modelo_vh;
+  constructor(id_vh: number, precio_vh: number, marca_vh: string, modelo_vh: string, imagen_vh: string, tipo_vh: Vehiculo) {
+    this.id = id_vh;
+    this.precio = precio_vh;
+    this.marca = marca_vh;
+    this.modelo = modelo_vh;
+    this.imagen = imagen_vh;
+    this.tipo = tipo_vh;
   }
-
-
 }
+
 export class VehiculoModelo{
 
 }
