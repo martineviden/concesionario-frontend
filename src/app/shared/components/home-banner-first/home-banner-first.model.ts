@@ -18,6 +18,6 @@ export class TipoVehiculo {
   }
 }
 
-export class VehiculoModelo{
+export class VehiculoModelo {
 
 }

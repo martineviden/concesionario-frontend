@@ -19,7 +19,7 @@ export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
   // // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' }, para que no me redireccione
   { path: 'login', component: LoginComponent },
-  { path: 'registro', component: RegistroComponent },
+  { path: 'registrarse', component: RegistroComponent },
   { path: 'vehiculos', component: VehiculosComponent },
   { path: 'tipo-vehiculo/:id', component: TipoVehiculoComponent },
   { path: 'reservar/:matricula', component: ReservaFormComponent },

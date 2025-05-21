@@ -6,7 +6,7 @@ import { TipoVehiculo } from '../home-banner-first/home-banner-first.model'
   providedIn:'root'
 })
 
-export class TipoVehiculoService{
+export class TipoVehiculoService {
   private http = inject(HttpClient);
 
   list(){
