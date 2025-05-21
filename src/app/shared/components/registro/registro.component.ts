@@ -47,6 +47,8 @@ export class RegistroComponent {
         next: res => console.log('Usuario creado:', res),
         error: err => console.error('Error al crear usuario:', err)
       });
+
+      this.close();
     } else {
       console.log('Formulario inválido');
     }
