@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import{TipoVehiculoClase} from '../models/tipo-vehiculo.model'
+import{TipoVehiculoModel} from '../models/tipo-vehiculo.model'
 import{VehiculoModel} from '../models/vehiculo.model'
 import { Provincia } from '../models/enums';
 
@@ -45,7 +45,7 @@ export class VehiculoService{
   }
 
 
-   buscarPorTipoUbicacion(ubicacionVehiculos:Provincia, vehiculoT:TipoVehiculoClase){
+   buscarPorTipoUbicacion(ubicacionVehiculos:Provincia, vehiculoT:TipoVehiculoModel){
 
      return this.http.get(`http://localhost:8080/vehiculos/buscar`,{withCredentials:false});
    }
