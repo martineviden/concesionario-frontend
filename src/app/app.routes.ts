@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
-import { RegistrarseComponent } from './shared/components/registrarse/registrarse.component';
+import { RegistroComponent } from './shared/components/registro/registro.component';
 import { ResenaFormComponent } from './shared/components/resena-form/resena-form.component';
 import { VehiculosComponent } from './shared/components/vehiculos/vehiculos.component';
 import { ReservaFormComponent } from './shared/components/reserva-form/reserva-form.component';
@@ -19,7 +19,7 @@ export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
   // // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' }, para que no me redireccione
   { path: 'login', component: LoginComponent },
-  { path: 'registrarse', component: RegistrarseComponent },
+  { path: 'registro', component: RegistroComponent },
   { path: 'vehiculos', component: VehiculosComponent },
   { path: 'tipo-vehiculo/:id', component: TipoVehiculoComponent },
   { path: 'reservar/:matricula', component: ReservaFormComponent },

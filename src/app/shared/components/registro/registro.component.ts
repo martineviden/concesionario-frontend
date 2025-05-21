@@ -6,10 +6,10 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-registrarse',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './registrarse.component.html',
-  styleUrl: './registrarse.component.css'
+  templateUrl: './registro.component.html',
+  styleUrl: './registro.component.css'
 })
-export class RegistrarseComponent {
+export class RegistroComponent {
   @Output() closeModal = new EventEmitter<void>();
 
   close() {

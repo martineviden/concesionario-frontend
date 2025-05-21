@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../login/login.component';
-import { RegistrarseComponent } from '../registrarse/registrarse.component';
+import { RegistrarseComponent } from '../registro/registro.component';
 
 @Component({
   selector: 'app-navbar',
