@@ -29,3 +29,7 @@ export enum Transmision{
 export enum EtiquetaAmbiental{
    CERO, ECO, C, B, A
 }
+
+export enum Rol{
+  CLIENTE, ADMIN
+}

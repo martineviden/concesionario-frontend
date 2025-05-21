@@ -27,7 +27,6 @@ export const routes: Routes = [
   { path: 'mis-reservas', component: MisReservasComponent },
   { path: 'admin/reservas', component: AdminReservasComponent },
   { path: 'resena-form', component: ResenaFormComponent},
-  { path: 'navbar', component: NavbarComponent},
   { path: '', component: HomeComponent},
   { path: 'catalogo', component: CatalogoComponent},
   { path: 'editar-perfil', component: EditarPerfilComponent}
