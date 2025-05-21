@@ -22,18 +22,18 @@ export class VehiculoService{
 
   }
 
-   //------ Hay que crear unum Ubicacion-----
+
 
    getAllPorProvincia(ubicacionVehiculos:Provincia){
      return this.http.get(`http://localhost:8080/vehiculos/ubicacion/${ubicacionVehiculos}`,{withCredentials:false})
    }
 
-  //------ Hay que crear modelo-----
+
   createVhiculo(vehiculo:VehiculoModel){
     return this.http.post('http://localhost:8080/vehiculos',vehiculo,{withCredentials:false});
    }
 
-    //------ Hay que crear modelo-----
+
    updateVehiculo(matricula:string, vehiculo: VehiculoModel){
 
       return this.http.put(`http://localhost:8080/vehiculos/${matricula}`,vehiculo,{withCredentials:false});
