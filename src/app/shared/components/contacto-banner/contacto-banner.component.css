@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
+body {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.contenedor-principal {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px;
+      gap: 60px;
+    }
+
+    .reserva-coche {
+      background-color: #4a0bca;
+      color: white;
+      padding: 40px;
+      border-radius: 20px;
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      
+    }
+
+    .reserva-coche h3 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .reserva-coche select {
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+      background-color: #6f1af9;
+      color: white;
+      
+    }
+
+    .reserva-coche button {
+      padding: 12px;
+      background-color: orange;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 60px;
+    }
+
+    .imagen-lateral {
+      width: 800px;
+      height: 500px;
+      border-radius: 20px;
+      background-image: url('Coche_Venta.jpg');
+      background-position: center;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    }
