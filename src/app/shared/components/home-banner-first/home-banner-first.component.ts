@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 
-import { TipoVehiculoService } from './home-banner-first.service'
+import { TipoVehiculoService } from './home-banner-first.service';
 import { TipoVehiculo } from './home-banner-first.model';
 import { Vehiculo } from './tipoVehiculo';
 
@@ -27,7 +27,7 @@ export class HomeBannerFirstComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.tipoVehiculoService.create(this.nuevoVehiculo).subscribe(tipoVehiculoService => { console.log(tipoVehiculoService )});
+    this.tipoVehiculoService.create(this.nuevoVehiculo).subscribe(tipoVehiculoService => { console.log(tipoVehiculoService) });
   }
 
 }
