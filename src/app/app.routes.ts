@@ -13,10 +13,11 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { DatoHomeComponent } from './shared/components/dato-home/dato-home.component';
 import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home.component';
 import { HomeComponent } from './vistas/home/home.component';
+import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
 
 export const routes: Routes = [
-
- // // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' }, para que no me redireccione
+  //{ path: '', redirectTo: 'home', pathMatch: 'full' },
+  // // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' }, para que no me redireccione
   { path: 'login', component: LoginComponent },
   { path: 'registrarse', component: RegistrarseComponent },
   { path: 'vehiculos', component: VehiculosComponent },
@@ -26,8 +27,7 @@ export const routes: Routes = [
   { path: 'admin/reservas', component: AdminReservasComponent },
   { path: 'resena-form', component: ResenaFormComponent},
   { path: 'navbar', component: NavbarComponent},
-  { path: '', component: HomeComponent}
-
-
+  { path: '', component: HomeComponent},
+  { path: 'catalogo', component: CatalogoComponent}
 
 ];
