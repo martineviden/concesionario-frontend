@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../login/login.component';
-import { RegistrarseComponent } from '../registrarse/registrarse.component';
 import { RouterModule } from '@angular/router';
+import { RegistroComponent } from '../registro/registro.component';
 
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, LoginComponent, RegistrarseComponent, RouterModule],
+  imports: [CommonModule, LoginComponent, RegistroComponent, RouterModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
