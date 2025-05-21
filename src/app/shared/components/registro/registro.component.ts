@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { RegistroService } from './registro.service';
@@ -7,6 +7,7 @@ import { Rol } from './rol';
 
 @Component({
   selector: 'app-registrarse',
+  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
@@ -21,7 +22,7 @@ export class RegistroComponent {
   }
 
   usuarioForm: FormGroup;
-  Rol = Rol;
+  rol = Rol;
 
   constructor(
     private fb: FormBuilder,

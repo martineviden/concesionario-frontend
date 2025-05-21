@@ -1,9 +1,9 @@
 <div class="modal-login-bg">
   <div class="modal-login">
     <h2>Iniciar Sesion</h2>
-    <form>
-      <input type="email" placeholder="Email" class="login-input" />
-      <input type="password" placeholder="Contraseña" class="login-input" />
+    <form []>
+      <input type="email" placeholder="Email" class="login-input" autocomplete="off" formControlName="correo" />
+      <input type="password" placeholder="Contraseña" class="login-input" autocomplete="off" formControlName="contrasena"/>
       <button type="submit" class="login-btn">Iniciar Sesion</button>
     </form>
     <button class="close-btn" type="button" (click)="close()">&times;</button>
