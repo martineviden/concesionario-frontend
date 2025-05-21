@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 
 import {TipoCocheServce} from '../../../services/tipo-vehiculo.service'
-import { TipoCoche } from '../../../models/tipo-vehiculo.model';
+import { TipoVehiculoClase } from '../../../models/tipo-vehiculo.model';
 import { TipoVehiculo } from '../../../models/enums';
 
 
@@ -18,7 +18,7 @@ export class HomeBannerFirstComponent implements OnInit{
   private tipoCocheServce = inject(TipoCocheServce);
   private id:number =2;
 
-  private nuevoCoche:TipoCoche ={
+  private nuevoCoche:TipoVehiculoClase ={
     id : 6,
     precio: 6000,
     marca: "Honda",
@@ -37,7 +37,7 @@ export class HomeBannerFirstComponent implements OnInit{
       //   console.log(tipoCoches)
       //  });
 
-      this.tipoCocheServce.create(this.nuevoCoche).subscribe(tipoCocheServce=>{console.log()});
+      //this.tipoCocheServce.create(this.nuevoCoche).subscribe(tipoCocheServce=>{console.log()});
    }
 
 }

@@ -1,6 +1,6 @@
 import { TipoVehiculo } from "./enums";
 
-export class TipoCoche{
+export class TipoVehiculoClase{
 
   id: number;
   precio:number;
