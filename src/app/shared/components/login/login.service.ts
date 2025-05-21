@@ -10,6 +10,6 @@ export class LoginService {
     constructor(private http: HttpClient) {}
 
     obtenerUsuario(correo: string) {
-        return this.http.post('http://localhost:8080/usuarios/correo', correo, {withCredentials: false})
+        return this.http.post('http://localhost:8080/usuarios/correo', { correo }, { withCredentials: false })
     }
 }

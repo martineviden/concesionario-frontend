@@ -40,7 +40,7 @@ export class LoginComponent {
 
       this.loginService.obtenerUsuario(usuario.correo).subscribe({
         next: res => console.log('Login correcto: ' + res),
-        error: err => console.error('Login incorrecto: ' + err)
+        error: err => console.error('Login incorrecto: ', err)
       });
 
       this.close();
