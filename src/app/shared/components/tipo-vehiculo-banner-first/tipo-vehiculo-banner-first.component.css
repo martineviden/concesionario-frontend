@@ -1,0 +1,188 @@
+.main-body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+}
+
+.car-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1800px;
+  margin: 40px auto 0 auto;
+  gap: 40px;
+  padding: 0 40px;
+}
+
+.left-panel {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.left-panel h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+}
+
+.price {
+  font-size: 2rem;
+  color: #5636d8;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
+.price-amount {
+  color: #5636d8;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.price-dia {
+  color: #888;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 0 2.5rem 0;
+}
+
+.main-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0.95);
+}
+
+.thumbnails {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.thumbnails img {
+  width: 140px;
+  height: 110px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+  background: #eee;
+}
+
+.right-panel {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.specs-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.spec-card {
+  background: #f7f7f9;
+  border-radius: 16px;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 120px;
+  box-sizing: border-box;
+  box-shadow: none;
+}
+
+.spec-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #5636d8;
+}
+
+.spec-card span {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 0.2rem;
+}
+
+.spec-card p {
+  margin: 0;
+  color: #888;
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+
+.btn-alquilar {
+  width: 100%;
+  max-width: 350px;
+  background: #5636d8;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 14px;
+  padding: 1rem 0;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-alquilar:hover {
+  background: #3d25a0;
+}
+
+/* EQUIPAMIENTO */
+.equipamiento {
+  max-width: 900px;
+  margin: 60px auto 0 auto;
+  padding: 0 20px;
+}
+
+.equipamiento h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.equipamiento-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem 3rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+.equipamiento-list li {
+  display: flex;
+  align-items: center;
+  color: #888;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.equipamiento-list .check {
+  color: #5636d8;
+  font-size: 1.4rem;
+  margin-right: 0.7rem;
+}

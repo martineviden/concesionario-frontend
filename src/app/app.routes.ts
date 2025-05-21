@@ -28,6 +28,7 @@ export const routes: Routes = [
   { path: 'resena-form', component: ResenaFormComponent},
   { path: 'navbar', component: NavbarComponent},
   { path: '', component: HomeComponent},
-  { path: 'catalogo', component: CatalogoComponent}
+  { path: 'catalogo', component: CatalogoComponent},
+    {path: 'especificaciones', component: EspecificacionesComponent}
 
 ];
