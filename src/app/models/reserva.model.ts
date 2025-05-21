@@ -2,7 +2,7 @@ import { UsuarioModel } from "./usuario.model";
 import { VehiculoModel } from "./vehiculo.model";
 
 // Seguramente habra que incuir en el constructor las relaciones correspondientes
-export class Reserva{
+export class ReservaModel{
 
   id:string;
   vehiculo:VehiculoModel["matricula"];

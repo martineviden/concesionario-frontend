@@ -1,6 +1,6 @@
 import {Rol} from './enums'
 
-export class Usuario{
+export class UsuarioModel{
   rol:Rol;
   id:string;
   dni: string;
