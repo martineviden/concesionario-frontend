@@ -1,4 +1,4 @@
-.modal-login-bg {
+.fondo-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,21 +12,21 @@
   z-index: 1050;
 }
 
-.modal-login {
+.modal-editar-perfil {
   background: #5636e6;
   border-radius: 24px;
   padding: 40px 32px 48px 32px;
   box-shadow: 0 4px 32px rgba(0,0,0,0.15);
-  width: 400px;
-  height: 740px;
+  width: 350px;
+  height: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   justify-content: center;
+  position: relative;
 }
 
-.modal-login h2 {
+.modal-editar-perfil h2 {
   color: #fff;
   font-size: 2.2rem;
   font-weight: bold;
@@ -35,7 +35,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-.login-input {
+.entrada-perfil {
   width: 100%;
   padding: 12px 16px;
   margin-bottom: 18px;
@@ -50,12 +50,12 @@
   transition: background 0.2s;
 }
 
-.login-input::placeholder {
+.entrada-perfil::placeholder {
   color: #d1c6fa;
   opacity: 1;
 }
 
-.login-btn {
+.btn-listo {
   width: 100%;
   padding: 14px 0;
   background: #ff9800;
@@ -70,11 +70,11 @@
   font-family: 'Inter', sans-serif;
 }
 
-.login-btn:hover {
+.btn-listo:hover {
   background: #e68900;
 }
 
-.close-btn {
+.btn-cerrar {
   position: absolute;
   top: 18px;
   right: 24px;
@@ -88,7 +88,7 @@
 }
 
 @media (max-width: 500px) {
-  .modal-login {
+  .modal-editar-perfil {
     width: 90vw;
     height: auto;
     padding: 24px 8px 32px 8px;
