@@ -14,6 +14,7 @@ import { DatoHomeComponent } from './shared/components/dato-home/dato-home.compo
 import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
+import { EspecificacionesComponent } from './vistas/especificaciones/especificaciones.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
