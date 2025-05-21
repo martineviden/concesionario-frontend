@@ -8,13 +8,10 @@ import { TipoVehiculoComponent } from './shared/components/tipo-vehiculo/tipo-ve
 import { MisReservasComponent } from './shared/components/mis-reservas/mis-reservas.component';
 import { AdminReservasComponent } from './shared/components/admin-reservas/admin-reservas.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { HomeBannerFirstComponent } from './shared/components/home-banner-first/home-banner-first.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { DatoHomeComponent } from './shared/components/dato-home/dato-home.component';
-import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
-import { ContactoComponent } from './vistas/contacto/contacto.component';
+import { ContactoBannerComponent } from './shared/components/contacto-banner/contacto-banner.component';
+import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,6 +27,7 @@ export const routes: Routes = [
   { path: 'navbar', component: NavbarComponent},
   { path: '', component: HomeComponent},
   { path: 'catalogo', component: CatalogoComponent},
-  { path: 'contacto', component: ContactoComponent}
+  { path: 'nosostros', component: NosotrosComponent},
+  { path: 'contacto', component: ContactoBannerComponent}
 
 ];

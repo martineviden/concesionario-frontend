@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
+body {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.blog-title {
+  font-weight: 700;
+  font-size: 38px;
+  color: #000000;
+}
+
+.blog-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.blog-img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.blog-heading {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #222;
+}
+
+.blog-meta {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 16px;
+  color: #5e5e5e;
+  line-height: 1.6;
+}
