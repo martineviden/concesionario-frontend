@@ -1,4 +1,5 @@
 import { TipoVehiculo } from "./enums";
+import { VehiculoModel } from "./vehiculo.model";
 
 export class TipoVehiculoModel {
   id: number;
@@ -7,6 +8,7 @@ export class TipoVehiculoModel {
   modelo:string;
   imagen :string;
   tipo:TipoVehiculo;
+  vehiculo: VehiculoModel['matricula'];
 
 
 
@@ -17,7 +19,9 @@ export class TipoVehiculoModel {
     marca_vehiculo:string,
     modelo_vehiculo:string,
     imagen_vehiculo:string,
-    tipoVH:TipoVehiculo){
+    tipoVH:TipoVehiculo,
+    vehiculo: VehiculoModel['matricula']
+  ){
 
     this.id = id_vehiculo;
     this.precio = precio_vehiculo;
@@ -25,6 +29,7 @@ export class TipoVehiculoModel {
     this.modelo = modelo_vehiculo;
     this.imagen = imagen_vehiculo;
     this.tipo = tipoVH;
+    this.vehiculo = vehiculo;
 
   }
 }
