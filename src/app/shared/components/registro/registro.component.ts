@@ -32,6 +32,7 @@ export class RegistroComponent {
       apellidos: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
       telefono: ['', Validators.required],
+      dni: ['', Validators.required],
       contrasena: ['', Validators.required],
       rol: [Rol.CLIENTE, Validators.required]
     });
