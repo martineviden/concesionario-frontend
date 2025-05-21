@@ -16,7 +16,7 @@ import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  //{ path: '', redirectTo: 'home', pathMatch: 'full' },
   // // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' }, para que no me redireccione
   { path: 'login', component: LoginComponent },
   { path: 'registrarse', component: RegistrarseComponent },
@@ -27,7 +27,7 @@ export const routes: Routes = [
   { path: 'admin/reservas', component: AdminReservasComponent },
   { path: 'resena-form', component: ResenaFormComponent},
   { path: 'navbar', component: NavbarComponent},
-  { path: 'home', component: HomeComponent},
+  { path: '', component: HomeComponent},
   { path: 'catalogo', component: CatalogoComponent}
 
 
