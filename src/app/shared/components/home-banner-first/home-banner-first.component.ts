@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 
-import { TipoVehiculoService } from './home-banner-first.service';
-import { TipoVehiculo } from './home-banner-first.model';
-import { Vehiculo } from './tipoVehiculo';
+import {TipoVehiculoService} from '../../../services/tipo-vehiculo.service'
+import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
+import { TipoVehiculo } from '../../../models/enums';
 
 
 @Component({
@@ -17,17 +17,23 @@ export class HomeBannerFirstComponent implements OnInit{
   private tipoVehiculoService = inject(TipoVehiculoService);
   private id: number = 2;
 
-  private nuevoVehiculo: TipoVehiculo = {
-    id: 6,
+  private nuevoCoche:TipoVehiculoModel ={
+    id : 6,
     precio: 6000,
     marca: "Honda",
     modelo: "Civic",
     imagen:"/jaoidjaoi.jpg",
-    tipo: Vehiculo.COCHE
+    tipo: TipoVehiculo.COCHE
   }
 
-  ngOnInit(): void {
-    this.tipoVehiculoService.create(this.nuevoVehiculo).subscribe(tipoVehiculoService => { console.log(tipoVehiculoService) });
-  }
+
+   ngOnInit(): void {
+      //  this.tipoCocheServce.list()
+      //   .subscribe(tipoCoches=>{
+      // console.log(tipoCoches)
+      //   });
+
+      //this.tipoCocheServce.create(this.nuevoCoche).subscribe(tipoCocheServce=>{console.log()});
+   }
 
 }
