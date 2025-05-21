@@ -23,7 +23,8 @@ export class HomeBannerFirstComponent implements OnInit{
     marca: "Honda",
     modelo: "Civic",
     imagen:"/jaoidjaoi.jpg",
-    tipo: TipoVehiculo.COCHE
+    tipo: TipoVehiculo.COCHE,
+    vehiculo: "A78546-B"
   }
 
 
