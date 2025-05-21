@@ -4,7 +4,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 
 @Component({
   selector: 'app-contacto',
-  imports: [NavbarComponent, FooterComponent],
+  imports: [NavbarComponent, FooterComponent, TituloComponent, ContactoBannerComponent, DatoContactoComponent, UltimaPublicacionComponent],
   templateUrl: './contacto.component.html',
   styleUrl: './contacto.component.css'
 })

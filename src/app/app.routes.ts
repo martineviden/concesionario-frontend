@@ -14,6 +14,7 @@ import { DatoHomeComponent } from './shared/components/dato-home/dato-home.compo
 import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
+import { ContactoComponent } from './vistas/contacto/contacto.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,6 +29,7 @@ export const routes: Routes = [
   { path: 'resena-form', component: ResenaFormComponent},
   { path: 'navbar', component: NavbarComponent},
   { path: '', component: HomeComponent},
-  { path: 'catalogo', component: CatalogoComponent}
+  { path: 'catalogo', component: CatalogoComponent},
+  { path: 'contacto', component: ContactoComponent}
 
 ];
