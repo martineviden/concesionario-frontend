@@ -11,6 +11,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
 import { ContactoBannerComponent } from './shared/components/contacto-banner/contacto-banner.component';
+import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -26,6 +27,7 @@ export const routes: Routes = [
   { path: 'navbar', component: NavbarComponent},
   { path: '', component: HomeComponent},
   { path: 'catalogo', component: CatalogoComponent},
+  { path: 'nosostros', component: NosotrosComponent},
   { path: 'contacto', component: ContactoBannerComponent}
 
 ];

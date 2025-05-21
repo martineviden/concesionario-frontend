@@ -56,7 +56,7 @@ body {
       width: 800px;
       height: 500px;
       border-radius: 20px;
-      background-image: url('Coche_Venta.jpg');
+      background-image: url('/assets/img/Coche_Venta.jpg');
       background-position: center;
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
     }
