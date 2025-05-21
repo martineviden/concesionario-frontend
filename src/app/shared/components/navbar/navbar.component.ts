@@ -4,6 +4,7 @@ import { LoginComponent } from '../login/login.component';
 import { RegistrarseComponent } from '../registrarse/registrarse.component';
 import { RouterModule } from '@angular/router';
 
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
