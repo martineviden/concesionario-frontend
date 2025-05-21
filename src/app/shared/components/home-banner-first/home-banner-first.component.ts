@@ -32,10 +32,10 @@ export class HomeBannerFirstComponent implements OnInit{
 
 
    ngOnInit(): void {
-      //  this.tipoCocheServce.get(this.id)
-      //  .subscribe(tipoCoches=>{
-      //   console.log(tipoCoches)
-      //  });
+       this.tipoCocheServce.list()
+        .subscribe(tipoCoches=>{
+      console.log(tipoCoches)
+        });
 
       //this.tipoCocheServce.create(this.nuevoCoche).subscribe(tipoCocheServce=>{console.log()});
    }
