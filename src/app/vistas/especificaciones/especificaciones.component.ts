@@ -4,6 +4,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { TipoVehiculoBannerFirstComponent } from '../../shared/components/tipo-vehiculo-banner-first/tipo-vehiculo-banner-first.component';
 import { TipoVehiculoResennasComponent } from '../../shared/components/tipo-vehiculo-resennas/tipo-vehiculo-resennas.component';
 import { PreviewCatalogoComponent } from '../../shared/components/preview-catalogo/preview-catalogo.component';
+
 @Component({
   selector: 'app-especificaciones',
   imports: [FooterComponent, NavbarComponent, TipoVehiculoBannerFirstComponent, TipoVehiculoResennasComponent, PreviewCatalogoComponent],
