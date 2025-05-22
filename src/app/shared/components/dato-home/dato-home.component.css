@@ -1,6 +1,6 @@
 .step-number {
   display: inline-block;
-  background-color: #5937E0; /* Azul Bootstrap */
+  background-color: #5937e0;
   color: white;
   font-weight: bold;
   border-radius: 50%;
@@ -15,12 +15,102 @@ div ul li h5 {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
   font-weight: bold;
-  color: #000000; /* Azul Bootstrap */
+  color: #000000;
 }
 
 div ul li p {
   font-size: 1rem;
   margin-bottom: 0.5rem;
-  color: #8c8c8c; /* Azul Bootstrap */
+  color: #8c8c8c;
 }
 
+/* Estilos para el título principal */
+.main-title {
+  color: #5937e0;
+  font-weight: 700;
+  font-size: 2.5rem;
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.main-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efecto de subrayado animado */
+.main-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #5937e0;
+  transition: width 1.2s ease;
+}
+
+.main-title.visible::after {
+  width: 100%;
+}
+
+/* Estilos para la animación */
+.step-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.step-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Retraso secuencial para cada paso */
+.step-item[data-step="1"].visible {
+  transition-delay: 0.3s; /* Ajustado para que comience después del título */
+}
+
+.step-item[data-step="2"].visible {
+  transition-delay: 0.6s;
+}
+
+.step-item[data-step="3"].visible {
+  transition-delay: 0.9s;
+}
+
+.step-item[data-step="4"].visible {
+  transition-delay: 1.2s;
+}
+
+/* Animación para el número del paso */
+.step-item.visible .step-number {
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Animación de texto para el título */
+@keyframes smoothReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
