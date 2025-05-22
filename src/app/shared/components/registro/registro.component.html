@@ -1,15 +1,23 @@
 <div class="modal-login-bg">
   <div class="modal-login">
     <h2>Registro</h2>
-    <form [formGroup]="usuarioForm" (ngSubmit)="registrarUsuario()">
-      <input type="text" placeholder="Nombre" class="login-input" autocomplete="off" formControlName="nombre" />
-      <input type="text" placeholder="Apellido" class="login-input" autocomplete="off" formControlName="apellidos" />
-      <input type="email" placeholder="Correo Electronico" class="login-input" autocomplete="off" formControlName="correo" />
-      <input type="tel" placeholder="Telefono" class="login-input" autocomplete="off" formControlName="telefono" />
-      <input type="text" placeholder="Dni" class="login-input" autocomplete="off" formControlName="dni" />
-      <input type="password" placeholder="Contraseña" class="login-input" autocomplete="new-password" formControlName="contrasena" />
-      <input type="password" placeholder="Confirmacion contraseña" class="login-input" autocomplete="new-password" />
-      <button type="submit" class="login-btn">Registro</button>
+    <form [formGroup]="usuarioForm" (ngSubmit)="registrarUsuario()" class="registro-grid">
+      <div class="input-row">
+        <input type="text" placeholder="Nombre" class="login-input" autocomplete="off" formControlName="nombre" />
+        <input type="text" placeholder="Apellido" class="login-input" autocomplete="off" formControlName="apellidos" />
+      </div>
+      <div class="input-row">
+        <input type="email" placeholder="Correo Electronico" class="login-input" autocomplete="off" formControlName="correo" />
+        <input type="tel" placeholder="Telefono" class="login-input" autocomplete="off" formControlName="telefono" />
+      </div>
+      <div class="input-row">
+        <input type="password" placeholder="Contraseña" class="login-input" autocomplete="new-password" formControlName="contrasena" />
+        <input type="password" placeholder="Confirmacion contraseña" class="login-input" autocomplete="new-password" />
+      </div>
+      <div class="input-row">
+        <input type="text" placeholder="Dni" class="login-input" autocomplete="off" formControlName="dni" />
+        <button type="submit" class="login-btn registro-btn-inline">Registro</button>
+      </div>
     </form>
     <button class="close-btn" type="button" (click)="close()">&times;</button>
   </div>
