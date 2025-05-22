@@ -81,13 +81,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start; /* Asegura alineación arriba */
+  padding-top: 0; /* Asegúrate de que no haya padding extra */
 }
 
 .specs-title {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  text-align: center;
+  text-align: right;
+  padding-bottom: 40px;
 }
 
 .specs-grid {
@@ -95,7 +98,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   width: 100%;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .spec-card {
@@ -140,7 +143,7 @@
   border: none;
   border-radius: 14px;
   padding: 1rem 0;
-  margin-top: 1.5rem;
+  margin-top: auto; /* Empuja el botón al fondo del panel */
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -151,26 +154,29 @@
 
 /* EQUIPAMIENTO */
 .equipamiento {
-  max-width: 900px;
-  margin: 60px auto 0 auto;
-  padding: 0 20px;
+  max-width: 600px;
+  margin: 80px 0 0 auto; /* Aumenta el espacio superior */
+  padding: 0;
+  width: 100%;
 }
 
 .equipamiento h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  text-align: center;
-  margin-bottom: 2rem;
+  text-align: left; /* Alinea el título a la izquierda */
+  margin-bottom: 1.2rem;
+  margin-left: 0;
 }
 
 .equipamiento-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.2rem 3rem;
+  gap: 1rem 2.5rem;
   list-style: none;
   padding: 0;
-  margin: 0 auto;
-  font-size: 1.2rem;
+  margin: 0;
+  font-size: 1.1rem;
+  justify-items: start; /* Alinea los ítems a la izquierda */
 }
 
 .equipamiento-list li {

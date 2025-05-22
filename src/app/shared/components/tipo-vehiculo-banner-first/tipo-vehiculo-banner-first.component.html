@@ -6,13 +6,13 @@
         <p class="price"><span class="price-amount">€25</span> <span class="price-dia">/ día</span></p>
 
         <div class="main-image">
-          <img src="assets/images/volkswagen-main.png" alt="Coche sombra">
+          <img src="assets/img/catalogo/7.jpg" alt="Coche sombra">
         </div>
 
         <div class="thumbnails">
-          <img src="assets/images/thumb1.jpg" alt="Miniatura 1">
-          <img src="assets/images/thumb2.jpg" alt="Miniatura 2">
-          <img src="assets/images/thumb3.jpg" alt="Miniatura 3">
+          <img src="assets/img/catalogo/7.jpg" alt="Miniatura 1">
+          <img src="assets/img/catalogo/7.jpg" alt="Miniatura 3">
+          <img src="assets/img/catalogo/7.jpg" alt="Miniatura 2">
         </div>
       </div>
 
@@ -51,20 +51,23 @@
             <p>500</p>
           </div>
         </div>
-        <button class="btn-alquilar">Alquilar</button>
+        <button class="btn-alquilar" (click)="mostrarFormularioAlquilar = true">Alquilar</button>
+        <app-formulario-alquilar
+          *ngIf="mostrarFormularioAlquilar"
+          (cerrarModal)="mostrarFormularioAlquilar = false">
+        </app-formulario-alquilar>
+        <!-- EQUIPAMIENTO -->
+        <div class="equipamiento">
+          <h2>Equipamiento Del Coche</h2>
+          <ul class="equipamiento-list">
+            <li><span class="check">✔️</span> ABS</li>
+            <li><span class="check">✔️</span> Herramientas</li>
+            <li><span class="check">✔️</span> Bolsas De Aire</li>
+            <li><span class="check">✔️</span> Llanta Repuesto</li>
+            <li><span class="check">✔️</span> Control Crucero</li>
+            <li><span class="check">✔️</span> Aire Acondicionado</li>
+          </ul>
+        </div>
       </div>
-    </div>
-
-    <!-- EQUIPAMIENTO -->
-    <div class="equipamiento">
-      <h2>Equipamiento Del Coche</h2>
-      <ul class="equipamiento-list">
-        <li><span class="check">✔️</span> ABS</li>
-        <li><span class="check">✔️</span> Herramientas</li>
-        <li><span class="check">✔️</span> Bolsas De Aire</li>
-        <li><span class="check">✔️</span> Llanta Repuesto</li>
-        <li><span class="check">✔️</span> Control Crucero</li>
-        <li><span class="check">✔️</span> Aire Acondicionado</li>
-      </ul>
     </div>
   </div>

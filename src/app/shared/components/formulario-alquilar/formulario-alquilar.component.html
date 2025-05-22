@@ -1,0 +1,59 @@
+<div class="modal-login-bg">
+  <div class="modal-alquilar-flex">
+    <!-- Resumen del coche -->
+    <div class="car-summary">
+      <h2 class="car-title">Volkswagen Golf</h2>
+      <img src="assets/img/catalogo/7.jpg" alt="Volkswagen Golf" class="car-img" />
+      <ul class="car-features">
+        <li><strong>Transmisión:</strong> Automático</li>
+        <li><strong>Combustible:</strong> Diesel</li>
+        <li><strong>Puertas:</strong> 4</li>
+        <li><strong>Aire Acondicionado:</strong> Sí</li>
+        <li><strong>Asientos:</strong> 5</li>
+        <li><strong>Distancia:</strong> 500 km</li>
+      </ul>
+      <div class="car-price">
+        <span class="price-amount">€25</span> <span class="price-dia">/ día</span>
+      </div>
+      <div class="car-equipamiento">
+        <h3>Equipamiento</h3>
+        <ul class="equipamiento-list">
+          <li><span class="check">✔️</span> ABS</li>
+          <li><span class="check">✔️</span> Herramientas</li>
+          <li><span class="check">✔️</span> Bolsas De Aire</li>
+          <li><span class="check">✔️</span> Llanta Repuesto</li>
+          <li><span class="check">✔️</span> Control Crucero</li>
+          <li><span class="check">✔️</span> Aire Acondicionado</li>
+        </ul>
+      </div>
+    </div>
+    <!-- Formulario de alquiler -->
+    <div class="modal-login">
+      <button class="close-btn" type="button" (click)="cerrarModal.emit()">&times;</button>
+      <form>
+        <h2>Alquilar Vehículo</h2>
+        <h3>Información Personal</h3>
+        <input type="text" placeholder="Nombre" class="login-input" />
+        <input type="text" placeholder="Apellido" class="login-input" />
+        <input type="email" placeholder="Correo Electronico" class="login-input" />
+        <input type="tel" placeholder="Telefono" class="login-input" />
+        <input type="text" placeholder="DNI" class="login-input" />
+        <label class="checkbox-row">
+          <input type="checkbox" />
+          <span>El DNI es igual que el número de carnet de conducir</span>
+        </label>
+
+        <h3>Dirección De Facturación</h3>
+        <input type="text" placeholder="Calle" class="login-input" />
+        <input type="text" placeholder="Número" class="login-input" />
+        <input type="text" placeholder="Codigo Postal" class="login-input" />
+        <input type="text" placeholder="Localidad" class="login-input" />
+
+        <h3>Metodo De Pago</h3>
+        <!-- Aquí puedes añadir los campos de pago si lo necesitas -->
+
+        <button type="submit" class="login-btn">Confirmar Alquiler</button>
+      </form>
+    </div>
+  </div>
+</div>

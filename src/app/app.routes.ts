@@ -30,6 +30,6 @@ export const routes: Routes = [
   { path: 'navbar', component: NavbarComponent},
   { path: '', component: HomeComponent},
   { path: 'catalogo', component: CatalogoComponent},
-    {path: 'especificaciones', component: EspecificacionesComponent}
+  {path: 'especificaciones', component: EspecificacionesComponent}
 
 ];
