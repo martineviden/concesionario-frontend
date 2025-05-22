@@ -1,0 +1,206 @@
+.modal-login-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(40, 40, 50, 0.35);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.modal-login {
+  background: #5636e6;
+  border-radius: 24px;
+  padding: 28px 16px 32px 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.15);
+  width: 320px;
+  min-height: 0;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+.modal-login h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 14px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.modal-login h3 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 14px;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #6c4be7;
+  color: #fff;
+  font-size: 0.98rem;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  opacity: 0.95;
+  transition: background 0.2s;
+}
+
+.login-input::placeholder {
+  color: #d1c6fa;
+  opacity: 1;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: 0.98rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.checkbox-row input[type="checkbox"] {
+  accent-color: #ff9800;
+  width: 16px;
+  height: 16px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px 0;
+  background: #ff9800;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-btn:hover {
+  background: #e68900;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 2;
+}
+
+.modal-alquilar-flex {
+  display: flex;
+  gap: 32px;
+  background: none;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.car-summary {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px 20px;
+  min-width: 240px;
+  max-width: 260px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.car-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.car-img {
+  width: 100%;
+  max-width: 180px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  object-fit: cover;
+}
+
+.car-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px 0;
+  width: 100%;
+  color: #333;
+  font-size: 0.98rem;
+}
+
+.car-features li {
+  margin-bottom: 6px;
+}
+
+.car-price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #5636e6;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.price-amount {
+  font-size: 1.6rem;
+  color: #5636e6;
+}
+
+.price-dia {
+  font-size: 1rem;
+  color: #888;
+}
+
+@media (max-width: 500px) {
+  .modal-login {
+    width: 96vw;
+    min-width: unset;
+    padding: 18px 4vw 24px 4vw;
+    max-height: 96vh;
+  }
+}
+
+@media (max-width: 900px) {
+  .modal-alquilar-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .car-summary {
+    max-width: 98vw;
+    width: 100%;
+  }
+}

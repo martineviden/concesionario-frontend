@@ -1,12 +1,12 @@
-       .contenedor-banner {
+.contenedor-banner {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 110vh;
             margin: 0;
             background-color: #ffffff;
-        }
-        .banner {
+    }
+.banner {
             display: flex;
             justify-content: space-around;
             align-items: center;

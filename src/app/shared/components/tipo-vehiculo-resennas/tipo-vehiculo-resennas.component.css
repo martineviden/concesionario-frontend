@@ -1,0 +1,137 @@
+.main-body {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem 2rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* REVIEWS */
+.reviews-section {
+    background: #f5f5f5;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    border-radius: 10px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.reviews-section h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #333;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+}
+
+.reviews-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    color: #000;
+    letter-spacing: 0.5px;
+}
+
+.review-list {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    /* Asegura igual altura */
+    max-width: 1400px;
+    margin: 0 auto 2rem auto;
+    flex-wrap: wrap;
+}
+
+.review-card {
+    background: #f5f5f5;
+    border-radius: 20px 20px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 350px;
+    max-width: 420px;
+    min-width: 320px;
+    margin: 0;
+    box-shadow: none;
+    overflow: hidden;
+    position: relative;
+    height: 520px;
+    /* Altura fija para todas las cards */
+    justify-content: flex-start;
+    padding: 0;
+}
+
+.review-quote {
+    font-size: 5rem;
+    color: #5636d8;
+    font-family: serif;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+    margin-left: 2rem;
+    font-weight: bold;
+}
+
+.review-card p {
+    font-size: 1.3rem;
+    color: #111;
+    text-align: center;
+    font-style: normal;
+    margin: 0 2rem 0 2rem;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    padding-bottom: 120px;
+    /* Añade espacio para el avatar */
+}
+
+.review-footer {
+    background: #5636d8;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 0 1.5rem 0;
+    margin-top: auto;
+    /* Cambia de 2.5rem a auto para empujar el footer abajo */
+    border-radius: 0 0 24px 24px;
+    position: relative;
+    min-height: 200px;
+    /* Asegura altura suficiente para la zona azul */
+    box-sizing: border-box;
+}
+
+.review-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+}
+
+.review-location {
+    color: #d1c8f6;
+    font-size: 1rem;
+    margin-top: 50px;
+    margin-bottom: 0.2rem;
+    text-align: center;
+}
+
+.review-name {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0.1rem;
+}

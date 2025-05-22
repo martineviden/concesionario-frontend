@@ -8,10 +8,12 @@ import { PreviewCatalogoComponent } from './shared/components/preview-catalogo/p
 import { MarcasBlockComponent } from "./shared/components/marcas-block/marcas-block.component";
 
 
+
+
 @Component({
   selector: 'app-root',
 
-  imports: [RouterOutlet, ],
+  imports: [RouterOutlet,],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
