@@ -15,6 +15,7 @@ import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home
 import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
 import { EspecificacionesComponent } from './vistas/especificaciones/especificaciones.component';
+import { PerfilComponent } from './vistas/perfil/perfil.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,6 +31,7 @@ export const routes: Routes = [
   { path: 'navbar', component: NavbarComponent},
   { path: '', component: HomeComponent},
   { path: 'catalogo', component: CatalogoComponent},
-  {path: 'especificaciones', component: EspecificacionesComponent}
+  {path: 'especificaciones', component: EspecificacionesComponent},
+  {path: 'perfil', component: PerfilComponent}
 
 ];
