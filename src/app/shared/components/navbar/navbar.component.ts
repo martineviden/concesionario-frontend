@@ -44,6 +44,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (currentScrollTop > 50) {
       navbar.classList.remove('hidden');
       navbar.classList.add('instant-hide');
+      navbar.classList.add('overlay');
+    } else {
+      navbar.classList.remove('overlay');
     }
     
     // Actualizar la posición de scroll para la próxima vez
