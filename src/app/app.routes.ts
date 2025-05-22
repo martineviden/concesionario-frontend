@@ -10,6 +10,9 @@ import { AdminReservasComponent } from './shared/components/admin-reservas/admin
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
+import { EditarPerfilComponent } from './shared/components/editar-perfil/editar-perfil.component';
+import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
+import { ContactoComponent } from './vistas/contacto/contacto.component';
 
 import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
 import { ContactoComponent } from './vistas/contacto/contacto.component';
@@ -25,10 +28,9 @@ export const routes: Routes = [
   { path: 'mis-reservas', component: MisReservasComponent },
   { path: 'admin/reservas', component: AdminReservasComponent },
   { path: 'resena-form', component: ResenaFormComponent},
-  { path: 'navbar', component: NavbarComponent},
   { path: '', component: HomeComponent},
   { path: 'catalogo', component: CatalogoComponent},
-  { path: 'nosostros', component: NosotrosComponent},
-  { path: 'contacto', component: ContactoComponent}
-
+  { path: 'editar-perfil', component: EditarPerfilComponent},
+  { path: 'nosotros', component: NosotrosComponent},
+  { path: 'contacto', component: ContactoComponent},
 ];

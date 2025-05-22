@@ -1,0 +1,82 @@
+
+
+
+<div class="catalogo-container">
+  <h2 class="titulo">Selección de un vehículo</h2>
+
+  <div class="filtros">
+    <button
+      class="filtro"
+      [ngClass]="{ activo: filtrosActivos.includes('Todos los vehículos') }"
+      (click)="toggleFiltro('Todos los vehículos')">
+      Todos los vehículos
+    </button>
+    <button
+      class="filtro"
+      [ngClass]="{ activo: filtrosActivos.includes('Ejemplo 1') }"
+      (click)="toggleFiltro('Ejemplo 1')">
+      Ejemplo 1
+    </button>
+    <button
+      class="filtro"
+      [ngClass]="{ activo: filtrosActivos.includes('Ejemplo 2') }"
+      (click)="toggleFiltro('Ejemplo 2')">
+      Ejemplo 2
+    </button>
+    <button
+      class="filtro"
+      [ngClass]="{ activo: filtrosActivos.includes('Ejemplo 3') }"
+      (click)="toggleFiltro('Ejemplo 3')">
+      Ejemplo 3
+    </button>
+    <button
+      class="filtro"
+      [ngClass]="{ activo: filtrosActivos.includes('Ejemplo 4') }"
+      (click)="toggleFiltro('Ejemplo 4')">
+      Ejemplo 4
+    </button>
+  </div>
+
+  <div class="grid-vehiculos">
+    <div class="tarjeta-vehiculo" *ngFor="let vehiculo of vehiculos">
+      <div class="imagen-vehiculo">
+        <img [src]="vehiculo.imagen" [alt]="vehiculo.modelo">
+      </div>
+      <div class="info-vehiculo">
+        <div class="nombre-precio-vehiculo">
+          <div class="nombre-vehiculo">
+            <h3>{{ vehiculo.marca }}</h3>
+            <p>{{ vehiculo.modelo }}</p>
+            <p class="anio">{{ vehiculo.anio }}</p>
+          </div>
+          <div class="precio">
+            <span class="cantidad">€{{ vehiculo.precio }}</span>
+            <span class="por-dia">por día</span>
+          </div>
+        </div>
+        <div class="caracteristicas-vehiculo">
+          <div class="caracteristica">
+            <i [ngClass]="vehiculo.transmision === 'Manual' ? 'fas fa-cog' : 'fas fa-car'"></i>
+            <span>{{ vehiculo.transmision }}</span>
+          </div>
+          <div class="caracteristica">
+  <i [ngClass]="{
+    'fas fa-gas-pump': vehiculo.combustible === 'PB 95' || vehiculo.combustible === 'Gasolina',
+    'fas fa-industry': vehiculo.combustible === 'Diésel',
+    'fas fa-bolt': vehiculo.combustible === 'Eléctrico',
+    'fas fa-leaf': vehiculo.combustible === 'Híbrido'
+  }"></i>
+  <span>{{ vehiculo.combustible }}</span>
+</div>
+
+          <div class="caracteristica">
+            <i class="fas fa-snowflake"></i>
+            <span *ngIf="vehiculo.aireAcondicionado">A/A</span>
+            <span *ngIf="!vehiculo.aireAcondicionado">Sin A/A</span>
+          </div>
+        </div>
+        <button class="boton-detalles">Ver detalles</button>
+      </div>
+    </div>
+  </div>
+</div>

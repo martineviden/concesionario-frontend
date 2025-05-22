@@ -2,7 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 
 import {TipoVehiculoService} from '../../../services/tipo-vehiculo.service'
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
-import { TipoVehiculo } from '../../../models/enums';
+import { Provincia, TipoVehiculo } from '../../../models/enums';
+import { CommonModule, NgFor } from '@angular/common';
 
 
 @Component({
@@ -16,6 +17,8 @@ export class HomeBannerFirstComponent implements OnInit{
 
   private tipoVehiculoService = inject(TipoVehiculoService);
   private id: number = 2;
+  tipoCOCHE = TipoVehiculo.keys();
+  ubicaciones = Provincia.keys();
 
   private nuevoCoche:TipoVehiculoModel ={
     id : 6,
@@ -23,17 +26,22 @@ export class HomeBannerFirstComponent implements OnInit{
     marca: "Honda",
     modelo: "Civic",
     imagen:"/jaoidjaoi.jpg",
-    tipo: TipoVehiculo.COCHE
+    tipo: TipoVehiculo.COCHE,
+    vehiculo: "A78546-B"
   }
 
 
    ngOnInit(): void {
-      //  this.tipoCocheServce.list()
-      //   .subscribe(tipoCoches=>{
-      // console.log(tipoCoches)
-      //   });
+        this.tipoVehiculoService.listAllTipoVheculo()
+         .subscribe(tipoCoches=>{
+
+         console.log(tipoCoches)
+         });
 
       //this.tipoCocheServce.create(this.nuevoCoche).subscribe(tipoCocheServce=>{console.log()});
+      console.log(this.tipoCOCHE);
    }
+
+
 
 }

@@ -1,139 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 .footer {
-  background-color: #ffffff;
-  color: #000000;
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Inter", sans-serif;
+  background-color: #fff;
+  color: #333;
+  width: 100%;
+  padding-top: 1.25rem;
+  position: relative;
+  margin-top: 5px;
 }
 
-/* Primera línea */
-.footer-first-line {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 100px;
-  margin-bottom: 50px;
+.footer-border {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, rgba(108, 92, 231, 0.6) 50%, transparent 100%);
+  box-shadow: 0 -1px 6px 0 rgba(108, 92, 231, 0.15);
+}
 
+.footer-container {
+  max-width: 1500px; /* Aumentado de 1400px para permitir más espacio */
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 9rem; /* Aumentado de 8rem a 9rem */
+}
+
+/* Logo y slogan */
+.footer-brand {
+  flex: 1;
+  max-width: 250px;
 }
 
 .footer-logo {
-  flex: 1;
-  min-width: 200px;
-}
-
-
-
-.img-logo {
-  max-width: 60px;
-}
-.img-texto {
-  max-width: 110px;
-  margin-left: 40px;
-  margin-top: 4px;
-}
-
-.footer-contact {
   display: flex;
-  flex-wrap: wrap;
-  gap: 220px;
-  margin-right: 160px;
-}
-.footer-contact-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 14px;
-  line-height: 1.6;
-}
-.footer-contact-item img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-.footer-contact-item a {
-  color: #000;
+  align-items: center;
   text-decoration: none;
-}
-.footer-contact-item a:hover {
-  text-decoration: underline;
+  margin-bottom: 0.5rem;
 }
 
-/* Segunda línea */
-.footer-second-line {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 30px;
-  gap: 30px;
-  align-items: flex-start;
+.footer-logo img:first-child {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  border: 2px solid #6c5ce7;
+  padding: 2px;
+  background: #fff;
 }
 
-
-
-
-.footer-left {
-  flex: 1;
-  min-width: 250px;
+.footer-logo img:last-child {
+  height: 28px;
+  margin-left: 0.5rem;
 }
-.footer-left h3 {
-  font-size: 18px;
+
+.footer-slogan {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0.25rem 0 0.5rem;
+  color: #444;
   font-weight: 500;
-  margin-bottom: 10px;
+  letter-spacing: -0.01em;
 }
+
 .footer-social {
   display: flex;
-  gap: 10px;
+  gap: 0.75rem;
 }
-.footer-social i {
-  font-size: 24px;
-  color: white;
-  background-color: black;
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  padding: 10px;
-  width: 44px;
-  height: 44px;
-  text-align: center;
-  line-height: 24px;
+  background-color: #6c5ce7;
+  color: white;
+  transition: all 0.3s ease;
 }
 
-.footer-center,
-.footer-right {
+.footer-social a:hover {
+  background-color: #ff9800;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(255, 152, 0, 0.2);
+}
+
+.footer-social i {
+  font-size: 1.1rem;
+}
+
+/* Información de contacto */
+.footer-contact {
   flex: 1;
-  min-width: 200px;
-  margin-left: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 300px;
 }
 
-.footer-links h3,
-.footer-brands h3 {
-  font-size: 16px;
-  font-weight: bold;
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(255, 152, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover .icon-wrapper {
+  background-color: rgba(255, 152, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.icon-wrapper img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: invert(56%) sepia(75%) saturate(1582%) hue-rotate(360deg) brightness(103%) contrast(106%);
+}
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6c5ce7;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.1rem;
 }
-.footer-links ul,
-.footer-brands ul {
 
+.contact-info {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+.contact-text a {
+  color: #444;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.contact-text a:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #ff9800;
+  transition: width 0.3s ease;
+}
+
+.contact-text a:hover {
+  color: #ff9800;
+}
+
+.contact-text a:hover:after {
+  width: 100%;
+}
+
+/* Enlaces y marcas */
+.footer-links-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 9rem; /* Aumentado de 8rem a 9rem */
+  max-width: 500px; /* Aumentado de 450px para permitir más espacio */
+}
+
+.footer-links, .footer-brands {
+  min-width: 140px;
+}
+
+.footer-links h3, .footer-brands h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #6c5ce7;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.03em;
+}
+
+/* Título centrado para Enlaces Útiles y Marcas */
+.centered-title {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+/* Eliminar línea para clase no-line */
+.no-line:after {
+  display: none;
+}
+
+/* Enlaces Útiles con iconos */
+.footer-links ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.footer-links li,
-.footer-brands li {
-  margin: 6px 0;
-}
-.footer-links a,
-.footer-brands a {
-  color: #000;
-  text-decoration: none;
-}
-.footer-links a:hover,
-.footer-brands a:hover {
-  text-decoration: underline;
+
+.footer-links li {
+  margin-bottom: 0.6rem;
 }
 
-/* Tercera línea */
+.footer-links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #444;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+.link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(108, 92, 231, 0.1);
+  margin-right: 0.75rem;
+  color: #6c5ce7;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  transform: translateX(5px);
+}
+
+.footer-links a:hover .link-icon {
+  background-color: #6c5ce7;
+  color: white;
+  transform: rotate(360deg);
+}
+
+/* Marcas con iconos */
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.brand-item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #444;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+.brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 152, 0, 0.1);
+  margin-right: 0.75rem;
+  color: #ff9800;
+  transition: all 0.3s ease;
+}
+
+/* Iconos específicos de marcas */
+.brand-icon i {
+  font-size: 1.1rem;
+}
+
+.brand-item:hover {
+  transform: translateX(5px);
+}
+
+.brand-item:hover .brand-icon {
+  background-color: #ff9800;
+  color: white;
+  transform: rotate(360deg);
+}
+
+/* Copyright */
 .footer-copyright {
   text-align: center;
-  margin-top: 30px;
-  font-size: 13px;
+  padding: 0.6rem 0;
+  margin-top: 1.25rem;
+  border-top: 1px solid rgba(108, 92, 231, 0.1);
+  font-size: 0.85rem;
+  color: #777;
+  background-color: rgba(108, 92, 231, 0.03);
+  letter-spacing: 0.02em;
+}
+
+/* Responsive */
+@media (max-width: 1500px) {
+  .footer-container {
+    gap: 7rem; /* Ajustado para pantallas grandes */
+  }
+  
+  .footer-links-container {
+    gap: 7rem; /* Ajustado para pantallas grandes */
+  }
+}
+
+@media (max-width: 1400px) {
+  .footer-container {
+    gap: 6rem; /* Reducir un poco el espacio en pantallas más pequeñas */
+  }
+  
+  .footer-links-container {
+    gap: 6rem; /* Reducir un poco el espacio en pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 1200px) {
+  .footer-container {
+    gap: 4rem; /* Reducir más el espacio en pantallas medianas */
+  }
+  
+  .footer-links-container {
+    gap: 4rem; /* Reducir más el espacio en pantallas medianas */
+  }
+}
+
+@media (max-width: 1100px) {
+  .footer-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    gap: 3rem; /* Ajustar el espacio para pantallas medianas */
+  }
+
+  .footer-brand {
+    flex: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-contact, .footer-links-container {
+    flex: 1;
+    max-width: none;
+  }
+
+  .footer-links-container {
+    gap: 3rem; /* Mantener un espacio mayor entre Enlaces y Marcas */
+  }
+
+  .footer-links a, .brand-item {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    padding: 0 1rem;
+    align-items: center;
+    gap: 2.5rem; /* Ajustar el espacio para móviles */
+  }
+
+  .footer-contact {
+    margin: 0.75rem 0;
+    align-items: center;
+  }
+
+  .footer-links-container {
+    width: 100%;
+    justify-content: space-around;
+    gap: 2.5rem; /* Ajustar el espacio para móviles */
+  }
+
+  .footer-links, .footer-brands {
+    text-align: center;
+  }
+
+  .footer-links a:hover, .brand-item:hover {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem; /* Ajustar el espacio para móviles pequeños */
+  }
+
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.3rem;
+  }
+
+  .brands-grid {
+    grid-template-columns: 1fr;
+  }
 }
