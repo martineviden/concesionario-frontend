@@ -8,10 +8,6 @@ import { TipoVehiculoComponent } from './shared/components/tipo-vehiculo/tipo-ve
 import { MisReservasComponent } from './shared/components/mis-reservas/mis-reservas.component';
 import { AdminReservasComponent } from './shared/components/admin-reservas/admin-reservas.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { HomeBannerFirstComponent } from './shared/components/home-banner-first/home-banner-first.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { DatoHomeComponent } from './shared/components/dato-home/dato-home.component';
-import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
 import { EditarPerfilComponent } from './shared/components/editar-perfil/editar-perfil.component';
