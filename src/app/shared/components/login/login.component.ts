@@ -40,11 +40,14 @@ export class LoginComponent {
 
       this.loginService.obtenerUsuario(usuario.correo).subscribe({
         next: res => {
-          const nombreUsuario = usuario.nombre;
-          const contrasenaUsuario = usuario.contrasena;
-          
-          console.log('Usuario obtenido: ', nombreUsuario);
-          console.log('Contraseña: ' + contrasenaUsuario);
+          const nombreUsuario = res.nombre;
+          const contrasenaUsuario = res.contrasena;
+
+          if (usuario.contrasena == contrasenaUsuario) {
+            console.log('Usuario obtenido: ', nombreUsuario);
+          } else {
+            console.log('Contraseña incorrecta');
+          }
         },
         error: err => console.error('Login incorrecto: ', err)
       });
@@ -53,5 +56,6 @@ export class LoginComponent {
     } else {
       console.log('Formulario inválido');
     }
+
   }
 }
