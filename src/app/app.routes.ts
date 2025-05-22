@@ -14,9 +14,6 @@ import { EditarPerfilComponent } from './shared/components/editar-perfil/editar-
 import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
 import { ContactoComponent } from './vistas/contacto/contacto.component';
 
-import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
-import { ContactoComponent } from './vistas/contacto/contacto.component';
-
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
   // // { path: '', redirectTo: 'vehiculos', pathMatch: 'full' }, para que no me redireccione
