@@ -1,108 +1,272 @@
-@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Italiana&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Italiana&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Italiana&display=swap");
 
-
-.contenedor-banner-general{
+/* Modificar el contenedor principal para eliminar el espacio con la navbar */
+.contenedor-banner-general {
   max-width: 1440px;
   margin: 0 auto;
-
+  padding: 0;
 }
 
-.contenedor-banner{
-  background-color: #5937E0;
+/* Hacer el banner más alto */
+.contenedor-banner {
+  background-color: #5937e0;
   max-width: 1296px;
-  margin: 0px auto;
-  padding-left: 72px;
-
+  margin: 0 auto;
+  padding: 0 72px;
   background-image: url("/assets/img/first_banner.png");
-  background-size: 698px, 418px;
+  background-size: cover;
   background-repeat: no-repeat;
-  border-radius: 20px;
-  display: flex;
   background-position: center;
-
-
-
-}
-.container-titulo-descripcion{
-color: #FFFFFF;
-/* padding-top: 68px;
-padding-left: 112px;
-padding-right: 333px; */
-display: block;
-
+  border-radius: 24px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 20px 40px rgba(89, 55, 224, 0.3);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+  min-height: 600px; /* Aumentar la altura del banner */
 }
 
- .titulo{
-  font-family: "Italiana", sans-serif;
+.contenedor-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(89, 55, 224, 0.9) 0%, rgba(89, 55, 224, 0.7) 100%);
+  z-index: 1;
+}
+
+.contenedor-banner:hover {
+  box-shadow: 0 25px 50px rgba(89, 55, 224, 0.4);
+}
+
+.container-titulo-descripcion {
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Mejorar el estilo del título */
+.titulo {
+  font-family: "Italiana", serif;
   font-weight: 400;
-  font-size: 70px;
+  font-size: 90px; /* Aumentar tamaño de fuente */
   font-style: normal;
   text-align: left;
-  margin-top: 68px;
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-
+  margin-top: 100px; /* Aumentar margen superior para centrar verticalmente */
+  margin-bottom: 24px; /* Aumentar espacio después del título */
+  letter-spacing: 2px; /* Aumentar espaciado entre letras */
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeInLeft 1s ease-out;
+  line-height: 1.1; /* Mejorar el interlineado */
 }
 
-
-.parrafo{
+/* Mejorar el estilo del párrafo */
+.parrafo {
   text-align: left;
   font-family: "Commissioner", sans-serif;
+  font-size: 28px; /* Aumentar tamaño de fuente */
+  font-weight: 300;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 90%;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: fadeInLeft 1.2s ease-out;
+  letter-spacing: 0.5px; /* Añadir espaciado entre letras */
+}
+
+/* Ajustar la posición del formulario para el banner más alto */
+.folmulario-banner {
+  background-color: #ffffff;
+  width: 416px;
+  border-radius: 16px;
+  margin-top: 100px; /* Ajustar margen superior para centrar verticalmente */
+  margin-bottom: 100px; /* Ajustar margen inferior para centrar verticalmente */
+  padding: 30px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+  animation: fadeInRight 1s ease-out;
+  transform: translateZ(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.folmulario-banner:hover {
+  transform: translateY(-5px) translateZ(0);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.titulo-formulario-banner {
+  font-family: "Commissioner", sans-serif;
   font-size: 24px;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-variation-settings:
-    "slnt" 0,
-    "FLAR" 0,
-    "VOLM" 0;
-  margin: 0 auto;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 24px;
+  text-align: center;
 }
 
-
-.folmulario-banner{
-  background-color: #FFFFFF;
-  max-width: 416px;
-  border-radius: 10px;
-  margin-top: 239px;
-  margin-right: 0px;
-  margin-bottom: 92px;
-
-
-}
-
-.form-select{
-  width: 336px;
-  margin: 5px;
-  text-decoration: none;
-  border-style: none;
-
-}
-
-.titulo-formulario-banner{
-  padding: 0 40px;
+.folmulario-banner-interior {
   display: flex;
-  justify-content: center;
-
-
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
 }
-.folmulario-banner-interior{
 
-  padding: 10px;
-  display: grid;
-  justify-content: center;
-
+.select-wrapper {
+  position: relative;
+  width: 100%;
 }
-.boton-resultado{
 
-  display: block;
-  justify-self: center;
+.form-select {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: "Commissioner", sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
   border-radius: 12px;
-  margin-bottom: 40px;
-  border-style: none;
-  width: 336px;
-  height: 40px;
-  background-color: #FF9E0C;
-  color: #FFFFFF;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
+.form-select:focus {
+  outline: none;
+  border-color: #5937e0;
+  box-shadow: 0 0 0 3px rgba(89, 55, 224, 0.2);
+}
+
+.select-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  pointer-events: none;
+}
+
+.boton-resultado {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  background-color: #ff9e0c;
+  color: #ffffff;
+  font-family: "Commissioner", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 158, 12, 0.3);
+}
+
+.boton-resultado:hover {
+  background-color: #f08c00;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 158, 12, 0.4);
+}
+
+.boton-resultado:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 158, 12, 0.3);
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Ajustar media queries para mantener la altura en dispositivos móviles */
+@media (max-width: 1200px) {
+  .contenedor-banner {
+    flex-direction: column;
+    padding: 60px 40px; /* Aumentar padding vertical */
+    min-height: auto; /* Permitir altura automática en móviles */
+  }
+
+  .container-titulo-descripcion {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .titulo {
+    font-size: 70px;
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .parrafo {
+    text-align: center;
+    font-size: 24px;
+    max-width: 100%;
+    margin-bottom: 60px;
+  }
+
+  .folmulario-banner {
+    margin: 0 auto 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .titulo {
+    font-size: 60px;
+  }
+
+  .parrafo {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor-banner {
+    padding: 40px 20px;
+  }
+
+  .titulo {
+    font-size: 48px;
+    margin-top: 40px;
+  }
+
+  .parrafo {
+    font-size: 20px;
+  }
 }

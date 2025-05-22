@@ -7,7 +7,17 @@
   width: 100%;
   padding-top: 1.25rem;
   position: relative;
-  margin-top: 5px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Añadir estilos para el contenedor principal */
+:host {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .footer-border {
@@ -342,11 +352,11 @@
 
 @media (max-width: 1200px) {
   .footer-container {
-    gap: 4rem; /* Reducir más el espacio en pantallas medianas */
+    gap: 4rem; 
   }
   
   .footer-links-container {
-    gap: 4rem; /* Reducir más el espacio en pantallas medianas */
+    gap: 4rem; 
   }
 }
 
@@ -355,7 +365,7 @@
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
-    gap: 3rem; /* Ajustar el espacio para pantallas medianas */
+    gap: 3rem; 
   }
 
   .footer-brand {
@@ -373,7 +383,7 @@
   }
 
   .footer-links-container {
-    gap: 3rem; /* Mantener un espacio mayor entre Enlaces y Marcas */
+    gap: 3rem; 
   }
 
   .footer-links a, .brand-item {
@@ -425,4 +435,9 @@
   .brands-grid {
     grid-template-columns: 1fr;
   }
+}
+
+body {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
