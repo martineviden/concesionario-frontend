@@ -11,13 +11,11 @@ import { RouterModule } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
+export class NavbarComponent implements OnInit, OnDestroy {
   showLoginModal = false;
   showRegisterModal = false;
-  private observer: IntersectionObserver | null = null;
   private lastScrollTop = 0;
   private scrollTimeout: any = null;
-  private footerVisible = false;
   private isScrolling = false;
 
   constructor() {}
@@ -26,58 +24,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     // Inicialización básica
   }
 
-  ngAfterViewInit(): void {
-    // Configurar el Intersection Observer para detectar cuando el footer es visible
-    this.setupFooterObserver();
-  }
-
   ngOnDestroy(): void {
-    // Limpiar el observer cuando el componente se destruye
-    if (this.observer) {
-      this.observer.disconnect();
-    }
-    
     // Limpiar el timeout si existe
     if (this.scrollTimeout) {
       clearTimeout(this.scrollTimeout);
     }
-  }
-
-  private setupFooterObserver(): void {
-    const footer = document.querySelector('.footer');
-    if (!footer) {
-      console.warn('Footer no encontrado, el efecto de desaparición no funcionará correctamente');
-      return;
-    }
-
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          this.footerVisible = entry.isIntersecting;
-          
-          // Cuando el footer es visible/no visible, aplicamos la animación normal
-          const navbar = document.getElementById('mainNavbar');
-          if (!navbar) return;
-          
-          // Eliminar la clase de ocultamiento instantáneo
-          navbar.classList.remove('instant-hide');
-          
-          if (this.footerVisible) {
-            navbar.classList.add('hidden');
-          } else if (!this.isScrolling) {
-            // Solo mostrar si no estamos scrolleando
-            navbar.classList.remove('hidden');
-          }
-        });
-      },
-      {
-        root: null, // viewport
-        rootMargin: '0px',
-        threshold: 0.1 // 10% del footer visible es suficiente para activar
-      }
-    );
-
-    this.observer.observe(footer);
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -90,7 +41,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isScrolling = true;
     
     // Si estamos scrolleando y no estamos en la parte superior, ocultar la navbar instantáneamente
-    if (currentScrollTop > 50 && !this.footerVisible) {
+    if (currentScrollTop > 50) {
       navbar.classList.remove('hidden');
       navbar.classList.add('instant-hide');
     }
@@ -108,11 +59,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.isScrolling = false;
       
       // Cuando el scroll se detiene completamente, mostrar la navbar con animación
-      // a menos que el footer sea visible
-      if (!this.footerVisible) {
-        navbar.classList.remove('instant-hide');
-        navbar.classList.remove('hidden');
-      }
+      navbar.classList.remove('instant-hide');
+      navbar.classList.remove('hidden');
     }, 300); // Esperar 300ms después del último evento de scroll
   }
 

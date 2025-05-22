@@ -8,6 +8,14 @@
   padding-top: 1.25rem;
   position: relative;
   margin-top: 5px;
+  margin-top: auto; /* Empuja el footer hacia abajo */
+}
+
+/* Añadir estilos para el contenedor principal */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .footer-border {
@@ -342,11 +350,11 @@
 
 @media (max-width: 1200px) {
   .footer-container {
-    gap: 4rem; /* Reducir más el espacio en pantallas medianas */
+    gap: 4rem; 
   }
   
   .footer-links-container {
-    gap: 4rem; /* Reducir más el espacio en pantallas medianas */
+    gap: 4rem; 
   }
 }
 
@@ -355,7 +363,7 @@
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
-    gap: 3rem; /* Ajustar el espacio para pantallas medianas */
+    gap: 3rem; 
   }
 
   .footer-brand {
@@ -373,7 +381,7 @@
   }
 
   .footer-links-container {
-    gap: 3rem; /* Mantener un espacio mayor entre Enlaces y Marcas */
+    gap: 3rem; 
   }
 
   .footer-links a, .brand-item {
