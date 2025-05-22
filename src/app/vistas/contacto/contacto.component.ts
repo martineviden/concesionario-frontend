@@ -5,10 +5,11 @@ import { TituloComponent } from "../../shared/components/titulo/titulo.component
 import { ContactoBannerComponent } from "../../shared/components/contacto-banner/contacto-banner.component";
 import { DatoContactoComponent } from "../../shared/components/dato-contacto/dato-contacto.component";
 import { UltimaPublicacionComponent } from "../../shared/components/ultima-publicacion/ultima-publicacion.component";
+import { MarcasBlockComponent } from "../../shared/components/marcas-block/marcas-block.component";
 
 @Component({
   selector: 'app-contacto',
-  imports: [NavbarComponent, FooterComponent, TituloComponent, ContactoBannerComponent, DatoContactoComponent, UltimaPublicacionComponent],
+  imports: [NavbarComponent, FooterComponent, TituloComponent, ContactoBannerComponent, DatoContactoComponent, UltimaPublicacionComponent, MarcasBlockComponent],
   templateUrl: './contacto.component.html',
   styleUrl: './contacto.component.css'
 })
