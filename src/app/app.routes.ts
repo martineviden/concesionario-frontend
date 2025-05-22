@@ -15,6 +15,8 @@ import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home
 import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
 import { EditarPerfilComponent } from './shared/components/editar-perfil/editar-perfil.component';
+import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
+import { ContactoComponent } from './vistas/contacto/contacto.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,6 +31,7 @@ export const routes: Routes = [
   { path: 'resena-form', component: ResenaFormComponent},
   { path: '', component: HomeComponent},
   { path: 'catalogo', component: CatalogoComponent},
-  { path: 'editar-perfil', component: EditarPerfilComponent}
-
+  { path: 'editar-perfil', component: EditarPerfilComponent},
+  { path: 'nosotros', component: NosotrosComponent},
+  { path: 'contacto', component: ContactoComponent},
 ];
