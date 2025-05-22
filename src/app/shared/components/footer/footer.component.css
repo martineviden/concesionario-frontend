@@ -7,15 +7,17 @@
   width: 100%;
   padding-top: 1.25rem;
   position: relative;
-  margin-top: 5px;
-  margin-top: auto; /* Empuja el footer hacia abajo */
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 /* Añadir estilos para el contenedor principal */
 :host {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .footer-border {
@@ -433,4 +435,9 @@
   .brands-grid {
     grid-template-columns: 1fr;
   }
+}
+
+body {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }

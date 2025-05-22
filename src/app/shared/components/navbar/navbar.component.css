@@ -16,6 +16,7 @@
   align-items: center;
   justify-content: space-between;
   min-height: 52.5px;
+  margin-bottom: 0;
 }
 
 .navbar.hidden {
