@@ -1,9 +1,9 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { LoginService } from './login.service';
-import { Usuario } from './login.model';
-import { Rol } from './rol'
+import { LoginService } from '../../../services/login.service';
+import { Usuario } from '../../../models/login.model';
+import { Rol } from '../../../models/enums';
 
 @Component({
   selector: 'app-login',
