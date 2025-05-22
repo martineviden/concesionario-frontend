@@ -39,7 +39,13 @@ export class LoginComponent {
       const usuario: Usuario = this.loginForm.value;
 
       this.loginService.obtenerUsuario(usuario.correo).subscribe({
-        next: res => console.log('Login correcto: ' + res),
+        next: res => {
+          const nombreUsuario = usuario.nombre;
+          const contrasenaUsuario = usuario.contrasena;
+          
+          console.log('Usuario obtenido: ', nombreUsuario);
+          console.log('Contraseña: ' + contrasenaUsuario);
+        },
         error: err => console.error('Login incorrecto: ', err)
       });
 
