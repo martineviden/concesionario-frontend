@@ -14,6 +14,8 @@ import { EditarPerfilComponent } from './shared/components/editar-perfil/editar-
 import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
 import { ContactoComponent } from './vistas/contacto/contacto.component';
 import { PanelAdministradorComponent } from './vistas/panel-administrador/panel-administrador.component';
+import { EspecificacionesComponent } from './vistas/especificaciones/especificaciones.component';
+import { PerfilComponent } from './vistas/perfil/perfil.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -31,6 +33,8 @@ export const routes: Routes = [
   { path: 'editar-perfil', component: EditarPerfilComponent},
   { path: 'nosotros', component: NosotrosComponent},
   { path: 'contacto', component: ContactoComponent},
-  { path: 'nosotros', component: NosotrosComponent},
-  { path: 'administrador', component: PanelAdministradorComponent}
+  { path: 'administrador', component: PanelAdministradorComponent},
+  {path: 'especificaciones', component: EspecificacionesComponent},
+  {path: 'perfil', component: PerfilComponent}
+
 ];
