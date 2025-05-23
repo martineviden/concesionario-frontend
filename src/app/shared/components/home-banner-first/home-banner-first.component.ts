@@ -40,7 +40,7 @@ private tipoUbicacion = inject(VehiculoService);
 
    submit(){
 
-    //console.log('Selected Value VEHICULO:', this.formTipoUbicacion.value.selectedOptionV+' Selected Value ubicacion:',this.formTipoUbicacion.value.selectedOptionU);
+
 
      this.tipoUbicacion.buscarPorTipoUbicacion(this.formTipoUbicacion.value.selectedOptionV,this.formTipoUbicacion.value.selectedOptionU)
 

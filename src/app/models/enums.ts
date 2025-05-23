@@ -44,11 +44,12 @@ export namespace TipoVehiculo {
     let keys = Object.keys(TipoVehiculo);
     return keys.slice(0,keys.length-1)
   }
+}
 
   export function tipo(tipo: any, ubicacion: any) {
     throw new Error("Function not implemented.");
   }
-}
+
 
 export namespace Combustible {
   export function keys(): Array<string>{
