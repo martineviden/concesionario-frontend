@@ -14,7 +14,7 @@ export class ReservaModel{
 
 
   constructor(
-   id:string,
+  id:string,
   vehiculo:VehiculoModel["matricula"],
   usuario: UsuarioModel["id"],
   fechaReserva: Date,
