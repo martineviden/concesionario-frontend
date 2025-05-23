@@ -16,11 +16,8 @@ export class LoginComponent {
   
   @Output() closeModal = new EventEmitter<void>();
 
-  close() {
-    this.closeModal.emit();
-  }
-
   loginForm: FormGroup;
+  nombreUsuario: string = '';
   rol = Rol;
 
   constructor(
@@ -33,26 +30,27 @@ export class LoginComponent {
     });
   }
 
+  close() {
+    this.closeModal.emit();
+  }
+
   loginUsuario() {
     
     if (this.loginForm.valid) {
-      const usuario: Usuario = this.loginForm.value;
+      const datosLogin = this.loginForm.value;
 
-      this.loginService.obtenerUsuario(usuario.correo).subscribe({
+      this.loginService.loginUsuario(datosLogin).subscribe({
         next: res => {
-          const nombreUsuario = res.nombre;
-          const contrasenaUsuario = res.contrasena;
-
-          if (usuario.contrasena == contrasenaUsuario) {
-            console.log('Usuario obtenido: ', nombreUsuario);
+          if (res.autenticado && res.usuario) {
+            this.nombreUsuario = res.usuario.nombre;
+            console.log('Login correcto. Bienvenido,', this.nombreUsuario);
+            this.close();
           } else {
-            console.log('Contraseña incorrecta');
+            console.log('Login incorrecto. Revisa los datos');
           }
         },
-        error: err => console.error('Login incorrecto: ', err)
+        error: err => console.error('Error en login: ', err)
       });
-
-      this.close();
     } else {
       console.log('Formulario inválido');
     }
