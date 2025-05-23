@@ -44,16 +44,24 @@ private tipoUbicacion = inject(VehiculoService);
 
      this.tipoUbicacion.buscarPorTipoUbicacion(this.formTipoUbicacion.value.selectedOptionV,this.formTipoUbicacion.value.selectedOptionU)
 
-       .subscribe(tipoUbicacion=>{console.log(tipoUbicacion)})
+       .subscribe(tipoUbicacion=>{
+        if(tipoUbicacion==0){
+          console.log("No hay vehiculo en esta ubicacion")
+        }else{
+          console.log(tipoUbicacion)
+        }
+       });
 
+       }
+
+ngOnInit(): void {
+
+
+
+   }
    }
 
 
-   ngOnInit(): void {
-
-
-
-   }
 
 
 
@@ -61,4 +69,5 @@ private tipoUbicacion = inject(VehiculoService);
 
 
 
-}
+
+
