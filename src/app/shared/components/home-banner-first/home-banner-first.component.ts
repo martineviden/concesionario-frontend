@@ -1,87 +1,60 @@
-import { Component, inject, type OnInit } from "@angular/core"
-
+import { Component, inject, NgModule, type OnInit } from "@angular/core"
 import {TipoVehiculoService} from '../../../services/tipo-vehiculo.service'
-import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
 import { Provincia, TipoVehiculo } from '../../../models/enums';
-import { CommonModule, NgFor } from '@angular/common';
 import { VehiculoService } from '../../../services/vehiculo.service';
+import { FormArray, FormBuilder, FormGroup, FormsModule, NgControlStatus, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
+
+import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
 import { VehiculoModel } from '../../../models/vehiculo.model';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
 @Component({
   selector: 'app-home-banner-first',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,FormsModule, CommonModule],
   templateUrl: './home-banner-first.component.html',
   styleUrl: './home-banner-first.component.css'
 })
 
+
 export class HomeBannerFirstComponent implements OnInit{
 
-   private tipoVehiculoService = inject(TipoVehiculoService);
-   private tipoUbicacion = inject(VehiculoService);
-  //private tipo_ubicacion = inject(VehiculoService);
-  // private tipoVeh = inject(VehiculoModel);
-  // private tipoVeh2 = inject(TipoVehiculoModel).modelo;
-  // private id: number = 2;
-   tiposVheiculo = TipoVehiculo.keys();
-   tiposVheiculoCoche = TipoVehiculo.COCHE;
-   ubicaciones = Provincia.keys();
-   ubicacionMadrid= Provincia.MADRID;
+   //private tipoVehiculoService = inject(TipoVehiculoService);
+private tipoUbicacion = inject(VehiculoService);
 
-  form: FormGroup;
 
-  private tipoVheiculoSeleccionado!:TipoVehiculo;
-  private ubicacionSeleccionado!:Provincia;
+  formTipoUbicacion: FormGroup;
+  tiposVheiculo = TipoVehiculo.keys();
 
-  constructor(private formBuilder: FormBuilder){
-    this.form = this.formBuilder.group({
-      tiposVheiculo:[""],
-      ubicaciones:[""],
+  ubicaciones = Provincia.keys();
 
+  constructor(private fb: FormBuilder){
+    this.formTipoUbicacion = this.fb.group({
+      selectedOptionV: [
+        this.tiposVheiculo[0],
+      ],
+      selectedOptionU:[
+        this.ubicaciones[0],
+      ]
     });
   }
-  get fields():FormArray{
-    return this.form.get("fields") as FormArray;
-  }
-  submitForm(){
-    console.log(this.form.value);
-  }
 
 
-  // private tipoVehiculo = inject(TipoVehiculoModel).tipo.COCHE
-  // private ubicacion = inject(VehiculoModel).ubicacion
+   submit(){
 
+    //console.log('Selected Value VEHICULO:', this.formTipoUbicacion.value.selectedOptionV+' Selected Value ubicacion:',this.formTipoUbicacion.value.selectedOptionU);
 
+     this.tipoUbicacion.buscarPorTipoUbicacion(this.formTipoUbicacion.value.selectedOptionV,this.formTipoUbicacion.value.selectedOptionU)
 
-  // private nuevoCoche:TipoVehiculoModel ={
-  //   id : 6,
-  //   precio: 6000,
-  //   marca: "Honda",
-  //   modelo: "Civic",
-  //   imagen:"/jaoidjaoi.jpg",
-  //   tipo: TipoVehiculo.COCHE,
-  //   vehiculo: "A78546-B"
-  // }
+       .subscribe(tipoUbicacion=>{console.log(tipoUbicacion)})
+
+   }
 
 
    ngOnInit(): void {
-        // this.tipoVehiculoService.listAllTipoVheculo()
-        //  .subscribe(tipoCoches=>{
 
-        //  console.log(tipoCoches)
-        //  });
-
-      //this.tipoCocheServce.create(this.nuevoCoche).subscribe(tipoCocheServce=>{console.log()});
-
-      // this.tipo_ubicacion.buscarPorTipoUbicacion(this.tiposVheiculoCoche,this.ubicacionMadrid)
-     // this.tipoUbicacion.buscarPorTipoUbicacion(this.tiposVheiculoCoche,this.ubicacionMadrid).subscribe(tipoUbicacion=>{console.log(tipoUbicacion)})
 
 
    }
-   onbuscar(){
-    this.tipoUbicacion.buscarPorTipoUbicacion(this.tipoVheiculoSeleccionado,this.ubicacionSeleccionado).subscribe(tipoUbicacion=>{console.log(tipoUbicacion)})
-   }
+
 
 
 
