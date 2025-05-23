@@ -5,25 +5,23 @@
       <p class="parrafo">Compra o alquiler, tú eliges. Nosotros te ayudamos a encontrar  el coche ideal </p>
     </div>
 
-
      <div class="folmulario-banner">
       <h2 class="titulo-formulario-banner">Buscar Vehiculos</h2>
       <section class="folmulario-banner-interior">
-        <select class="form-select" aria-label="Tipo de vehiculos"
-        >
-          <!-- <option selected>Tipo de vehiculos</option>
+        <select class="form-select"   aria-label="Tipo de vehiculos">
+          <option selected>Tipo de vehiculos</option>
             @for (tipo of tiposVheiculo; track $index) {
-              <option [value]="tipo" >{{tipo}}</option>
-          } -->
-       </select>
-        <!-- <select class="form-select" aria-label="Ubicacion" formControlName="ubicaciones">
-          <option selected>Ubicación</option>
-           @for (ubicacion of ubicaciones; track $index) {
-              <option [ngValue]="ubicacion">{{ubicacion}}</option>
+              <option value="" >{{tipo}}</option>
           }
-        </select> -->
+       </select>
+        <select class="form-select" aria-label="Ubicacion">
+          <option selected>Ubicación</option>
+          @for (ubicacion of ubicaciones; track $index) {
+              <option value="" >{{ubicacion}}</option>
+          }
+        </select>
       </section>
-      <button class="boton-resultado" type="submit">VER RESULTADO</button>
+      <button class="boton-resultado" >VER RESULTADO</button>
     </div>
   </div>
 </div>
