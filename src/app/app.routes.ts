@@ -13,6 +13,7 @@ import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
 import { EditarPerfilComponent } from './shared/components/editar-perfil/editar-perfil.component';
 import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
 import { ContactoComponent } from './vistas/contacto/contacto.component';
+import { PanelAdministradorComponent } from './vistas/panel-administrador/panel-administrador.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,4 +31,6 @@ export const routes: Routes = [
   { path: 'editar-perfil', component: EditarPerfilComponent},
   { path: 'nosotros', component: NosotrosComponent},
   { path: 'contacto', component: ContactoComponent},
+  { path: 'nosotros', component: NosotrosComponent},
+  { path: 'administrador', component: PanelAdministradorComponent}
 ];
