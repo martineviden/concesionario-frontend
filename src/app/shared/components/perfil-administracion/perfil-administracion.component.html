@@ -1,10 +1,18 @@
 <div class="admin-header">
   <h1 class="admin-title">Administración de vehículos</h1>
-  <button class="admin-add-btn">
-    <span class="add-icon">+</span>
+  <button class="admin-add-btn" (click)="abrirAgregarVehiculo()">
+    <i class="bi bi-x-circle-fill " style="font-size: 2rem;"></i>
     Agregar Vehículo
   </button>
 </div>
+<!--Agregar modal vehiculo-->
+<div class="modal-backdrop" *ngIf="mostrarFormulario">
+  <div class="modal-contenido" >
+    <app-editar-vehiculo (cerrar)="cerrarAgregarVehiculo()"></app-editar-vehiculo>
+  </div>
+</div>
+
+
 <div class="vehiculos-grid">
   <div class="vehiculo-card" *ngFor="let veh of vehiculos">
     <button class="vehiculo-delete" title="Eliminar">&#128465;</button>
@@ -23,6 +31,6 @@
     <div class="vehiculo-specs">
       <div class="vehiculo-spec" *ngFor="let spec of veh.specs">{{ spec }}</div>
     </div>
-    <button class="vehiculo-btn">Editar</button>
+    <button class="vehiculo-btn" >Editar</button>
   </div>
 </div>

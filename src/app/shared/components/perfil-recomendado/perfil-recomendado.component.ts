@@ -1,8 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-perfil-recomendado',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './perfil-recomendado.component.html',
   styleUrl: './perfil-recomendado.component.css'
 })

@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { EditarVehiculoComponent } from '../editar-vehiculo/editar-vehiculo.component';
+import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
 
 @Component({
   selector: 'app-perfil-administracion',
-  imports: [
- CommonModule
-],
+ imports: [ CommonModule,EditarVehiculoComponent],
   templateUrl: './perfil-administracion.component.html',
   styleUrls: ['./perfil-administracion.component.css']
 })
-export class PerfilAdministracionComponent {
+export class PerfilAdministracionComponent implements OnInit{
+  @Input() vehiculoExiste?: TipoVehiculoModel;
+
   vehiculos = [
     {
       nombre: "Honda",
@@ -60,4 +62,20 @@ export class PerfilAdministracionComponent {
       specs: ["⚙️ Manual", "⛽ PB 95", "❄️ Aire Acondicionado"]
     }
   ];
+
+  //agregar vehiculo
+  mostrarFormulario = false;
+  abrirAgregarVehiculo(){
+    this.mostrarFormulario = true;
+  }
+  cerrarAgregarVehiculo(){
+    this.mostrarFormulario = false;
+  }
+
+  ngOnInit(): void {
+      if (this.vehiculoExiste) {
+        // carga los datos al formulario para editar
+      }
+  }
+
 }

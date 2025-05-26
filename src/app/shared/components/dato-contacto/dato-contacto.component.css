@@ -1,25 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
-body {
-  font-family: 'Work Sans', sans-serif;
-}
-
-.contacto-container {
-  background-color: #fff;
-  padding: 30px 15px;
-}
-
-.icon {
-  width: 40px;
-  height: 40px;
-}
-
-.label {
-  font-weight: 600;
-  font-size: 14px;
-  color: #555;
-}
-
-.info {
-  font-size: 16px;
-  color: #000;
+.bi{
+  font-size: 2rem; 
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;        
+  color: white;
+  background-color: #FF9E0C;
+  border-radius: 50%;
+  padding: 10px;           
 }

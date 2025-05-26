@@ -33,5 +33,4 @@ export const routes: Routes = [
   { path: 'contacto', component: ContactoComponent},
   {path: 'especificaciones', component: EspecificacionesComponent},
   {path: 'perfil', component: PerfilComponent}
-
 ];

@@ -1,115 +1,129 @@
-<div class="modal-dialog modal-dialog-scrollable modal-xl">
-  <div class="modal-content">
-    <div class="main-layout">
-      <div class="left-column">
-        <div class="brand-price">
-          <div class="input-box">
-            <label for="marca">Marca</label>
-            <input type="text" id="marca" name="marca" value="BMW" class="form-control">
-          </div>
+<div class="modal-fullscreen-sm-down" *ngIf="mostrarModulo" aria-modal="true">
+  <div class="modal-dialog modal-fullscreen-sm-down" >
+    <div class="modal-content">
 
-          <div class="input-box">
-            <label for="precio">Precio por día</label>
-            <div class="price-input">
-              <input type="number" id="precio" name="precio" value="25" class="form-control">
-              <span class="price-unit">€/día</span>
+      <div class="modal-header">
+        <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="d-flex flex-wrap main-layout">
+         
+          <div class="left-column flex-grow-1 me-4" style="min-width: 180px; max-width: 300px;">
+            <div class="brand-price mb-4">
+              <div class="mb-3">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" id="marca" name="marca" value="BMW" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label for="precio" class="form-label">Precio por día</label>
+                <div class="input-group">
+                  <input type="number" id="precio" name="precio" value="25" class="form-control" />
+                  <span class="input-group-text">€/día</span>
+                </div>
+              </div>
+            </div>
+
+            <img src="Silueta.png" alt="Auto" class="main-image img-fluid mb-3" />
+
+            <div class="vehicle-thumbnails d-flex gap-2">
+              <img src="Imgs.png" alt="Thumbnail" class="thumb img-thumbnail" style="width: 60px; height: 60px; cursor: pointer;" />
+              <!-- Agrega más thumbnails si quieres -->
             </div>
           </div>
-        </div>
 
-        <img src="Silueta.png" alt="Auto" class="main-image">
+          <div class="right-column flex-grow-1" style="min-width: 300px; max-width: 600px;">
+            <div class="vehicle-info row g-3">
+              
+              <div class="col-12">
+                <img src="/assets/img/icono-vehiculo/cajaDeCambios.png" alt="transmision" style="width:24px;" />
+                <label for="transmision" class="form-label mb-0 flex-grow-1">Transmisión</label>
+                <select id="transmision" class="form-select flex-grow-2">
+                  <option value="Automático">Automático</option>
+                  <option value="Manual">Manual</option>
+                </select>
+              </div>
 
-        <div class="vehicle-thumbnails">
-          <img src="Imgs.png" class="thumb">
+              <div class="col-12">
+                <img src="/assets/img/icono-vehiculo/gasolina.png" alt="combustible" style="width:24px;" />
+                <label for="combustible" class="form-label mb-0 flex-grow-1">Combustible</label>
+                <select id="combustible" class="form-select flex-grow-2">
+                  <option value="Diesel">Diesel</option>
+                  <option value="Gasolina">Gasolina</option>
+                  <option value="Eléctrico">Eléctrico</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <img src="/assets/img/icono-vehiculo/puerta.png" alt="puertas" style="width:24px;" />
+                <label for="puertas" class="form-label mb-0 flex-grow-1">Puertas</label>
+                <input type="number" id="puertas" class="form-control flex-grow-2" min="1" max="7" placeholder="2" />
+              </div>
+
+              <div class="col-12">
+                <img src="/assets/img/icono-vehiculo/Group.png" alt="asientos" style="width:24px;" />
+                <label for="asientos" class="form-label mb-0 flex-grow-1">Asientos</label>
+                <input type="number" id="asientos" class="form-control flex-grow-2" min="1" max="9" placeholder="5" />
+              </div>
+
+              <div class="col-12">
+                <img src="/assets/img/icono-vehiculo/ruta.png" alt="distancia" style="width:24px;" />
+                <label for="distancia" class="form-label mb-0 flex-grow-1">Distancia</label>
+                <input type="number" id="distancia" class="form-control flex-grow-2" placeholder="500" />
+              </div>
+
+              <div class="col-12">
+                <img src="/assets/img/icono-vehiculo/etiqueta.png" alt="etiqueta" style="width:24px;" />
+                <label for="etiqueta" class="form-label mb-0 flex-grow-1">Etiqueta</label>
+                <select id="etiqueta" name="etiqueta" class="form-select flex-grow-2">
+                  <option value="ECO">ECO</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="0 Emisiones">0 Emisiones</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <img src="/assets/img/icono-vehiculo/matricula.png" alt="matricula" style="width:24px;">
+                <label for="matricula" class="form-label mb-0 flex-grow-1">Matrícula</label>
+                <input type="text" id="matricula" name="matricula" class="form-control flex-grow-2" placeholder="1234 ABC" />
+              </div>
+
+              <div class="col-12">
+                <img src="/assets/img/icono-vehiculo/color.png" alt="color" style="width:24px;" />
+                <label for="color" class="form-label mb-0 flex-grow-1">Color</label>
+                <input type="text" id="color" name="color" class="form-control flex-grow-2" placeholder="Negro" />
+              </div>
+
+              <div class="col-12">
+                <img src="/assets/img/icono-vehiculo/kilometraje.png" alt="kilometraje" style="width:24px;" />
+                <label for="kilometraje" class="form-label mb-0 flex-grow-1">Kilometraje</label>
+                <input type="number" id="kilometraje" name="kilometraje" class="form-control flex-grow-2" placeholder="50000" />
+              </div>
+            </div>
+
+            <div class="equipamiento">
+              <h3>Equipamiento Del Coche</h3>
+              <ul class="list-unstyled d-flex flex-wrap gap-3">
+                <li><label><input type="checkbox" id="abs" /> ABS</label></li>
+                <li><label><input type="checkbox" id="airbags" /> Bolsas De Aire</label></li>
+                <li><label><input type="checkbox" id="cruise" /> Control Crucero</label></li>
+                <li><label><input type="checkbox" id="tools" /> Herramientas</label></li>
+                <li><label><input type="checkbox" id="spare" /> Llanta Repuesto</label></li>
+                <li><label><input type="checkbox" id="ac" /> Aire Acondicionado</label></li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div class="right-column">
-        <div class="vehicle-info">
-          <div class="info-box">
-            <img src="cajaDeCambios.png" alt="transmision">
-            <label for="transmision">Transmisión</label>
-            <select id="transmision" class="form-select">
-              <option value="Automático">Automático</option>
-              <option value="Manual">Manual</option>
-            </select>
-          </div>
-
-          <div class="info-box">
-            <img src="gasolina.png" alt="combustible">
-            <label for="combustible">Combustible</label>
-            <select id="combustible" class="form-select">
-              <option value="Diesel">Diesel</option>
-              <option value="Gasolina">Gasolina</option>
-              <option value="Eléctrico">Eléctrico</option>
-            </select>
-          </div>
-
-          <div class="info-box">
-            <img src="puerta.png" alt="puertas">
-            <label for="puertas">Puertas</label>
-            <input type="number" id="puertas" class="form-control" min="1" max="7" placeholder="2">
-          </div>
-
-          <div class="info-box">
-            <img src="Group.png" alt="asientos">
-            <label for="asientos">Asientos</label>
-            <input type="number" id="asientos" class="form-control" min="1" max="9" placeholder="5">
-          </div>
-
-          <div class="info-box">
-            <img src="ruta.png" alt="distancia">
-            <label for="distancia">Distancia</label>
-            <input type="number" id="distancia" class="form-control" placeholder="500">
-          </div>
-
-          <div class="info-box">
-            <img src="etiqueta.png" alt="etiqueta">
-            <label for="etiqueta">Etiqueta</label>
-            <select id="etiqueta" name="etiqueta" class="form-select">
-              <option value="ECO">ECO</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="0 Emisiones">0 Emisiones</option>
-            </select>
-          </div>
-
-          <div class="info-box">
-            <img src="matricula.png" alt="matricula">
-            <label for="matricula">Matrícula</label>
-            <input type="text" id="matricula" name="matricula" class="form-control" placeholder="1234 ABC">
-          </div>
-
-          <div class="info-box">
-            <img src="color.png" alt="color">
-            <label for="color">Color</label>
-            <input type="text" id="color" name="color" class="form-control" placeholder="Negro">
-          </div>
-
-          <div class="info-box">
-            <img src="kilometraje.png" alt="kilometraje">
-            <label for="kilometraje">Kilometraje</label>
-            <input type="number" id="kilometraje" name="kilometraje" class="form-control" placeholder="50000">
-          </div>
-        </div>
-
-        <div class="rent-button">
-          <button>Alquiler</button>
-        </div>
-
-        <div class="equipamiento">
-  <h3>Equipamiento Del Coche</h3>
-  <ul>
-    <li><label><input type="checkbox" id="abs">ABS</label></li>
-    <li><label><input type="checkbox" id="airbags">Bolsas De Aire</label></li>
-    <li><label><input type="checkbox" id="cruise"> Control Crucero</label></li>
-    <li><label><input type="checkbox" id="tools">Herramientas</label></li>
-    <li><label><input type="checkbox" id="spare">Llanta Repuesto</label></li>
-    <li><label><input type="checkbox" id="ac">Aire Acondicionado</label></li>
-  </ul>
-</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+        <button type="button" class="btn btn-success">Guardar</button>
       </div>
+
     </div>
   </div>
-
 </div>
