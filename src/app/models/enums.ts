@@ -46,6 +46,11 @@ export namespace TipoVehiculo {
   }
 }
 
+  export function tipo(tipo: any, ubicacion: any) {
+    throw new Error("Function not implemented.");
+  }
+
+
 export namespace Combustible {
   export function keys(): Array<string>{
     let keys = Object.keys(Combustible);

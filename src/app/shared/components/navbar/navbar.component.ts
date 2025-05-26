@@ -7,7 +7,9 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   standalone: true,
+
   imports: [CommonModule, LoginComponent, RegistroComponent, RouterModule],
+
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
