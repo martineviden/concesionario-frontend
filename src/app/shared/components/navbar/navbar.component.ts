@@ -1,8 +1,11 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../login/login.component';
 import { RegistroComponent } from '../registro/registro.component';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { Usuario } from '../../../models/login.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -17,17 +20,25 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private lastScrollTop = 0;
   private scrollTimeout: any = null;
   private isScrolling = false;
+  usuarioActual: Usuario | null = null;
+  estaAutenticado = false;
+  private authSubscription: Subscription | null = null;
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    // Inicialización básica
+    this.authSubscription = this.authService.obtenerUsuarioActual().subscribe(usuario => {
+      this.usuarioActual = usuario;
+      this.estaAutenticado = !!usuario;
+    });
   }
 
   ngOnDestroy(): void {
-    // Limpiar el timeout si existe
     if (this.scrollTimeout) {
       clearTimeout(this.scrollTimeout);
+    }
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
     }
   }
 
@@ -37,10 +48,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     const navbar = document.getElementById('mainNavbar');
     if (!navbar) return;
     
-    // Actualizar el estado de scrolling
     this.isScrolling = true;
     
-    // Si estamos scrolleando y no estamos en la parte superior, ocultar la navbar instantáneamente
     if (currentScrollTop > 50) {
       navbar.classList.remove('hidden');
       navbar.classList.add('instant-hide');
@@ -49,22 +58,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
       navbar.classList.remove('overlay');
     }
     
-    // Actualizar la posición de scroll para la próxima vez
     this.lastScrollTop = currentScrollTop;
     
-    // Reiniciar el temporizador cada vez que se detecta scroll
     if (this.scrollTimeout) {
       clearTimeout(this.scrollTimeout);
     }
     
-    // Configurar un nuevo temporizador para detectar cuando el scroll se detiene
     this.scrollTimeout = setTimeout(() => {
       this.isScrolling = false;
-      
-      // Cuando el scroll se detiene completamente, mostrar la navbar con animación
       navbar.classList.remove('instant-hide');
       navbar.classList.remove('hidden');
-    }, 300); // Esperar 300ms después del último evento de scroll
+    }, 300);
   }
 
   abrirLogin() {
@@ -81,5 +85,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   cerrarRegistro() {
     this.showRegisterModal = false;
+  }
+
+  cerrarSesion() {
+    this.authService.cerrarSesion();
   }
 }

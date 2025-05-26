@@ -39,18 +39,40 @@
         </ul>
       </div>
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="abrirLogin(); $event.preventDefault()">
-            <i class="fas fa-sign-in-alt me-1"></i>
-            Iniciar sesión
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="abrirRegistro(); $event.preventDefault()">
-            <i class="fas fa-user-plus me-1"></i>
-            Registro
-          </a>
-        </li>
+        <ng-container *ngIf="!estaAutenticado">
+          <li class="nav-item">
+            <a class="nav-link" href="#" (click)="abrirLogin(); $event.preventDefault()">
+              <i class="fas fa-sign-in-alt me-1"></i>
+              Iniciar sesión
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" (click)="abrirRegistro(); $event.preventDefault()">
+              <i class="fas fa-user-plus me-1"></i>
+              Registro
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="estaAutenticado">
+          <li class="nav-item">
+            <span class="nav-link welcome-text">
+              <i class="fas fa-user me-1"></i>
+              Bienvenido, {{usuarioActual?.nombre}}
+            </span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/perfil']">
+              <i class="fas fa-user-circle me-1"></i>
+              Mi Perfil
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" (click)="cerrarSesion(); $event.preventDefault()">
+              <i class="fas fa-sign-out-alt me-1"></i>
+              Cerrar sesión
+            </a>
+          </li>
+        </ng-container>
       </ul>
     </div>
   </div>

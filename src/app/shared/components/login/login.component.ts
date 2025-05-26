@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
 import { LoginService } from '../../../services/login.service';
+import { AuthService } from '../../../services/auth.service';
 import { Usuario } from '../../../models/login.model';
 import { Rol } from '../../../models/enums';
 
@@ -22,7 +22,8 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
       correo: ['', Validators.required],
@@ -35,7 +36,6 @@ export class LoginComponent {
   }
 
   loginUsuario() {
-    
     if (this.loginForm.valid) {
       const datosLogin = this.loginForm.value;
 
@@ -43,6 +43,7 @@ export class LoginComponent {
         next: res => {
           if (res.autenticado && res.usuario) {
             this.nombreUsuario = res.usuario.nombre;
+            this.authService.iniciarSesion(res.usuario);
             console.log('Login correcto. Bienvenido,', this.nombreUsuario);
             this.close();
           } else {
@@ -54,6 +55,5 @@ export class LoginComponent {
     } else {
       console.log('Formulario inválido');
     }
-
   }
 }
