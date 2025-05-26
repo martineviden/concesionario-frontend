@@ -72,19 +72,10 @@ export class PerfilAdministracionComponent implements OnInit{
     this.mostrarFormulario = false;
   }
 
-  //peticiones de Agregar
   ngOnInit(): void {
       if (this.vehiculoExiste) {
         // carga los datos al formulario para editar
       }
   }
 
-  guardar(){
-    if (this.vehiculoExiste) {
-      //logica put para editar
-    } else {
-      //logica post para agregar
-    }
-    
-  }
 }
