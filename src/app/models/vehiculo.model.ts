@@ -1,4 +1,4 @@
-import {Provincia} from "./enums"
+import {Provincia, TipoVehiculo} from "./enums"
 import {Combustible} from "./enums"
 import {EtiquetaAmbiental} from "./enums"
 import {Transmision} from "./enums"
@@ -17,7 +17,7 @@ export class VehiculoModel{
   aireAcondicionado: boolean;
   plazas: number;
   transmision: Transmision;
-  tipoV: VehiculoModel;
+  tipoV: TipoVehiculo;
 
   constructor(
   matricula: string,
@@ -32,7 +32,7 @@ export class VehiculoModel{
   aireAcondicionado: boolean,
   plazas: number,
   transmision: Transmision,
-  tipoV: VehiculoModel,
+  tipoV: TipoVehiculo, //Ver a lo mejor hace falta pasar el VheculoModelo
   ){
     this.matricula = matricula;
     this.color = color;
