@@ -82,13 +82,20 @@ export class CatalogoComponentComponent implements OnInit {
       return this.filtrosActivos.every(filtro => {
         const [clave, valor] = filtro.split(':');
         switch (clave) {
-          case 'tipo': return TipoVehiculo[vehiculo.tipo] === valor;
-          case 'ubicacion': return Provincia[vehiculo.ubicacion] === valor;
-          case 'combustible': return Combustible[vehiculo.combustible] === valor;
-          case 'transmision': return Transmision[vehiculo.transmision] === valor;
-          case 'etiqueta': return EtiquetaAmbiental[vehiculo.etiqueta] === valor;
-          case 'plazas': return vehiculo.plazas.toString() === valor;
-          default: return true;
+          case 'tipo':
+            return vehiculo.tipo === valor;
+          case 'ubicacion':
+            return vehiculo.ubicacion === valor;
+          case 'combustible':
+            return vehiculo.combustible === valor;
+          case 'transmision':
+            return vehiculo.transmision === valor;
+          case 'etiqueta':
+            return vehiculo.etiqueta === valor;
+          case 'plazas':
+            return vehiculo.plazas?.toString() === valor;
+          default:
+            return true;
         }
       });
     });
@@ -161,7 +168,6 @@ export class CatalogoComponentComponent implements OnInit {
     if (!esClickEnDropdown) {
       for (const key of this.dropdownKeys) {
         this.dropdowns[key] = false;
-
       }
     }
   }
