@@ -1,28 +1,6 @@
-.contenedor-banner {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 110vh;
-            margin: 0;
-            background-color: #ffffff;
-    }
-.banner {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            width: 80%;
-            padding: 20px;
-
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(80, 80, 80, 0.1);
-        }
-        .banner img {
-    max-height: 100px;
-
-    padding: 5px;
-    border-radius: 8px;
-    transition: transform 0.3s ease;}
-
-       .banner a:hover img {
-            transform: scale(1.1);
-        }
+img {
+    max-height: 90px;
+}
+a:hover img {
+ transform: scale(1.1);
+}
