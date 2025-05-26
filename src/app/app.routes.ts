@@ -7,13 +7,13 @@ import { ReservaFormComponent } from './shared/components/reserva-form/reserva-f
 import { TipoVehiculoComponent } from './shared/components/tipo-vehiculo/tipo-vehiculo.component';
 import { MisReservasComponent } from './shared/components/mis-reservas/mis-reservas.component';
 import { AdminReservasComponent } from './shared/components/admin-reservas/admin-reservas.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { HomeBannerFirstComponent } from './shared/components/home-banner-first/home-banner-first.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { DatoHomeComponent } from './shared/components/dato-home/dato-home.component';
-import { HechosHomeComponent } from './shared/components/hechos-home/hechos-home.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
+import { EditarPerfilComponent } from './shared/components/editar-perfil/editar-perfil.component';
+import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
+import { ContactoComponent } from './vistas/contacto/contacto.component';
+import { EspecificacionesComponent } from './vistas/especificaciones/especificaciones.component';
+import { PerfilComponent } from './vistas/perfil/perfil.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,5 +28,10 @@ export const routes: Routes = [
   { path: 'resena-form', component: ResenaFormComponent},
   { path: '', component: HomeComponent},
   { path: 'catalogo', component: CatalogoComponent},
+  { path: 'editar-perfil', component: EditarPerfilComponent},
+  { path: 'nosotros', component: NosotrosComponent},
+  { path: 'contacto', component: ContactoComponent},
+  {path: 'especificaciones', component: EspecificacionesComponent},
+  {path: 'perfil', component: PerfilComponent}
 
 ];

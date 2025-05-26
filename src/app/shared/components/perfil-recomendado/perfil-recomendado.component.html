@@ -1,0 +1,21 @@
+<h2 class="recomendaciones-title">Recomendaciones</h2>
+<div class="recomendados-grid">
+  <div class="recomendado-card" *ngFor="let rec of recomendados">
+    <img class="recomendado-img" [src]="rec.imagen" [alt]="rec.nombre + ' ' + rec.modelo">
+    <div class="recomendado-row">
+      <div>
+        <div class="recomendado-nombre">{{ rec.nombre }}</div>
+        <div class="recomendado-modelo">{{ rec.modelo }}</div>
+        <div class="recomendado-anio">{{ rec.anio }}</div>
+      </div>
+      <div>
+        <span class="recomendado-precio">{{ rec.precio }}</span>
+        <span class="recomendado-dia">{{ rec.porDia }}</span>
+      </div>
+    </div>
+    <div class="recomendado-specs">
+      <div class="recomendado-spec" *ngFor="let spec of rec.specs">{{ spec }}</div>
+    </div>
+    <button class="recomendado-btn">Ver detalles</button>
+  </div>
+</div>

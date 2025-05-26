@@ -17,6 +17,7 @@ export class VehiculoModel{
   aireAcondicionado: boolean;
   plazas: number;
   transmision: Transmision;
+  tipoV: VehiculoModel;
 
   constructor(
   matricula: string,
@@ -31,6 +32,7 @@ export class VehiculoModel{
   aireAcondicionado: boolean,
   plazas: number,
   transmision: Transmision,
+  tipoV: VehiculoModel,
   ){
     this.matricula = matricula;
     this.color = color;
@@ -44,6 +46,7 @@ export class VehiculoModel{
     this.plazas = plazas;
     this.aireAcondicionado = aireAcondicionado;
     this.transmision = transmision;
+    this.tipoV = tipoV;
 
   }
 

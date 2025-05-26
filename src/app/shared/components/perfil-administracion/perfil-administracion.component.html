@@ -1,0 +1,28 @@
+<div class="admin-header">
+  <h1 class="admin-title">Administración de vehículos</h1>
+  <button class="admin-add-btn">
+    <span class="add-icon">+</span>
+    Agregar Vehículo
+  </button>
+</div>
+<div class="vehiculos-grid">
+  <div class="vehiculo-card" *ngFor="let veh of vehiculos">
+    <button class="vehiculo-delete" title="Eliminar">&#128465;</button>
+    <img class="vehiculo-img" [src]="veh.imagen" [alt]="veh.nombre + ' ' + veh.modelo">
+    <div class="vehiculo-row">
+      <div>
+        <div class="vehiculo-nombre">{{ veh.nombre }}</div>
+        <div class="vehiculo-modelo">{{ veh.modelo }}</div>
+        <div class="vehiculo-anio">{{ veh.anio }}</div>
+      </div>
+      <div>
+        <span class="vehiculo-precio">{{ veh.precio }}</span>
+        <span class="vehiculo-dia">por día</span>
+      </div>
+    </div>
+    <div class="vehiculo-specs">
+      <div class="vehiculo-spec" *ngFor="let spec of veh.specs">{{ spec }}</div>
+    </div>
+    <button class="vehiculo-btn">Editar</button>
+  </div>
+</div>

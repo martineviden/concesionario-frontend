@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import{TipoVehiculoModel} from '../models/tipo-vehiculo.model'
 import{VehiculoModel} from '../models/vehiculo.model'
 import { Provincia } from '../models/enums';
+import { HttpParams } from '@angular/common/http';
+import {TipoVehiculo} from '../models/enums'
 
 
 @Injectable({
@@ -11,7 +13,9 @@ import { Provincia } from '../models/enums';
 })
 
 export class VehiculoService{
+
   private http = inject(HttpClient);
+  //private httpParams= inject(HttpParams);
 
   listAllVhiculo(){
     return this.http.get('http://localhost:8080/vehiculos',{withCredentials:false});
@@ -43,11 +47,12 @@ export class VehiculoService{
   deliteOneVehiculo(matricula:string){
     return this.http.delete(`http://localhost:8080/vehiculos/${matricula}`,{withCredentials:false});
   }
-
-
-   buscarPorTipoUbicacion(ubicacionVehiculos:Provincia, vehiculoT:TipoVehiculoModel){
-
-     return this.http.get(`http://localhost:8080/vehiculos/buscar`,{withCredentials:false});
-   }
-
+  buscarPorTipoUbicacion(tipo:TipoVehiculo, ubicacion:Provincia){
+      let param = new HttpParams().set("tipo",tipo).set("ubicacion",ubicacion)
+      return this.http.get(`http://localhost:8080/vehiculos/buscar?${param}`,{withCredentials:false});
+    }
 }
+
+
+
+

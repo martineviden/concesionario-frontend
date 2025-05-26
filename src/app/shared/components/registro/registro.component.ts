@@ -1,13 +1,15 @@
-import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-import { RegistroService } from './registro.service';
-import { Usuario } from './registro.model';
-import { Rol } from './rol';
+import { RegistroService } from '../../../services/registro.service';
+import { Usuario } from '../../../models/registro.model';
+import { Rol } from '../../../models/enums';
 
 @Component({
   selector: 'app-registrarse',
-  imports: [ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
@@ -21,7 +23,7 @@ export class RegistroComponent {
   }
 
   usuarioForm: FormGroup;
-  Rol = Rol;
+  rol = Rol;
 
   constructor(
     private fb: FormBuilder,
@@ -34,14 +36,25 @@ export class RegistroComponent {
       telefono: ['', Validators.required],
       dni: ['', Validators.required],
       contrasena: ['', Validators.required],
+      confirmarContrasena: ['', Validators.required],
       rol: [Rol.CLIENTE, Validators.required]
-    });
+    }, { validators: this.contrasenasValidator });
+  }
+
+  contrasenasValidator(form: FormGroup) {
+    const contrasena = form.get('contrasena')?.value;
+    const confirmarContrasena = form.get('confirmarContrasena')?.value;
+
+    return contrasena === confirmarContrasena ? null : { diferentesContrasenas: true }
   }
 
   registrarUsuario() {
     
     if (this.usuarioForm.valid) {
-      const nuevoUsuario: Usuario = this.usuarioForm.value;
+      const datosFormulario = this.usuarioForm.value;
+      delete datosFormulario.confirmarContrasena;
+      
+      const nuevoUsuario: Usuario = datosFormulario;
 
       this.registroService.crearUsuario(nuevoUsuario).subscribe({
         next: res => console.log('Usuario creado:', res),

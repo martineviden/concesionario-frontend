@@ -1,0 +1,87 @@
+.perfil-admin-container {
+  max-width: 1100px;
+  margin: 40px auto 0 auto;
+  padding: 0 30px;
+}
+
+.perfil-admin-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.perfil-admin-avatar img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #e0e0e0;
+  display: block;
+}
+
+.perfil-admin-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 18px;
+}
+
+.perfil-admin-info h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.perfil-admin-cards {
+  display: flex;
+  gap: 24px;
+}
+
+.perfil-admin-card {
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 24px 32px 18px 24px;
+  min-width: 210px;
+  min-height: 80px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.perfil-admin-label {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: #111;
+}
+
+.perfil-admin-value {
+  font-size: 1rem;
+  color: #888;
+  margin-top: 0.2rem;
+}
+
+.perfil-admin-btn-row {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 80px;
+  margin-left: 32px;
+}
+
+.perfil-admin-btn {
+  background: #5636d8;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 2.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.perfil-admin-btn:hover {
+  background: #3d25a0;
+}

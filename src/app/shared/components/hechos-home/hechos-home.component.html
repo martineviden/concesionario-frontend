@@ -1,17 +1,18 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-<section class="hechos-cifras container my-5 py-5 position-relative">
-    <img class="img-fondo coche" src="assets/img/coche.png">
-    <img class="img-fondo llanta" src="assets/img/llanta.png">
+
+<!-- PRIMERA SECCIÓN: HECHOS EN CIFRAS -->
+<section class="hechos-cifras container my-5 py-5 position-relative animate-section">
+    <img class="img-fondo coche animate-element" data-animation="fade-in" src="assets/img/coche.png">
+    <img class="img-fondo llanta animate-element" data-animation="rotate-in" src="assets/img/llanta.png">
     <div class="text-center mb-4">
-      <h2 class="titulo">Hechos En Cifras</h2>
-      <p class="descripcion">Nuestros clientes elogian la atención cercana y profesional, valorando la calidad y la rapidez en cada experiencia.</p>
+      <h2 class="titulo animate-element" data-animation="fade-up">Hechos En Cifras</h2>
+      <p class="descripcion animate-element" data-animation="fade-up" data-delay="200">Nuestros clientes elogian la atención cercana y profesional, valorando la calidad y la rapidez en cada experiencia.</p>
     </div>
 
     <div class="row text-center">
-
       <div class="col-md-3 mb-4">
-        <div class="cifra-box d-flex">
+        <div class="cifra-box d-flex animate-element" data-animation="slide-up" data-delay="300">
           <div class="icono-box d-flex align-items-center justify-content-center">
            <i class="bi bi-car-front" style="font-size: 2rem;"></i>
           </div>
@@ -23,7 +24,7 @@
       </div>
 
       <div class="col-md-3 mb-4">
-        <div class="cifra-box d-flex">
+        <div class="cifra-box d-flex animate-element" data-animation="slide-up" data-delay="400">
           <div class="icono-box d-flex align-items-center justify-content-center">
             <i class="bi bi-person-heart" style="font-size: 2rem;"></i>
           </div>
@@ -35,7 +36,7 @@
       </div>
 
       <div class="col-md-3 mb-4">
-        <div class="cifra-box d-flex">
+        <div class="cifra-box d-flex animate-element" data-animation="slide-up" data-delay="500">
           <div class="icono-box d-flex align-items-center justify-content-center">
             <i class="bi bi-calendar-check" style="font-size: 2rem;"></i>
           </div>
@@ -47,7 +48,7 @@
       </div>
 
       <div class="col-md-3 mb-4">
-        <div class="cifra-box d-flex">
+        <div class="cifra-box d-flex animate-element" data-animation="slide-up" data-delay="600">
           <div class="icono-box d-flex align-items-center justify-content-center">
             <i class="bi bi-speedometer2" style="font-size: 2rem;"></i>
           </div>
@@ -57,40 +58,36 @@
           </div>
         </div>
       </div>
-
     </div>
 </section>
 
-<!--SEGUNDA SECTION-->
-<section class="seccion-flota container py-5">
+<!-- SEGUNDA SECCIÓN: LA MEJOR FLOTA -->
+<section class="seccion-flota container py-5 animate-section">
     <div class="row align-items-center">
-
       <!-- Texto -->
       <div class="col-md-6">
-        <h1 class="titulo-flota">La mejor flota de vehículos</h1>
-        <p class="descripcion-flota">
+        <h1 class="titulo-flota animate-element" data-animation="fade-right">La mejor flota de vehículos</h1>
+        <p class="descripcion-flota animate-element" data-animation="fade-right" data-delay="200">
           Contamos con una flota diversa e integrada por modelos modernos y confortables que se adaptan a cualquier necesidad. Desde compactos eficientes hasta furgonetas espaciosas, todos nuestros vehículos ofrecen tecnología avanzada, garantizando fiabilidad y bienestar en cada trayecto.
         </p>
       </div>
 
       <!-- Imagen -->
       <div class="col-md-6">
-        <img src="assets/img/Furgonetas.png" alt="Flota de vehículos" class="img-fluid imagen-flota">
+        <img src="assets/img/Furgonetas.png" alt="Flota de vehículos" class="img-fluid imagen-flota animate-element" data-animation="fade-left" data-delay="300">
       </div>
-
     </div>
-  </section>
+</section>
 
-  <!--TERCER SECTION-->
-<section class="disfruta-kilometros container mt-5 py-5">
-    <div class="card mb-3" >
+<!-- TERCERA SECCIÓN: DISFRUTA DE CADA KILÓMETRO -->
+<section class="disfruta-kilometros container mt-5 py-5 animate-section">
+    <div class="card mb-3">
         <div class="row g-0 align-items-center">
             <div class="col-md-7">
-                <img class="img-fondo llanta2" src="assets/img/llanta.png">
+                <img class="img-fondo llanta2 animate-element" data-animation="rotate-in" src="assets/img/llanta.png">
                 <div class="card-body">
-
-                    <h2 class="titulo">Disfruta de cada kilómtro</h2><!--cambio corregir-->
-                    <p class="descripcion">Convierte cada viaje en un momento memorable
+                    <h2 class="titulo animate-element" data-animation="fade-up">Disfruta de cada kilómetro</h2>
+                    <p class="descripcion animate-element" data-animation="fade-up" data-delay="200">Convierte cada viaje en un momento memorable
                         gracias a nuestros vehículos equipados para tu confort. Disfruta del
                         silencio en la cabina, el rendimiento óptimo en carretera y la confianza
                         de contar con asistencia permanente. Porque cada kilómetro cuenta, te
@@ -98,9 +95,8 @@
                 </div>
             </div>
             <div class="col-md-5">
-               <img class="coche2" src="assets/img/coche-frente.webp">
-             </div>
-
+               <img class="coche2 animate-element" data-animation="fade-scale" data-delay="300" src="assets/img/coche-frente.webp">
+            </div>
         </div>
     </div>
 </section>

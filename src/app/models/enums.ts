@@ -1,35 +1,77 @@
 export enum TipoVehiculo {
-  FURGONETA,
-  COCHE,
-  MOTO
+  FURGONETA ="FURGONETA",
+  COCHE = "COCHE",
+  MOTO = "MOTO"
 }
 
-export enum Provincia{
-
-    ALAVA, ALBACETE, ALICANTE, ALMERIA, ASTURIAS,
-		AVILA, BADAJOZ, BARCELONA, BURGOS, CACERES,
-		CADIZ, CANTABRIA, CASTELLON, CIUDADREAL, CORDOBA,
-		LACORUNA, CUENCA, GERONA, GRANADA, GUADALAJARA,
-		GUIPUZCOA, HUELVA, HUESCA, BALEARES, JAEN,
-		LEON, LERIDA, LUGO, MADRID, MALAGA,
-		MURCIA, NAVARRA, ORENSE, PALENCIA, LASPALMAS,
-		PONTEVEDRA, LARIOJA, SALAMANCA, SEGOVIA, SEVILLA,
-		SORIA, TARRAGONA, SANTACRUZDETENERIFE, TERUEL, TOLEDO,
-		VALENCIA, VALLADOLID, VIZCAYA, ZAMORA, ZARAGOZA
+export enum Provincia {
+  ALAVA="ALAVA", ALBACETE="ALBACETE", ALICANTE="ALICANTE", ALMERIA="ALMERIA", ASTURIAS="ASTURIAS",
+	AVILA="AVILA", BADAJOZ="BADAJOZ", BARCELONA="BARCELONA", BURGOS="BURGOS", CACERES="CACERES",
+	CADIZ="CADIZ", CANTABRIA="CANTABRIA", CASTELLON="CASTELLON", CIUDADREAL="CIUDADREAL", CORDOBA="CORDOBA",
+	LACORUNA="LA_CORUNA", CUENCA="CUENCA", GERONA="GERONA", GRANADA="GRANADA", GUADALAJARA="GUADALAJARA",
+	GUIPUZCOA="GUIPUZCOA", HUELVA="HUELVA", HUESCA="HUESCA", BALEARES="BALEARES", JAEN="JAEN",
+	LEON="LEON", LERIDA="LERIDA", LUGO="LUGO", MADRID="MADRID", MALAGA="MALAGA",
+	MURCIA="MURCIA", NAVARRA="NAVARRA", ORENSE="ORENSE", PALENCIA="PALENCIA", LASPALMAS="LASPALMAS",
+	PONTEVEDRA="PONTEVEDRA", LARIOJA="LARIOJA", SALAMANCA="SALAMANCA", SEGOVIA="SEGOVIA", SEVILLA="SEVILLA",
+	SORIA="SORIA", TARRAGONA="TARRAGONA", SANTACRUZDETENERIFE="SANTACRUZDETENERIFE", TERUEL="TERUEL", TOLEDO="TOLEDO",
+	VALENCIA="VALENCIA", VALLADOLID="VALLADOLID", VIZCAYA="VIZCAYA", ZAMORA="ZAMORA", ZARAGOZA="ZARAGOZA"
 }
 
 export enum Combustible {
-		GASOLINA, DIESEL, GLP, ELECTRICO
-	}
-
-export enum Transmision{
-  MANUAL, AUTOMATICO
+	GASOLINA ="GASOLINA", DIESEL="DIESEL", GLP="GLP", ELECTRICO="ELECTRICO"
 }
 
-export enum EtiquetaAmbiental{
-   CERO, ECO, C, B, A
+export enum Transmision {
+  MANUAL="MANUAL", AUTOMATICO="AUTOMATICO"
 }
 
-export enum Rol{
-  CLIENTE, ADMIN
+export enum EtiquetaAmbiental {
+  CERO="CERO", ECO="ECO", C="C", B="B", A="A"
+}
+
+export enum Rol {
+  CLIENTE="CLIENTE", ADMIN="ADMIN"
+}
+
+export namespace Provincia {
+  export function keys(): Array<string>{
+    let keys = Object.keys(Provincia);
+    return keys.slice(0,keys.length-1)
+  }
+}
+export namespace TipoVehiculo {
+  export function keys(): Array<string>{
+    let keys = Object.keys(TipoVehiculo);
+    return keys.slice(0,keys.length-1)
+  }
+}
+
+  export function tipo(tipo: any, ubicacion: any) {
+    throw new Error("Function not implemented.");
+  }
+
+
+export namespace Combustible {
+  export function keys(): Array<string>{
+    let keys = Object.keys(Combustible);
+    return keys.slice(0,keys.length-1)
+  }
+}
+export namespace Transmision {
+  export function keys(): Array<string>{
+    let keys = Object.keys(Transmision);
+    return keys.slice(0,keys.length-1)
+  }
+}
+export namespace EtiquetaAmbiental {
+  export function keys(): Array<string>{
+    let keys = Object.keys(EtiquetaAmbiental);
+    return keys.slice(0,keys.length-1)
+  }
+}
+export namespace Rol {
+  export function keys(): Array<string>{
+    let keys = Object.keys(Rol);
+    return keys.slice(0,keys.length-1)
+  }
 }

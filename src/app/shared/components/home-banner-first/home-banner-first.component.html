@@ -5,26 +5,21 @@
       <p class="parrafo">Compra o alquiler, tú eliges. Nosotros te ayudamos a encontrar  el coche ideal </p>
     </div>
 
-     <div class="folmulario-banner">
+     <form class="folmulario-banner"[formGroup]="formTipoUbicacion" (ngSubmit)="submit()">
       <h2 class="titulo-formulario-banner">Buscar Vehiculos</h2>
-      <section class="folmulario-banner-interior">
-        <select class="form-select" aria-label="Tipo de vehiculos">
-          <option selected>Tipo de vehiculos</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-       </select>
-        <select class="form-select" aria-label="Ubicacion">
-          <option selected>Ubicación</option>
-          <option value="1"></option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+
+      <div class="folmulario-banner-interior">
+         <select class="form-select" aria-label="Tipo de vehiculos" formControlName="selectedOptionV" >
+         <option *ngFor="let tipo of tiposVheiculo" [value]="tipo">{{ tipo }}</option>
         </select>
-      </section>
-      <button class="boton-resultado" >VER RESULTADO</button>
 
+        <select class="form-select" aria-label="ubicacion" formControlName="selectedOptionU" >
+         <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion">{{ ubicacion }}</option>
+       </select>
 
-    </div>
+      </div>
+      <button class="boton-resultado"  type="submit">VER RESULTADO</button>
+    </form>
   </div>
 </div>
 

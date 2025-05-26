@@ -1,0 +1,111 @@
+.bloque-recuerdos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 40px;
+  gap: 40px;
+}
+
+.izquierda {
+  flex: 1;
+}
+
+.izquierda h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #1f1f1f;
+  font-size: 50px;
+}
+
+.lista-puntos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.punto {
+  display: flex;
+  align-items: flex-start;
+  width: 45%;
+  gap: 10px;
+}
+
+.lista-puntos .bi {
+  font-size: 1.8rem;      
+  color: #5937E0;        
+  margin-right: 0.5rem;  
+  vertical-align: middle; 
+}
+
+.derecha {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.derecha img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.step-number {
+  display: inline-block;
+  background-color: #5937E0; 
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  margin-right: 10px;
+}
+
+/* seccion 2 */
+
+.moto {
+  width: 600px;
+  position: absolute;
+  left: -110px;
+  bottom: -100px;
+  z-index: 2;
+}
+
+.contenido {
+  color: white;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  padding-right: 40px;
+}
+
+.contenido h2 {
+  font-size: 70px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.contenido p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+.card{
+  background: #5937E0;
+  border-radius: 15px;
+  color: white;
+  min-height: 300px; 
+
+}
+
+.llanta2{
+    width: 80%;
+    position: absolute;
+    top: 0;
+    opacity: 0.1; 
+}
+
+
