@@ -1,16 +1,18 @@
 <div class="admin-header">
   <h1 class="admin-title">Administración de vehículos</h1>
-  <button class="admin-add-btn" (click)="abrirAgregarVehiculo()">
-    <i class="bi bi-x-circle-fill " style="font-size: 2rem;"></i>
+  <button class="admin-add-btn" (click)="abrirModalCrearVheculo()" >
+    <i class="bi bi-plus-circle-fill"style="font-size: 2rem;"></i>
     Agregar Vehículo
   </button>
 </div>
+ <app-editar-vehiculo *ngIf="mostrarFormularioModal" (closeModal)="cerarModalCrearVheculo()"></app-editar-vehiculo>
 <!--Agregar modal vehiculo-->
-<div class="modal-backdrop" *ngIf="mostrarFormulario">
+<!-- *ngIf="mostrarFormulario" -->
+<!-- <div class="modal-backdrop" >
   <div class="modal-contenido" >
-    <app-editar-vehiculo (cerrar)="cerrarAgregarVehiculo()"></app-editar-vehiculo>
+
   </div>
-</div>
+</div> -->
 
 
 <div class="vehiculos-grid">
@@ -34,3 +36,4 @@
     <button class="vehiculo-btn" >Editar</button>
   </div>
 </div>
+

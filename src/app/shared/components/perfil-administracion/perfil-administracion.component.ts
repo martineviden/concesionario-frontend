@@ -64,13 +64,25 @@ export class PerfilAdministracionComponent implements OnInit{
   ];
 
   //agregar vehiculo
-  mostrarFormulario = false;
-  abrirAgregarVehiculo(){
-    this.mostrarFormulario = true;
-  }
-  cerrarAgregarVehiculo(){
-    this.mostrarFormulario = false;
-  }
+  mostrarFormularioModal = false;
+
+abrirModalCrearVheculo(){
+  this.mostrarFormularioModal = true;
+}
+cerarModalCrearVheculo(){
+  this.mostrarFormularioModal = false;
+}
+
+//   abrir_cerarAgregarVehiculo(){
+//     if(this.mostrarFormulario ==false){
+//       this.mostrarFormulario = true;
+//   }else{
+//         this.mostrarFormulario=false;
+//       }
+// }
+  // cerrarAgregarVehiculo(){
+  //   this.mostrarFormulario = false;
+  // }
 
   ngOnInit(): void {
       if (this.vehiculoExiste) {
