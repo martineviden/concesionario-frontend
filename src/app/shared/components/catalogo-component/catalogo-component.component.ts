@@ -161,6 +161,7 @@ export class CatalogoComponentComponent implements OnInit {
     if (!esClickEnDropdown) {
       for (const key of this.dropdownKeys) {
         this.dropdowns[key] = false;
+
       }
     }
   }
