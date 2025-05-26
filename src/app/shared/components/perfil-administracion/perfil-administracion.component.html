@@ -8,7 +8,7 @@
 <!--Agregar modal vehiculo-->
 <div class="modal-backdrop" *ngIf="mostrarFormulario">
   <div class="modal-contenido" >
-    <app-editar-vehiculo (guardado)="agregarVehiculo($event)" (cerrar)="cerrarAgregarVehiculo()"></app-editar-vehiculo>
+    <app-editar-vehiculo (cerrar)="cerrarAgregarVehiculo()"></app-editar-vehiculo>
   </div>
 </div>
 
@@ -31,6 +31,6 @@
     <div class="vehiculo-specs">
       <div class="vehiculo-spec" *ngFor="let spec of veh.specs">{{ spec }}</div>
     </div>
-    <button class="vehiculo-btn" (guardado)="editarVehiculo($event)">Editar</button>
+    <button class="vehiculo-btn" >Editar</button>
   </div>
 </div>
