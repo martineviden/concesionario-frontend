@@ -14,6 +14,7 @@ import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
 import { ContactoComponent } from './vistas/contacto/contacto.component';
 import { EspecificacionesComponent } from './vistas/especificaciones/especificaciones.component';
 import { PerfilComponent } from './vistas/perfil/perfil.component';
+import { PerfilClienteVistaComponent } from './vistas/perfil-cliente-vista/perfil-cliente-vista/perfil-cliente-vista.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -32,5 +33,6 @@ export const routes: Routes = [
   { path: 'nosotros', component: NosotrosComponent},
   { path: 'contacto', component: ContactoComponent},
   {path: 'especificaciones', component: EspecificacionesComponent},
-  {path: 'perfil', component: PerfilComponent}
+  {path: 'perfil', component: PerfilComponent},
+  {path: 'perfil-cliente-vista', component: PerfilClienteVistaComponent}
 ];
