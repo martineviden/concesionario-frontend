@@ -49,11 +49,11 @@ export class RegistroComponent {
   }
 
   registrarUsuario() {
-    
+
     if (this.usuarioForm.valid) {
       const datosFormulario = this.usuarioForm.value;
       delete datosFormulario.confirmarContrasena;
-      
+
       const nuevoUsuario: Usuario = datosFormulario;
 
       this.registroService.crearUsuario(nuevoUsuario).subscribe({
