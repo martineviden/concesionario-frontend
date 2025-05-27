@@ -82,7 +82,7 @@
             <span *ngIf="!vehiculo.aireAcondicionado">Sin A/A</span>
           </div>
         </div>
-        <button class="boton-detalles">Ver detalles</button>
+        <button class="boton-detalles" (click)="openespecidicaciones(vehiculo.matricula)">Ver detalles</button>
       </div>
     </div>
   </div>

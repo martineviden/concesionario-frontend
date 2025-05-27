@@ -1,16 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { TipoVehiculoBannerFirstComponent } from '../../shared/components/tipo-vehiculo-banner-first/tipo-vehiculo-banner-first.component';
 import { TipoVehiculoResennasComponent } from '../../shared/components/tipo-vehiculo-resennas/tipo-vehiculo-resennas.component';
 import { PreviewCatalogoComponent } from '../../shared/components/preview-catalogo/preview-catalogo.component';
+import { VehiculoModel } from '../../models/vehiculo.model';
+import { TipoVehiculoModel } from '../../models/tipo-vehiculo.model';
+import { VehiculoService } from '../../services/vehiculo.service';
+import { TipoVehiculoService } from '../../services/tipo-vehiculo.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-especificaciones',
+  standalone: true,
   imports: [FooterComponent, NavbarComponent, TipoVehiculoBannerFirstComponent, TipoVehiculoResennasComponent, PreviewCatalogoComponent],
   templateUrl: './especificaciones.component.html',
   styleUrl: './especificaciones.component.css'
 })
-export class EspecificacionesComponent {
+export class EspecificacionesComponent implements OnInit {
+  tipoVehiculoSeleccionado!: TipoVehiculoModel;
+  vehiculoSeleccionado!: VehiculoModel;
 
+  constructor(
+    private vehiculoService: VehiculoService,
+    private tipoVehiculoService: TipoVehiculoService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      const matricula = params.get('matricula');
+      if (matricula) {
+        this.vehiculoService.getOnePorMatricula(matricula).subscribe({
+          next: (vehiculo: any) => {
+            this.vehiculoSeleccionado = vehiculo;
+            console.log('Vehículo:', vehiculo);
+            // CAMBIO AQUÍ: usa el campo correcto de la BBDD
+            this.tipoVehiculoService.getOneTipoVheculo(vehiculo.id_tipo_vehiculo).subscribe({
+              next: (tipo: any) => {
+                console.log('TipoVehiculo:', tipo);
+                this.tipoVehiculoSeleccionado = tipo;
+              },
+              error: err => {
+                console.error('Error cargando tipo de vehículo', err);
+              }
+            });
+          },
+          error: err => {
+            console.error('No se encontró el vehículo con esa matrícula', err);
+          }
+        });
+      }
+    });
+  }
 }

@@ -11,6 +11,7 @@ import {
   EtiquetaAmbiental,
   TipoVehiculo
 } from '../../../models/enums';
+import { Router } from '@angular/router';
 
 type DropdownKey = 'ubicacion' | 'combustible' | 'transmision' | 'etiqueta' | 'plazas';
 
@@ -47,7 +48,8 @@ export class CatalogoComponentComponent implements OnInit {
 
   constructor(
     private tipoVehiculoService: TipoVehiculoService,
-    private vehiculoService: VehiculoService
+    private vehiculoService: VehiculoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -55,22 +57,42 @@ export class CatalogoComponentComponent implements OnInit {
   }
 
   cargarVehiculos(): void {
-    this.tipoVehiculoService.listAllTipoVheculo().subscribe((tipos: any) => {
-      this.tipoVehiculos = tipos;
+  this.tipoVehiculoService.listAllTipoVheculo().subscribe((tipos: any) => {
+    this.tipoVehiculos = tipos;
 
-      this.vehiculoService.listAllVhiculo().subscribe((vehiculos: any) => {
-        this.vehiculos = this.tipoVehiculos.map((tv: TipoVehiculoModel) => {
-          const vehiculo = vehiculos.find((v: VehiculoModel) => v.matricula === tv.vehiculo);
-          return {
-            ...tv,
-            ...vehiculo
-          };
-        });
+    this.vehiculoService.listAllVhiculo().subscribe((vehiculosRaw: any[]) => {
+      // Adaptar propiedades del backend a tu modelo
+      const vehiculosAdaptados: VehiculoModel[] = vehiculosRaw.map(v => ({
+        matricula: v.matricula,
+        color: v.color,
+        kilometraje: v.kilometraje,
+        disponibilidad: v.disponibilidad,
+        ubicacion: v.ubicacion,
+        combustible: v.combustible,
+        etiqueta: v.etiqueta,
+        autonomia: v.autonomia,
+        puertas: v.puertas,
+        aireAcondicionado: v.aire_acondicionado, // ojo aquí
+        plazas: v.plazas,
+        transmision: v.transmision,
+        tipoV: v.tipo // o el campo correcto si viene diferente
+      }));
 
-        this.aplicarFiltros();
+      // Fusionar con tipoVehiculo
+      this.vehiculos = vehiculosAdaptados.map((vehiculo: VehiculoModel) => {
+        const tipo = this.tipoVehiculos.find((tv: TipoVehiculoModel) => tv.id === Number(vehiculo.tipoV));
+        return {
+          ...vehiculo,
+          ...tipo
+        };
       });
+
+      this.aplicarFiltros();
     });
-  }
+  });
+}
+
+
 
   aplicarFiltros(): void {
     if (this.filtrosActivos.includes('Todos los vehículos')) {
@@ -160,6 +182,12 @@ export class CatalogoComponentComponent implements OnInit {
   getCantidadSeleccionados(filtro: DropdownKey): number {
     return this.filtrosActivos.filter(f => f.startsWith(filtro + ':')).length;
   }
+
+  openespecidicaciones(matricula: string): void {
+  if (matricula) {
+    this.router.navigate(['/especificaciones', matricula]);
+  }
+}
 
   @HostListener('document:click', ['$event'])
   cerrarDropdownsFuera(event: MouseEvent): void {

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormularioAlquilarComponent } from "../formulario-alquilar/formulario-alquilar.component";
+import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
+import { VehiculoModel } from '../../../models/vehiculo.model';
 
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
@@ -11,4 +13,6 @@ import { FormularioAlquilarComponent } from "../formulario-alquilar/formulario-a
 })
 export class TipoVehiculoBannerFirstComponent {
   mostrarFormularioAlquilar = false;
+  @Input() vehiculo!: VehiculoModel;
+  @Input() tipoVehiculo!: TipoVehiculoModel;
 }
