@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuario } from '../models/login.model';
+import { Rol } from '../models/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,26 @@ export class AuthService {
   private estaAutenticado = new BehaviorSubject<boolean>(false);
 
   constructor() {
-    // tener elestado de inciio de sesion del localStorage al iniciar
+    // Recuperar el estado de inicio de sesión del localStorage al iniciar
     const usuarioGuardado = localStorage.getItem('usuario');
     if (usuarioGuardado) {
-      this.usuarioActual.next(JSON.parse(usuarioGuardado));
+      const usuario = JSON.parse(usuarioGuardado);
+      // Asegurarnos de que el rol se convierte al enum correctamente
+      if (usuario.rol) {
+        usuario.rol = Rol[usuario.rol as keyof typeof Rol];
+      }
+      this.usuarioActual.next(usuario);
       this.estaAutenticado.next(true);
     }
   }
 
   iniciarSesion(usuario: Usuario) {
+    console.log('Usuario que inicia sesión:', usuario);
+    console.log('Rol del usuario:', usuario.rol);
+    // Asegurarnos de que el rol se convierte al enum correctamente
+    if (typeof usuario.rol === 'string') {
+      usuario.rol = Rol[usuario.rol as keyof typeof Rol];
+    }
     this.usuarioActual.next(usuario);
     this.estaAutenticado.next(true);
     localStorage.setItem('usuario', JSON.stringify(usuario));

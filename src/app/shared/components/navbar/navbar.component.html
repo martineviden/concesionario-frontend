@@ -66,8 +66,14 @@
               Mi Perfil
             </a>
           </li>
+          <li class="nav-item" *ngIf="esAdmin">
+            <a class="nav-link bg-warning text-white rounded px-2" style="background-color: orange !important; color: white !important;" [routerLink]="['/perfil']">
+              <i class="fas fa-cogs me-1"></i>
+              Panel Admin
+            </a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" (click)="cerrarSesion(); $event.preventDefault()">
+            <a class="nav-link bg-danger text-white rounded px-2" style="background-color: red !important; color: white !important;" href="#" (click)="cerrarSesion(); $event.preventDefault()">
               <i class="fas fa-sign-out-alt me-1"></i>
               Cerrar sesión
             </a>

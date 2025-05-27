@@ -69,9 +69,11 @@ export namespace EtiquetaAmbiental {
     return keys.slice(0,keys.length-1)
   }
 }
-export namespace Rol {
-  export function keys(): Array<string>{
-    let keys = Object.keys(Rol);
-    return keys.slice(0,keys.length-1)
-  }
-}
+
+// Elimina o comenta esto:
+// export namespace Rol {
+//   export function keys(): Array<string>{
+//     let keys = Object.keys(Rol);
+//     return keys.slice(0,keys.length-1)
+//   }
+// }
