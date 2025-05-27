@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {TipoVehiculo,Provincia,Combustible,Transmision,EtiquetaAmbiental} from '../../../models/enums';
 import { from } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -37,9 +37,10 @@ import { VehiculoModel } from '../../../models/vehiculo.model';
   tipoV: VehiculoModel;
 */
 export class EditarVehiculoComponent {
-  mostrarModulo: boolean = true;
+  @Output() closeModal = new EventEmitter<void>();
+  
 // Definimos las variables necesarias
-
+/*
   color!: VehiculoModel;
   kilometraje!: VehiculoModel;
   disponibilidad!: VehiculoModel;
@@ -66,14 +67,9 @@ newVheculoForm: FormGroup;
 
     })
   }
+*/
 
-
-
-
-
-
-
-  cerrarModal() {
-    this.mostrarModulo = false;
+ close() {
+    this.closeModal.emit();
   }
 }
