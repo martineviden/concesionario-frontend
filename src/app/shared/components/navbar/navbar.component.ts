@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { Usuario } from '../../../models/login.model';
 import { Subscription } from 'rxjs';
+import { Rol } from '../../../models/enums';
 
 @Component({
   selector: 'app-navbar',
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private isScrolling = false;
   usuarioActual: Usuario | null = null;
   estaAutenticado = false;
+  esAdmin = false;
   private authSubscription: Subscription | null = null;
 
   constructor(private authService: AuthService) {}
@@ -32,6 +34,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.obtenerUsuarioActual().subscribe(usuario => {
       this.usuarioActual = usuario;
       this.estaAutenticado = !!usuario;
+      this.esAdmin = usuario?.rol === Rol.ADMIN;
     });
   }
 

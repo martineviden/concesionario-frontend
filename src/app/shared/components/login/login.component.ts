@@ -42,9 +42,13 @@ export class LoginComponent {
       this.loginService.loginUsuario(datosLogin).subscribe({
         next: res => {
           if (res.autenticado && res.usuario) {
+            if (typeof res.usuario.rol === 'string') {
+              res.usuario.rol = Rol[res.usuario.rol as keyof typeof Rol];
+            }
             this.nombreUsuario = res.usuario.nombre;
             this.authService.iniciarSesion(res.usuario);
             console.log('Login correcto. Bienvenido,', this.nombreUsuario);
+            console.log('Rol del usuario:', res.usuario.rol);
             this.close();
           } else {
             console.log('Login incorrecto. Revisa los datos');
