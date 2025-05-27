@@ -22,7 +22,7 @@ type DropdownKey = 'ubicacion' | 'combustible' | 'transmision' | 'etiqueta' | 'p
   styleUrls: ['./catalogo-component.component.css']
 })
 export class CatalogoComponentComponent implements OnInit {
-  filtrosActivos: string[] = ['Todos los vehículos'];
+  filtrosActivos: string[] = [];
 
   dropdowns: Record<DropdownKey, boolean> = {
     ubicacion: false,
@@ -34,11 +34,11 @@ export class CatalogoComponentComponent implements OnInit {
 
   dropdownKeys: DropdownKey[] = ['ubicacion', 'combustible', 'transmision', 'etiqueta', 'plazas'];
 
-  provincias = Object.keys(Provincia).filter(k => isNaN(Number(k)));
-  tiposCombustible = Object.keys(Combustible).filter(k => isNaN(Number(k)));
-  tiposTransmision = Object.keys(Transmision).filter(k => isNaN(Number(k)));
-  etiquetasAmbientales = Object.keys(EtiquetaAmbiental).filter(k => isNaN(Number(k)));
-  tiposVehiculo = Object.keys(TipoVehiculo).filter(k => isNaN(Number(k)));
+  provincias = Object.keys(Provincia).filter(k => isNaN(Number(k)) && k !== 'keys');
+  tiposCombustible = Object.keys(Combustible).filter(k => isNaN(Number(k)) && k !== 'keys');
+  tiposTransmision = Object.keys(Transmision).filter(k => isNaN(Number(k)) && k !== 'keys');
+  etiquetasAmbientales = Object.keys(EtiquetaAmbiental).filter(k => isNaN(Number(k)) && k !== 'keys');
+  tiposVehiculo = Object.keys(TipoVehiculo).filter(k => isNaN(Number(k)) && k !== 'keys');
   plazas: string[] = ['2', '4', '5', '7', '9'];
 
   tipoVehiculos: TipoVehiculoModel[] = [];
@@ -61,9 +61,12 @@ export class CatalogoComponentComponent implements OnInit {
       this.vehiculoService.listAllVhiculo().subscribe((vehiculos: any) => {
         this.vehiculos = this.tipoVehiculos.map((tv: TipoVehiculoModel) => {
           const vehiculo = vehiculos.find((v: VehiculoModel) => v.matricula === tv.vehiculo);
+          const modeloNombre = `${vehiculo?.modelo}`.toLowerCase().replace(/\s+/g, '');
           return {
             ...tv,
-            ...vehiculo
+            ...vehiculo,
+            imagen: `assets/img/catalogo/${modeloNombre}`,
+            precio: +(tv.precio / 30).toFixed(2)
           };
         });
 
@@ -73,7 +76,7 @@ export class CatalogoComponentComponent implements OnInit {
   }
 
   aplicarFiltros(): void {
-    if (this.filtrosActivos.includes('Todos los vehículos')) {
+    if (this.filtrosActivos.length === 0) {
       this.vehiculosFiltrados = [...this.vehiculos];
       return;
     }
@@ -102,25 +105,19 @@ export class CatalogoComponentComponent implements OnInit {
   }
 
   limpiarFiltros(): void {
-    this.filtrosActivos = ['Todos los vehículos'];
+    this.filtrosActivos = [];
     this.aplicarFiltros();
   }
 
   toggleFiltro(filtro: string): void {
-    if (filtro === 'Todos los vehículos') {
-      this.filtrosActivos = ['Todos los vehículos'];
-    } else {
-      const index = this.filtrosActivos.indexOf(filtro);
-      if (index > -1) {
-        this.filtrosActivos.splice(index, 1);
-      } else {
-        this.filtrosActivos = this.filtrosActivos.filter(f => f !== 'Todos los vehículos');
-        this.filtrosActivos.push(filtro);
-      }
+    const [clave, valor] = filtro.split(':');
 
-      if (this.filtrosActivos.length === 0) {
-        this.filtrosActivos = ['Todos los vehículos'];
-      }
+    // Elimina cualquier filtro anterior del mismo tipo
+    this.filtrosActivos = this.filtrosActivos.filter(f => !f.startsWith(clave + ':'));
+
+    // Si no estaba ya seleccionado, lo agregamos
+    if (!this.filtrosActivos.includes(filtro)) {
+      this.filtrosActivos.push(filtro);
     }
 
     this.aplicarFiltros();
