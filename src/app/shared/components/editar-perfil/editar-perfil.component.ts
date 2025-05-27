@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './editar-perfil.component.css'
 })
 export class EditarPerfilComponent {
+  @Output() closeModal = new EventEmitter<void>();
 
+  close() {
+      this.closeModal.emit();
+    }
 }

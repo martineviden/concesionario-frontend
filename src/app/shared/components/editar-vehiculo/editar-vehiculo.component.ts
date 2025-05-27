@@ -38,8 +38,7 @@ import { VehiculoModel } from '../../../models/vehiculo.model';
   tipoV: VehiculoModel;
 */
 export class EditarVehiculoComponent {
- @Output() closeModal = new EventEmitter<void>();
-
+  @Output() closeModal = new EventEmitter<void>();
  close(){
     this.closeModal.emit();
   }
@@ -62,9 +61,8 @@ export class EditarVehiculoComponent {
 //   transmision!: Transmision;
 //   tipoV!: TipoVehiculo;
 
-
-
 //Creamos el formulario
+
 // newVheculoForm: FormGroup;
 //   constructor( private fb:FormBuilder){
 //     this.newVheculoForm = this.fb.group({
@@ -75,13 +73,6 @@ export class EditarVehiculoComponent {
 
 //     })
 //   }
-
-
-
-
-
-
-
 
 
 }

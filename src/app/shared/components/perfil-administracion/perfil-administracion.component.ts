@@ -9,7 +9,7 @@ import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
   templateUrl: './perfil-administracion.component.html',
   styleUrls: ['./perfil-administracion.component.css']
 })
-export class PerfilAdministracionComponent implements OnInit{
+export class PerfilAdministracionComponent{
   @Input() vehiculoExiste?: TipoVehiculoModel;
 
   vehiculos = [
@@ -64,14 +64,13 @@ export class PerfilAdministracionComponent implements OnInit{
   ];
 
   //agregar vehiculo
-  mostrarFormularioModal = false;
-
-abrirModalCrearVheculo(){
-  this.mostrarFormularioModal = true;
-}
-cerarModalCrearVheculo(){
-  this.mostrarFormularioModal = false;
-}
+  showAgregarModal = false;
+  abrirAgregarVehiculo(){
+    this.showAgregarModal = true;
+  }
+  cerrarAgregarVehiculo(){
+    this.showAgregarModal = false;
+  }
 
 //   abrir_cerarAgregarVehiculo(){
 //     if(this.mostrarFormulario ==false){
@@ -84,10 +83,7 @@ cerarModalCrearVheculo(){
   //   this.mostrarFormulario = false;
   // }
 
-  ngOnInit(): void {
-      if (this.vehiculoExiste) {
-        // carga los datos al formulario para editar
-      }
-  }
+
+ 
 
 }

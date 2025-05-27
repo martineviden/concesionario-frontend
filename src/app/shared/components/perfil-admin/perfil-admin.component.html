@@ -17,7 +17,9 @@
       </div>
     </div>
     <div class="perfil-admin-btn-row">
-      <button class="perfil-admin-btn">Editar perfil</button>
+      <button class="perfil-admin-btn" (click)="abrirEditPerfil()">Editar perfil</button>
     </div>
   </div>
 </div>
+
+<app-editar-perfil *ngIf="showEditPerfilModal" (closeModal)="cerrarEditPerfil()"></app-editar-perfil>
