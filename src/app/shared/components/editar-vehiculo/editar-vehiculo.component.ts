@@ -13,6 +13,7 @@ import { VehiculoModel } from '../../../models/vehiculo.model';
   styleUrl: './editar-vehiculo.component.css'
 })
 
+
 // 1* Traer los enums.
 // 2* Traer modelo Vheiculo y Tipo de Vheiculo.
 // 3* Traer servicio vehiculo
@@ -38,38 +39,41 @@ import { VehiculoModel } from '../../../models/vehiculo.model';
 */
 export class EditarVehiculoComponent {
   @Output() closeModal = new EventEmitter<void>();
-  
-// Definimos las variables necesarias
-/*
-  color!: VehiculoModel;
-  kilometraje!: VehiculoModel;
-  disponibilidad!: VehiculoModel;
-  ubicacion!: Provincia;
-  combustible!: Combustible;
-  etiqueta!: EtiquetaAmbiental;
-  autonomia!: VehiculoModel;
-  puertas!: VehiculoModel;
-  aireAcondicionado!: VehiculoModel;
-  plazas!: VehiculoModel;
-  transmision!: Transmision;
-  tipoV!: TipoVehiculo;
-
-
-
-//Creamos el formulario
-newVheculoForm: FormGroup;
-  constructor( private fb:FormBuilder){
-    this.newVheculoForm = this.fb.group({
-      //Definicion de FormcontrolNames
-      selectOptionVheiculo:[
-        this.tipoV[0],
-      ],
-
-    })
-  }
-*/
-
- close() {
+ close(){
     this.closeModal.emit();
   }
+//  mostrarModulo: boolean = true;
+
+
+//
+// // Definimos las variables necesarias
+
+//   color!: VehiculoModel;
+//   kilometraje!: VehiculoModel;
+//   disponibilidad!: VehiculoModel;
+//   ubicacion!: Provincia;
+//   combustible!: Combustible;
+//   etiqueta!: EtiquetaAmbiental;
+//   autonomia!: VehiculoModel;
+//   puertas!: VehiculoModel;
+//   aireAcondicionado!: VehiculoModel;
+//   plazas!: VehiculoModel;
+//   transmision!: Transmision;
+//   tipoV!: TipoVehiculo;
+
+//Creamos el formulario
+
+// newVheculoForm: FormGroup;
+//   constructor( private fb:FormBuilder){
+//     this.newVheculoForm = this.fb.group({
+//       //Definicion de FormcontrolNames
+//       selectOptionVheiculo:[
+//         this.tipoV[],
+//       ],
+
+//     })
+//   }
+
+
 }
+

@@ -1,9 +1,32 @@
+/* .modal-login-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(40, 40, 50, 0.35);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+} */
+
+
+
+
+
+
+
 .modal-content {
   max-width: 1100px;
   margin: auto;
   background: #fff;
   padding: 20px;
   border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.15);
+  background: rgba(40, 40, 50, 0.35);
+  backdrop-filter: blur(8px);
 }
 
 .vehicle-info {
@@ -29,7 +52,7 @@
 
 .equipamiento ul {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
+  grid-template-columns: repeat(2, 1fr);
   list-style: none;
   padding: 0;
   gap: 10px;

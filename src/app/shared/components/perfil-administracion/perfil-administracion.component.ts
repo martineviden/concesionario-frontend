@@ -72,6 +72,18 @@ export class PerfilAdministracionComponent{
     this.showAgregarModal = false;
   }
 
+//   abrir_cerarAgregarVehiculo(){
+//     if(this.mostrarFormulario ==false){
+//       this.mostrarFormulario = true;
+//   }else{
+//         this.mostrarFormulario=false;
+//       }
+// }
+  // cerrarAgregarVehiculo(){
+  //   this.mostrarFormulario = false;
+  // }
+
+
  
 
 }

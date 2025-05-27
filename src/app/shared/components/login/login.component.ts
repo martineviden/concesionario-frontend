@@ -13,7 +13,7 @@ import { Rol } from '../../../models/enums';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  
+
   @Output() closeModal = new EventEmitter<void>();
 
   loginForm: FormGroup;
