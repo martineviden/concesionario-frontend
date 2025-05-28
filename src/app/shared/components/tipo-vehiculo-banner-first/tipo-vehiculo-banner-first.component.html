@@ -52,6 +52,7 @@
           </div>
         </div>
         <button class="btn-alquilar" (click)="mostrarFormularioAlquilar = true">Alquilar</button>
+        <button *ngIf="" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
         <app-formulario-alquilar
           *ngIf="mostrarFormularioAlquilar"
           (cerrarModal)="mostrarFormularioAlquilar = false">
