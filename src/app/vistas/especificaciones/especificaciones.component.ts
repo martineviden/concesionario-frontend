@@ -39,7 +39,7 @@ export class EspecificacionesComponent implements OnInit {
   this.route.paramMap.subscribe(params => {
     const matricula = params.get('matricula');
     if (matricula) {
-      this.vehiculoService.getOnePorMatricula(matricula).subscribe({
+      this.vehiculoService.getVehiculoPorMatricula(matricula).subscribe({
         next: (vehiculo: any) => {
           console.log('Vehículo recibido:', vehiculo);
           this.vehiculoSeleccionado = vehiculo;
@@ -51,7 +51,7 @@ export class EspecificacionesComponent implements OnInit {
             vehiculo.tipoVehiculo?.id;
 
           if (idTipo) {
-            this.tipoVehiculoService.getOneTipoVheculo(idTipo).subscribe({
+            this.tipoVehiculoService.getTipoVehiculoById(idTipo).subscribe({
               next: (tipo: any) => {
                 console.log('TipoVehiculo:', tipo);
                 this.tipoVehiculoSeleccionado = tipo;

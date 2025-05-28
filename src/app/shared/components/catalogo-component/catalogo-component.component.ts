@@ -81,10 +81,10 @@ export class CatalogoComponentComponent implements OnInit {
   }
 
   cargarVehiculos(): void {
-    this.tipoVehiculoService.listAllTipoVheculo().subscribe((tipos: any) => {
+    this.tipoVehiculoService.listAllTipoVehiculo().subscribe((tipos: any) => {
       this.tipoVehiculos = tipos;
 
-      this.vehiculoService.listAllVhiculo().subscribe((vehiculos: any) => {
+      this.vehiculoService.listAllVehiculo().subscribe((vehiculos: any) => {
         this.vehiculos = this.tipoVehiculos.map((tv: any) => {
           const vehiculo = vehiculos.find((v: VehiculoModel) => v.matricula === tv.vehiculo);
           return {
