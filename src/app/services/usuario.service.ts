@@ -13,26 +13,24 @@ export class UsuarioService{
 
   listAllUsuario(){
 
-    return this.http.get('http://localhost:8080/usuarios',{withCredentials:false});
+    return this.http.get('http://localhost:8080/usuarios', { withCredentials:false });
   }
 
-  getOneById(id:string){
-    return this.http.get(`http://localhost:8080/usuarios/${id}`,{withCredentials:false});
+  getUsuarioById(id:string){
+    return this.http.get(`http://localhost:8080/usuarios/${id}`, { withCredentials:false });
   }
 
-   createUsuario(usuario:UsuarioModel){
-      return this.http.post('http://localhost:8080/usuarios',usuario,{withCredentials:false});
-     }
+  createUsuario(usuario:UsuarioModel){
+    return this.http.post('http://localhost:8080/usuarios', usuario, { withCredentials:false });
+  }
 
   updateUsuario(id:string, usuario: UsuarioModel){
+    return this.http.put(`http://localhost:8080/usuarios/${id}`, usuario, { withCredentials:false });
+  }
 
-        return this.http.put(`http://localhost:8080/usuarios/${id}`,usuario,{withCredentials:false});
-     }
-
-
-    deliteOneUsuario(id:string){
-      return this.http.delete(`http://localhost:8080/usuarios/${id}`,{withCredentials:false});
-    }
+  deleteUsuario(id:string){
+    return this.http.delete(`http://localhost:8080/usuarios/${id}`, { withCredentials:false });
+  }
 
 }
 

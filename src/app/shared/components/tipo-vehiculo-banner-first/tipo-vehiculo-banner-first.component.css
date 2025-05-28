@@ -138,7 +138,7 @@
 }
 
 .btn-alquilar {
-  width: 100%;
+  width: 50%;
   max-width: 350px;
   background: #5636d8;
   color: #fff;
@@ -156,6 +156,26 @@
   background: #3d25a0;
 }
 
+.btn-eliminar {
+  width: 50%;
+  max-width: 350px;
+  background: red;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 14px;
+  padding: 1rem 0;
+  margin-top: auto;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-eliminar:hover {
+  box-shadow: 0 3px 12px 0 rgba(108, 92, 231, 0.18);
+}
+
+/* Color dentro de spec-card */
 .color-display {
   display: flex;
   align-items: center;
