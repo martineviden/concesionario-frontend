@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import {TipoVehiculo,Provincia,Combustible,Transmision,EtiquetaAmbiental} from '../../../models/enums';
-import { from } from 'rxjs';
+import { filter, from } from 'rxjs';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VehiculoModel } from '../../../models/vehiculo.model';
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
 import { VehiculoService } from '../../../services/vehiculo.service';
+import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
 
 
 @Component({
@@ -24,8 +25,8 @@ import { VehiculoService } from '../../../services/vehiculo.service';
 // 6* enviar datos al back
 // 7* Dar respuesta si se ha creado correctamente o no.
 
-
-export class EditarVehiculoComponent {
+// Crear tipo vheiculo. Rescatar tipo vheiculo, servir tipo vheiculo, crear vheiculo. Hacer el get de tipo vheiculos?
+export class EditarVehiculoComponent implements OnInit{
 
   @Output() closeModal = new EventEmitter<void>();
 
@@ -37,11 +38,19 @@ export class EditarVehiculoComponent {
 
 // // Definimos las variables necesarias
   private crearVehiculoService = inject(VehiculoService);
+  private rescatarTipoVheculo = inject(TipoVehiculoService);
+  private crearTipoVheiculoSinVheculo= inject(TipoVehiculoService);
+
+
+
+
+
+
 
 
   color!: VehiculoModel;
   kilometraje!: VehiculoModel;
-  //disponibilidad!: VehiculoModel;
+  disponibilidad!: VehiculoModel;
   ubicacion= Provincia.keys();
   combustible= Combustible.keys();
   etiquetaAmbiental = EtiquetaAmbiental.keys();
@@ -55,11 +64,19 @@ export class EditarVehiculoComponent {
   modelo!: TipoVehiculoModel;
   precio!: TipoVehiculoModel;
   imagen!: TipoVehiculoModel
+  tipoVehiculos: TipoVehiculoModel[] = [];
+  modelosX: string[]=[];
+
+
+
 
 //Creamos el formulario
 
 newVheculoForm: FormGroup;
 newVheiculoDatos!: VehiculoModel;
+
+
+
   constructor( private fb:FormBuilder){
     this.newVheculoForm = this.fb.group({
       //Definicion de FormcontrolNamesselect
@@ -83,20 +100,65 @@ newVheiculoDatos!: VehiculoModel;
       selectTipoTransmision:[
         this.transmision[0]
       ],
-      marca:[""],
-      modelo:[''],
+      selectmarca:[
+
+      ],
+      selectModelo:[
+        //[this.tipoVehiculos["modelo[0]"]]
+      ],
       precio:[""],
        selectTipoVheiculo:[
         this.tipoV[0]
       ],
-      id:[8],
+      // select_id_tipovheiculo:[
+      //   this.datosTodosVheicolos.id[0]
+      // ],
       imagen:["unaImagen"],
       reservas:[[]]
 
     });
 
 
+
   }
+
+   rescatarVheculos():void{
+      this.rescatarTipoVheculo.listAllTipoVheculo().subscribe((tipos:any)=>{
+      this.tipoVehiculos =tipos;
+      console.log([this.tipoVehiculos])
+      for(let i in this.tipoVehiculos){
+          this.tipoVehiculos[i]
+      }
+        console.log(this.tipoVehiculos[0].id);
+        for(let i = 0; i< this.tipoVehiculos.length;i++){
+          const ids = this.tipoVehiculos[i].id
+          console.log(ids)
+        }
+        for(let i = 0; i< this.tipoVehiculos.length;i++){
+           const marca = this.tipoVehiculos[i].marca
+          console.log(marca)
+        }
+        for(let i = 0; i< this.tipoVehiculos.length;i++){
+
+
+
+        }
+
+
+    })
+  }
+  ngOnInit(): void {
+    this.rescatarVheculos();
+
+
+
+
+
+
+
+}
+
+
 crearVheiculo(){
   const datosFormulario = this.newVheculoForm.value;
   const valuesFormulario: VehiculoModel = datosFormulario;
@@ -114,11 +176,11 @@ crearVheiculo(){
       plazas: this.newVheculoForm.value.plazas,
       transmision: this.newVheculoForm.value.selectTipoTransmision,
       marca: this.newVheculoForm.value.marca,
-      //modelo: this.newVheculoForm.value.modelo,
-      //precio: this.newVheculoForm.value.precio,
-      //tipoVheiculo: this.newVheculoForm.value.selectTipoVheiculo,
-      //id_tipo_vehiculo: this.newVheculoForm.value.id,
-     // imagen: this.newVheculoForm.value.imagen,
+      modelo: this.newVheculoForm.value.modelo,
+      precio: this.newVheculoForm.value.precio,
+      tipoVheiculo: this.newVheculoForm.value.selectTipoVheiculo,
+      id_tipo_vehiculo: this.newVheculoForm.value.id,
+      imagen: this.newVheculoForm.value.imagen,
       reservas :this.newVheculoForm.value.reservas,
      }
     this.crearVehiculoService.createVhiculo(this.newVheiculoDatos)

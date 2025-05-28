@@ -13,6 +13,10 @@
            <div class="left-column flex-grow-1 me-4" style="min-width: 180px; max-width: 300px;">
             <div class="brand-price mb-4">
               <div class="mb-3">
+                  <!-- <label for="tipoid" class="form-label">ID-TIPOVHEICULO</label>
+                  <select class="form-select" aria-label="id-TIPOVHEICULO" formControlName="select_id_tipovheiculo" >
+                 <option *ngFor="let id of datosTodosVheicolos.id" [value]="id">{{ id }}</option>
+                </select> -->
                 <label for="tipoV" class="form-label">Tipo Vheiculo</label>
                 <select class="form-select" aria-label="Tipo de vehiculos" formControlName="selectTipoVheiculo" >
                  <option *ngFor="let tipo of tipoV" [value]="tipo">{{ tipo }}</option>
@@ -31,11 +35,13 @@
                 <label for="marca" class="form-label">Marca</label>
                 <input type="text" id="marca" name="marca"  class="form-control" required formControlName="marca"/>
               </div>
-
+<!--
               <div class="mb-3">
                 <label for="modelo" class="form-label">Modelo</label>
-                <input type="text" id="modelo" name="modelo" class="form-control" formControlName="modelo"/>
-              </div>
+                <select type="text" id="modelo" name="modelo" class="form-control" formControlName="selectModelo">
+                   <option *ngFor="let model of tipoVehiculos" [value]="model">{{ model }}</option>
+                </select>
+              </div> -->
 
 
               <div class="mb-3">

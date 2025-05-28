@@ -21,13 +21,13 @@ export class VehiculoModel{
   aireAcondicionado: boolean;
   plazas: number;
   transmision: Transmision;
-  marca: string;
-  //marca: TipoVehiculoModel["marca"];
-  //modelo: TipoVehiculoModel["modelo"];
-  //precio: TipoVehiculoModel["precio"];
-  //tipoVheiculo: TipoVehiculoModel["tipo"];
-  //id_tipo_vehiculo: TipoVehiculoModel["id"];
-  //imagen: TipoVehiculoModel["imagen"];
+
+  marca: TipoVehiculoModel["marca"];
+  modelo: TipoVehiculoModel["modelo"];
+  precio: TipoVehiculoModel["precio"];
+  tipoVheiculo: TipoVehiculoModel["tipo"];
+  id_tipo_vehiculo: TipoVehiculoModel["id"];
+  imagen: TipoVehiculoModel["imagen"];
   reservas:ReservaModel;
   constructor(
   matricula: string,
@@ -43,11 +43,11 @@ export class VehiculoModel{
   plazas: number,
   transmision: Transmision,
   marca: string,
-  //modelo: TipoVehiculoModel["modelo"],
-  //precio: TipoVehiculoModel["precio"],
-  //tipoVheiculo: TipoVehiculoModel["tipo"],
- // id_tipo_vehiculo: TipoVehiculoModel["id"],
-  //imagen: TipoVehiculoModel["imagen"],
+  modelo: TipoVehiculoModel["modelo"],
+  precio: TipoVehiculoModel["precio"],
+  tipoVheiculo: TipoVehiculoModel["tipo"],
+  id_tipo_vehiculo: TipoVehiculoModel["id"],
+  imagen: TipoVehiculoModel["imagen"],
   reservas:ReservaModel
 
   ){
@@ -64,11 +64,11 @@ export class VehiculoModel{
     this.aireAcondicionado = aireAcondicionado;
     this.transmision = transmision;
     this.marca = marca;
-    //this.modelo =modelo;
-    //this.precio = precio;
-    //this.tipoVheiculo = tipoVheiculo;
-   // this.id_tipo_vehiculo = id_tipo_vehiculo;
-   // this.imagen = imagen;
+    this.modelo =modelo;
+    this.precio = precio;
+    this.tipoVheiculo = tipoVheiculo;
+    this.id_tipo_vehiculo = id_tipo_vehiculo;
+    this.imagen = imagen;
     this.reservas = reservas;
   }
 
