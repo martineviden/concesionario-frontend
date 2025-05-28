@@ -2,6 +2,7 @@ import {Provincia, TipoVehiculo} from "./enums"
 import {Combustible} from "./enums"
 import {EtiquetaAmbiental} from "./enums"
 import {Transmision} from "./enums"
+import { ReservaModel } from "./reserva.model";
 import { TipoVehiculoModel } from "./tipo-vehiculo.model";
 
 
@@ -11,62 +12,64 @@ export class VehiculoModel{
   matricula: string;
   color: string;
   kilometraje: number;
-  //disponibilidad: boolean;
+  disponibilidad: boolean;
   ubicacion: Provincia;
   combustible: Combustible;
   etiqueta: EtiquetaAmbiental;
   autonomia: number;
   puertas: number;
-  //aire_acondicionado: boolean;
+  aireAcondicionado: boolean;
   plazas: number;
   transmision: Transmision;
   marca: string;
   //marca: TipoVehiculoModel["marca"];
   //modelo: TipoVehiculoModel["modelo"];
   //precio: TipoVehiculoModel["precio"];
-  tipoVheiculo: TipoVehiculoModel["tipo"];
-  id_tipo_vehiculo: TipoVehiculoModel["id"];
+  //tipoVheiculo: TipoVehiculoModel["tipo"];
+  //id_tipo_vehiculo: TipoVehiculoModel["id"];
   //imagen: TipoVehiculoModel["imagen"];
-
+  reservas:ReservaModel;
   constructor(
   matricula: string,
   color: string,
   kilometraje: number,
-  //disponibilidad: boolean,
+  disponibilidad: boolean,
   ubicacion: Provincia,
   combustible: Combustible,
   etiqueta: EtiquetaAmbiental,
   autonomia: number,
   puertas: number,
-  //aire_acondicionado: boolean,
+  aireAcondicionado: boolean,
   plazas: number,
   transmision: Transmision,
   marca: string,
   //modelo: TipoVehiculoModel["modelo"],
   //precio: TipoVehiculoModel["precio"],
-  tipoVheiculo: TipoVehiculoModel["tipo"],
-  id_tipo_vehiculo: TipoVehiculoModel["id"],
+  //tipoVheiculo: TipoVehiculoModel["tipo"],
+ // id_tipo_vehiculo: TipoVehiculoModel["id"],
   //imagen: TipoVehiculoModel["imagen"],
+  reservas:ReservaModel
+
   ){
     this.matricula = matricula;
     this.color = color;
     this.kilometraje = kilometraje;
-    //this.disponibilidad = disponibilidad;
+    this.disponibilidad = disponibilidad;
     this.ubicacion = ubicacion;
     this.combustible = combustible;
     this.etiqueta = etiqueta;
     this.autonomia = autonomia;
     this.puertas = puertas;
     this.plazas = plazas;
-   // this.aire_acondicionado = aire_acondicionado;
+    this.aireAcondicionado = aireAcondicionado;
     this.transmision = transmision;
     this.marca = marca;
     //this.modelo =modelo;
     //this.precio = precio;
-    this.tipoVheiculo = tipoVheiculo;
-    this.id_tipo_vehiculo = id_tipo_vehiculo;
+    //this.tipoVheiculo = tipoVheiculo;
+   // this.id_tipo_vehiculo = id_tipo_vehiculo;
    // this.imagen = imagen;
-
+    this.reservas = reservas;
   }
 
 

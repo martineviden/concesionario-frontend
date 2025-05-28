@@ -90,7 +90,9 @@ newVheiculoDatos!: VehiculoModel;
         this.tipoV[0]
       ],
       id:[8],
-      imagen:["unaImagen"]
+      imagen:["unaImagen"],
+      reservas:[[]]
+
     });
 
 
@@ -102,23 +104,24 @@ crearVheiculo(){
       matricula: this.newVheculoForm.value.matricula,
       color: this.newVheculoForm.value.color,
       kilometraje: this.newVheculoForm.value.kilometraje,
-      //disponibilidad: this.newVheculoForm.value.disponibilidad,
+      disponibilidad: this.newVheculoForm.value.disponibilidad,
       ubicacion: this.newVheculoForm.value.selectTipoUbicacion,
       combustible: this.newVheculoForm.value.selectTipoCombustible,
       etiqueta: this.newVheculoForm.value.selectTipoEtiqueta,
       autonomia: this.newVheculoForm.value.autonomia,
       puertas: this.newVheculoForm.value.autonomia,
-      //aire_acondicionado: this.newVheculoForm.value.aireAcondicionado,
+      aireAcondicionado: this.newVheculoForm.value.aireAcondicionado,
       plazas: this.newVheculoForm.value.plazas,
       transmision: this.newVheculoForm.value.selectTipoTransmision,
       marca: this.newVheculoForm.value.marca,
       //modelo: this.newVheculoForm.value.modelo,
       //precio: this.newVheculoForm.value.precio,
-      tipoVheiculo: this.newVheculoForm.value.selectTipoVheiculo,
-      id_tipo_vehiculo: this.newVheculoForm.value.id,
+      //tipoVheiculo: this.newVheculoForm.value.selectTipoVheiculo,
+      //id_tipo_vehiculo: this.newVheculoForm.value.id,
      // imagen: this.newVheculoForm.value.imagen,
+      reservas :this.newVheculoForm.value.reservas,
      }
-    this.crearVehiculoService.createVhiculo(valuesFormulario)
+    this.crearVehiculoService.createVhiculo(this.newVheiculoDatos)
     .subscribe({
       next: res=> console.log('Vheiculo creado',res),
       error: err=> console.error('Error al crar vheiculo',err)
