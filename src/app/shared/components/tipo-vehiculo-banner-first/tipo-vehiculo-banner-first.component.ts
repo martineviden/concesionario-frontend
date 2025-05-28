@@ -5,6 +5,8 @@ import { VehiculoModel } from '../../../models/vehiculo.model';
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
 import { AuthService } from '../../../services/auth.service';
 import { Rol } from '../../../models/enums';
+import { ActivatedRoute } from '@angular/router';
+import { VehiculoService } from '../../../services/vehiculo.service';
 
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
@@ -18,11 +20,20 @@ export class TipoVehiculoBannerFirstComponent {
   @Input() vehiculo!: VehiculoModel;
   @Input() tipoVehiculo!: TipoVehiculoModel;
   esAdmin: boolean = false;
+  matricula: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private vehiculoService: VehiculoService,
+    private route: ActivatedRoute
+  ) {}
 
   eliminarVehiculo() {
-    console.log("El vehiculo se tiene que eliminar");
+    this.matricula = this.route.snapshot.paramMap.get('matricula') || '';
+    this.vehiculoService.deleteVehiculo(this.matricula).subscribe({
+      next: () => console.log('Vehiculo eliminado con matricula: ' + this.matricula),
+      error: err => console.log('Error al eliminar vehiculo')
+    })
   }
 
   ngOnInit() {
