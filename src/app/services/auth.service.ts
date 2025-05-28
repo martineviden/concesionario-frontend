@@ -1,17 +1,25 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuario } from '../models/login.model';
 import { Rol } from '../models/enums';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
+<<<<<<< Updated upstream
 
   private usuarioActual = new BehaviorSubject<Usuario | null>(null);
   private estaAuth = new BehaviorSubject<boolean>(false);
   private baseUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {
+=======
+  private usuarioActual = new BehaviorSubject<Usuario | null>(null);
+  private estaAutenticado = new BehaviorSubject<boolean>(false);
+
+  constructor() {
+>>>>>>> Stashed changes
     // Recuperar el estado de inicio de sesión del localStorage al iniciar
     const usuarioGuardado = localStorage.getItem('usuario');
     if (usuarioGuardado) {
@@ -21,6 +29,7 @@ export class AuthService {
         usuario.rol = Rol[usuario.rol as keyof typeof Rol];
       }
       this.usuarioActual.next(usuario);
+<<<<<<< Updated upstream
       this.estaAuth.next(true);
     }
   }
@@ -30,14 +39,22 @@ export class AuthService {
       `${this.baseUrl}/auth/login`,
       { correo, contrasena }
     );
+=======
+      this.estaAutenticado.next(true);
+    }
+>>>>>>> Stashed changes
   }
 
-  guardarToken(token: string) {
-    localStorage.setItem('jwt', token);
-  }
-
-  obtenerToken(): string | null {
-    return localStorage.getItem('jwt');
+  iniciarSesion(usuario: Usuario) {
+    console.log('Usuario que inicia sesión:', usuario);
+    console.log('Rol del usuario:', usuario.rol);
+    // Asegurarnos de que el rol se convierte al enum correctamente
+    if (typeof usuario.rol === 'string') {
+      usuario.rol = Rol[usuario.rol as keyof typeof Rol];
+    }
+    this.usuarioActual.next(usuario);
+    this.estaAutenticado.next(true);
+    localStorage.setItem('usuario', JSON.stringify(usuario));
   }
 
   obtenerUsuarioActual(): Observable<Usuario | null> {
@@ -46,6 +63,7 @@ export class AuthService {
   
   cerrarSesion() {
     this.usuarioActual.next(null);
+<<<<<<< Updated upstream
     this.estaAuth.next(false);
     localStorage.removeItem('usuario');
     localStorage.removeItem('jwt');
@@ -60,3 +78,17 @@ export class AuthService {
   }
 
 }
+=======
+    this.estaAutenticado.next(false);
+    localStorage.removeItem('usuario');
+  }
+
+  obtenerUsuarioActual(): Observable<Usuario | null> {
+    return this.usuarioActual.asObservable();
+  }
+
+  obtenerEstadoAutenticacion(): Observable<boolean> {
+    return this.estaAutenticado.asObservable();
+  }
+} 
+>>>>>>> Stashed changes
