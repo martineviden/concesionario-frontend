@@ -57,6 +57,7 @@ export class FormularioAlquilarComponent implements OnInit{
       console.log("No esta inciada ");
       
     }
+   
 
     //recoger los datos de las fechas de inicio y dias de reserva 
 
