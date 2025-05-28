@@ -13,7 +13,7 @@
   margin: 40px auto 0 auto;
   gap: 40px;
   padding: 0 40px;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  flex-wrap: wrap; 
 }
 
 .left-panel {
@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: 300px; /* Ensure minimum width for readability */
+  min-width: 300px; 
 }
 
 .left-panel h1 {
@@ -65,9 +65,9 @@
 
 .thumbnails {
   display: flex;
-  gap: 1rem; /* Reduced gap for smaller screens */
+  gap: 1rem; 
   margin-top: 1.5rem;
-  flex-wrap: wrap; /* Allow thumbnails to wrap if needed */
+  flex-wrap: wrap; 
 }
 
 .thumbnails img {
@@ -86,14 +86,14 @@
   align-items: center;
   justify-content: flex-start;
   padding-top: 0;
-  min-width: 300px; /* Ensure minimum width for readability */
+  min-width: 300px; 
 }
 
 .specs-title {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  text-align: center; /* Center title on smaller screens */
+  text-align: center; 
   padding-bottom: 40px;
 }
 
@@ -156,7 +156,6 @@
   background: #3d25a0;
 }
 
-/* Color dentro de spec-card */
 .color-display {
   display: flex;
   align-items: center;
@@ -172,7 +171,6 @@
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
 }
 
-/* Etiqueta ambiental dentro de spec-card */
 .etiqueta-badge p {
   padding: 0.3rem 0.6rem;
   border-radius: 8px;
@@ -205,9 +203,6 @@
   color: white;
 }
 
-/* Responsive Design */
-
-/* Tablets and smaller desktops (max-width: 1024px) */
 @media (max-width: 1024px) {
   .car-container {
     flex-direction: column;
@@ -263,7 +258,6 @@
   }
 }
 
-/* Mobile devices (max-width: 768px) */
 @media (max-width: 768px) {
   .car-container {
     padding: 0 15px;
@@ -301,7 +295,7 @@
   }
 
   .specs-grid {
-    grid-template-columns: 1fr; /* Single column for mobile */
+    grid-template-columns: 1fr; 
     gap: 0.8rem;
   }
 
@@ -324,8 +318,6 @@
     padding: 0.8rem 0;
   }
 }
-
-/* Extra small devices (max-width: 480px) */
 @media (max-width: 480px) {
   .left-panel h1 {
     font-size: 1.8rem;
