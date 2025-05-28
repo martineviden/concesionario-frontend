@@ -8,6 +8,10 @@ import {
   EtiquetaAmbiental,
   TipoVehiculo
 } from '../../../models/enums';
+import { Router } from '@angular/router';
+import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
+import { VehiculoModel } from '../../../models/vehiculo.model';
+import { VehiculoService } from '../../../services/vehiculo.service';
 
 type DropdownKey = 'ubicacion' | 'combustible' | 'transmision' | 'etiqueta' | 'plazas';
 
@@ -64,35 +68,33 @@ export class CatalogoComponentComponent implements OnInit {
 
   vehiculos: any[] = [];
   vehiculosFiltrados: any[] = [];
+  tipoVehiculos: TipoVehiculoConVehiculos[] = [];
 
-  constructor(private tipoVehiculoService: TipoVehiculoService) {}
+  constructor(
+    private tipoVehiculoService: TipoVehiculoService,
+    private vehiculoService: VehiculoService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.cargarVehiculos();
   }
 
   cargarVehiculos(): void {
-    this.tipoVehiculoService.listAllTipoVheculo().subscribe((response) => {
-      const tipos = response as unknown as TipoVehiculoConVehiculos[];
+    this.tipoVehiculoService.listAllTipoVheculo().subscribe((tipos: any) => {
+      this.tipoVehiculos = tipos;
 
-      this.vehiculos = tipos.flatMap((tipo) => {
-        const modeloNombre = tipo.modelo?.toLowerCase().replace(/\s+/g, '');
-        const imagen = `assets/img/catalogo/${modeloNombre}.png`;
-
-        return tipo.vehiculos.map((vehiculo) => {
+      this.vehiculoService.listAllVhiculo().subscribe((vehiculos: any) => {
+        this.vehiculos = this.tipoVehiculos.map((tv: any) => {
+          const vehiculo = vehiculos.find((v: VehiculoModel) => v.matricula === tv.vehiculo);
           return {
-            ...vehiculo,
-            marca: tipo.marca,
-            modelo: tipo.modelo,
-            tipo: tipo.tipo,
-            precio: +(tipo.precio / 30).toFixed(2),
-            imagenBase: imagen.replace('.png', ''),
-            imagen
+            ...tv,
+            ...vehiculo
           };
         });
-      });
 
-      this.aplicarFiltros();
+        this.aplicarFiltros();
+      });
     });
   }
 
@@ -168,6 +170,12 @@ export class CatalogoComponentComponent implements OnInit {
   getCantidadSeleccionados(filtro: DropdownKey): number {
     return this.filtrosActivos.filter(f => f.startsWith(filtro + ':')).length;
   }
+
+  openespecidicaciones(matricula: string): void {
+  if (matricula) {
+    this.router.navigate(['/especificaciones', matricula]);
+  }
+}
 
   @HostListener('document:click', ['$event'])
   cerrarDropdownsFuera(event: MouseEvent): void {
