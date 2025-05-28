@@ -36,14 +36,14 @@ export class AuthService {
     localStorage.setItem('usuario', JSON.stringify(usuario));
   }
 
+  obtenerUsuarioActual(): Observable<Usuario | null> {
+    return this.usuarioActual.asObservable();
+  }
+  
   cerrarSesion() {
     this.usuarioActual.next(null);
     this.estaAutenticado.next(false);
     localStorage.removeItem('usuario');
-  }
-
-  obtenerUsuarioActual(): Observable<Usuario | null> {
-    return this.usuarioActual.asObservable();
   }
 
   obtenerEstadoAutenticacion(): Observable<boolean> {

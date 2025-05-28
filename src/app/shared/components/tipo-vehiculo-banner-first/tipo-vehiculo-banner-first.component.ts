@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormularioAlquilarComponent } from "../formulario-alquilar/formulario-alquilar.component";
-import { AuthService } from '../../../services/auth.service';
-import { Rol } from '../../../models/enums';
 
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
@@ -13,6 +11,8 @@ import { Rol } from '../../../models/enums';
 })
 export class TipoVehiculoBannerFirstComponent {
   mostrarFormularioAlquilar = false;
+  @Input() vehiculo!: VehiculoModel;
+  @Input() tipoVehiculo!: TipoVehiculoModel;
   esAdmin: boolean = false;
 
   constructor(private authService: AuthService) {}

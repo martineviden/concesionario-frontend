@@ -17,9 +17,10 @@ export class VehiculoService{
   private http = inject(HttpClient);
   //private httpParams= inject(HttpParams);
 
-  listAllVhiculo(){
-    return this.http.get('http://localhost:8080/vehiculos',{withCredentials:false});
-  }
+listAllVhiculo(): Observable<VehiculoModel[]> {
+  return this.http.get<VehiculoModel[]>('http://localhost:8080/vehiculos');
+}
+
 
   getOnePorMatricula(matricula:string){
     return this.http.get(`http://localhost:8080/vehiculos/${matricula}`,{withCredentials:false});
