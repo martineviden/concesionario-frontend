@@ -1,52 +1,32 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Usuario } from '../models/login.model';
-import { Rol } from '../models/enums';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  private usuarioActual = new BehaviorSubject<Usuario | null>(null);
-  private estaAutenticado = new BehaviorSubject<boolean>(false);
+  private baseUrl = 'http://localhost:8080'; 
 
-  constructor() {
-    // Recuperar el estado de inicio de sesión del localStorage al iniciar
-    const usuarioGuardado = localStorage.getItem('usuario');
-    if (usuarioGuardado) {
-      const usuario = JSON.parse(usuarioGuardado);
-      // Asegurarnos de que el rol se convierte al enum correctamente
-      if (usuario.rol) {
-        usuario.rol = Rol[usuario.rol as keyof typeof Rol];
-      }
-      this.usuarioActual.next(usuario);
-      this.estaAutenticado.next(true);
-    }
+  constructor(private http: HttpClient) {}
+
+  login(correo: string, contrasena: string) {
+    return this.http.post<{ token: string, rol: string }>(
+      `${this.baseUrl}/auth/login`,
+      { correo, contrasena }
+    );
   }
 
-  iniciarSesion(usuario: Usuario) {
-    console.log('Usuario que inicia sesión:', usuario);
-    console.log('Rol del usuario:', usuario.rol);
-    // Asegurarnos de que el rol se convierte al enum correctamente
-    if (typeof usuario.rol === 'string') {
-      usuario.rol = Rol[usuario.rol as keyof typeof Rol];
-    }
-    this.usuarioActual.next(usuario);
-    this.estaAutenticado.next(true);
-    localStorage.setItem('usuario', JSON.stringify(usuario));
+  guardarToken(token: string) {
+    localStorage.setItem('jwt', token);
+  }
+
+  obtenerToken(): string | null {
+    return localStorage.getItem('jwt');
   }
 
   cerrarSesion() {
-    this.usuarioActual.next(null);
-    this.estaAutenticado.next(false);
-    localStorage.removeItem('usuario');
+    localStorage.removeItem('jwt');
   }
 
-  obtenerUsuarioActual(): Observable<Usuario | null> {
-    return this.usuarioActual.asObservable();
+  estaAutenticado(): boolean {
+    return !!this.obtenerToken();
   }
-
-  obtenerEstadoAutenticacion(): Observable<boolean> {
-    return this.estaAutenticado.asObservable();
-  }
-} 
+}
