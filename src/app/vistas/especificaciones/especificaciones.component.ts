@@ -13,7 +13,13 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-especificaciones',
   standalone: true,
-  imports: [FooterComponent, NavbarComponent, TipoVehiculoBannerFirstComponent, TipoVehiculoResennasComponent, PreviewCatalogoComponent],
+  imports: [
+    FooterComponent,
+    NavbarComponent,
+    TipoVehiculoBannerFirstComponent,
+    TipoVehiculoResennasComponent,
+    PreviewCatalogoComponent
+  ],
   templateUrl: './especificaciones.component.html',
   styleUrl: './especificaciones.component.css'
 })
@@ -28,15 +34,22 @@ export class EspecificacionesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      const matricula = params.get('matricula');
-      if (matricula) {
-        this.vehiculoService.getOnePorMatricula(matricula).subscribe({
-          next: (vehiculo: any) => {
-            this.vehiculoSeleccionado = vehiculo;
-            console.log('Vehículo:', vehiculo);
-            // CAMBIO AQUÍ: usa el campo correcto de la BBDD
-            this.tipoVehiculoService.getOneTipoVheculo(vehiculo.id_tipo_vehiculo).subscribe({
+  this.route.paramMap.subscribe(params => {
+    const matricula = params.get('matricula');
+    if (matricula) {
+      this.vehiculoService.getOnePorMatricula(matricula).subscribe({
+        next: (vehiculo: any) => {
+          console.log('Vehículo recibido:', vehiculo);
+          this.vehiculoSeleccionado = vehiculo;
+
+          // Prueba accediendo directamente a diferentes posibilidades:
+          const idTipo =
+            vehiculo.id_tipo_vehiculo ??
+            vehiculo.idTipoVehiculo ??
+            vehiculo.tipoVehiculo?.id;
+
+          if (idTipo) {
+            this.tipoVehiculoService.getOneTipoVheculo(idTipo).subscribe({
               next: (tipo: any) => {
                 console.log('TipoVehiculo:', tipo);
                 this.tipoVehiculoSeleccionado = tipo;
@@ -45,12 +58,16 @@ export class EspecificacionesComponent implements OnInit {
                 console.error('Error cargando tipo de vehículo', err);
               }
             });
-          },
-          error: err => {
-            console.error('No se encontró el vehículo con esa matrícula', err);
+          } else {
+            console.error('⚠️ El vehículo no tiene ID de tipo. Vehículo:', vehiculo);
           }
-        });
-      }
-    });
-  }
+        },
+        error: err => {
+          console.error('No se encontró el vehículo con esa matrícula', err);
+        }
+      });
+    }
+  });
+}
+
 }

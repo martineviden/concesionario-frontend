@@ -2,14 +2,14 @@
     <div class="car-container">
       <!-- IZQUIERDA -->
       <div class="left-panel">
-        <h1>{{ tipoVehiculo?.marca }}</h1>
+        <h1>{{ tipoVehiculo.marca }}</h1>
         <p class="price">
-          <span class="price-amount">€{{ tipoVehiculo?.precio }}</span>
+          <span class="price-amount">€{{ tipoVehiculo.precio }}</span>
           <span class="price-dia">/ día</span>
         </p>
 
         <div class="main-image">
-          <img [src]="tipoVehiculo?.imagen" [alt]="tipoVehiculo?.modelo">
+          <img [src]="tipoVehiculo.imagen" [alt]="tipoVehiculo.modelo">
         </div>
 
         <div class="thumbnails">
@@ -26,32 +26,32 @@
           <div class="spec-card">
             <div class="spec-icon">🏎️</div>
             <span>Transmision</span>
-            <p>{{ vehiculo?.transmision }}</p>
+            <p>{{ vehiculo.transmision }}</p>
           </div>
           <div class="spec-card">
             <div class="spec-icon">⛽</div>
             <span>Combustible</span>
-            <p>{{ vehiculo?.combustible }}</p>
+            <p>{{ vehiculo.combustible }}</p>
           </div>
           <div class="spec-card">
             <div class="spec-icon">🚪</div>
             <span>Puertas</span>
-            <p>{{ vehiculo?.puertas }}</p>
+            <p>{{ vehiculo.puertas }}</p>
           </div>
           <div class="spec-card">
             <div class="spec-icon">❄️</div>
             <span>Aire Acondicionado</span>
-            <p>{{ vehiculo?.aireAcondicionado ? 'Sí' : 'No' }}</p>
+            <p>{{ vehiculo.aireAcondicionado ? 'Sí' : 'No' }}</p>
           </div>
           <div class="spec-card">
             <div class="spec-icon">🧑‍🤝‍🧑</div>
             <span>Asientos</span>
-            <p>{{ vehiculo?.plazas }}</p>
+            <p>{{ vehiculo.plazas }}</p>
           </div>
           <div class="spec-card">
             <div class="spec-icon">🛣️</div>
             <span>Distancia</span>
-            <p>{{ vehiculo?.autonomia }}</p>
+            <p>{{ vehiculo.kilometraje }}</p>
           </div>
         </div>
         <button class="btn-alquilar" (click)="mostrarFormularioAlquilar = true">Alquilar</button>
@@ -63,12 +63,16 @@
         <div class="equipamiento">
           <h2>Equipamiento Del Coche</h2>
           <ul class="equipamiento-list">
-            <li><span class="check">✔️</span> ABS</li>
-            <li><span class="check">✔️</span> Herramientas</li>
-            <li><span class="check">✔️</span> Bolsas De Aire</li>
-            <li><span class="check">✔️</span> Llanta Repuesto</li>
-            <li><span class="check">✔️</span> Control Crucero</li>
-            <li><span class="check">✔️</span> Aire Acondicionado</li>
+            <div class="spec-card">
+            <div class="spec-icon">🛣️</div>
+            <span>Distancia</span>
+            <p>{{ vehiculo.color }}</p>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon">🛣️</div>
+            <span>Distancia</span>
+            <p>{{ vehiculo.etiqueta }}</p>
+          </div>
           </ul>
         </div>
       </div>

@@ -61,7 +61,7 @@ export class CatalogoComponentComponent implements OnInit {
     this.tipoVehiculos = tipos;
 
     this.vehiculoService.listAllVhiculo().subscribe((vehiculosRaw: any[]) => {
-      // Adaptar propiedades del backend a tu modelo
+      
       const vehiculosAdaptados: VehiculoModel[] = vehiculosRaw.map(v => ({
         matricula: v.matricula,
         color: v.color,
@@ -72,15 +72,15 @@ export class CatalogoComponentComponent implements OnInit {
         etiqueta: v.etiqueta,
         autonomia: v.autonomia,
         puertas: v.puertas,
-        aireAcondicionado: v.aire_acondicionado, // ojo aquí
+        aireAcondicionado: v.aire_acondicionado,
         plazas: v.plazas,
         transmision: v.transmision,
-        tipoV: v.tipo // o el campo correcto si viene diferente
+        id_tipo_vehiculo: v.id_tipo_vehiculo
       }));
 
-      // Fusionar con tipoVehiculo
+      
       this.vehiculos = vehiculosAdaptados.map((vehiculo: VehiculoModel) => {
-        const tipo = this.tipoVehiculos.find((tv: TipoVehiculoModel) => tv.id === Number(vehiculo.tipoV));
+        const tipo = this.tipoVehiculos.find((tv: TipoVehiculoModel) => tv.id === Number(vehiculo.id_tipo_vehiculo));
         return {
           ...vehiculo,
           ...tipo
