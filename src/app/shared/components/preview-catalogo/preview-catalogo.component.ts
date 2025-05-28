@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
 
@@ -13,7 +13,27 @@ import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
 export class PreviewCatalogoComponent implements OnInit {
   vehiculos: any[] = [];
 
-  constructor(private tipoVehiculoService: TipoVehiculoService) {}
+  constructor(
+    private tipoVehiculoService: TipoVehiculoService,
+    private router: Router
+  ) {}
+  verDetalles(vehiculo: any): void {
+  this.router.navigate(['/especificaciones'], {
+    queryParams: {
+      marca: vehiculo.marca,
+      modelo: vehiculo.modelo,
+      transmision: vehiculo.transmision,
+      combustible: vehiculo.combustible,
+      ubicacion: vehiculo.ubicacion,
+      plazas: vehiculo.plazas,
+      precio: vehiculo.precio,
+      aireAcondicionado: vehiculo.aireAcondicionado,
+      kilometraje: vehiculo.kilometraje,
+      imagen: vehiculo.imagen
+    }
+  });
+}
+
 
   ngOnInit(): void {
     this.tipoVehiculoService.listAllTipoVheculo().subscribe((response: any) => {
@@ -22,6 +42,7 @@ export class PreviewCatalogoComponent implements OnInit {
       const vehiculosPlanos = tipos.flatMap((tipo: any) => {
         const modeloNombre = tipo.modelo?.toLowerCase().replace(/\s+/g, '');
         const imagen = `assets/img/catalogo/${modeloNombre}.png`;
+
 
         return tipo.vehiculos.map((vehiculo: any) => ({
           ...vehiculo,

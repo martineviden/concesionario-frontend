@@ -41,7 +41,8 @@
             <span>{{ vehiculo.aireAcondicionado ? 'A/A' : 'Sin A/A' }}</span>
           </div>
         </div>
-        <button class="boton-detalles" [routerLink]="['/especificaciones']">Ver detalles</button>
+        <button class="boton-detalles" (click)="verDetalles(vehiculo)">Ver detalles</button>
+
       </div>
     </div>
   </div>
