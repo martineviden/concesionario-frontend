@@ -47,17 +47,17 @@
 
         <h3>Fechas</h3>
        <label class="fechaReserva" style="color: white;">Fecha de reserva (inicio)</label>
-       <input type="date" id="fechaReserva" name="fechaReserva" class="login-input" />
+       <input type="date" id="fechaReserva" name="fechaReserva" class="login-input" [(ngModel)] = "fechaReserva" />
 
        <label class="diasReserva" style="color: white;">Días de reserva</label>
-       <input type="number" id="diasReserva" name="diasReserva" class="login-input" min="1" />
+       <input type="number" id="diasReserva" name="diasReserva" class="login-input" min="1" [(ngModel)] = "diasReserva"/>
 
         <h3>Metodo De Pago</h3>
         <!-- añadir los campos de pago -->
-
         
-        <button type="submit" class="login-btn" (click)="confirmarReserva()">Confirmar Alquiler</button>
+        <button type="button" class="login-btn" (click)="confirmarReserva()">Confirmar Alquiler</button>
         <diV *ngIf = "errorDni" style="color: red; background-color: tan;">{{errorDni}}</diV>
+       
        
       </form>
     </div>

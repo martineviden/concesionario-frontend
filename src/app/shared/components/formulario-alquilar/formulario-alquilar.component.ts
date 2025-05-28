@@ -3,6 +3,8 @@ import { Usuario } from '../../../models/login.model';
 import { AuthService } from '../../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ReservaModel } from '../../../models/reserva.model';
+import { ReservaService } from '../../../services/reserva.service';
 
 @Component({
   selector: 'app-formulario-alquilar',
@@ -22,7 +24,12 @@ export class FormularioAlquilarComponent implements OnInit{
   telefono = '';
   dni = '';
   camposBloqueados = false;
-  constructor(private authService:AuthService){}
+
+  fechaReserva : string ='';
+  diasReserva : number = 1;
+  matricula : string = "1234ABC"; // ************hay que cambiarlo para que sea dinamico 
+
+  constructor(private authService:AuthService, private reservaService: ReservaService){}
 
   ngOnInit(): void {
       this.authService.obtenerUsuarioActual().subscribe(
@@ -32,7 +39,7 @@ export class FormularioAlquilarComponent implements OnInit{
               this.nombre = usuario.nombre;
               this.apellidos = usuario.apellidos;
               this.correo = usuario.correo;
-              this.dni = usuario.dni; // hay que quitar el DNI
+              this.dni = usuario.dni;
               this.camposBloqueados = true;
             } else {
               this.camposBloqueados = false;
@@ -43,24 +50,49 @@ export class FormularioAlquilarComponent implements OnInit{
    errorDni: String = '';
  
    confirmarReserva(){
-    if (this.usuarioActual) {
-      if (this.dni = this.usuarioActual.dni) {
+
+    if (!this.usuarioActual) {
+      console.log("Usuario No esta inciada ");
+      return;
+      
+    }
+
+   if (this.dni !== this.usuarioActual.dni) {
         this.errorDni = 'El DNI ingresado no coincide con el DNI registrado';
         return;
-      }
-      else{
+
+    }else{
         this.errorDni = '';
         console.log("DNI correcto");
         
-      }
-    }else{
-      console.log("No esta inciada ");
-      
     }
-   
+    
+    if (!this.fechaReserva || !this.diasReserva) {
+      console.error('Fechas o días no válidos');
+      return;
+    }
 
     //recoger los datos de las fechas de inicio y dias de reserva 
+    const reserva = new ReservaModel(
+      this.matricula,                  
+      this.usuarioActual.id.toString(),
+      new Date(this.fechaReserva),     
+      this.diasReserva,
+      this.diasReserva * 25
+    );
 
-    //enviar los datos a la mySQL
+
+   
+
+  this.reservaService.createReserva(reserva).subscribe({
+    next: (res) => {
+      console.log('Reserva creada con éxito', res);
+      this.cerrarModal.emit(); // cerrar modal
+    },
+    error: (err) => {
+      console.error('Error al crear reserva', err);
+    }
+  });
+
    }
 }
