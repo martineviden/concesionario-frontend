@@ -68,10 +68,12 @@ export class CatalogoComponentComponent implements OnInit {
 
   vehiculos: any[] = [];
   vehiculosFiltrados: any[] = [];
+  tipoVehiculos: TipoVehiculoConVehiculos[] = [];
 
   constructor(
     private tipoVehiculoService: TipoVehiculoService,
-    private vehiculoService: VehiculoService
+    private vehiculoService: VehiculoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +85,7 @@ export class CatalogoComponentComponent implements OnInit {
       this.tipoVehiculos = tipos;
 
       this.vehiculoService.listAllVhiculo().subscribe((vehiculos: any) => {
-        this.vehiculos = this.tipoVehiculos.map((tv: TipoVehiculoModel) => {
+        this.vehiculos = this.tipoVehiculos.map((tv: any) => {
           const vehiculo = vehiculos.find((v: VehiculoModel) => v.matricula === tv.vehiculo);
           return {
             ...tv,
