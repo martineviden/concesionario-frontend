@@ -1,8 +1,11 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <div class="catalogo-container">
   <h2 class="titulo">Selección de un vehículo</h2>
 
+  <!-- Filtros -->
   <div class="filtros">
-    <!-- Filtros principales por tipo -->
+    <!-- Filtros por tipo de vehículo -->
     <ng-container *ngFor="let tipo of tiposVehiculo">
       <button class="filtro"
               [ngClass]="{ activo: filtrosActivos.includes('tipo:' + tipo) }"
@@ -11,15 +14,8 @@
       </button>
     </ng-container>
 
-    <!-- Filtro general -->
-    <button class="filtro"
-            [ngClass]="{ activo: filtrosActivos.includes('Todos los vehículos') }"
-            (click)="toggleFiltro('Todos los vehículos')">
-      Todos los vehículos
-    </button>
-
     <!-- Botón para limpiar -->
-    <button class="filtro" (click)="limpiarFiltros()">
+    <button class="filtro limpiar" (click)="limpiarFiltros()">
       Limpiar filtros
     </button>
 
@@ -46,12 +42,17 @@
     </ng-container>
   </div>
 
+  <!-- Grid de vehículos -->
   <div class="grid-vehiculos">
     <div class="tarjeta-vehiculo" *ngFor="let vehiculo of vehiculosFiltrados">
       <div class="imagen-vehiculo">
-        <img [src]="vehiculo.imagen" [alt]="vehiculo.modelo">
+        <img [src]="vehiculo.imagen"
+             [alt]="vehiculo.modelo"
+             (error)="vehiculo.imagen = 'assets/img/catalogo/default.png'">
       </div>
+
       <div class="info-vehiculo">
+        <!-- Marca, modelo y año -->
         <div class="nombre-precio-vehiculo">
           <div class="nombre-vehiculo">
             <h3>{{ vehiculo.marca }}</h3>
@@ -60,9 +61,11 @@
           </div>
           <div class="precio">
             <span class="cantidad">€{{ vehiculo.precio }}</span>
-            <span class="por-dia">por día</span>
+            <span class="por-dia">/día</span>
           </div>
         </div>
+
+        <!-- Características -->
         <div class="caracteristicas-vehiculo">
           <div class="caracteristica">
             <i [ngClass]="vehiculo.transmision === 'MANUAL' ? 'fas fa-cog' : 'fas fa-car'"></i>
@@ -78,10 +81,11 @@
           </div>
           <div class="caracteristica">
             <i class="fas fa-snowflake"></i>
-            <span *ngIf="vehiculo.aireAcondicionado">A/A</span>
-            <span *ngIf="!vehiculo.aireAcondicionado">Sin A/A</span>
+            <span>{{ vehiculo.aireAcondicionado ? 'A/A' : 'Sin A/A' }}</span>
           </div>
         </div>
+
+        <!-- Botón de acción -->
         <button class="boton-detalles">Ver detalles</button>
       </div>
     </div>
