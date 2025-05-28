@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
 import {
@@ -8,6 +9,7 @@ import {
   EtiquetaAmbiental,
   TipoVehiculo
 } from '../../../models/enums';
+
 
 type DropdownKey = 'ubicacion' | 'combustible' | 'transmision' | 'etiqueta' | 'plazas';
 
@@ -40,7 +42,7 @@ interface TipoVehiculoConVehiculos {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './catalogo-component.component.html',
-  styleUrls: ['./catalogo-component.component.css']
+  styleUrls: ['./catalogo-component.component.css'],
 })
 export class CatalogoComponentComponent implements OnInit {
   filtrosActivos: string[] = [];
@@ -50,28 +52,56 @@ export class CatalogoComponentComponent implements OnInit {
     combustible: false,
     transmision: false,
     etiqueta: false,
-    plazas: false
+    plazas: false,
   };
 
-  dropdownKeys: DropdownKey[] = ['ubicacion', 'combustible', 'transmision', 'etiqueta', 'plazas'];
+  dropdownKeys: DropdownKey[] = [
+    'ubicacion',
+    'combustible',
+    'transmision',
+    'etiqueta',
+    'plazas',
+  ];
 
-  provincias = Object.keys(Provincia).filter(k => isNaN(Number(k)) && k !== 'keys');
-  tiposCombustible = Object.keys(Combustible).filter(k => isNaN(Number(k)) && k !== 'keys');
-  tiposTransmision = Object.keys(Transmision).filter(k => isNaN(Number(k)) && k !== 'keys');
-  etiquetasAmbientales = Object.keys(EtiquetaAmbiental).filter(k => isNaN(Number(k)) && k !== 'keys');
-  tiposVehiculo = Object.keys(TipoVehiculo).filter(k => isNaN(Number(k)) && k !== 'keys');
+  provincias = Object.keys(Provincia).filter(
+    (k) => isNaN(Number(k)) && k !== 'keys'
+  );
+  tiposCombustible = Object.keys(Combustible).filter(
+    (k) => isNaN(Number(k)) && k !== 'keys'
+  );
+  tiposTransmision = Object.keys(Transmision).filter(
+    (k) => isNaN(Number(k)) && k !== 'keys'
+  );
+  etiquetasAmbientales = Object.keys(EtiquetaAmbiental).filter(
+    (k) => isNaN(Number(k)) && k !== 'keys'
+  );
+  tiposVehiculo = Object.keys(TipoVehiculo).filter(
+    (k) => isNaN(Number(k)) && k !== 'keys'
+  );
   plazas: string[] = ['2', '4', '5', '7', '9'];
 
   vehiculos: any[] = [];
   vehiculosFiltrados: any[] = [];
 
-  constructor(private tipoVehiculoService: TipoVehiculoService) {}
+  constructor(
+    private tipoVehiculoService: TipoVehiculoService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.cargarVehiculos();
+    this.route.queryParams.subscribe((params) => {
+      const tipo = params['tipo'];
+      const ubicacion = params['ubicacion'];
+
+      this.cargarVehiculos(() => {
+        if (tipo) this.toggleFiltro(`tipo:${tipo}`);
+        if (ubicacion) this.toggleFiltro(`ubicacion:${ubicacion}`);
+      });
+    });
   }
 
-  cargarVehiculos(): void {
+  cargarVehiculos(callback?: () => void): void {
     this.tipoVehiculoService.listAllTipoVheculo().subscribe((response) => {
       const tipos = response as unknown as TipoVehiculoConVehiculos[];
 
@@ -79,56 +109,59 @@ export class CatalogoComponentComponent implements OnInit {
         const modeloNombre = tipo.modelo?.toLowerCase().replace(/\s+/g, '');
         const imagen = `assets/img/catalogo/${modeloNombre}.png`;
 
-        return tipo.vehiculos.map((vehiculo) => {
-          return {
-            ...vehiculo,
-            marca: tipo.marca,
-            modelo: tipo.modelo,
-            tipo: tipo.tipo,
-            precio: +(tipo.precio / 30).toFixed(2),
-            imagenBase: imagen.replace('.png', ''),
-            imagen
-          };
-        });
+        return tipo.vehiculos.map((vehiculo) => ({
+          ...vehiculo,
+          marca: tipo.marca,
+          modelo: tipo.modelo,
+          tipo: tipo.tipo,
+          precio: +(tipo.precio / 30).toFixed(2),
+          imagenBase: imagen.replace('.png', ''),
+          imagen,
+        }));
       });
 
       this.aplicarFiltros();
+      if (callback) callback();
     });
   }
 
   aplicarFiltros(): void {
-  if (this.filtrosActivos.length === 0) {
-    this.vehiculosFiltrados = [...this.vehiculos];
-    return;
-  }
-
-  // Agrupar filtros por tipo
-  const filtrosPorTipo: Record<string, Set<string>> = {};
-  for (const filtro of this.filtrosActivos) {
-    const [clave, valor] = filtro.split(':');
-    if (!filtrosPorTipo[clave]) {
-      filtrosPorTipo[clave] = new Set();
+    if (this.filtrosActivos.length === 0) {
+      this.vehiculosFiltrados = [...this.vehiculos];
+      return;
     }
-    filtrosPorTipo[clave].add(valor);
-  }
 
-  this.vehiculosFiltrados = this.vehiculos.filter(vehiculo => {
-    return Object.entries(filtrosPorTipo).every(([clave, valores]) => {
-      const valorVehiculo = (vehiculo as any)[clave];
-      return valores.has(valorVehiculo?.toString());
+    const filtrosPorTipo: Record<string, Set<string>> = {};
+    for (const filtro of this.filtrosActivos) {
+      const [clave, valor] = filtro.split(':');
+      if (!filtrosPorTipo[clave]) {
+        filtrosPorTipo[clave] = new Set();
+      }
+      filtrosPorTipo[clave].add(valor);
+    }
+
+    this.vehiculosFiltrados = this.vehiculos.filter((vehiculo) => {
+      return Object.entries(filtrosPorTipo).every(([clave, valores]) => {
+        const valorVehiculo = (vehiculo as any)[clave];
+        return valores.has(valorVehiculo?.toString());
+      });
     });
-  });
-}
-
+  }
 
   limpiarFiltros(): void {
     this.filtrosActivos = [];
-    this.aplicarFiltros();
+    this.aplicarFiltros(); // Eliminar los queryParams de la URL
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {},
+      queryParamsHandling: 'merge', // mantiene otros parámetros si los hubiera
+      replaceUrl: true,
+    });
   }
 
   toggleFiltro(filtro: string): void {
     if (this.filtrosActivos.includes(filtro)) {
-      this.filtrosActivos = this.filtrosActivos.filter(f => f !== filtro);
+      this.filtrosActivos = this.filtrosActivos.filter((f) => f !== filtro);
     } else {
       this.filtrosActivos.push(filtro);
     }
@@ -162,11 +195,11 @@ export class CatalogoComponentComponent implements OnInit {
   }
 
   isFiltroDropdownActivo(filtro: DropdownKey): boolean {
-    return this.filtrosActivos.some(f => f.startsWith(filtro + ':'));
+    return this.filtrosActivos.some((f) => f.startsWith(filtro + ':'));
   }
 
   getCantidadSeleccionados(filtro: DropdownKey): number {
-    return this.filtrosActivos.filter(f => f.startsWith(filtro + ':')).length;
+    return this.filtrosActivos.filter((f) => f.startsWith(filtro + ':')).length;
   }
 
   @HostListener('document:click', ['$event'])
