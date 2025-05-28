@@ -77,7 +77,7 @@
       </div>
 
       <button class="btn-alquilar" (click)="mostrarFormularioAlquilar = true">Alquilar</button>
-      <button class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
+      <button *ngIf="esAdmin" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
       <app-formulario-alquilar
         *ngIf="mostrarFormularioAlquilar"
         (cerrarModal)="mostrarFormularioAlquilar = false">
