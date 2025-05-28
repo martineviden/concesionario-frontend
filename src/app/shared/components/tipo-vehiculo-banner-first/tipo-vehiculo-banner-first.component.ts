@@ -1,6 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormularioAlquilarComponent } from "../formulario-alquilar/formulario-alquilar.component";
+import { VehiculoModel } from '../../../models/vehiculo.model';
+import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
+import { AuthService } from '../../../services/auth.service';
+import { Rol } from '../../../models/enums';
 
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
