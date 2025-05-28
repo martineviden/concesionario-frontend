@@ -81,8 +81,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Asegura alineación arriba */
-  padding-top: 0; /* Asegúrate de que no haya padding extra */
+  justify-content: flex-start;
+  padding-top: 0;
 }
 
 .specs-title {
@@ -143,7 +143,7 @@
   border: none;
   border-radius: 14px;
   padding: 1rem 0;
-  margin-top: auto; /* Empuja el botón al fondo del panel */
+  margin-top: auto;
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -152,43 +152,51 @@
   background: #3d25a0;
 }
 
-/* EQUIPAMIENTO */
-.equipamiento {
-  max-width: 600px;
-  margin: 80px 0 0 auto; /* Aumenta el espacio superior */
-  padding: 0;
-  width: 100%;
-}
-
-.equipamiento h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: left; /* Alinea el título a la izquierda */
-  margin-bottom: 1.2rem;
-  margin-left: 0;
-}
-
-.equipamiento-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem 2.5rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 1.1rem;
-  justify-items: start; /* Alinea los ítems a la izquierda */
-}
-
-.equipamiento-list li {
+/* Color dentro de spec-card */
+.color-display {
   display: flex;
   align-items: center;
-  color: #888;
-  font-size: 1.15rem;
-  font-weight: 500;
+  gap: 0.7rem;
+  margin-top: 0.3rem;
 }
 
-.equipamiento-list .check {
-  color: #5636d8;
-  font-size: 1.4rem;
-  margin-right: 0.7rem;
+.color-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Etiqueta ambiental dentro de spec-card */
+.etiqueta-badge p {
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 0.3rem;
+}
+
+.etiqueta-badge.eco p {
+  background-color: #28a745;
+  color: white;
+}
+
+.etiqueta-badge.cero p {
+  background-color: #00aaff;
+  color: white;
+}
+
+.etiqueta-badge.b p {
+  background-color: #ffc107;
+  color: black;
+}
+
+.etiqueta-badge.c p {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.etiqueta-badge.a p {
+  background-color: #6c757d;
+  color: white;
 }
