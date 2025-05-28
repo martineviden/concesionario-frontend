@@ -9,6 +9,7 @@ import { TipoVehiculoModel } from '../../models/tipo-vehiculo.model';
 import { VehiculoService } from '../../services/vehiculo.service';
 import { TipoVehiculoService } from '../../services/tipo-vehiculo.service';
 import { ActivatedRoute } from '@angular/router';
+import { MarcasBlockComponent } from "../../shared/components/marcas-block/marcas-block.component";
 
 @Component({
   selector: 'app-especificaciones',
@@ -18,8 +19,9 @@ import { ActivatedRoute } from '@angular/router';
     NavbarComponent,
     TipoVehiculoBannerFirstComponent,
     TipoVehiculoResennasComponent,
-    PreviewCatalogoComponent
-  ],
+    PreviewCatalogoComponent,
+    MarcasBlockComponent
+],
   templateUrl: './especificaciones.component.html',
   styleUrl: './especificaciones.component.css'
 })

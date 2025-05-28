@@ -13,6 +13,7 @@
   margin: 40px auto 0 auto;
   gap: 40px;
   padding: 0 40px;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 .left-panel {
@@ -20,6 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: 300px; /* Ensure minimum width for readability */
 }
 
 .left-panel h1 {
@@ -63,8 +65,9 @@
 
 .thumbnails {
   display: flex;
-  gap: 2rem;
+  gap: 1rem; /* Reduced gap for smaller screens */
   margin-top: 1.5rem;
+  flex-wrap: wrap; /* Allow thumbnails to wrap if needed */
 }
 
 .thumbnails img {
@@ -83,13 +86,14 @@
   align-items: center;
   justify-content: flex-start;
   padding-top: 0;
+  min-width: 300px; /* Ensure minimum width for readability */
 }
 
 .specs-title {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  text-align: right;
+  text-align: center; /* Center title on smaller screens */
   padding-bottom: 40px;
 }
 
@@ -199,4 +203,170 @@
 .etiqueta-badge.a p {
   background-color: #6c757d;
   color: white;
+}
+
+/* Responsive Design */
+
+/* Tablets and smaller desktops (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .car-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    gap: 20px;
+  }
+
+  .left-panel,
+  .right-panel {
+    flex: 1;
+    width: 100%;
+    min-width: unset;
+  }
+
+  .left-panel h1 {
+    font-size: 2.5rem;
+  }
+
+  .price {
+    font-size: 1.8rem;
+  }
+
+  .price-amount {
+    font-size: 2.2rem;
+  }
+
+  .price-dia {
+    font-size: 1rem;
+  }
+
+  .main-image {
+    max-width: 100%;
+  }
+
+  .thumbnails img {
+    width: 120px;
+    height: 90px;
+  }
+
+  .specs-title {
+    font-size: 1.8rem;
+    padding-bottom: 20px;
+  }
+
+  .specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .btn-alquilar {
+    max-width: 100%;
+  }
+}
+
+/* Mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .car-container {
+    padding: 0 15px;
+    margin: 20px auto 0 auto;
+  }
+
+  .left-panel h1 {
+    font-size: 2rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+  }
+
+  .price-amount {
+    font-size: 1.8rem;
+  }
+
+  .price-dia {
+    font-size: 0.9rem;
+  }
+
+  .thumbnails {
+    gap: 0.8rem;
+  }
+
+  .thumbnails img {
+    width: 100px;
+    height: 80px;
+  }
+
+  .specs-title {
+    font-size: 1.5rem;
+    padding-bottom: 15px;
+  }
+
+  .specs-grid {
+    grid-template-columns: 1fr; /* Single column for mobile */
+    gap: 0.8rem;
+  }
+
+  .spec-card {
+    padding: 1.5rem 1rem;
+    min-height: 100px;
+  }
+
+  .spec-icon {
+    font-size: 1.8rem;
+  }
+
+  .spec-card span,
+  .spec-card p {
+    font-size: 1rem;
+  }
+
+  .btn-alquilar {
+    font-size: 1rem;
+    padding: 0.8rem 0;
+  }
+}
+
+/* Extra small devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .left-panel h1 {
+    font-size: 1.8rem;
+  }
+
+  .price {
+    font-size: 1.3rem;
+  }
+
+  .price-amount {
+    font-size: 1.6rem;
+  }
+
+  .price-dia {
+    font-size: 0.8rem;
+  }
+
+  .thumbnails img {
+    width: 80px;
+    height: 60px;
+  }
+
+  .specs-title {
+    font-size: 1.3rem;
+  }
+
+  .spec-card {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .spec-icon {
+    font-size: 1.5rem;
+  }
+
+  .spec-card span,
+  .spec-card p {
+    font-size: 0.9rem;
+  }
+
+  .btn-alquilar {
+    font-size: 0.9rem;
+    padding: 0.7rem 0;
+  }
 }

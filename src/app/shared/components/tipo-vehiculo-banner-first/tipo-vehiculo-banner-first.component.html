@@ -53,7 +53,11 @@
           <span>Kilometraje</span>
           <p>{{ vehiculo.kilometraje }} km</p>
         </div>
-        <!-- NUEVO: Color -->
+        <div class="spec-card">
+          <div class="spec-icon">🛣️</div>
+          <span>Ubicación</span>
+          <p>{{ vehiculo.ubicacion }}</p>
+        </div>
         <div class="spec-card">
           <div class="spec-icon">🎨</div>
           <span>Color</span>
@@ -65,7 +69,6 @@
             <p>{{ vehiculo.color }}</p>
           </div>
         </div>
-        <!-- NUEVO: Etiqueta Ambiental -->
         <div class="spec-card etiqueta-badge" [ngClass]="vehiculo.etiqueta.toLowerCase()">
           <div class="spec-icon">♻️</div>
           <span>Etiqueta</span>
