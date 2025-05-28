@@ -2,58 +2,88 @@
   <div class="modal-alquilar-flex">
     <!-- Resumen del coche -->
     <div class="car-summary">
-      <h2 class="car-title">Volkswagen Golf</h2>
-      <img src="assets/img/catalogo/7.jpg" alt="Volkswagen Golf" class="car-img" />
+      <h2 class="car-title">{{ tipoVehiculo.marca || 'Vehículo desconocido' }} {{ tipoVehiculo.modelo || '' }}</h2>
+      <img [src]="tipoVehiculo.imagen || 'assets/img/placeholder.jpg'" [alt]="tipoVehiculo.modelo || 'Vehículo'" class="car-img" />
       <ul class="car-features">
-        <li><strong>Transmisión:</strong> Automático</li>
-        <li><strong>Combustible:</strong> Diesel</li>
-        <li><strong>Puertas:</strong> 4</li>
-        <li><strong>Aire Acondicionado:</strong> Sí</li>
-        <li><strong>Asientos:</strong> 5</li>
-        <li><strong>Distancia:</strong> 500 km</li>
+        <li><strong>Transmisión:</strong> {{ vehiculo.transmision || 'No disponible' }}</li>
+        <li><strong>Combustible:</strong> {{ vehiculo.combustible || 'No disponible' }}</li>
+        <li><strong>Puertas:</strong> {{ vehiculo.puertas || 'No disponible' }}</li>
+        <li><strong>Aire Acondicionado:</strong> {{ vehiculo.aireAcondicionado ? 'Sí' : 'No' }}</li>
+        <li><strong>Asientos:</strong> {{ vehiculo.plazas || 'No disponible' }}</li>
+        <li><strong>Distancia:</strong> {{ vehiculo.kilometraje || 'No disponible' }} km</li>
+        <li><strong>Color:</strong> {{ vehiculo.color || 'No disponible' }}</li>
+        <li><strong>Ubicación:</strong> {{ vehiculo.ubicacion || 'No disponible' }}</li>
+        <li><strong>Etiqueta:</strong> {{ vehiculo.etiqueta || 'No disponible' }}</li>
       </ul>
-      <div class="car-equipamiento">
-        <h3>Equipamiento</h3>
-        <ul class="equipamiento-list">
-          <li><span class="check">✔️</span> ABS</li>
-          <li><span class="check">✔️</span> Herramientas</li>
-          <li><span class="check">✔️</span> Bolsas De Aire</li>
-          <li><span class="check">✔️</span> Llanta Repuesto</li>
-          <li><span class="check">✔️</span> Control Crucero</li>
-          <li><span class="check">✔️</span> Aire Acondicionado</li>
-        </ul>
-      </div>
       <div class="car-price">
-        <span class="price-amount">€25</span> <span class="price-dia">/ día</span>
+        <span class="price-amount">€{{ tipoVehiculo.precio || 0 }}</span>
+        <span class="price-dia">/ día</span>
       </div>
-      
     </div>
     <!-- Formulario de alquiler -->
     <div class="modal-login">
-      <button class="close-btn" type="button" (click)="cerrarModal.emit()">&times;</button>
-      <form>
+      <button class="close-btn" type="button" (click)="cerrar()">×</button>
+      <form [formGroup]="alquilerForm">
         <h2>Alquilar Vehículo</h2>
         <h3>Información Personal</h3>
-        <input type="text" placeholder="Nombre" class="login-input" />
-        <input type="text" placeholder="Apellido" class="login-input" />
-        <input type="email" placeholder="Correo Electronico" class="login-input" />
-        <input type="tel" placeholder="Telefono" class="login-input" />
-        <input type="text" placeholder="DNI" class="login-input" />
+        <input type="text" placeholder="Nombre" formControlName="nombre" class="login-input" />
+        <div class="error" *ngIf="alquilerForm.get('nombre')?.touched && alquilerForm.get('nombre')?.errors?.['required']">
+          El nombre es obligatorio
+        </div>
+        <input type="text" placeholder="Apellido" formControlName="apellido" class="login-input" />
+        <div class="error" *ngIf="alquilerForm.get('apellido')?.touched && alquilerForm.get('apellido')?.errors?.['required']">
+          El apellido es obligatorio
+        </div>
+        <input type="email" placeholder="Correo Electrónico" formControlName="correo" class="login-input" />
+        <div class="error" *ngIf="alquilerForm.get('correo')?.touched && alquilerForm.get('correo')?.errors?.['required']">
+          El correo es obligatorio
+        </div>
+        <div class="error" *ngIf="alquilerForm.get('correo')?.touched && alquilerForm.get('correo')?.errors?.['email']">
+          El correo no es válido
+        </div>
+        <input type="tel" placeholder="Teléfono" formControlName="telefono" class="login-input" />
+        <div class="error" *ngIf="alquilerForm.get('telefono')?.touched && alquilerForm.get('telefono')?.errors?.['required']">
+          El teléfono es obligatorio
+        </div>
+        <input type="text" placeholder="DNI" formControlName="dni" class="login-input" />
+        <div class="error" *ngIf="alquilerForm.get('dni')?.touched && alquilerForm.get('dni')?.errors?.['required']">
+          El DNI es obligatorio
+        </div>
         <label class="checkbox-row">
-          <input type="checkbox" />
+          <input type="checkbox" formControlName="dniIgualCarnet" />
           <span>El DNI es igual que el número de carnet de conducir</span>
         </label>
 
-        <h3>Dirección De Facturación</h3>
-        <input type="text" placeholder="Calle" class="login-input" />
-        <input type="text" placeholder="Número" class="login-input" />
-        <input type="text" placeholder="Codigo Postal" class="login-input" />
-        <input type="text" placeholder="Localidad" class="login-input" />
+        <h3>Dirección de Facturación</h3>
+        <input type="text" placeholder="Calle" formControlName="calle" class="login-input" />
+        <div class="error" *ngIf="alquilerForm.get('calle')?.touched && alquilerForm.get('calle')?.errors?.['required']">
+          La calle es obligatoria
+        </div>
+        <input type="text" placeholder="Número" formControlName="numero" class="login-input" />
+        <div class="error" *ngIf="alquilerForm.get('numero')?.touched && alquilerForm.get('numero')?.errors?.['required']">
+          El número es obligatorio
+        </div>
+        <input type="text" placeholder="Código Postal" formControlName="codigoPostal" class="login-input" />
+        <div class="error" *ngIf="alquilerForm.get('codigoPostal')?.touched && alquilerForm.get('codigoPostal')?.errors?.['required']">
+          El código postal es obligatorio
+        </div>
+        <input type="text" placeholder="Localidad" formControlName="localidad" class="login-input" />
+        <div class="error" *ngIf="alquilerForm.get('localidad')?.touched && alquilerForm.get('localidad')?.errors?.['required']">
+          La localidad es obligatoria
+        </div>
 
-        <h3>Metodo De Pago</h3>
-        <!-- Aquí puedes añadir los campos de pago si lo necesitas -->
+        <h3>Método de Pago</h3>
+        <select formControlName="metodoPago" class="login-input">
+          <option value="" disabled>Selecciona un método de pago</option>
+          <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+          <option value="paypal">PayPal</option>
+          <option value="transferencia">Transferencia Bancaria</option>
+        </select>
+        <div class="error" *ngIf="alquilerForm.get('metodoPago')?.touched && alquilerForm.get('metodoPago')?.errors?.['required']">
+          El método de pago es obligatorio
+        </div>
 
-        <button type="submit" class="login-btn">Confirmar Alquiler</button>
+        <button type="button" class="login-btn" disabled>Confirmar Alquiler (Solo vista)</button>
       </form>
     </div>
   </div>
