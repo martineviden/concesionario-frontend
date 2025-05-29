@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EditarPerfilComponent } from "../editar-perfil/editar-perfil.component";
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './perfil-admin.component.html',
   styleUrl: './perfil-admin.component.css'
 })
-export class PerfilAdminComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PerfilAdminComponent implements OnInit {
   usuarioActual: Usuario | null = null;
   usuarioSubscription: Subscription | null = null;
   showEditPerfilModal = false;
@@ -22,30 +22,6 @@ export class PerfilAdminComponent implements OnInit, AfterViewInit, OnDestroy {
     // Nosotros nos suscribimos al observable para obtener los datos del usuario actual
     this.usuarioSubscription = this.authService.obtenerUsuarioActual().subscribe(usuario => {
       this.usuarioActual = usuario;
-    });
-  }
-
-  ngAfterViewInit() {
-    // Nosotros aplicamos animaciones smooth al cargar los elementos
-    this.setupIntersectionObserver();
-  }
-
-  setupIntersectionObserver() {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1,
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          (entry.target as HTMLElement).classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, options);
-    document.querySelectorAll('.animate-element').forEach((el) => {
-      observer.observe(el);
     });
   }
 

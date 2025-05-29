@@ -1,35 +1,31 @@
-<div class="perfil-admin-container animate-section">
-  <div class="perfil-admin-row-horizontal animate-element" data-animation="fade-right">
+<div class="perfil-admin-container">
+  <div class="perfil-admin-row">
     <div class="perfil-admin-avatar">
       <img src="/assets/img/FotosPerfiles/FotoDePerfil.png" alt="Avatar" />
     </div>
-    <div class="perfil-admin-info-horizontal">
+    <div class="perfil-admin-info">
       <h2>Perfil</h2>
-      <div class="perfil-admin-cards-horizontal">
-        <div class="perfil-admin-card-horizontal animate-element" data-animation="fade-up" data-delay="100">
-          <div class="perfil-admin-label"><i class="fas fa-user"></i> <b>Nombre</b></div>
+      <div class="perfil-admin-cards">
+        <div class="perfil-admin-card">
+          <div class="perfil-admin-label"><b>Nombre</b></div>
           <div class="perfil-admin-value">{{ usuarioActual?.nombre }}</div>
         </div>
-        <div class="perfil-admin-card-horizontal animate-element" data-animation="fade-up" data-delay="200">
-          <div class="perfil-admin-label"><i class="fas fa-user-tag"></i> <b>Apellidos</b></div>
+        <div class="perfil-admin-card">
+          <div class="perfil-admin-label"><b>Apellidos</b></div>
           <div class="perfil-admin-value">{{ usuarioActual?.apellidos }}</div>
         </div>
-        <div class="perfil-admin-card-horizontal animate-element" data-animation="fade-up" data-delay="300">
-          <div class="perfil-admin-label"><i class="fas fa-phone"></i> <b>Teléfono</b></div>
+        <div class="perfil-admin-card">
+          <div class="perfil-admin-label"><b>Teléfono</b></div>
           <div class="perfil-admin-value">{{ usuarioActual?.telefono }}</div>
         </div>
-        <div class="perfil-admin-card-horizontal animate-element" data-animation="fade-up" data-delay="400">
-          <div class="perfil-admin-label"><i class="fas fa-envelope"></i> <b>Correo Electrónico</b></div>
+        <div class="perfil-admin-card">
+          <div class="perfil-admin-label"><b>Correo Electrónico</b></div>
           <div class="perfil-admin-value">{{ usuarioActual?.correo }}</div>
         </div>
-        <div class="perfil-admin-card-horizontal animate-element" data-animation="fade-up" data-delay="500">
-          <div class="perfil-admin-label"><i class="fas fa-user-shield"></i> <b>Rol</b></div>
-          <div class="perfil-admin-value">{{ usuarioActual?.rol }}</div>
-        </div>
       </div>
-      <div class="perfil-admin-btn-row-horizontal animate-element" data-animation="fade-up" data-delay="600">
-        <button class="perfil-admin-btn" (click)="abrirEditPerfil()">Editar perfil</button>
-      </div>
+    </div>
+    <div class="perfil-admin-btn-row">
+      <button class="perfil-admin-btn" (click)="abrirEditPerfil()">Editar perfil</button>
     </div>
   </div>
 </div>
