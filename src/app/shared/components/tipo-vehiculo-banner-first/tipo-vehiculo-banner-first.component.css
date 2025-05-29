@@ -146,8 +146,7 @@
   font-weight: 500;
   border: none;
   border-radius: 14px;
-  padding: 1rem 0;
-  margin-top: auto;
+  padding: 1rem ;
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -165,8 +164,7 @@
   font-weight: 500;
   border: none;
   border-radius: 14px;
-  padding: 1rem 0;
-  margin-top: auto;
+  padding: 1rem ;
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -175,6 +173,13 @@
   box-shadow: 0 3px 12px 0 rgba(108, 92, 231, 0.18);
 }
 
+.boton-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: auto;
+}
 /* Color dentro de spec-card */
 .color-display {
   display: flex;
