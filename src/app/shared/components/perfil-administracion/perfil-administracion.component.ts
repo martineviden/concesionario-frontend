@@ -2,6 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { EditarVehiculoComponent } from '../editar-vehiculo/editar-vehiculo.component';
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
+import { Usuario } from '../../../models/login.model';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../../services/auth.service';
+import { Rol } from '../../../models/enums';
 
 @Component({
   selector: 'app-perfil-administracion',
@@ -10,6 +14,14 @@ import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
   styleUrls: ['./perfil-administracion.component.css']
 })
 export class PerfilAdministracionComponent{
+
+  usuarioActual: Usuario | null = null;
+  estaAutenticado = false;
+  esAdmin = false;
+  private authSubscription: Subscription | null = null;
+
+  constructor(private authService: AuthService) {}
+
   @Input() vehiculoExiste?: TipoVehiculoModel;
 
   vehiculos = [
@@ -71,6 +83,14 @@ export class PerfilAdministracionComponent{
   cerrarAgregarVehiculo(){
     this.showAgregarModal = false;
   }
+  
+    ngOnInit() {
+      this.authSubscription = this.authService.obtenerUsuarioActual().subscribe(usuario => {
+        this.usuarioActual = usuario;
+        this.estaAutenticado = !!usuario;
+        this.esAdmin = usuario?.rol === Rol.ADMIN;
+      });
+    }
 
 //   abrir_cerarAgregarVehiculo(){
 //     if(this.mostrarFormulario ==false){

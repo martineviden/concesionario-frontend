@@ -168,3 +168,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+.dropdown-opciones {
+  max-height: 200px;
+  overflow-y: auto;
+}
