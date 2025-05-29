@@ -31,6 +31,6 @@ export const routes: Routes = [
   { path: 'editar-perfil', component: EditarPerfilComponent},
   { path: 'nosotros', component: NosotrosComponent},
   { path: 'contacto', component: ContactoComponent},
-  {path: 'especificaciones', component: EspecificacionesComponent},
+  {path: 'especificaciones/:matricula', component: EspecificacionesComponent},
   {path: 'perfil', component: PerfilComponent}
 ];

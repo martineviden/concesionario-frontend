@@ -9,6 +9,10 @@ import {
   EtiquetaAmbiental,
   TipoVehiculo
 } from '../../../models/enums';
+import { Router } from '@angular/router';
+import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
+import { VehiculoModel } from '../../../models/vehiculo.model';
+import { VehiculoService } from '../../../services/vehiculo.service';
 
 
 type DropdownKey = 'ubicacion' | 'combustible' | 'transmision' | 'etiqueta' | 'plazas';
@@ -82,10 +86,15 @@ export class CatalogoComponentComponent implements OnInit {
 
   vehiculos: any[] = [];
   vehiculosFiltrados: any[] = [];
+  tipoVehiculos: TipoVehiculoConVehiculos[] = [];
 
   constructor(
     private tipoVehiculoService: TipoVehiculoService,
+
     private route: ActivatedRoute,
+
+    private vehiculoService: VehiculoService,
+
     private router: Router
   ) {}
 
@@ -118,6 +127,7 @@ export class CatalogoComponentComponent implements OnInit {
 }
 
 
+
   cargarVehiculos(callback?: () => void): void {
     this.tipoVehiculoService.listAllTipoVheculo().subscribe((response) => {
       const tipos = response as unknown as TipoVehiculoConVehiculos[];
@@ -139,6 +149,7 @@ export class CatalogoComponentComponent implements OnInit {
 
       this.aplicarFiltros();
       if (callback) callback();
+
     });
   }
 
@@ -218,6 +229,12 @@ export class CatalogoComponentComponent implements OnInit {
   getCantidadSeleccionados(filtro: DropdownKey): number {
     return this.filtrosActivos.filter((f) => f.startsWith(filtro + ':')).length;
   }
+
+  openespecidicaciones(matricula: string): void {
+  if (matricula) {
+    this.router.navigate(['/especificaciones', matricula]);
+  }
+}
 
   @HostListener('document:click', ['$event'])
   cerrarDropdownsFuera(event: MouseEvent): void {

@@ -1,73 +1,89 @@
 <div class="main-body">
-    <div class="car-container">
-      <!-- IZQUIERDA -->
-      <div class="left-panel">
-        <h1>Volkswagen</h1>
-        <p class="price"><span class="price-amount">€25</span> <span class="price-dia">/ día</span></p>
+  <div class="car-container">
+    <!-- IZQUIERDA -->
+    <div class="left-panel">
+      <h1>{{ tipoVehiculo.marca }} {{tipoVehiculo.modelo}}</h1>
+      <p class="price">
+        <span class="price-amount">€{{ tipoVehiculo.precio }}</span>
+        <span class="price-dia">/ día</span>
+      </p>
 
-        <div class="main-image">
-          <img src="assets/img/catalogo/7.jpg" alt="Coche sombra">
-        </div>
-
-        <div class="thumbnails">
-          <img src="assets/img/catalogo/7.jpg" alt="Miniatura 1">
-          <img src="assets/img/catalogo/7.jpg" alt="Miniatura 3">
-          <img src="assets/img/catalogo/7.jpg" alt="Miniatura 2">
-        </div>
+      <div class="main-image">
+        <img [src]="tipoVehiculo.imagen" [alt]="tipoVehiculo.modelo">
       </div>
 
-      <!-- DERECHA -->
-      <div class="right-panel">
-        <h2 class="specs-title">Especificaciones Técnicas</h2>
-        <div class="specs-grid">
-          <div class="spec-card">
-            <div class="spec-icon">🏎️</div>
-            <span>Transmision</span>
-            <p>Automatico</p>
-          </div>
-          <div class="spec-card">
-            <div class="spec-icon">⛽</div>
-            <span>Combustible</span>
-            <p>Diesel</p>
-          </div>
-          <div class="spec-card">
-            <div class="spec-icon">🚪</div>
-            <span>Puertas</span>
-            <p>2</p>
-          </div>
-          <div class="spec-card">
-            <div class="spec-icon">❄️</div>
-            <span>Aire Acondicionado</span>
-            <p>Yes</p>
-          </div>
-          <div class="spec-card">
-            <div class="spec-icon">🧑‍🤝‍🧑</div>
-            <span>Asientos</span>
-            <p>5</p>
-          </div>
-          <div class="spec-card">
-            <div class="spec-icon">🛣️</div>
-            <span>Distancia</span>
-            <p>500</p>
-          </div>
-        </div>
-        <button class="btn-alquilar" (click)="mostrarFormularioAlquilar = true">Alquilar</button>
-        <app-formulario-alquilar
-          *ngIf="mostrarFormularioAlquilar"
-          (cerrarModal)="mostrarFormularioAlquilar = false">
-        </app-formulario-alquilar>
-        <!-- EQUIPAMIENTO -->
-        <div class="equipamiento">
-          <h2>Equipamiento Del Coche</h2>
-          <ul class="equipamiento-list">
-            <li><span class="check">✔️</span> ABS</li>
-            <li><span class="check">✔️</span> Herramientas</li>
-            <li><span class="check">✔️</span> Bolsas De Aire</li>
-            <li><span class="check">✔️</span> Llanta Repuesto</li>
-            <li><span class="check">✔️</span> Control Crucero</li>
-            <li><span class="check">✔️</span> Aire Acondicionado</li>
-          </ul>
-        </div>
+      <div class="thumbnails">
+        <img src="assets/img/catalogo/7.jpg" alt="Miniatura 1">
+        <img src="assets/img/catalogo/7.jpg" alt="Miniatura 3">
+        <img src="assets/img/catalogo/7.jpg" alt="Miniatura 2">
       </div>
     </div>
+
+    <!-- DERECHA -->
+    <div class="right-panel">
+      <h2 class="specs-title">Especificaciones Técnicas</h2>
+      <div class="specs-grid">
+        <div class="spec-card">
+          <div class="spec-icon">🏎️</div>
+          <span>Transmisión</span>
+          <p>{{ vehiculo.transmision }}</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">⛽</div>
+          <span>Combustible</span>
+          <p>{{ vehiculo.combustible }}</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">🚪</div>
+          <span>Puertas</span>
+          <p>{{ vehiculo.puertas }}</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">❄️</div>
+          <span>Aire Acondicionado</span>
+          <p>{{ vehiculo.aireAcondicionado ? 'Sí' : 'No' }}</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">🧑‍🤝‍🧑</div>
+          <span>Asientos</span>
+          <p>{{ vehiculo.plazas }}</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">🛣️</div>
+          <span>Kilometraje</span>
+          <p>{{ vehiculo.kilometraje }} km</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">🛣️</div>
+          <span>Ubicación</span>
+          <p>{{ vehiculo.ubicacion }}</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">🎨</div>
+          <span>Color</span>
+          <div class="color-display">
+            <span class="color-circle" [style.backgroundColor]="getColorCSS(vehiculo.color)"></span>
+            <p>{{ vehiculo.color }}</p>
+          </div>
+        </div>
+        <div class="spec-card etiqueta-badge" [ngClass]="vehiculo.etiqueta.toLowerCase()">
+          <div class="spec-icon">♻️</div>
+          <span>Etiqueta</span>
+          <p>{{ vehiculo.etiqueta }}</p>
+        </div>
+      </div>
+
+      <div class="boton-container">
+        <button class="btn-alquilar" (click)="mostrarFormularioAlquilar = true">Alquilar</button>
+        <button *ngIf="esAdmin" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
+      </div>
+      
+      <app-formulario-alquilar 
+        [tipoVehiculo]="tipoVehiculo" 
+        [vehiculo]="vehiculo" 
+        *ngIf="mostrarFormularioAlquilar" 
+        (cerrarModal)="mostrarFormularioAlquilar = false">
+      </app-formulario-alquilar>
+    </div>
   </div>
+</div>

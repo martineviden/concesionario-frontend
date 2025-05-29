@@ -13,6 +13,7 @@
   margin: 40px auto 0 auto;
   gap: 40px;
   padding: 0 40px;
+  flex-wrap: wrap; 
 }
 
 .left-panel {
@@ -20,6 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: 300px; 
 }
 
 .left-panel h1 {
@@ -63,8 +65,9 @@
 
 .thumbnails {
   display: flex;
-  gap: 2rem;
+  gap: 1rem; 
   margin-top: 1.5rem;
+  flex-wrap: wrap; 
 }
 
 .thumbnails img {
@@ -81,15 +84,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Asegura alineación arriba */
-  padding-top: 0; /* Asegúrate de que no haya padding extra */
+  justify-content: flex-start;
+  padding-top: 0;
+  min-width: 300px; 
 }
 
 .specs-title {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  text-align: right;
+  text-align: center; 
   padding-bottom: 40px;
 }
 
@@ -134,7 +138,7 @@
 }
 
 .btn-alquilar {
-  width: 100%;
+  width: 50%;
   max-width: 350px;
   background: #5636d8;
   color: #fff;
@@ -142,8 +146,7 @@
   font-weight: 500;
   border: none;
   border-radius: 14px;
-  padding: 1rem 0;
-  margin-top: auto; /* Empuja el botón al fondo del panel */
+  padding: 1rem ;
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -152,43 +155,235 @@
   background: #3d25a0;
 }
 
-/* EQUIPAMIENTO */
-.equipamiento {
-  max-width: 600px;
-  margin: 80px 0 0 auto; /* Aumenta el espacio superior */
-  padding: 0;
+.btn-eliminar {
+  width: 50%;
+  max-width: 350px;
+  background: red;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 14px;
+  padding: 1rem ;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-eliminar:hover {
+  box-shadow: 0 3px 12px 0 rgba(108, 92, 231, 0.18);
+}
+
+.boton-container{
   width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: auto;
 }
-
-.equipamiento h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: left; /* Alinea el título a la izquierda */
-  margin-bottom: 1.2rem;
-  margin-left: 0;
-}
-
-.equipamiento-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem 2.5rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 1.1rem;
-  justify-items: start; /* Alinea los ítems a la izquierda */
-}
-
-.equipamiento-list li {
+/* Color dentro de spec-card */
+.color-display {
   display: flex;
   align-items: center;
-  color: #888;
-  font-size: 1.15rem;
-  font-weight: 500;
+  gap: 0.7rem;
+  margin-top: 0.3rem;
 }
 
-.equipamiento-list .check {
-  color: #5636d8;
-  font-size: 1.4rem;
-  margin-right: 0.7rem;
+.color-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.etiqueta-badge p {
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 0.3rem;
+}
+
+.etiqueta-badge.eco p {
+  background-color: #28a745;
+  color: white;
+}
+
+.etiqueta-badge.cero p {
+  background-color: #00aaff;
+  color: white;
+}
+
+.etiqueta-badge.b p {
+  background-color: #ffc107;
+  color: black;
+}
+
+.etiqueta-badge.c p {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.etiqueta-badge.a p {
+  background-color: #6c757d;
+  color: white;
+}
+
+@media (max-width: 1024px) {
+  .car-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    gap: 20px;
+  }
+
+  .left-panel,
+  .right-panel {
+    flex: 1;
+    width: 100%;
+    min-width: unset;
+  }
+
+  .left-panel h1 {
+    font-size: 2.5rem;
+  }
+
+  .price {
+    font-size: 1.8rem;
+  }
+
+  .price-amount {
+    font-size: 2.2rem;
+  }
+
+  .price-dia {
+    font-size: 1rem;
+  }
+
+  .main-image {
+    max-width: 100%;
+  }
+
+  .thumbnails img {
+    width: 120px;
+    height: 90px;
+  }
+
+  .specs-title {
+    font-size: 1.8rem;
+    padding-bottom: 20px;
+  }
+
+  .specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .btn-alquilar {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .car-container {
+    padding: 0 15px;
+    margin: 20px auto 0 auto;
+  }
+
+  .left-panel h1 {
+    font-size: 2rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+  }
+
+  .price-amount {
+    font-size: 1.8rem;
+  }
+
+  .price-dia {
+    font-size: 0.9rem;
+  }
+
+  .thumbnails {
+    gap: 0.8rem;
+  }
+
+  .thumbnails img {
+    width: 100px;
+    height: 80px;
+  }
+
+  .specs-title {
+    font-size: 1.5rem;
+    padding-bottom: 15px;
+  }
+
+  .specs-grid {
+    grid-template-columns: 1fr; 
+    gap: 0.8rem;
+  }
+
+  .spec-card {
+    padding: 1.5rem 1rem;
+    min-height: 100px;
+  }
+
+  .spec-icon {
+    font-size: 1.8rem;
+  }
+
+  .spec-card span,
+  .spec-card p {
+    font-size: 1rem;
+  }
+
+  .btn-alquilar {
+    font-size: 1rem;
+    padding: 0.8rem 0;
+  }
+}
+@media (max-width: 480px) {
+  .left-panel h1 {
+    font-size: 1.8rem;
+  }
+
+  .price {
+    font-size: 1.3rem;
+  }
+
+  .price-amount {
+    font-size: 1.6rem;
+  }
+
+  .price-dia {
+    font-size: 0.8rem;
+  }
+
+  .thumbnails img {
+    width: 80px;
+    height: 60px;
+  }
+
+  .specs-title {
+    font-size: 1.3rem;
+  }
+
+  .spec-card {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .spec-icon {
+    font-size: 1.5rem;
+  }
+
+  .spec-card span,
+  .spec-card p {
+    font-size: 0.9rem;
+  }
+
+  .btn-alquilar {
+    font-size: 0.9rem;
+    padding: 0.7rem 0;
+  }
 }
