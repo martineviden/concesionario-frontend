@@ -73,8 +73,11 @@
         </div>
       </div>
 
-      <button class="btn-alquilar" (click)="mostrarFormularioAlquilar = true">Alquilar</button>
-      <button *ngIf="esAdmin" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
+      <div class="boton-container">
+        <button class="btn-alquilar" (click)="mostrarFormularioAlquilar = true">Alquilar</button>
+        <button *ngIf="esAdmin" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
+      </div>
+      
       <app-formulario-alquilar 
         [tipoVehiculo]="tipoVehiculo" 
         [vehiculo]="vehiculo" 
