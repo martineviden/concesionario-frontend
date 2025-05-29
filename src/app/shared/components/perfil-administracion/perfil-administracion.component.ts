@@ -84,13 +84,13 @@ export class PerfilAdministracionComponent{
     this.showAgregarModal = false;
   }
   
-    ngOnInit() {
-      this.authSubscription = this.authService.obtenerUsuarioActual().subscribe(usuario => {
-        this.usuarioActual = usuario;
-        this.estaAutenticado = !!usuario;
-        this.esAdmin = usuario?.rol === Rol.ADMIN;
-      });
-    }
+  ngOnInit() {
+    this.authSubscription = this.authService.obtenerUsuarioActual().subscribe(usuario => {
+      this.usuarioActual = usuario;
+      this.estaAutenticado = !!usuario;
+      this.esAdmin = usuario?.rol === Rol.ADMIN;
+    });
+  }
 
 //   abrir_cerarAgregarVehiculo(){
 //     if(this.mostrarFormulario ==false){
