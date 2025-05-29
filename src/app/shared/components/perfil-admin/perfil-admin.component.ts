@@ -6,10 +6,11 @@ import { AuthService } from '../../../services/auth.service';
 import { Usuario } from '../../../models/login.model';
 import { Subscription } from 'rxjs';
 import { Rol } from '../../../models/enums';
+import { HistorialDeReservasComponent } from '../historial-de-reservas/historial-de-reservas.component';
 
 @Component({
   selector: 'app-perfil-admin',
-  imports: [EditarPerfilComponent, CommonModule, RouterModule],
+  imports: [EditarPerfilComponent, CommonModule, RouterModule, HistorialDeReservasComponent],
   templateUrl: './perfil-admin.component.html',
   styleUrl: './perfil-admin.component.css'
 })
@@ -18,6 +19,7 @@ export class PerfilAdminComponent implements OnInit {
   usuarioSubscription: Subscription | null = null;
   showEditPerfilModal = false;
   esCliente = false;
+  showHistorialReservasModal = false;
 
   constructor(private authService: AuthService) {}
 
@@ -34,6 +36,11 @@ export class PerfilAdminComponent implements OnInit {
   }
   cerrarEditPerfil() {
     this.showEditPerfilModal = false;
+  }
+
+  abrirHistorialReservas() {
+    // Incluimos la lógica para mostrar el modal de historial de reservas
+    this.showHistorialReservasModal = true;
   }
 
   ngOnDestroy() {
