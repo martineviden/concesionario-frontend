@@ -11,23 +11,23 @@ import { ReservaModel } from '../models/reserva.model';
 export class ReservaService{
   private http = inject(HttpClient);
 
-  listAllReserva(){
+  listAllReserva() {
     return this.http.get('http://localhost:8080/reservas', { withCredentials:false });
   }
 
-  getReservaById(id: string){
+  getReservaById(id: string) {
     return this.http.get(`http://localhost:8080/reservas/${id}`, { withCredentials:false });
   }
 
-  createReserva(reserva: ReservaModel){
+  createReserva(reserva: ReservaModel) {
     return this.http.post('http://localhost:8080/reservas', reserva, { withCredentials:false });
   }
 
-  updateReserva(id: string, reserva: ReservaModel){
+  updateReserva(id: string, reserva: ReservaModel) {
     return this.http.put(`http://localhost:8080/reservas/${id}`, reserva, { withCredentials:false });
   }
 
-  deleteReserva(id: string){
+  deleteReserva(id: string) {
      return this.http.delete(`http://localhost:8080/reservas/${id}`, { withCredentials:false });
   }
 
