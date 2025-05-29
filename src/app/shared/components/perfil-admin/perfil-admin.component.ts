@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { EditarPerfilComponent } from "../editar-perfil/editar-perfil.component";
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { Usuario } from '../../../models/login.model';
 import { Subscription } from 'rxjs';
+import { Rol } from '../../../models/enums';
 
 @Component({
   selector: 'app-perfil-admin',
-  imports: [EditarPerfilComponent, CommonModule],
+  imports: [EditarPerfilComponent, CommonModule, RouterModule],
   templateUrl: './perfil-admin.component.html',
   styleUrl: './perfil-admin.component.css'
 })
@@ -15,6 +17,7 @@ export class PerfilAdminComponent implements OnInit {
   usuarioActual: Usuario | null = null;
   usuarioSubscription: Subscription | null = null;
   showEditPerfilModal = false;
+  esCliente = false;
 
   constructor(private authService: AuthService) {}
 
@@ -22,6 +25,7 @@ export class PerfilAdminComponent implements OnInit {
     // Nosotros nos suscribimos al observable para obtener los datos del usuario actual
     this.usuarioSubscription = this.authService.obtenerUsuarioActual().subscribe(usuario => {
       this.usuarioActual = usuario;
+      this.esCliente = usuario?.rol === Rol.CLIENTE;
     });
   }
 
