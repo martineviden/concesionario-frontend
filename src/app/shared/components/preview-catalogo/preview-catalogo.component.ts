@@ -36,7 +36,7 @@ export class PreviewCatalogoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.tipoVehiculoService.listAllTipoVheculo().subscribe((response: any) => {
+    this.tipoVehiculoService.listAllTipoVehiculo().subscribe((response: any) => {
       const tipos = response;
 
       const vehiculosPlanos = tipos.flatMap((tipo: any) => {

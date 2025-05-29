@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
 import {
@@ -129,7 +129,7 @@ export class CatalogoComponentComponent implements OnInit {
 
 
   cargarVehiculos(callback?: () => void): void {
-    this.tipoVehiculoService.listAllTipoVheculo().subscribe((response) => {
+    this.tipoVehiculoService.listAllTipoVehiculo().subscribe((response) => {
       const tipos = response as unknown as TipoVehiculoConVehiculos[];
 
       this.vehiculos = tipos.flatMap((tipo) => {
