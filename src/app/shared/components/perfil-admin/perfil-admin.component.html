@@ -1,31 +1,92 @@
 <div class="perfil-admin-container">
   <div class="perfil-admin-row">
-    <div class="perfil-admin-avatar">
-      <img src="/assets/img/FotosPerfiles/FotoDePerfil.png" alt="Avatar" />
-    </div>
-    <div class="perfil-admin-info">
-      <h2>Perfil</h2>
-      <div class="perfil-admin-cards">
-        <div class="perfil-admin-card">
-          <div class="perfil-admin-label"><b>Nombre</b></div>
-          <div class="perfil-admin-value">{{ usuarioActual?.nombre }}</div>
-        </div>
-        <div class="perfil-admin-card">
-          <div class="perfil-admin-label"><b>Apellidos</b></div>
-          <div class="perfil-admin-value">{{ usuarioActual?.apellidos }}</div>
-        </div>
-        <div class="perfil-admin-card">
-          <div class="perfil-admin-label"><b>Teléfono</b></div>
-          <div class="perfil-admin-value">{{ usuarioActual?.telefono }}</div>
-        </div>
-        <div class="perfil-admin-card">
-          <div class="perfil-admin-label"><b>Correo Electrónico</b></div>
-          <div class="perfil-admin-value">{{ usuarioActual?.correo }}</div>
-        </div>
+    <div class="perfil-admin-left">
+      <div class="perfil-admin-avatar animate-fade-in">
+        <img src="/assets/img/FotosPerfiles/FotoDePerfil.png" alt="Avatar" />
+      </div>
+      <div class="perfil-admin-status animate-fade-in-delayed">
+        <div class="status-indicator"></div>
+        <span>En línea</span>
       </div>
     </div>
-    <div class="perfil-admin-btn-row">
-      <button class="perfil-admin-btn" (click)="abrirEditPerfil()">Editar perfil</button>
+    
+    <div class="perfil-admin-right">
+      <div class="perfil-admin-info">
+        <div class="perfil-admin-header animate-slide-in">
+          <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            Información del Perfil
+          </h2>
+          <p class="perfil-subtitle">Gestiona la información personal de la cuenta</p>
+        </div>
+        
+        <div class="perfil-admin-cards">
+          <div class="perfil-admin-card animate-card-1">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="perfil-admin-label">Nombre</div>
+              <div class="perfil-admin-value">{{ usuarioActual?.nombre }}</div>
+            </div>
+          </div>
+          
+          <div class="perfil-admin-card animate-card-2">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="m22 21-3-3m0 0a5 5 0 1 0-7-7 5 5 0 0 0 7 7Z"></path>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="perfil-admin-label">Apellidos</div>
+              <div class="perfil-admin-value">{{ usuarioActual?.apellidos }}</div>
+            </div>
+          </div>
+          
+          <div class="perfil-admin-card animate-card-3">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="perfil-admin-label">Teléfono</div>
+              <div class="perfil-admin-value">{{ usuarioActual?.telefono }}</div>
+            </div>
+          </div>
+          
+          <div class="perfil-admin-card animate-card-4">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="perfil-admin-label">Correo Electrónico</div>
+              <div class="perfil-admin-value">{{ usuarioActual?.correo }}</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="perfil-admin-actions animate-button">
+          <button class="perfil-admin-btn primary" (click)="abrirEditPerfil()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            Editar perfil
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
