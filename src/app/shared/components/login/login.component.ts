@@ -18,7 +18,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
   nombreUsuario: string = '';
-  rol = Rol;
+  rol: Rol | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -41,10 +41,9 @@ export class LoginComponent {
 
       this.loginService.loginUsuario(datosLogin).subscribe({
         next: res => {
-          if (res.autenticado && res.usuario) {
-            if (typeof res.usuario.rol === 'string') {
-              res.usuario.rol = Rol[res.usuario.rol as keyof typeof Rol];
-            }
+          console.log(res)         
+          if (res.token) {
+            this.rol = res.usuario.rol;
             this.nombreUsuario = res.usuario.nombre;
             this.authService.iniciarSesion(res.usuario);
             console.log('Login correcto. Bienvenido,', this.nombreUsuario);
@@ -54,7 +53,9 @@ export class LoginComponent {
             console.log('Login incorrecto. Revisa los datos');
           }
         },
-        error: err => console.error('Error en login: ', err)
+        error: err => {
+          console.error('Error en login: ', err);
+        }
       });
     } else {
       console.log('Formulario inválido');

@@ -1,317 +1,49 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <div class="contenedor">
-        <header class="cabecera">
-            <h1>Elige el vehículo que más te convenga</h1>
-            <a [routerLink]="['/catalogo']" class="ver-todos">Ver todos <i class="fas fa-arrow-right"></i></a>
-        </header>
+  <header class="cabecera">
+    <h1>Elige el vehículo que más te convenga</h1>
+    <a [routerLink]="['/catalogo']" class="ver-todos">Ver todos <i class="fas fa-arrow-right"></i></a>
+  </header>
 
-        <div class="cuadricula-vehiculos">
-            <!-- Motocicletas -->
-            <div class="tarjeta-vehiculo">
-                <div class="imagen-vehiculo">
-                    <img src="assets/img/catalogo/honda-cb500f.jpeg" alt="Honda CB500F">
-                </div>
-                <div class="info-vehiculo">
-                    <div class="nombre-precio-vehiculo">
-                        <div class="nombre-vehiculo">
-                            <h3>Honda</h3>
-                            <p>CB500F</p>
-                            <p class="anio">2023</p>
-                        </div>
-                        <div class="precio">
-                            <span class="cantidad">€25</span>
-                            <span class="por-dia">por día</span>
-                        </div>
-                    </div>
-                    <div class="caracteristicas-vehiculo">
-                        <div class="caracteristica">
-                            <i class="fas fa-cog"></i>
-                            <span>Automática</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-gas-pump"></i>
-                            <span>PB 95</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-snowflake"></i>
-                            <span>No</span>
-                        </div>
-                    </div>
-                    <button class="boton-detalles" [routerLink]="['/especificaciones']">Ver detalles</button>
-                </div>
-            </div>
-
-            <div class="tarjeta-vehiculo">
-                <div class="imagen-vehiculo">
-                    <img src="assets/img/catalogo/2.jpg" alt="Yamaha NMAX 155">
-                </div>
-                <div class="info-vehiculo">
-                    <div class="nombre-precio-vehiculo">
-                        <div class="nombre-vehiculo">
-                            <h3>Yamaha</h3>
-                            <p>NMAX 155</p>
-                            <p class="anio">2024</p>
-                        </div>
-                        <div class="precio">
-                            <span class="cantidad">€50</span>
-                            <span class="por-dia">por día</span>
-                        </div>
-                    </div>
-                    <div class="caracteristicas-vehiculo">
-                        <div class="caracteristica">
-                            <i class="fas fa-cog"></i>
-                            <span>Manual</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-gas-pump"></i>
-                            <span>PB 98</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-snowflake"></i>
-                            <span>No</span>
-                        </div>
-                    </div>
-                    <button class="boton-detalles" [routerLink]="['/especificaciones']">Ver detalles</button>
-                </div>
-            </div>
-
-            <div class="tarjeta-vehiculo">
-                <div class="imagen-vehiculo">
-                    <img src="assets/img/catalogo/3.webp" alt="BMW R 1250 GS">
-                </div>
-                <div class="info-vehiculo">
-                    <div class="nombre-precio-vehiculo">
-                        <div class="nombre-vehiculo">
-                            <h3>BMW</h3>
-                            <p>R 1250 GS</p>
-                            <p class="anio">2023</p>
-                        </div>
-                        <div class="precio">
-                            <span class="cantidad">€45</span>
-                            <span class="por-dia">por día</span>
-                        </div>
-                    </div>
-                    <div class="caracteristicas-vehiculo">
-                        <div class="caracteristica">
-                            <i class="fas fa-cog"></i>
-                            <span>Manual</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-gas-pump"></i>
-                            <span>PB 95</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-snowflake"></i>
-                            <span>No</span>
-                        </div>
-                    </div>
-                    <button class="boton-detalles" [routerLink]="['/especificaciones']">Ver detalles</button>
-                </div>
-            </div>
-
-            <!-- Coches -->
-            <div class="tarjeta-vehiculo">
-                <div class="imagen-vehiculo">
-                    <img src="assets/img/catalogo/4.jpg" alt="Volkswagen Transporter Kombi">
-                </div>
-                <div class="info-vehiculo">
-                    <div class="nombre-precio-vehiculo">
-                        <div class="nombre-vehiculo">
-                            <h3>Volkswagen</h3>
-                            <p>Transporter Kombi</p>
-                            <p class="anio">2024</p>
-                        </div>
-                        <div class="precio">
-                            <span class="cantidad">€40</span>
-                            <span class="por-dia">por día</span>
-                        </div>
-                    </div>
-                    <div class="caracteristicas-vehiculo">
-                        <div class="caracteristica">
-                            <i class="fas fa-cog"></i>
-                            <span>Manual</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-gas-pump"></i>
-                            <span>PB 95</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-snowflake"></i>
-                            <span>Aire Acondicionado</span>
-                        </div>
-                    </div>
-                    <button class="boton-detalles" [routerLink]="['/especificaciones']">Ver detalles</button>
-                </div>
-            </div>
-
-            <div class="tarjeta-vehiculo">
-                <div class="imagen-vehiculo">
-                    <img src="assets/img/catalogo/5.jpg" alt="Toyota Sedan">
-                </div>
-                <div class="info-vehiculo">
-                    <div class="nombre-precio-vehiculo">
-                        <div class="nombre-vehiculo">
-                            <h3>Toyota</h3>
-                            <p>Sedan</p>
-                            <p class="anio">2016</p>
-                        </div>
-                        <div class="precio">
-                            <span class="cantidad">€35</span>
-                            <span class="por-dia">por día</span>
-                        </div>
-                    </div>
-                    <div class="caracteristicas-vehiculo">
-                        <div class="caracteristica">
-                            <i class="fas fa-cog"></i>
-                            <span>Manual</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-gas-pump"></i>
-                            <span>PB 95</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-snowflake"></i>
-                            <span>Aire Acondicionado</span>
-                        </div>
-                    </div>
-                    <button class="boton-detalles" [routerLink]="['/especificaciones']">Ver detalles</button>
-                </div>
-            </div>
-
-            <div class="tarjeta-vehiculo">
-                <div class="imagen-vehiculo">
-                    <img src="assets/img/catalogo/6.jpeg" alt="Porsche SUV">
-                </div>
-                <div class="info-vehiculo">
-                    <div class="nombre-precio-vehiculo">
-                        <div class="nombre-vehiculo">
-                            <h3>Porsche</h3>
-                            <p>SUV</p>
-                            <p class="anio">2017</p>
-                        </div>
-                        <div class="precio">
-                            <span class="cantidad">€50</span>
-                            <span class="por-dia">por día</span>
-                        </div>
-                    </div>
-                    <div class="caracteristicas-vehiculo">
-                        <div class="caracteristica">
-                            <i class="fas fa-cog"></i>
-                            <span>Manual</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-gas-pump"></i>
-                            <span>PB 95</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-snowflake"></i>
-                            <span>Aire Acondicionado</span>
-                        </div>
-                    </div>
-                    <button class="boton-detalles" [routerLink]="['/especificaciones']">Ver detalles</button>
-                </div>
-            </div>
-
-            <!-- Furgonetas -->
-            <div class="tarjeta-vehiculo">
-                <div class="imagen-vehiculo">
-                    <img src="assets/img/catalogo/7.jpg" alt="Volkswagen Transporter Kombi">
-                </div>
-                <div class="info-vehiculo">
-                    <div class="nombre-precio-vehiculo">
-                        <div class="nombre-vehiculo">
-                            <h3>Volkswagen</h3>
-                            <p>Transporter Kombi</p>
-                            <p class="anio">2024</p>
-                        </div>
-                        <div class="precio">
-                            <span class="cantidad">€40</span>
-                            <span class="por-dia">por día</span>
-                        </div>
-                    </div>
-                    <div class="caracteristicas-vehiculo">
-                        <div class="caracteristica">
-                            <i class="fas fa-cog"></i>
-                            <span>Automát.</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-gas-pump"></i>
-                            <span>PB 95</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-snowflake"></i>
-                            <span>Aire Acondicionado</span>
-                        </div>
-                    </div>
-                    <button class="boton-detalles" [routerLink]="['/especificaciones']">Ver detalles</button>
-                </div>
-            </div>
-
-            <div class="tarjeta-vehiculo">
-                <div class="imagen-vehiculo">
-                    <img src="assets/img/catalogo/8.jpg" alt="Mercedes-Benz Sprinter">
-                </div>
-                <div class="info-vehiculo">
-                    <div class="nombre-precio-vehiculo">
-                        <div class="nombre-vehiculo">
-                            <h3>Mercedes-Benz</h3>
-                            <p>Sprinter 316 CDI</p>
-                            <p class="anio">2023</p>
-                        </div>
-                        <div class="precio">
-                            <span class="cantidad">€35</span>
-                            <span class="por-dia">por día</span>
-                        </div>
-                    </div>
-                    <div class="caracteristicas-vehiculo">
-                        <div class="caracteristica">
-                            <i class="fas fa-cog"></i>
-                            <span>Automát.</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-gas-pump"></i>
-                            <span>PB 98</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-snowflake"></i>
-                            <span>Aire Acondicionado</span>
-                        </div>
-                    </div>
-                    <button class="boton-detalles" [routerLink]="['/especificaciones']">Ver detalles</button>
-                </div>
-            </div>
-
-            <div class="tarjeta-vehiculo">
-                <div class="imagen-vehiculo">
-                    <img src="assets/img/catalogo/9.jpg" alt="Ford EcoBoost">
-                </div>
-                <div class="info-vehiculo">
-                    <div class="nombre-precio-vehiculo">
-                        <div class="nombre-vehiculo">
-                            <h3>Ford</h3>
-                            <p>EcoBoost</p>
-                            <p class="anio">2023</p>
-                        </div>
-                        <div class="precio">
-                            <span class="cantidad">€50</span>
-                            <span class="por-dia">por día</span>
-                        </div>
-                    </div>
-                    <div class="caracteristicas-vehiculo">
-                        <div class="caracteristica">
-                            <i class="fas fa-cog"></i>
-                            <span>Manual</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-gas-pump"></i>
-                            <span>PB 95</span>
-                        </div>
-                        <div class="caracteristica">
-                            <i class="fas fa-snowflake"></i>
-                            <span>Aire Acondicionado</span>
-                        </div>
-                    </div>
-                    <button class="boton-detalles" [routerLink]="['/especificaciones']">Ver detalles</button>
-                </div>
-            </div>
+  <div class="cuadricula-vehiculos">
+    <div class="tarjeta-vehiculo" *ngFor="let vehiculo of vehiculos">
+      <div class="imagen-vehiculo">
+        <img [src]="vehiculo.imagen" [alt]="vehiculo.modelo" (error)="vehiculo.imagen = 'assets/img/catalogo/default.png'">
+      </div>
+      <div class="info-vehiculo">
+        <div class="nombre-precio-vehiculo">
+          <div class="nombre-vehiculo">
+            <h3>{{ vehiculo.marca }}</h3>
+            <p>{{ vehiculo.modelo }}</p>
+            <p class="anio">{{ vehiculo.anio || '2023' }}</p>
+          </div>
+          <div class="precio">
+            <span class="cantidad">€{{ vehiculo.precio }}</span>
+            <span class="por-dia">por día</span>
+          </div>
         </div>
+        <div class="caracteristicas-vehiculo">
+          <div class="caracteristica">
+            <i [ngClass]="vehiculo.transmision === 'MANUAL' ? 'fas fa-cog' : 'fas fa-car'"></i>
+            <span>{{ vehiculo.transmision | titlecase }}</span>
+          </div>
+          <div class="caracteristica">
+            <i [ngClass]="{
+              'fas fa-gas-pump': vehiculo.combustible === 'GASOLINA' || vehiculo.combustible === 'GLP',
+              'fas fa-industry': vehiculo.combustible === 'DIESEL',
+              'fas fa-bolt': vehiculo.combustible === 'ELECTRICO'
+            }"></i>
+            <span>{{ vehiculo.combustible | titlecase }}</span>
+          </div>
+          <div class="caracteristica">
+            <i class="fas fa-snowflake"></i>
+            <span>{{ vehiculo.aireAcondicionado ? 'A/A' : 'Sin A/A' }}</span>
+          </div>
+        </div>
+        <button class="boton-detalles" (click)="verDetalles(vehiculo)">Ver detalles</button>
+
+      </div>
     </div>
+  </div>
+</div>
