@@ -72,6 +72,7 @@ export class FormularioAlquilarComponent implements OnInit{
       return;
     }
 
+    /*
     //recoger los datos de las fechas de inicio y dias de reserva 
     const reserva = new ReservaModel(
       this.matricula,                  
@@ -93,6 +94,6 @@ export class FormularioAlquilarComponent implements OnInit{
       console.error('Error al crear reserva', err);
     }
   });
-
+*/
    }
 }
