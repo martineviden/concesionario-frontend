@@ -24,8 +24,13 @@ export class HistorialDeReservasComponent implements OnInit {
     // Incluimos la lógica para obtener las reservas del usuario actual
     if (this.idUsuario) {
       this.reservaService.listAllReserva().subscribe((data: any) => {
-        // Incluimos el filtrado por usuario
-        this.reservas = data.filter((r: any) => r.id_usuario == this.idUsuario);
+        console.log('Reservas recibidas:', data); // Log para ver la respuesta del backend
+        if (data.length > 0) {
+          console.log('Primera reserva:', data[0]); // Log para ver la estructura de la primera reserva
+        }
+        // Mostramos todas las reservas sin filtrar (solo para pruebas)
+        this.reservas = data;
+        console.log('Reservas mostradas (sin filtrar):', this.reservas);
         this.aplicarFiltro();
         this.cargando = false;
       }, () => {

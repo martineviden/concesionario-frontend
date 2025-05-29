@@ -24,11 +24,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let reserva of reservasFiltradas">
-            <td>{{ reserva.dias_reserva }}</td>
-            <td>{{ reserva.fecha_reserva | date:'yyyy-MM-dd' }}</td>
+          <tr *ngFor="let reserva of reservasFiltradas[0]?.reservas">
+            <td>{{ reserva.diasReserva || reserva.dias_reserva }}</td>
+            <td>{{ reserva.fechaReserva || reserva.fecha_reserva }}</td>
             <td>{{ reserva.precio }}</td>
-            <td>{{ reserva.matricula }}</td>
+            <td>{{ reserva.vehiculo?.matricula }}</td>
           </tr>
         </tbody>
       </table>
