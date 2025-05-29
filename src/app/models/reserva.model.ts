@@ -4,7 +4,7 @@ import { VehiculoModel } from "./vehiculo.model";
 // Seguramente habra que incuir en el constructor las relaciones correspondientes
 export class ReservaModel{
 
-  id?:string;
+  id:string;
   vehiculo:VehiculoModel["matricula"];
   usuario: UsuarioModel["id"];
   fechaReserva: Date;
@@ -19,7 +19,7 @@ export class ReservaModel{
   fechaReserva: Date,
   diasReserva :number,
   precio:number,
-  id?:string,
+  id:string,
   ){
     this.vehiculo = vehiculo;
     this.usuario = usuario;
