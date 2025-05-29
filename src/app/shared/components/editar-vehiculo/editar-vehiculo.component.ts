@@ -26,6 +26,13 @@ import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
 // 7* Dar respuesta si se ha creado correctamente o no.
 
 // Crear tipo vheiculo. Rescatar tipo vheiculo, servir tipo vheiculo, crear vheiculo. Hacer el get de tipo vheiculos?
+// 1* Crear tipo de Vheiculo.
+// 2* Ver todos tipos Vheiculos.
+// 3* Crear Vheiculo en base a id_ tipo vheculo id- as nombre marca tal vez.
+// 4* Ver todos vheiculo
+// 5* todo correspondiente al update y eliminacion
+
+
 export class EditarVehiculoComponent implements OnInit{
 
   @Output() closeModal = new EventEmitter<void>();
@@ -39,14 +46,6 @@ export class EditarVehiculoComponent implements OnInit{
 // // Definimos las variables necesarias
   private crearVehiculoService = inject(VehiculoService);
   private rescatarTipoVheculo = inject(TipoVehiculoService);
-  private crearTipoVheiculoSinVheculo= inject(TipoVehiculoService);
-
-
-
-
-
-
-
 
   color!: VehiculoModel;
   kilometraje!: VehiculoModel;
@@ -64,8 +63,8 @@ export class EditarVehiculoComponent implements OnInit{
   modelo!: TipoVehiculoModel;
   precio!: TipoVehiculoModel;
   imagen!: TipoVehiculoModel
-  tipoVehiculos: TipoVehiculoModel[] = [];
-  modelosX: string[]=[];
+  tipoVehiculosList: any[] = [];
+
 
 
 
@@ -78,6 +77,7 @@ newVheiculoDatos!: VehiculoModel;
 
 
   constructor( private fb:FormBuilder){
+    //Formulario crear vheiculo
     this.newVheculoForm = this.fb.group({
       //Definicion de FormcontrolNamesselect
       matricula:[""],
@@ -122,33 +122,19 @@ newVheiculoDatos!: VehiculoModel;
 
   }
 
-   rescatarVheculos():void{
+
+
+
+   rescatarTipoVheculos():void{
       this.rescatarTipoVheculo.listAllTipoVheculo().subscribe((tipos:any)=>{
-      this.tipoVehiculos =tipos;
-      console.log([this.tipoVehiculos])
-      for(let i in this.tipoVehiculos){
-          this.tipoVehiculos[i]
-      }
-        console.log(this.tipoVehiculos[0].id);
-        for(let i = 0; i< this.tipoVehiculos.length;i++){
-          const ids = this.tipoVehiculos[i].id
-          console.log(ids)
-        }
-        for(let i = 0; i< this.tipoVehiculos.length;i++){
-           const marca = this.tipoVehiculos[i].marca
-          console.log(marca)
-        }
-        for(let i = 0; i< this.tipoVehiculos.length;i++){
+        this.tipoVehiculosList=tipos
+      });
 
 
 
-        }
-
-
-    })
   }
   ngOnInit(): void {
-    this.rescatarVheculos();
+    //this.rescatarTipoVheculos();
 
 
 
@@ -157,6 +143,7 @@ newVheiculoDatos!: VehiculoModel;
 
 
 }
+
 
 
 crearVheiculo(){
@@ -195,3 +182,18 @@ crearVheiculo(){
 
 }
 
+// this.tipoVehiculos =tipos;
+//       console.log([this.tipoVehiculos])
+//       for(let i in this.tipoVehiculos){
+//           this.tipoVehiculos[i]
+//       }
+//         console.log(this.tipoVehiculos[0].id);
+//         for(let i = 0; i< this.tipoVehiculos.length;i++){
+//           const ids = this.tipoVehiculos[i].id
+//           console.log(ids)
+//         }
+//         for(let i = 0; i< this.tipoVehiculos.length;i++){
+//            const marca = this.tipoVehiculos[i].marca
+//           console.log(marca)
+//         }
+//         for(let i = 0; i< this.tipoVehiculos.length;i++){

@@ -1,16 +1,29 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { EditarVehiculoComponent } from '../editar-vehiculo/editar-vehiculo.component';
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
+import { CreartTipoVheiculoAdminComponent } from '../creart-tipo-vheiculo-admin/creart-tipo-vheiculo-admin.component';
+import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
+
 
 @Component({
   selector: 'app-perfil-administracion',
- imports: [ CommonModule,EditarVehiculoComponent],
+  imports: [ CommonModule,EditarVehiculoComponent,CreartTipoVheiculoAdminComponent],
   templateUrl: './perfil-administracion.component.html',
   styleUrls: ['./perfil-administracion.component.css']
 })
 export class PerfilAdministracionComponent{
   @Input() vehiculoExiste?: TipoVehiculoModel;
+// private editarVehiculoComponent:EditarVehiculoComponent
+ private rescatarTipoVheculo = inject(TipoVehiculoService);
+ tipoVehiculosList:any[]=[];
+ constructor(){
+
+
+ }
+//  ejecutar():void{
+//   this.editarVehiculoComponent.rescatarTipoVheculos();
+//  }
 
   vehiculos = [
     {
@@ -65,12 +78,22 @@ export class PerfilAdministracionComponent{
 
   //agregar vehiculo
   showAgregarModal = false;
+
   abrirAgregarVehiculo(){
     this.showAgregarModal = true;
   }
   cerrarAgregarVehiculo(){
     this.showAgregarModal = false;
   }
+ //agregar vehiculo tipo
+  showAgregarModalTipoVheiculo = false;
+  abrirAgregarTipoVehiculo(){
+    this.showAgregarModalTipoVheiculo = true;
+  }
+  cerrarAgregarTipoVehiculo(){
+    this.showAgregarModalTipoVheiculo = false;
+  }
+
 
 //   abrir_cerarAgregarVehiculo(){
 //     if(this.mostrarFormulario ==false){
@@ -83,7 +106,11 @@ export class PerfilAdministracionComponent{
   //   this.mostrarFormulario = false;
   // }
 
+  rescatarTipoVheculos():void{
+      this.rescatarTipoVheculo.listAllTipoVheculo().subscribe((tipos:any)=>{
+        this.tipoVehiculosList=tipos
+      });
 
- 
 
+}
 }

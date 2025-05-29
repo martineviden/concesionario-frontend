@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import{TipoVehiculoModel} from '../models/tipo-vehiculo.model'
+import{TipoVehiculoModel, TipoVehiculoSinVhiculosModel} from '../models/tipo-vehiculo.model'
 
 
 @Injectable({
@@ -18,8 +18,12 @@ export class TipoVehiculoService {
     return this.http.get(`http://localhost:8080/tipos-vehiculo/${id}`,{withCredentials:false});
   }
   createOneTipoVheculo(vehiculoT:TipoVehiculoModel){
-    return this.http.post('http://localhost:8080/tipos-vehiculo',vehiculoT),{withCredentials:false};
+    return this.http.post('http://localhost:8080/tipos-vehiculo',vehiculoT,{withCredentials:false});
   }
+  createOneTipoVheculoSinVheiculo(vehiculoT:TipoVehiculoSinVhiculosModel){
+    return this.http.post('http://localhost:8080/tipos-vehiculo',vehiculoT,{withCredentials:false});
+  }
+
   updateOneTipoVheculo(id:number,tipoVehiculo: any){
 
     return this.http.put(`http://localhost:8080/tipos-vehiculo/${id}`,tipoVehiculo,{withCredentials:false});
