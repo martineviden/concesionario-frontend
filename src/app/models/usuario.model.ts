@@ -1,35 +1,17 @@
-import {Rol} from './enums'
+import { Rol } from './enums';
 
-export class UsuarioModel{
-  rol:Rol;
-  id:string;
-  dni: string;
-  nombre:string;
-  apellidos: string;
+export interface Usuario {
+  id?: string;
+  dni?: string;
+  nombre?: string;
+  apellidos?: string;
   correo: string;
-  contrasena: string;
-  telefono: string;
+  contrasena?: string;
+  telefono?: string;
+  rol: Rol;
+}
 
-  constructor(
-  rol:Rol,
-  id:string,
-  dni: string,
-  nombre:string,
-  apellidos: string,
-  correo: string,
-  contrasena: string,
-  telefono: string,
-  ){
-    this.rol = rol;
-    this.id = id;
-    this.dni = dni;
-    this.nombre = nombre;
-    this.apellidos = apellidos;
-    this.correo = correo;
-    this.contrasena = contrasena;
-    this.telefono = telefono;
-  }
-
-
-
+export interface UsuarioSession {
+  correo: string;
+  rol: Rol;
 }
