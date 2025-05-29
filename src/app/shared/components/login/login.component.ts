@@ -53,7 +53,9 @@ export class LoginComponent {
             console.log('Login incorrecto. Revisa los datos');
           }
         },
-        error: err => console.error('Error en login: ', err)
+        error: err => {
+          console.error('Error en login: ', err);
+        }
       });
     } else {
       console.log('Formulario inválido');

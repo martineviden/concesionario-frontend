@@ -27,10 +27,6 @@ export class AuthService {
   iniciarSesion(usuario: Usuario) {
     console.log('Usuario que inicia sesión:', usuario);
     console.log('Rol del usuario:', usuario.rol);
-    // Asegurarnos de que el rol se convierte al enum correctamente
-    /*if (typeof usuario.rol === 'string') {
-      usuario.rol = Rol[usuario.rol as keyof typeof Rol];
-    }*/
     this.usuarioActual.next(usuario);
     this.estaAutenticado.next(true);
     localStorage.setItem('usuario', JSON.stringify(usuario));
