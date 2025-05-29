@@ -84,7 +84,11 @@
             <span>{{ vehiculo.aireAcondicionado ? 'A/A' : 'Sin A/A' }}</span>
           </div>
         </div>
-        <button class="boton-detalles">Ver detalles</button>
+
+
+        <!-- Botón de acción -->
+        <button class="boton-detalles" (click)="verDetalles(vehiculo)">Ver detalles</button>
+
       </div>
     </div>
   </div>
