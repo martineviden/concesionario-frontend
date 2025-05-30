@@ -26,7 +26,6 @@ export class AuthService {
 
   iniciarSesion(usuario: Usuario) {
     console.log('Usuario que inicia sesión:', usuario);
-    console.log('Rol del usuario:', usuario.rol);
     this.usuarioActual.next(usuario);
     this.estaAutenticado.next(true);
     localStorage.setItem('usuario', JSON.stringify(usuario));
@@ -40,6 +39,7 @@ export class AuthService {
     this.usuarioActual.next(null);
     this.estaAutenticado.next(false);
     localStorage.removeItem('usuario');
+    localStorage.removeItem('token');
   }
 
   obtenerEstadoAutenticacion(): Observable<boolean> {

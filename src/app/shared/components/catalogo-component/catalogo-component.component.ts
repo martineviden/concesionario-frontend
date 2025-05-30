@@ -109,6 +109,7 @@ export class CatalogoComponentComponent implements OnInit {
       });
     });
   }
+
   verDetalles(vehiculo: any): void {
   this.router.navigate(['/especificaciones'], {
     queryParams: {
@@ -125,8 +126,6 @@ export class CatalogoComponentComponent implements OnInit {
     }
   });
 }
-
-
 
   cargarVehiculos(callback?: () => void): void {
     this.tipoVehiculoService.listAllTipoVehiculo().subscribe((response) => {

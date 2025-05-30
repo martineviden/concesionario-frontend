@@ -46,8 +46,12 @@ export class LoginComponent {
             this.rol = res.usuario.rol;
             this.nombreUsuario = res.usuario.nombre;
             this.authService.iniciarSesion(res.usuario);
+
+            localStorage.setItem('token', res.token);
+
             console.log('Login correcto. Bienvenido,', this.nombreUsuario);
             console.log('Rol del usuario:', res.usuario.rol);
+            
             this.close();
           } else {
             console.log('Login incorrecto. Revisa los datos');
