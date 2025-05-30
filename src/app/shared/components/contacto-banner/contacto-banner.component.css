@@ -1,62 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
-body {
-  font-family: 'Work Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap');
+
+.container{
+  text-align: center;
+
+}
+.titulo-seccion h1 {
+  margin: 110;
+  font-size: 3rem;
+  color: #000;
+}
+a {
+  text-decoration: none;
+  color: rgb(162, 162, 162);
 }
 
-.contenedor-principal {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 60px;
-      gap: 60px;
-    }
+.hero{
+  background: #5f3df7;
+  border-radius: 26px ;
+  color: white;
+  font-size: 20px;
+}
+.formulario-contacto .row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
-    .reserva-coche {
-      background-color: #4a0bca;
-      color: white;
-      padding: 40px;
-      border-radius: 20px;
-      width: 350px;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      text-align: center;
+.input-group {
+  flex: 1 1 45%; 
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.login-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.8rem;
+  visibility: hidden; 
+  position: absolute;
+  bottom: -1.2rem;
+}
+
+button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: orange;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  min-width: 200px;
       
-    }
-
-    .reserva-coche h3 {
-      margin: 0;
-      font-size: 24px;
-    }
-
-    .reserva-coche select {
-      padding: 12px;
-      border-radius: 6px;
-      border: none;
-      font-size: 16px;
-      background-color: #6f1af9;
-      color: white;
-      
-    }
-
-    .reserva-coche button {
-      padding: 12px;
-      background-color: orange;
-      border: none;
-      color: white;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 60px;
-    }
-
-    .imagen-lateral {
-      width: 800px;
-      height: 500px;
-      border-radius: 20px;
-      background-image: url('/assets/img/Coche_Venta.jpg');
-      background-position: center;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
-    }
+}
