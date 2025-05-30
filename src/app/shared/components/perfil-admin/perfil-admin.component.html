@@ -85,10 +85,41 @@
             </svg>
             Editar perfil
           </button>
+          <button *ngIf="esCliente" class="perfil-admin-btn secondary" (click)="abrirHistorialReservas()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+            </svg>
+            Historial de reservas
+          </button>
+          <button class="perfil-admin-btn danger" (click)="abrirCambioContrasena()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 17v-1m0-4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 0v1m0 4v2m0 0h.01"></path>
+            </svg>
+            Cambiar contraseña
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<app-editar-perfil *ngIf="showEditPerfilModal" (closeModal)="cerrarEditPerfil()"></app-editar-perfil>
+<app-editar-perfil 
+  *ngIf="showEditPerfilModal" 
+  [usuarioActual]="usuarioActual" 
+  [show]="showEditPerfilModal" 
+  (closeModal)="cerrarEditPerfil()">
+</app-editar-perfil>
+
+<app-historial-de-reservas 
+  *ngIf="showHistorialReservasModal && usuarioActual"
+  [show]="showHistorialReservasModal"
+  [idUsuario]="usuarioActual.id"
+  (close)="showHistorialReservasModal = false">
+</app-historial-de-reservas>
+
+<app-cambiar-contrasena
+  *ngIf="showCambioContrasenaModal"
+  [show]="showCambioContrasenaModal"
+  [usuarioActual]="usuarioActual"
+  (closeModal)="showCambioContrasenaModal = false">
+</app-cambiar-contrasena>

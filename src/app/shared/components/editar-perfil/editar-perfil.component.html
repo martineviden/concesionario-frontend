@@ -1,15 +1,15 @@
-<div class="fondo-modal">
-    <div class="modal-editar-perfil">
-      <h2>Editar perfil</h2>
-      <form action="#" method="post">
-        <input type="text" name="nombre" placeholder="Nombre" class="entrada-perfil" autocomplete="off">
-        <input type="text" name="apellidos" placeholder="Apellidos" class="entrada-perfil" autocomplete="off">
-        <input type="email" name="correo" placeholder="Correo electrónico" class="entrada-perfil" autocomplete="off">
-        <input type="tel" name="telefono" placeholder="Teléfono" class="entrada-perfil" autocomplete="off">
-        <input type="password" name="contrasena_actual" placeholder="Contraseña actual" class="entrada-perfil" autocomplete="off">
-        <input type="password" name="nueva_contrasena" placeholder="Nueva contraseña" class="entrada-perfil" autocomplete="new-password">
-        <button type="submit" class="btn-listo">Listo</button>
-      </form>
-      <button type="button" class="btn-cerrar" (click)="close()">&times;</button>
-    </div>
+<div *ngIf="toastVisible" class="toast-exito">{{ toastMensaje }}</div>
+<div class="modal-historial" *ngIf="show">
+  <div class="modal-content">
+    <button class="close-btn" type="button" (click)="close()">&times;</button>
+    <h2>Editar perfil</h2>
+    <form [formGroup]="perfilForm" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="nombre" placeholder="Nombre" class="entrada-perfil" autocomplete="off">
+      <input type="text" formControlName="apellidos" placeholder="Apellidos" class="entrada-perfil" autocomplete="off">
+      <input type="email" formControlName="correo" placeholder="Correo electrónico" class="entrada-perfil" autocomplete="off">
+      <input type="tel" formControlName="telefono" placeholder="Teléfono" class="entrada-perfil" autocomplete="off">
+      <button type="submit" class="btn-listo" [disabled]="perfilForm.invalid || cargando">{{ cargando ? 'Guardando...' : 'Listo' }}</button>
+      <div *ngIf="mensaje" class="mensaje-actualizacion" [ngClass]="{ 'error': error, 'exito': !error }">{{ mensaje }}</div>
+    </form>
   </div>
+</div>
