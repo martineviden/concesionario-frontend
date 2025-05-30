@@ -1,1 +1,37 @@
- 
+<p>historial-de-reservas works!</p>
+
+<!-- Incluimos el modal solo si show es true -->
+<div class="modal-historial" *ngIf="show">
+  <div class="modal-content">
+    <button class="close-btn" (click)="cerrar()">&times;</button>
+    <h2>Historial de Reservas</h2>
+    <div class="filtros">
+      <button [class.active]="filtro === 'recientes'" (click)="cambiarFiltro('recientes')">Más recientes</button>
+      <button [class.active]="filtro === 'antiguos'" (click)="cambiarFiltro('antiguos')">Más antiguos</button>
+    </div>
+    <div *ngIf="cargando" class="cargando">Cargando reservas...</div>
+    <div *ngIf="!cargando && reservasFiltradas.length === 0" class="sin-reservas">
+      No existen reservas registradas.
+    </div>
+    <div *ngIf="!cargando && reservasFiltradas.length > 0" class="tabla-reservas">
+      <table>
+        <thead>
+          <tr>
+            <th>Días</th>
+            <th>Fecha</th>
+            <th>Precio</th>
+            <th>Matrícula</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reserva of reservasFiltradas[0]?.reservas">
+            <td>{{ reserva.diasReserva || reserva.dias_reserva }}</td>
+            <td>{{ reserva.fechaReserva || reserva.fecha_reserva }}</td>
+            <td>{{ reserva.precio }}</td>
+            <td>{{ reserva.vehiculo?.matricula }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

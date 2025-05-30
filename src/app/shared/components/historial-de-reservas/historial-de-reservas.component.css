@@ -1,0 +1,123 @@
+/* Incluimos estilos para el modal de historial de reservas */
+.modal-historial {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(40, 40, 50, 0.35);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 32px 32px 32px;
+  min-width: 350px;
+  max-width: 95vw;
+  width: 480px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 2;
+  transition: color 0.2s;
+}
+.close-btn:hover {
+  color: #f97316;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+}
+
+.filtros {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.filtros button {
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6366f1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.filtros button.active, .filtros button:hover {
+  background: #6366f1;
+  color: #fff;
+}
+
+.cargando, .sin-reservas {
+  text-align: center;
+  color: #64748b;
+  font-size: 1.1rem;
+  margin: 24px 0 12px 0;
+}
+
+.tabla-reservas {
+  margin-top: 10px;
+  overflow-x: auto;
+}
+.tabla-reservas table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f9fafb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+}
+.tabla-reservas th, .tabla-reservas td {
+  padding: 12px 10px;
+  text-align: center;
+}
+.tabla-reservas th {
+  background: #6366f1;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.tabla-reservas td {
+  font-size: 1rem;
+  color: #1e293b;
+  background: #fff;
+}
+.tabla-reservas tr:nth-child(even) td {
+  background: #f3f4f6;
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 98vw;
+    min-width: unset;
+    padding: 18px 4px 18px 4px;
+  }
+  .tabla-reservas th, .tabla-reservas td {
+    padding: 8px 4px;
+    font-size: 0.95rem;
+  }
+}

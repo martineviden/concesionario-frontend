@@ -1,0 +1,18 @@
+<div *ngIf="toastVisible" class="toast-exito">{{ toastMensaje }}</div>
+<div class="modal-historial" *ngIf="show">
+  <div class="modal-content">
+    <button class="close-btn" type="button" (click)="close()">&times;</button>
+    <h2>Cambiar contraseña</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input type="password" formControlName="contrasena_actual" placeholder="Contraseña actual" class="entrada-perfil" autocomplete="current-password">
+      <div *ngIf="form.get('contrasena_actual')?.touched && form.get('contrasena_actual')?.invalid" class="mensaje-actualizacion error">La contraseña actual es obligatoria</div>
+      <input type="password" formControlName="nueva_contrasena" placeholder="Nueva contraseña" class="entrada-perfil" autocomplete="new-password">
+      <div *ngIf="form.get('nueva_contrasena')?.touched && form.get('nueva_contrasena')?.errors?.['required']" class="mensaje-actualizacion error">La nueva contraseña es obligatoria</div>
+      <div *ngIf="form.get('nueva_contrasena')?.touched && form.get('nueva_contrasena')?.errors?.['minlength']" class="mensaje-actualizacion error">Mínimo 6 caracteres</div>
+      <input type="password" formControlName="confirmar_contrasena" placeholder="Confirmar nueva contraseña" class="entrada-perfil" autocomplete="new-password">
+      <div *ngIf="form.hasError('noCoincide') && form.get('confirmar_contrasena')?.touched" class="mensaje-actualizacion error">Las contraseñas no coinciden</div>
+      <button type="submit" class="btn-listo" [disabled]="form.invalid || cargando">{{ cargando ? 'Guardando...' : 'Guardar' }}</button>
+      <div *ngIf="mensaje" class="mensaje-actualizacion" [ngClass]="{ 'error': error, 'exito': !error }">{{ mensaje }}</div>
+    </form>
+  </div>
+</div> 
