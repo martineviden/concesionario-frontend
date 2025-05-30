@@ -1,8 +1,9 @@
 <div class="main-body">
   <div class="car-container">
     <!-- IZQUIERDA -->
-    <div class="left-panel">
-      <h1>{{ tipoVehiculo.marca }} {{tipoVehiculo.modelo}}</h1>
+    <div class="left-panel" >
+      <h1>{{ tipoVehiculo.marca }} {{ tipoVehiculo.modelo }}</h1>
+
       <p class="price">
         <span class="price-amount">€{{ tipoVehiculo.precio }}</span>
         <span class="price-dia">/ día</span>
@@ -77,11 +78,11 @@
         <button class="btn-alquilar" (click)="mostrarFormularioAlquilar = true">Alquilar</button>
         <button *ngIf="esAdmin" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
       </div>
-      
-      <app-formulario-alquilar 
-        [tipoVehiculo]="tipoVehiculo" 
-        [vehiculo]="vehiculo" 
-        *ngIf="mostrarFormularioAlquilar" 
+
+      <app-formulario-alquilar
+        [tipoVehiculo]="tipoVehiculo"
+        [vehiculo]="vehiculo"
+        *ngIf="mostrarFormularioAlquilar"
         (cerrarModal)="mostrarFormularioAlquilar = false">
       </app-formulario-alquilar>
     </div>

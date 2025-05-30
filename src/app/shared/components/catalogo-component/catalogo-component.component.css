@@ -18,21 +18,59 @@
 }
 
 .filtro {
-  background-color: #eee;
+  background: linear-gradient(145deg, #f0f0f0, #dcdcdc);
+  color: #333;
   width: 190px;
-  height: auto;
+  padding: 12px 18px;
   border: none;
-  padding: 10px 15px;
   border-radius: 15px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-weight: 500;
+  font-size: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   position: relative;
+}
+
+.filtro:hover {
+  background: linear-gradient(145deg, #e0d4f7, #cbb3f0);
+  color: #6f42c1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(111, 66, 193, 0.2);
 }
 
 .filtro.activo {
   background-color: #6f42c1;
   color: white;
   font-weight: bold;
+  box-shadow: inset 0 0 0 2px white;
+}
+
+.filtro.activo i {
+  color: white;
+}
+
+.filtro.limpiar {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.filtro.limpiar:hover {
+  background-color: #f5c6cb;
+  color: #721c24;
+}
+
+.filtro.limpiar i {
+  color: #dc3545;
+}
+
+.filtro i {
+  font-size: 1.1em;
+  transition: color 0.3s ease;
 }
 
 .contador {
@@ -53,6 +91,13 @@
   display: inline-block;
 }
 
+.filtro-dropdown .filtro i {
+  float: right;
+  margin-left: 10px;
+  font-size: 0.9em;
+  color: #6c757d;
+}
+
 .dropdown-opciones {
   position: absolute;
   top: 100%;
@@ -66,6 +111,9 @@
   width: 190px;
   margin-top: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  transition: all 0.3s ease;
 }
 
 .dropdown-opciones button {
@@ -76,6 +124,9 @@
   cursor: pointer;
   transition: background-color 0.2s;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .dropdown-opciones button:hover {
@@ -86,6 +137,10 @@
   background-color: #6f42c1;
   color: white;
   font-weight: bold;
+}
+
+.dropdown-opciones button.activo i {
+  color: white;
 }
 
 .grid-vehiculos {
@@ -100,10 +155,16 @@
 .tarjeta-vehiculo {
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-vehiculo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .imagen-vehiculo img {
@@ -158,6 +219,14 @@
   gap: 8px;
 }
 
+.caracteristica i,
+.filtro i,
+.boton-detalles i {
+  font-size: 1.1em;
+  color: #6f42c1;
+  margin-right: 6px;
+}
+
 .boton-detalles {
   margin-top: 15px;
   width: 100%;
@@ -167,8 +236,39 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
-.dropdown-opciones {
-  max-height: 200px;
-  overflow-y: auto;
+
+.boton-detalles:hover {
+  background-color: #5a379f;
+  transform: translateY(-2px);
+}
+
+.boton-detalles i {
+  font-size: 1em;
+  vertical-align: middle;
+}
+
+.boton-detalles:hover i {
+  color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .grid-vehiculos {
+    grid-template-columns: 1fr;
+  }
+
+  .filtros {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .filtro {
+    width: 100%;
+  }
+
+  .dropdown-opciones {
+    width: 100%;
+  }
 }

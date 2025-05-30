@@ -1,40 +1,39 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <div class="catalogo-container">
   <h2 class="titulo">Selección de un vehículo</h2>
 
-  <!-- Filtros -->
   <div class="filtros">
-    <!-- Filtros por tipo de vehículo -->
     <ng-container *ngFor="let tipo of tiposVehiculo">
-      <button class="filtro"
-              [ngClass]="{ activo: filtrosActivos.includes('tipo:' + tipo) }"
-              (click)="toggleFiltro('tipo:' + tipo)">
+      <button class="filtro" [ngClass]="{ activo: filtrosActivos.includes('tipo:' + tipo) }" (click)="toggleFiltro('tipo:' + tipo)">
+        <i [ngClass]="{
+          'fas fa-car': tipo.toLowerCase() === 'coche',
+          'fas fa-motorcycle': tipo.toLowerCase() === 'moto',
+          'fas fa-van-shuttle': tipo.toLowerCase() === 'furgoneta'
+        }"></i>
         {{ tipo | titlecase }}
       </button>
     </ng-container>
 
-    <!-- Botón para limpiar -->
     <button class="filtro limpiar" (click)="limpiarFiltros()">
-      Limpiar filtros
+      <i class="fas fa-broom"></i> Limpiar filtros
     </button>
 
-    <!-- Filtros desplegables -->
     <ng-container *ngFor="let filtro of dropdownKeys">
       <div class="filtro-dropdown">
-        <button class="filtro"
-                [ngClass]="{ activo: isFiltroDropdownActivo(filtro) }"
-                (click)="toggleDropdown(filtro)">
-          {{ filtro | titlecase }}
+        <button class="filtro" [ngClass]="{ activo: isFiltroDropdownActivo(filtro) }" (click)="toggleDropdown(filtro)">
+          <i class="fas fa-filter"></i> {{ filtro | titlecase }}
+          <i class="fas fa-chevron-down"></i>
           <span *ngIf="getCantidadSeleccionados(filtro) > 0" class="contador">
             ({{ getCantidadSeleccionados(filtro) }})
           </span>
         </button>
         <div class="dropdown-opciones" *ngIf="dropdowns[filtro]">
-          <button
-            *ngFor="let opcion of getOpcionesFiltro(filtro)"
-            (click)="seleccionarFiltro(filtro, opcion)"
-            [ngClass]="{ activo: filtrosActivos.includes(filtro + ':' + opcion) }">
+          <button *ngFor="let opcion of getOpcionesFiltro(filtro)"
+                  (click)="seleccionarFiltro(filtro, opcion)"
+                  [ngClass]="{ activo: filtrosActivos.includes(filtro + ':' + opcion) }">
+            <ng-container *ngIf="filtrosActivos.includes(filtro + ':' + opcion)">
+              <i class="fas fa-check"></i>
+            </ng-container>
             {{ opcion | titlecase }}
           </button>
         </div>
@@ -42,17 +41,12 @@
     </ng-container>
   </div>
 
-  <!-- Grid de vehículos -->
   <div class="grid-vehiculos">
     <div class="tarjeta-vehiculo" *ngFor="let vehiculo of vehiculosFiltrados">
       <div class="imagen-vehiculo">
-        <img [src]="vehiculo.imagen"
-             [alt]="vehiculo.modelo"
-             (error)="vehiculo.imagen = 'assets/img/catalogo/default.png'">
+        <img [src]="vehiculo.imagen || 'assets/img/catalogo/default.png'" [alt]="vehiculo.modelo" (error)="vehiculo.imagen = 'assets/img/catalogo/default.png'">
       </div>
-
       <div class="info-vehiculo">
-        <!-- Marca, modelo y año -->
         <div class="nombre-precio-vehiculo">
           <div class="nombre-vehiculo">
             <h3>{{ vehiculo.marca }}</h3>
@@ -64,31 +58,27 @@
             <span class="por-dia">/día</span>
           </div>
         </div>
-
-        <!-- Características -->
         <div class="caracteristicas-vehiculo">
           <div class="caracteristica">
-            <i [ngClass]="vehiculo.transmision === 'MANUAL' ? 'fas fa-cog' : 'fas fa-car'"></i>
+            <i [ngClass]="vehiculo.transmision === 'MANUAL' ? 'fas fa-gear' : 'fas fa-car-side'"></i>
             <span>{{ vehiculo.transmision | titlecase }}</span>
           </div>
           <div class="caracteristica">
             <i [ngClass]="{
               'fas fa-gas-pump': vehiculo.combustible === 'GASOLINA' || vehiculo.combustible === 'GLP',
-              'fas fa-industry': vehiculo.combustible === 'DIESEL',
+              'fas fa-oil-can': vehiculo.combustible === 'DIESEL',
               'fas fa-bolt': vehiculo.combustible === 'ELECTRICO'
             }"></i>
             <span>{{ vehiculo.combustible | titlecase }}</span>
           </div>
           <div class="caracteristica">
-            <i class="fas fa-snowflake"></i>
+            <i class="fas fa-wind"></i>
             <span>{{ vehiculo.aireAcondicionado ? 'A/A' : 'Sin A/A' }}</span>
           </div>
         </div>
-
-
-        <!-- Botón de acción -->
-        <button class="boton-detalles" (click)="verDetalles(vehiculo)">Ver detalles</button>
-
+        <button class="boton-detalles" (click)="verDetalles(vehiculo)">
+          <i class="fas fa-magnifying-glass"></i> Ver detalles
+        </button>
       </div>
     </div>
   </div>
