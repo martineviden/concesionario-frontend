@@ -6,9 +6,11 @@
     <ng-container *ngFor="let tipo of tiposVehiculo">
       <button class="filtro" [ngClass]="{ activo: filtrosActivos.includes('tipo:' + tipo) }" (click)="toggleFiltro('tipo:' + tipo)">
         <i [ngClass]="{
-          'fas fa-car': tipo.toLowerCase() === 'coche',
-          'fas fa-motorcycle': tipo.toLowerCase() === 'moto',
-          'fas fa-van-shuttle': tipo.toLowerCase() === 'furgoneta'
+
+  'fas fa-car-side': tipo.toLowerCase() === 'coche',
+  'fas fa-motorcycle': tipo.toLowerCase() === 'moto',
+   'fas fa-truck-pickup': tipo.toLowerCase() === 'furgoneta'
+
         }"></i>
         {{ tipo | titlecase }}
       </button>
