@@ -237,6 +237,36 @@
   box-shadow: 0 2px 4px -1px rgba(234, 88, 12, 0.5);
 }
 
+.perfil-admin-btn.danger {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(239,68,68,0.10);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  animation: fadeInUp 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+.perfil-admin-btn.danger:hover {
+  background: #dc2626;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px rgba(239,68,68,0.18);
+}
+
+.perfil-admin-btn.danger:active {
+  background: #b91c1c;
+  transform: scale(0.98);
+}
+
 /* Animaciones de entrada */
 @keyframes fadeInUp {
   from {

@@ -1,4 +1,4 @@
-import { Inject, inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { UsuarioModel } from '../models/usuario.model';
@@ -9,10 +9,9 @@ import { Rol } from '../models/enums';
 })
 
 export class UsuarioService{
-  private http = Inject(HttpClient);
+  constructor(private http: HttpClient) {}
 
   listAllUsuario(){
-
     return this.http.get('http://localhost:8080/usuarios', { withCredentials:false });
   }
 

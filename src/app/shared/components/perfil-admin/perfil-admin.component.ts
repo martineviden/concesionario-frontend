@@ -7,10 +7,11 @@ import { Usuario } from '../../../models/login.model';
 import { Subscription } from 'rxjs';
 import { Rol } from '../../../models/enums';
 import { HistorialDeReservasComponent } from '../historial-de-reservas/historial-de-reservas.component';
+import { CambiarContrasenaComponent } from '../cambiar-contrasena/cambiar-contrasena.component';
 
 @Component({
   selector: 'app-perfil-admin',
-  imports: [EditarPerfilComponent, CommonModule, RouterModule, HistorialDeReservasComponent],
+  imports: [EditarPerfilComponent, CommonModule, RouterModule, HistorialDeReservasComponent, CambiarContrasenaComponent],
   templateUrl: './perfil-admin.component.html',
   styleUrl: './perfil-admin.component.css'
 })
@@ -20,6 +21,7 @@ export class PerfilAdminComponent implements OnInit {
   showEditPerfilModal = false;
   esCliente = false;
   showHistorialReservasModal = false;
+  showCambioContrasenaModal = false;
 
   constructor(private authService: AuthService) {}
 
@@ -41,6 +43,10 @@ export class PerfilAdminComponent implements OnInit {
   abrirHistorialReservas() {
     // Incluimos la lógica para mostrar el modal de historial de reservas
     this.showHistorialReservasModal = true;
+  }
+
+  abrirCambioContrasena() {
+    this.showCambioContrasenaModal = true;
   }
 
   ngOnDestroy() {
