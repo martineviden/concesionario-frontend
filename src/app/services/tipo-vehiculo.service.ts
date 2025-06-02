@@ -18,9 +18,9 @@ export class TipoVehiculoService {
   }
 
   getTipoVehiculoById(id: number) {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    //return this.http.get(`http://localhost:8080/tipos-vehiculo/${id}`, { headers: headers });
+    //const token = localStorage.getItem('token');
+   // const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.get(`http://localhost:8080/tipos-vehiculo/${id}`,  { withCredentials: false });
   }
   getOneTipoVheculo(id:number){
     return this.http.get(`http://localhost:8080/tipos-vehiculo/${id}`,{withCredentials:false});

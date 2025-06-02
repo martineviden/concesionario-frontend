@@ -104,7 +104,7 @@ newVheiculoDatos!: VehiculoModel;
 
 
    rescatarTipoVheculos():void{
-      this.rescatarTipoVheculo.listAllTipoVheculo().subscribe((tipos:any)=>{
+      this.rescatarTipoVheculo.listAllTipoVehiculo().subscribe((tipos:any)=>{
         this.tipoVehiculosList=tipos
       });
 
@@ -140,7 +140,7 @@ crearVheiculo(){
   const datosFormulario = this.newVheculoForm.value;
   const valuesFormulario: VehiculoModel = datosFormulario;
   console.log(valuesFormulario);
-    this.crearVehiculoService.createVhiculo(valuesFormulario)
+    this.crearVehiculoService.createVehiculo(valuesFormulario)
     .subscribe({
       next: res=> console.log('Vheiculo creado',res),
       error: err=> console.error('Error al crar vheiculo',err)
