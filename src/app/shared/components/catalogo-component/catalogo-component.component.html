@@ -1,95 +1,98 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <div class="catalogo-container">
   <h2 class="titulo">Selección de un vehículo</h2>
 
-  <!-- Filtros -->
-  <div class="filtros">
-    <!-- Filtros por tipo de vehículo -->
-    <ng-container *ngFor="let tipo of tiposVehiculo">
-      <button class="filtro"
-              [ngClass]="{ activo: filtrosActivos.includes('tipo:' + tipo) }"
-              (click)="toggleFiltro('tipo:' + tipo)">
-        {{ tipo | titlecase }}
-      </button>
-    </ng-container>
+  <!-- Filtros principales - SOLO tipo de vehículo y ubicación -->
+  <div class="filtros-principales">
+   <!-- Coche -->
+  <div class="filtro-tipo"
+       [ngClass]="{ 'activo': filtrosActivos.includes('tipo:COCHE') }"
+       (click)="toggleFiltro('tipo:COCHE')">
+    <img src="https://png.pngtree.com/png-clipart/20180613/ourmid/pngtree-fashion-car-private-car-orange-red-car-simulation-illustration-png-image_4484916.png"
+         alt="Coche"
+         class="icono-tipo">
+    <span>Coche</span>
+  </div>
 
-    <!-- Botón para limpiar -->
-    <button class="filtro limpiar" (click)="limpiarFiltros()">
-      Limpiar filtros
-    </button>
+  <!-- Moto -->
+  <div class="filtro-tipo"
+       [ngClass]="{ 'activo': filtrosActivos.includes('tipo:MOTO') }"
+       (click)="toggleFiltro('tipo:MOTO')">
+    <img src="https://www.publicdomainpictures.net/pictures/500000/nahled/motorfiets-moto-suzuki-png.png"
+         alt="Moto"
+         class="icono-tipo">
+    <span>Moto</span>
+  </div>
 
-    <!-- Filtros desplegables -->
-    <ng-container *ngFor="let filtro of dropdownKeys">
-      <div class="filtro-dropdown">
-        <button class="filtro"
-                [ngClass]="{ activo: isFiltroDropdownActivo(filtro) }"
-                (click)="toggleDropdown(filtro)">
-          {{ filtro | titlecase }}
-          <span *ngIf="getCantidadSeleccionados(filtro) > 0" class="contador">
-            ({{ getCantidadSeleccionados(filtro) }})
-          </span>
-        </button>
-        <div class="dropdown-opciones" *ngIf="dropdowns[filtro]">
-          <button
-            *ngFor="let opcion of getOpcionesFiltro(filtro)"
-            (click)="seleccionarFiltro(filtro, opcion)"
-            [ngClass]="{ activo: filtrosActivos.includes(filtro + ':' + opcion) }">
-            {{ opcion | titlecase }}
-          </button>
+  <!-- Furgoneta -->
+  <div class="filtro-tipo"
+       [ngClass]="{ 'activo': filtrosActivos.includes('tipo:FURGONETA') }"
+       (click)="toggleFiltro('tipo:FURGONETA')">
+    <img src="https://png.pngtree.com/png-vector/20241105/ourmid/pngtree-3d-black-van-isolated-on-transparent-background-png-image_14270637.png"
+         alt="Furgoneta"
+         class="icono-tipo">
+    <span>Furgoneta</span>
+  </div>
+
+    <!-- Filtro de ubicación -->
+    <div class="filtro-ubicacion">
+      <h3 class="subtitulo-filtro">Ubicación</h3>
+      <select class="select-ubicacion" (change)="onUbicacionChange($event)">
+        <option value="">Selecciona ubicación</option>
+        <option *ngFor="let ubicacion of provincias"
+                [value]="ubicacion"
+                [selected]="filtrosActivos.includes('ubicacion:' + ubicacion)">
+          {{ ubicacion | titlecase }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Separador visual -->
+  <div class="separador"></div>
+
+  <!-- Filtros de especificaciones - SIN ubicación -->
+  <div class="filtros-especificaciones">
+    <h3 class="subtitulo-filtro">Especificaciones</h3>
+    <div class="especificaciones-grid">
+      <!-- Solo combustible, transmisión, etiqueta y plazas -->
+      <div class="especificacion" *ngFor="let espec of especificaciones">
+        <div class="especificacion-titulo">{{ getTituloEspecificacion(espec) }}</div>
+        <div class="especificacion-opciones">
+          <div *ngFor="let opcion of getOpcionesFiltro(espec)"
+             class="opcion-especificacion"
+             [ngClass]="{ 'activo': filtrosActivos.includes(espec + ':' + opcion) }"
+             (click)="seleccionarFiltro(espec, opcion)">
+          {{ opcion | titlecase }}
+        </div>
         </div>
       </div>
-    </ng-container>
+    </div>
+  </div>
+
+  <!-- Acciones de filtrado -->
+  <div class="acciones-filtrado">
+    <button class="boton-limpiar" (click)="limpiarFiltros()">
+      <i class="fas fa-broom"></i> Limpiar filtros
+    </button>
+    <button class="boton-buscar" (click)="aplicarBusqueda()">
+      <i class="fas fa-search"></i> Buscar vehículos
+    </button>
+  </div>
+
+  <!-- Mensajes de estado -->
+  <div *ngIf="mostrarMensajeInicial" class="mensaje-estado">
+    <i class="fas fa-info-circle"></i>
+    <p>Por favor, selecciona al menos un tipo de vehículo y una ubicación para comenzar tu búsqueda.</p>
+  </div>
+
+  <div *ngIf="mostrarMensajeSinResultados" class="mensaje-estado mensaje-error">
+    <i class="fas fa-exclamation-triangle"></i>
+    <p>No hemos encontrado vehículos que coincidan con tus criterios de búsqueda.</p>
+    <button class="boton-secundario" (click)="limpiarFiltros()">Limpiar filtros</button>
   </div>
 
   <!-- Grid de vehículos -->
-  <div class="grid-vehiculos">
-    <div class="tarjeta-vehiculo" *ngFor="let vehiculo of vehiculosFiltrados">
-      <div class="imagen-vehiculo">
-        <img [src]="vehiculo.imagen"
-             [alt]="vehiculo.modelo"
-             (error)="vehiculo.imagen = 'assets/img/catalogo/default.png'">
-      </div>
-
-      <div class="info-vehiculo">
-        <!-- Marca, modelo y año -->
-        <div class="nombre-precio-vehiculo">
-          <div class="nombre-vehiculo">
-            <h3>{{ vehiculo.marca }}</h3>
-            <p>{{ vehiculo.modelo }}</p>
-            <p class="anio">{{ vehiculo.anio }}</p>
-          </div>
-          <div class="precio">
-            <span class="cantidad">€{{ vehiculo.precio }}</span>
-            <span class="por-dia">/día</span>
-          </div>
-        </div>
-
-        <!-- Características -->
-        <div class="caracteristicas-vehiculo">
-          <div class="caracteristica">
-            <i [ngClass]="vehiculo.transmision === 'MANUAL' ? 'fas fa-cog' : 'fas fa-car'"></i>
-            <span>{{ vehiculo.transmision | titlecase }}</span>
-          </div>
-          <div class="caracteristica">
-            <i [ngClass]="{
-              'fas fa-gas-pump': vehiculo.combustible === 'GASOLINA' || vehiculo.combustible === 'GLP',
-              'fas fa-industry': vehiculo.combustible === 'DIESEL',
-              'fas fa-bolt': vehiculo.combustible === 'ELECTRICO'
-            }"></i>
-            <span>{{ vehiculo.combustible | titlecase }}</span>
-          </div>
-          <div class="caracteristica">
-            <i class="fas fa-snowflake"></i>
-            <span>{{ vehiculo.aireAcondicionado ? 'A/A' : 'Sin A/A' }}</span>
-          </div>
-        </div>
-
-
-        <!-- Botón de acción -->
-        <button class="boton-detalles" (click)="verDetalles(vehiculo)">Ver detalles</button>
-
-      </div>
-    </div>
+  <div class="grid-vehiculos" *ngIf="!mostrarMensajeInicial && !mostrarMensajeSinResultados">
+    <!-- ... (mantener tu grid actual de vehículos) ... -->
   </div>
 </div>

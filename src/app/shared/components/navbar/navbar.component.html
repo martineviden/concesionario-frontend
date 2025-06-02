@@ -84,5 +84,5 @@
   </div>
 </nav>
 
-<app-login *ngIf="showLoginModal" (closeModal)="cerrarLogin()"></app-login>
+<app-login *ngIf="showLoginModal" (closeModal)="cerrarLogin()" (switchToRegister)="onSwitchToRegister()"></app-login>
 <app-registrarse *ngIf="showRegisterModal" (closeModal)="cerrarRegistro()"></app-registrarse>

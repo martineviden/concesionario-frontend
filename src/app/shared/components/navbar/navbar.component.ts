@@ -52,9 +52,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const navbar = document.getElementById('mainNavbar');
     if (!navbar) return;
-    
+
     this.isScrolling = true;
-    
+
     if (currentScrollTop > 50) {
       navbar.classList.remove('hidden');
       navbar.classList.add('instant-hide');
@@ -62,13 +62,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     } else {
       navbar.classList.remove('overlay');
     }
-    
+
     this.lastScrollTop = currentScrollTop;
-    
+
     if (this.scrollTimeout) {
       clearTimeout(this.scrollTimeout);
     }
-    
+
     this.scrollTimeout = setTimeout(() => {
       this.isScrolling = false;
       navbar.classList.remove('instant-hide');
@@ -94,5 +94,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   cerrarSesion() {
     this.authService.cerrarSesion();
+  }
+
+  onSwitchToRegister() {
+    this.showLoginModal = false;
+    this.showRegisterModal = true;
   }
 }

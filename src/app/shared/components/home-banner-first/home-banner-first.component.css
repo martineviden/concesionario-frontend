@@ -152,34 +152,6 @@
   pointer-events: none;
 }
 
-.boton-resultado {
-  display: block;
-  width: 100%;
-  padding: 16px;
-  border-radius: 12px;
-  border: none;
-  background-color: #ff9e0c;
-  color: #ffffff;
-  font-family: "Commissioner", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(255, 158, 12, 0.3);
-}
-
-.boton-resultado:hover {
-  background-color: #f08c00;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(255, 158, 12, 0.4);
-}
-
-.boton-resultado:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(255, 158, 12, 0.3);
-}
 
 /* Animaciones */
 @keyframes fadeInUp {
@@ -269,4 +241,110 @@
   .parrafo {
     font-size: 20px;
   }
+
+/* Estilo para el snackbar de advertencia */
+.warning-snackbar {
+  background-color: #ff9800; /* Color naranja de advertencia */
+  color: white;
+}
+
+.boton-resultado {
+  width: 100% !important;
+  height: 48px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background-color: #FF6D00 !important;
+  color: white !important;
+  border: none !important;
+  padding: 0 24px !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  border-radius: 4px !important;
+  transition: all 0.3s ease !important;
+  margin-top: 8px !important;
+  text-transform: uppercase !important;
+  box-shadow: none !important;
+}
+
+/* Asegurar que el label interno esté centrado */
+.boton-resultado .mdc-button__label {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.boton-resultado:hover {
+  background-color: #f1ae57 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.boton-resultado:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(255, 158, 12, 0.3) !important;
+}
+
+/* Elimina cualquier estilo de tema de Material */
+button.boton-resultado.mat-mdc-raised-button {
+  --mdc-protected-button-container-color: #FF6D00 !important;
+  --mdc-protected-button-label-text-color: white !important;
+  --mdc-protected-button-hover-container-color: #FF9100 !important;
+  --mdc-protected-button-pressed-container-color: #E65100 !important;
+}
+
+/* Snackbar de advertencia */
+.warn-snackbar {
+  background-color: #FF9800;
+  color: white;
+}
+
+.warn-snackbar .mat-simple-snackbar-action {
+  color: white;
+}
+
+/* Snackbar personalizado */
+.custom-snackbar {
+  background: linear-gradient(135deg, #FF6D00 0%, #FF9100 100%) !important;
+  color: white !important;
+  border-radius: 8px !important;
+  margin-top: 70px !important;
+  max-width: 400px !important;
+  box-shadow: 0 4px 20px rgba(255, 109, 0, 0.3) !important;
+  border-left: 5px solid #fff;
+  font-family: 'Commissioner', sans-serif;
+}
+
+.custom-snackbar .mat-simple-snackbar {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-snackbar .mat-simple-snackbar-action {
+  color: white !important;
+  font-weight: bold !important;
+  background: rgba(221, 111, 111, 0.2);
+  border-radius: 4px;
+  padding: 0 12px;
+  margin-left: 16px;
+  transition: all 0.3s ease;
+}
+
+.custom-snackbar .mat-simple-snackbar-action:hover {
+  background: rgba(199, 96, 96, 0.3);
+  transform: translateY(-1px);
+}
+
+
+.custom-snackbar {
+  animation: slideInDown 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.custom-snackbar-exit {
+  animation: slideOutUp 0.5s cubic-bezier(0.55, 0.09, 0.68, 0.53);
+}
+
 }

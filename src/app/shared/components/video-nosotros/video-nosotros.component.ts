@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-video-nosotros',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './video-nosotros.component.html',
-  styleUrl: './video-nosotros.component.css'
+  styleUrls: ['./video-nosotros.component.css']
 })
-export class VideoNosotrosComponent {
-
-}
+export class VideoNosotrosComponent {}

@@ -1,22 +1,105 @@
 <div class="modal-login-bg">
   <div class="modal-login">
-    <h2>Registro</h2>
-    <form [formGroup]="usuarioForm" (ngSubmit)="registrarUsuario()" class="registro-grid">
-      <div class="input-row">
-        <input type="text" placeholder="Nombre" class="login-input" autocomplete="off" formControlName="nombre" />
-        <input type="text" placeholder="Apellido" class="login-input" autocomplete="off" formControlName="apellidos" />
+    <h2>Crear Cuenta</h2>
+    <form [formGroup]="usuarioForm" (ngSubmit)="registrarUsuario()" class="registro-form">
+      <!-- Mensaje general de campos obligatorios -->
+    <div *ngIf="showFormErrors && usuarioForm.invalid" class="form-error-message">
+      <i class="fas fa-exclamation-circle"></i> Todos los campos son obligatorios
+    </div>
+      <!-- Fila 1: Nombre + Apellidos -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" class="form-input" formControlName="nombre" maxlength="30">
+          <div class="input-footer">
+            <div *ngIf="showFormErrors && usuarioForm.get('nombre')?.invalid" class="field-error">
+            {{ getErrorMessage('nombre') }}
+            </div>
+            <span class="char-counter">{{ usuarioForm.get('nombre')?.value?.length || 0 }}/30</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input id="apellidos" type="text" class="form-input" formControlName="apellidos" maxlength="50">
+          <div class="input-footer">
+            <div *ngIf="showFormErrors && usuarioForm.get('apellidos')?.invalid" class="field-error">
+            {{ getErrorMessage('apellidos') }}
+            </div>
+            <span class="char-counter">{{ usuarioForm.get('apellidos')?.value?.length || 0 }}/50</span>
+          </div>
+        </div>
       </div>
-      <div class="input-row">
-        <input type="email" placeholder="Correo Electronico" class="login-input" autocomplete="off" formControlName="correo" />
-        <input type="tel" placeholder="Telefono" class="login-input" autocomplete="off" formControlName="telefono" />
+
+      <!-- Fila 2: Email + Teléfono -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="correo">Correo Electrónico</label>
+          <input id="correo" type="email" class="form-input" formControlName="correo" maxlength="100">
+          <div class="input-footer">
+            <div *ngIf="showFormErrors && usuarioForm.get('correo')?.invalid" class="field-error">
+            {{ getErrorMessage('correo') }}
+            </div>
+            <span class="char-counter">{{ usuarioForm.get('correo')?.value?.length || 0 }}/100</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input id="telefono" type="tel" class="form-input" formControlName="telefono" maxlength="15" (input)="soloNumeros($event, 'telefono')">
+          <div class="input-footer">
+            <div *ngIf="showFormErrors && usuarioForm.get('telefono')?.invalid" class="field-error">
+            {{ getErrorMessage('telefono') }}
+            </div>
+            <span class="char-counter">{{ usuarioForm.get('telefono')?.value?.length || 0 }}/15</span>
+          </div>
+        </div>
       </div>
-      <div class="input-row">
-        <input type="password" placeholder="Contraseña" class="login-input" autocomplete="new-password" formControlName="contrasena" />
-        <input type="password" placeholder="Confirmacion contraseña" class="login-input" autocomplete="new-password" formControlName="confirmarContrasena"/>
+
+      <!-- Fila 3: Contraseñas -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contrasena">Contraseña</label>
+          <input id="contrasena" type="password" class="form-input" formControlName="contrasena" maxlength="20">
+          <div class="input-footer">
+            <div *ngIf="showFormErrors && usuarioForm.get('contrasena')?.invalid" class="field-error">
+            {{ getErrorMessage('contrasena') }}
+            </div>
+            <span class="char-counter">{{ usuarioForm.get('contrasena')?.value?.length || 0 }}/20</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmarContrasena">Confirmar Contraseña</label>
+          <input id="confirmarContrasena" type="password" class="form-input" formControlName="confirmarContrasena" maxlength="20">
+          <div class="input-footer">
+            <span class="error-message" *ngIf="usuarioForm.hasError('diferentesContrasenas')">
+              Las contraseñas no coinciden
+            </span>
+          </div>
+        </div>
       </div>
-      <div class="input-row">
-        <input type="text" placeholder="Dni" class="login-input" autocomplete="off" formControlName="dni" />
-        <button type="submit" class="login-btn registro-btn-inline">Registro</button>
+
+      <!-- Fila 4: DNI + Botón -->
+      <div class="form-row last-row">
+        <div class="form-group">
+          <label for="dni">DNI/NIE</label>
+          <input id="dni" type="text" class="form-input" formControlName="dni" maxlength="9">
+          <div class="input-footer">
+            <div *ngIf="showFormErrors && usuarioForm.get('dni')?.invalid" class="field-error">
+            {{ getErrorMessage('dni') }}
+            </div>
+            <span class="char-counter">{{ usuarioForm.get('dni')?.value?.length || 0 }}/9</span>
+          </div>
+        </div>
+
+        <div class="form-group button-group">
+          <button type="submit" class="submit-btn">
+            <span>Crear Cuenta</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+
       </div>
     </form>
     <button class="close-btn" type="button" (click)="close()">&times;</button>
