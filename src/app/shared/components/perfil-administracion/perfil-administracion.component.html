@@ -1,20 +1,7 @@
 <div *ngIf="esAdmin" class="admin-menu">
   <div class="admin-header">
     <h1 class="admin-title">Administración de vehículos</h1>
-    <button class="admin-add-btn" (click)="abrirAgregarVehiculo()">
-      <i class="bi bi-plus-circle-fill"style="font-size: 2rem;"></i>
-      Agregar Vehículo
-    </button>
-  </div>
-  <!--Agregar modal vehiculo-->
-  <!-- *ngIf="mostrarFormulario" -->
-  <!-- <div class="modal-backdrop" >
-    <div class="modal-contenido" >
-
-<div class="admin-header">
-  <h1 class="admin-title">Administración de vehículos</h1>
-
-  <div class="organizer-botones">
+   <div class="organizer-botones">
     <ul class="lista">
       <li>
         <button class="admin-add-btn" (click)="abrirAgregarTipoVehiculo()">
@@ -30,8 +17,17 @@
       </li>
     </ul>
   </div>
-</div>
+  </div>
+  <!--Agregar modal vehiculo-->
+  <!-- *ngIf="mostrarFormulario" -->
+  <!-- <div class="modal-backdrop" >
+    <div class="modal-contenido" >
+
+
  (click)="ejecutar()" -->
+
+
+</div>
 <div class="col-4">
   <button class="btn btn-success m-3"  (click)="rescatarTipoVheculos()">Cargar Tipos Vheiculos</button>
 </div>
@@ -151,12 +147,13 @@
     <button class="vehiculo-btn">Editar</button>
   </div>
 
-  <app-editar-vehiculo *ngIf="showAgregarModal" (closeModal)="cerrarAgregarVehiculo()"></app-editar-vehiculo>
+
+
 </div>
-<app-creart-tipo-vheiculo-admin
+
+  <app-creart-tipo-vheiculo-admin
   *ngIf="showAgregarModalTipoVheiculo"
-  (closeModal)="cerrarAgregarTipoVehiculo()"
-></app-creart-tipo-vheiculo-admin>
+  (closeModal)="cerrarAgregarTipoVehiculo()"></app-creart-tipo-vheiculo-admin>
 <app-editar-vehiculo
   *ngIf="showAgregarModal"
   (closeModal)="cerrarAgregarVehiculo()"
