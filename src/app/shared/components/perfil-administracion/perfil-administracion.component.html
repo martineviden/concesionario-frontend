@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div *ngIf="esAdmin" class="admin-menu">
   <div class="admin-header">
     <h1 class="admin-title">Administración de vehículos</h1>
@@ -11,6 +12,122 @@
   <!-- <div class="modal-backdrop" >
     <div class="modal-contenido" >
 
+=======
+<div class="admin-header">
+  <h1 class="admin-title">Administración de vehículos</h1>
+
+  <div class="organizer-botones">
+    <ul class="lista">
+      <li>
+        <button class="admin-add-btn" (click)="abrirAgregarTipoVehiculo()">
+          <i class="bi bi-plus-circle-fill" style="font-size: 2rem"></i>
+          Agregar Tipo Vehículo
+        </button>
+      </li>
+      <li>
+        <button class="admin-add-btn" (click)="abrirAgregarVehiculo()">
+          <i class="bi bi-plus-circle-fill" style="font-size: 2rem"></i>
+          Agregar Vehículo
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- (click)="ejecutar()" -->
+<div class="col-4">
+  <button class="btn btn-success m-3"  (click)="rescatarTipoVheculos()">Cargar Tipos Vheiculos</button>
+</div>
+<div class="row pt-2 m-0">
+  <div class="col-15">
+    <div class="card">
+      <div class="card-header bg-warning">
+        <h5>Lista tipo vheiculos</h5>
+      </div>
+      <div class="card-body">
+        <table class="table table-border">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>MARCA</th>
+              <th>MODELO</th>
+              <th>PRECIO</th>
+              <th>TIPO</th>
+              <th>IMAGEN</th>
+              <th>MATRICULA</th>
+              <th>color</th>
+              <th>kilometraje</th>
+              <th>disponibilidad</th>
+              <th>ubicacion</th>
+              <th>combustible</th>
+              <th>etiqueta</th>
+              <th>autonomia</th>
+              <th>puertas</th>
+              <th>aireAcondicionado</th>
+              <th>plazas</th>
+              <th>transmision</th>
+              <th>reservas</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+              @for (tipo of tipoVehiculosList; track $index) {
+                <tr>
+                  <td>
+                    {{$index+1}}
+                  </td>
+                  <td>{{tipo.marca}}</td>
+                  <td>{{tipo.modelo}}</td>
+                  <td>{{tipo.precio}}</td>
+                  <td>{{tipo.tipo}}</td>
+                  <td>{{tipo.imagen}}</td>
+                  @for (item of tipo.vehiculos; track $index) {
+
+                    <td>{{item.matricula}}</td>
+                    <td> {{item.color}}</td>
+                    <td> {{item.kilometraje}}</td>
+                    <td> {{item.disponibilidad}}</td>
+                    <td> {{item.ubicacion}}</td>
+                    <td> {{item.combustible}}</td>
+                    <td> {{item.etiqueta}}</td>
+                    <td> {{item.autonomia}}</td>
+                    <td> {{item.puertas}}</td>
+                    <td> {{item.aireAcondicionado}}</td>
+                    <td> {{item.plazas}}</td>
+                    <td> {{item.transmision}}</td>
+                    <td> {{item.reservas}}</td>
+                  }
+
+                </tr>
+
+              }
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="vehiculos-grid">
+  <div class="vehiculo-card" *ngFor="let veh of vehiculos">
+    <button class="vehiculo-delete" title="Eliminar">&#128465;</button>
+    <img
+      class="vehiculo-img"
+      [src]="veh.imagen"
+      [alt]="veh.nombre + ' ' + veh.modelo"
+    />
+    <div class="vehiculo-row">
+      <div>
+        <div class="vehiculo-nombre">{{ veh.nombre }}</div>
+        <div class="vehiculo-modelo">{{ veh.modelo }}</div>
+        <div class="vehiculo-anio">{{ veh.anio }}</div>
+      </div>
+      <div>
+        <span class="vehiculo-precio">{{ veh.precio }}</span>
+        <span class="vehiculo-dia">por día</span>
+      </div>
+>>>>>>> Funcionalidad_crear_Vheiculo_Servir_enums
     </div>
   </div> -->
 
@@ -34,7 +151,22 @@
       </div>
       <button class="vehiculo-btn" >Editar</button>
     </div>
+<<<<<<< HEAD
+=======
+    <button class="vehiculo-btn">Editar</button>
+>>>>>>> Funcionalidad_crear_Vheiculo_Servir_enums
   </div>
 
   <app-editar-vehiculo *ngIf="showAgregarModal" (closeModal)="cerrarAgregarVehiculo()"></app-editar-vehiculo>
 </div>
+<<<<<<< HEAD
+=======
+<app-creart-tipo-vheiculo-admin
+  *ngIf="showAgregarModalTipoVheiculo"
+  (closeModal)="cerrarAgregarTipoVehiculo()"
+></app-creart-tipo-vheiculo-admin>
+<app-editar-vehiculo
+  *ngIf="showAgregarModal"
+  (closeModal)="cerrarAgregarVehiculo()"
+></app-editar-vehiculo>
+>>>>>>> Funcionalidad_crear_Vheiculo_Servir_enums
