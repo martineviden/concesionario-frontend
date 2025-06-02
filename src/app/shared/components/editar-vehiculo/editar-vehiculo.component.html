@@ -1,148 +1,315 @@
-<div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0, 0, 0, 0.5);" aria-modal="true" role="dialog">
+<div
+  class="modal fade show d-block"
+  tabindex="-1"
+  style="background-color: rgba(0, 0, 0, 0.5)"
+  aria-modal="true"
+  role="dialog"
+>
   <div class="modal-dialog modal-lg modal-dialog-centered">
-
     <div class="modal-content">
-
       <div class="modal-header">
         <button type="button" class="btn-close" (click)="close()"></button>
       </div>
 
-      <form class="modal-body" [formGroup]="newVheculoForm" >
-
+      <form class="modal-body" [formGroup]="newVheculoForm">
         <div class="d-flex flex-wrap main-layout">
-           <div class="left-column flex-grow-1 me-4" style="min-width: 180px; max-width: 300px;">
+          <div
+            class="left-column flex-grow-1 me-4"
+            style="min-width: 180px; max-width: 300px"
+          >
             <div class="brand-price mb-4">
               <div class="mb-3">
-                  <!-- <label for="tipoid" class="form-label">ID-TIPOVHEICULO</label>
-                  <select class="form-select" aria-label="id-TIPOVHEICULO" formControlName="select_id_tipovheiculo" >
-                 <option *ngFor="let id of datosTodosVheicolos.id" [value]="id">{{ id }}</option>
-                </select> -->
-                <label for="tipoV" class="form-label">Tipo Vheiculo</label>
-                <select class="form-select" aria-label="Tipo de vehiculos" formControlName="selectTipoVheiculo" >
-                 <option *ngFor="let tipo of tipoV" [value]="tipo">{{ tipo }}</option>
+                <label class="form-label">ID_Tipo_Vheiculo</label>
+                <select
+                  class="form-select"
+                  aria-label="id_tipo_vheiculo"
+                  formControlName="id"
+                >
+                  @for (id_vh of tipoVehiculosList; track $index) {
+                  <option [value]="id_vh.id">{{ id_vh.id }}</option>
+
+                  }
+                </select>
+
+                <button
+                  type="submit"
+                  class="btn btn-success m-2"
+                  (click)="buscarTipoVehicoloID()"
+                >
+                  Buscar por id
+                </button>
+              </div>
+              @if (tipoVehiculoByID!=undefined) {
+              <div class="mb-3">
+                <label for="marca" class="form-label"
+                  >Marca: {{ tipoVehiculoByID.marca }}
+                </label>
+                <br />
+                <label for="modelo" class="form-label"
+                  >Modelo: {{ tipoVehiculoByID.modelo }}</label
+                >
+                <br />
+                <label for="precio" class="form-label"
+                  >Precio: {{ tipoVehiculoByID.precio }}</label
+                >
+                <br />
+                <label for="tipoV" class="form-label"
+                  >Tipo vheiculo: {{ tipoVehiculoByID.tipo }}</label
+                >
+                <br />
+                <label for="">Ubicacion</label>
+                <select
+                  class="form-select"
+                  aria-label="ubicacion"
+                  formControlName="ubicacion"
+                >
+                  @for (ubi of tipos_ubicacion; track $index) {
+                  <option [value]="ubi">{{ ubi }}</option>
+                  }
                 </select>
               </div>
-             <div class="mb-3">
-                <label for="ubicacion" class="form-label">Ubicacion</label>
-                <select class="form-select" aria-label="ubicacion" formControlName="selectTipoUbicacion" >
-                 <option *ngFor="let ubi of ubicacion" [value]="ubi">{{ ubi }}</option>
-                </select>
-              </div>
+              <div
+                class="right-column flex-grow-1"
+                style="min-width: 300px; max-width: 600px"
+              >
+                <div class="vehicle-info row g-3">
+                  <div class="col-12">
+                    <img
+                      src="/assets/img/icono-vehiculo/cajaDeCambios.png"
+                      alt="transmision"
+                      style="width: 24px"
+                    />
+                    <label for="transmision" class="form-label mb-0 flex-grow-1"
+                      >Transmisión</label
+                    >
+                    <select
+                      id="transmision"
+                      class="form-select flex-grow-2"
+                      formControlName="transmision"
+                    >
+                      @for (transmision of tipos_transmision; track $index) {
+                      <option [value]="transmision">{{ transmision }}</option>
+                      }
+                    </select>
+                  </div>
 
-          <div class="left-column flex-grow-1 me-4" style="min-width: 180px; max-width: 300px;">
-            <div class="brand-price mb-4">
-              <div class="mb-3">
-                <label for="marca" class="form-label">Marca</label>
-                <input type="text" id="marca" name="marca"  class="form-control" required formControlName="marca"/>
-              </div>
-<!--
-              <div class="mb-3">
-                <label for="modelo" class="form-label">Modelo</label>
-                <select type="text" id="modelo" name="modelo" class="form-control" formControlName="selectModelo">
-                   <option *ngFor="let model of tipoVehiculos" [value]="model">{{ model }}</option>
-                </select>
-              </div> -->
+                  <div class="col-12">
+                    <img
+                      src="/assets/img/icono-vehiculo/gasolina.png"
+                      alt="combustible"
+                      style="width: 24px"
+                    />
+                    <label for="combustible" class="form-label mb-0 flex-grow-1"
+                      >Combustible</label
+                    >
+                    <select
+                      id="combustible"
+                      class="form-select flex-grow-2"
+                      formControlName="combustible"
+                    >
+                      @for (combustible of tipos_combustible; track $index) {
+                      <option [value]="combustible">{{ combustible }}</option>
+                      }
+                    </select>
+                  </div>
 
+                  <div class="col-12">
+                    <img
+                      src="/assets/img/icono-vehiculo/puerta.png"
+                      alt="puertas"
+                    />
+                    <label for="combustible" class="form-label mb-0 flex-grow-1"
+                      >Puertas</label
+                    >
+                    <input
+                      type="number"
+                      id="puertas"
+                      class="form-control flex-grow-2"
+                      min="1"
+                      max="7"
+                      formControlName="puertas"
+                    />
+                  </div>
 
-              <div class="mb-3">
-                <label for="precio" class="form-label">Precio por día</label>
-                <div class="input-group">
-                  <input type="number" id="precio" name="precio" class="form-control" formControlName="precio" />
-                  <span class="input-group-text">€/día</span>
+                  <div class="col-12">
+                    <img
+                      src="/assets/img/icono-vehiculo/Group.png"
+                      alt="asientos"
+                      style="width: 24px"
+                    />
+                    <label for="asientos" class="form-label mb-0 flex-grow-1"
+                      >Asientos</label
+                    >
+                    <input
+                      type="number"
+                      id="asientos"
+                      class="form-control flex-grow-2"
+                      min="1"
+                      max="12"
+                      formControlName="plazas"
+                    />
+                  </div>
+
+                  <div class="col-12">
+                    <img
+                      src="/assets/img/icono-vehiculo/ruta.png"
+                      alt="distancia"
+                      style="width: 24px"
+                    />
+                    <label for="distancia" class="form-label mb-0 flex-grow-1"
+                      >Autonomía</label
+                    >
+                    <input
+                      type="number"
+                      id="distancia"
+                      class="form-control flex-grow-2"
+                      formControlName="autonomia"
+                    />
+                  </div>
+
+                  <div class="col-12">
+                    <img
+                      src="/assets/img/icono-vehiculo/etiqueta.png"
+                      alt="etiqueta"
+                      style="width: 24px"
+                    />
+                    <label for="etiqueta" class="form-label mb-0 flex-grow-1"
+                      >Etiqueta</label
+                    >
+                    <select
+                      id="etiqueta"
+                      name="etiqueta"
+                      class="form-select flex-grow-2"
+                      formControlName="etiqueta"
+                    >
+                      @for (etiqueta of tipos_etiqueta; track $index) {
+                      <option [value]="etiqueta">{{ etiqueta }}</option>
+                      }
+                    </select>
+                  </div>
+
+                  <div class="col-12">
+                    <img
+                      src="/assets/img/icono-vehiculo/matricula.png"
+                      alt="matricula"
+                      style="width: 24px"
+                    />
+                    <label for="matricula" class="form-label mb-0 flex-grow-1"
+                      >Matrícula</label
+                    >
+                    <input
+                      type="text"
+                      id="matricula"
+                      name="matricula"
+                      class="form-control flex-grow-2"
+                      formControlName="matricula"
+                    />
+                  </div>
+
+                  <div class="col-12">
+                    <img
+                      src="/assets/img/icono-vehiculo/color.png"
+                      alt="color"
+                      style="width: 24px"
+                    />
+                    <label for="color" class="form-label mb-0 flex-grow-1"
+                      >Color</label
+                    >
+                    <input
+                      type="text"
+                      id="color"
+                      name="color"
+                      class="form-control flex-grow-2"
+                      formControlName="color"
+                    />
+                  </div>
+
+                  <div class="col-12">
+                    <img
+                      src="/assets/img/icono-vehiculo/kilometraje.png"
+                      alt="kilometraje"
+                      style="width: 24px"
+                    />
+                    <label for="kilometraje" class="form-label mb-0 flex-grow-1"
+                      >Kilometraje</label
+                    >
+                    <input
+                      type="number"
+                      id="kilometraje"
+                      name="kilometraje"
+                      class="form-control flex-grow-2"
+                      formControlName="kilometraje"
+                    />
+                  </div>
+                </div>
+
+                <div class="equipamiento">
+                  <h3>Incluye si tiene equipamiento del Coche</h3>
+                  <ul class="list-unstyled d-flex flex-wrap gap-3">
+                    <li>
+                      <label
+                        ><input
+                          type="checkbox"
+                          id="ac"
+                          formControlName="aireAcondicionado"
+                          required
+                        />
+                        Aire Acondicionado</label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input
+                          type="checkbox"
+                          id="dispo"
+                          formControlName="disponibilidad"
+                          required
+                        />
+                        Disponibiidad</label
+                      >
+                    </li>
+                  </ul>
                 </div>
               </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  (click)="close()"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  (click)="crearVheiculo()"
+                >
+                  Guardar
+                </button>
+              </div>
+
+              }
             </div>
 
-            <img src="/assets/img/coche_azul.jpg" alt="Auto" class="main-image img-fluid mb-3" />
+            <!-- <img
+              src="/assets/img/coche_azul.jpg"
+              alt="Auto"
+              class="main-image img-fluid mb-3"
+            />
 
             <div class="vehicle-thumbnails d-flex gap-2">
-              <img src="/assets/img/coche_azul.jpg" alt="Thumbnail" class="thumb img-thumbnail" style="width: 60px; height: 60px; cursor: pointer;" />
+              <img
+                src="/assets/img/coche_azul.jpg"
+                alt="Thumbnail"
+                class="thumb img-thumbnail"
+                style="width: 60px; height: 60px; cursor: pointer"
+              />
               <!-- Agrega más thumbnails si quieres -->
-            </div>
-          </div>
-
-          <div class="right-column flex-grow-1" style="min-width: 300px; max-width: 600px;">
-            <div class="vehicle-info row g-3">
-
-              <div class="col-12">
-                <img src="/assets/img/icono-vehiculo/cajaDeCambios.png" alt="transmision" style="width:24px;" />
-                <label for="transmision" class="form-label mb-0 flex-grow-1">Transmisión</label>
-                <select id="transmision" class="form-select flex-grow-2" formControlName="selectTipoTransmision" >
-                 <option *ngFor="let tipotrans of transmision" [value]="tipotrans">{{ tipotrans }}</option>
-                </select>
-              </div>
-
-              <div class="col-12">
-                <img src="/assets/img/icono-vehiculo/gasolina.png" alt="combustible" style="width:24px;" />
-                <label for="combustible" class="form-label mb-0 flex-grow-1">Combustible</label>
-                <select id="combustible" class="form-select flex-grow-2" formControlName="selectTipoCombustible">
-                  <option *ngFor="let tipocombustible of combustible" [value]="tipocombustible">{{ tipocombustible }}</option>
-                </select>
-              </div>
-
-              <div class="col-12">
-                <img src="/assets/img/icono-vehiculo/puerta.png" alt="puertas" style="width:24px;" />
-                <label for="puertas" class="form-label mb-0 flex-grow-1">Puertas</label>
-                <input type="number" id="puertas" class="form-control flex-grow-2" min="1" max="7"  formControlName="puertas"/>
-              </div>
-
-              <div class="col-12">
-                <img src="/assets/img/icono-vehiculo/Group.png" alt="asientos" style="width:24px;" />
-                <label for="asientos" class="form-label mb-0 flex-grow-1">Asientos</label>
-                <input type="number" id="asientos" class="form-control flex-grow-2" min="1" max="9"  formControlName="plazas"/>
-              </div>
-
-              <div class="col-12">
-                <img src="/assets/img/icono-vehiculo/ruta.png" alt="distancia" style="width:24px;" />
-                <label for="distancia" class="form-label mb-0 flex-grow-1">Distancia</label>
-                <input type="number" id="distancia" class="form-control flex-grow-2" formControlName="autonomia"/>
-              </div>
-
-              <div class="col-12">
-                <img src="/assets/img/icono-vehiculo/etiqueta.png" alt="etiqueta" style="width:24px;" />
-                <label for="etiqueta" class="form-label mb-0 flex-grow-1">Etiqueta</label>
-                <select id="etiqueta" name="etiqueta" class="form-select flex-grow-2"formControlName="selectTipoEtiqueta">
-                  <option *ngFor="let tipoetiquetaAmbiental of etiquetaAmbiental" [value]="tipoetiquetaAmbiental">{{ tipoetiquetaAmbiental }}
-                  </option>
-                </select>
-              </div>
-
-              <div class="col-12">
-                <img src="/assets/img/icono-vehiculo/matricula.png" alt="matricula" style="width:24px;">
-                <label for="matricula" class="form-label mb-0 flex-grow-1">Matrícula</label>
-                <input type="text" id="matricula" name="matricula" class="form-control flex-grow-2" formControlName="matricula" />
-              </div>
-
-              <div class="col-12">
-                <img src="/assets/img/icono-vehiculo/color.png" alt="color" style="width:24px;" />
-                <label for="color" class="form-label mb-0 flex-grow-1">Color</label>
-                <input type="text" id="color" name="color" class="form-control flex-grow-2" formControlName="color" />
-              </div>
-
-              <div class="col-12">
-                <img src="/assets/img/icono-vehiculo/kilometraje.png" alt="kilometraje" style="width:24px;" />
-                <label for="kilometraje" class="form-label mb-0 flex-grow-1">Kilometraje</label>
-                <input type="number" id="kilometraje" name="kilometraje" class="form-control flex-grow-2" formControlName="kilometraje" />
-              </div>
-            </div>
-
-            <div class="equipamiento">
-              <h3>Equipamiento Del Coche</h3>
-              <ul class="list-unstyled d-flex flex-wrap gap-3">
-                <li><label><input type="checkbox" id="ac" formControlName="aireAcondicionado" required/> Aire Acondicionado</label></li>
-                <li><label><input type="checkbox" id="dispo" formControlName="disponibilidad" required/> Disponibiidad</label></li>
-              </ul>
-            </div>
           </div>
         </div>
-      </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
-        <button type="submit" class="btn btn-success"(click)="crearVheiculo()">Guardar</button>
-      </div>
-
-    </div>
+        <!-- </div> -->
       </form>
+    </div>
+  </div>
 </div>
-

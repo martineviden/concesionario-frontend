@@ -32,7 +32,7 @@ import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
 // 4* Ver todos vheiculo
 // 5* todo correspondiente al update y eliminacion
 
-
+// Para crear el vheiculo nos hace falta id_tipo de vheiculo principalmente. Seguramente haycrar un servicio que reciba id
 export class EditarVehiculoComponent implements OnInit{
 
   @Output() closeModal = new EventEmitter<void>();
@@ -40,31 +40,21 @@ export class EditarVehiculoComponent implements OnInit{
  close(){
     this.closeModal.emit();
   }
-//  mostrarModulo: boolean = true;
+
 
 
 // // Definimos las variables necesarias
   private crearVehiculoService = inject(VehiculoService);
   private rescatarTipoVheculo = inject(TipoVehiculoService);
 
-  color!: VehiculoModel;
-  kilometraje!: VehiculoModel;
-  disponibilidad!: VehiculoModel;
-  ubicacion= Provincia.keys();
-  combustible= Combustible.keys();
-  etiquetaAmbiental = EtiquetaAmbiental.keys();
-  autonomia!: VehiculoModel;
-  puertas!: VehiculoModel;
-  aireAcondicionado!: VehiculoModel;
-  plazas!: VehiculoModel;
-  transmision= Transmision.keys();
-  tipoV = TipoVehiculo.keys();
-  matricula!:TipoVehiculoModel;
-  modelo!: TipoVehiculoModel;
-  precio!: TipoVehiculoModel;
-  imagen!: TipoVehiculoModel
+  // Aqui recibo todos tipos vheiculos
   tipoVehiculosList: any[] = [];
-
+  tipoVehiculoByID: any;
+  //marca:any;
+  tipos_ubicacion=Provincia.keys();
+  tipos_transmision=Transmision.keys();
+  tipos_combustible=Combustible.keys();
+  tipos_etiqueta = EtiquetaAmbiental.keys();
 
 
 
@@ -73,55 +63,43 @@ export class EditarVehiculoComponent implements OnInit{
 
 newVheculoForm: FormGroup;
 newVheiculoDatos!: VehiculoModel;
+//recuperacionId: FormGroup;
 
 
 
   constructor( private fb:FormBuilder){
     //Formulario crear vheiculo
     this.newVheculoForm = this.fb.group({
-      //Definicion de FormcontrolNamesselect
-      matricula:[""],
-      color:[""],
-      kilometraje:[""],
-      disponibilidad:true,
-      selectTipoUbicacion:[
-        this.ubicacion[0]
-      ],
-      selectTipoCombustible:[
-        this.combustible[0]
-      ],
-      selectTipoEtiqueta:[
-        this.etiquetaAmbiental[0]
-      ],
-      autonomia:[""],
-      puertas:[""],
-      aireAcondicionado:true,
-      plazas:[""],
-      selectTipoTransmision:[
-        this.transmision[0]
-      ],
-      selectmarca:[
-
-      ],
-      selectModelo:[
-        //[this.tipoVehiculos["modelo[0]"]]
-      ],
+      //Definicion de FormcontrolNamesselect.Le servire directamente las ociones
+      id:[""],
+      marca:[""],
+      modelo:[""],
       precio:[""],
-       selectTipoVheiculo:[
-        this.tipoV[0]
-      ],
-      // select_id_tipovheiculo:[
-      //   this.datosTodosVheicolos.id[0]
-      // ],
-      imagen:["unaImagen"],
-      reservas:[[]]
+      tipo:[""],
+      imagen:[""],
+      ubicacion:[""],
+
+       matricula: [""],
+       color: [""],
+        //marca:[null],
+        kilometraje: [],
+        disponibilidad: [],
+        combustible: [""],
+        etiqueta: [""],
+        autonomia: [""],
+        puertas: [],
+        aireAcondicionado: [],
+        plazas: [],
+        transmision: [],
+        reservas: [[""]]
 
     });
 
 
 
-  }
 
+
+  }
 
 
 
@@ -130,12 +108,26 @@ newVheiculoDatos!: VehiculoModel;
         this.tipoVehiculosList=tipos
       });
 
-
-
   }
-  ngOnInit(): void {
-    //this.rescatarTipoVheculos();
+buscarTipoVehicoloID():void{
+  const datoFormularioID= this.newVheculoForm.value;
+  console.log(datoFormularioID);
+  const id:TipoVehiculoModel["id"] = datoFormularioID.id;
+      this.rescatarTipoVheculo.getOneTipoVheculo(id)
+      .subscribe((tipos:any)=>{
+        this.tipoVehiculoByID=tipos;
+        console.log(this.tipoVehiculoByID);
 
+
+      });
+
+    }
+
+
+
+  ngOnInit(): void {
+    this.rescatarTipoVheculos();
+    //console.log(this.tipoVehiculosList);
 
 
 
@@ -144,38 +136,16 @@ newVheiculoDatos!: VehiculoModel;
 
 }
 
-
-
 crearVheiculo(){
   const datosFormulario = this.newVheculoForm.value;
   const valuesFormulario: VehiculoModel = datosFormulario;
-  this.newVheiculoDatos={
-      matricula: this.newVheculoForm.value.matricula,
-      color: this.newVheculoForm.value.color,
-      kilometraje: this.newVheculoForm.value.kilometraje,
-      disponibilidad: this.newVheculoForm.value.disponibilidad,
-      ubicacion: this.newVheculoForm.value.selectTipoUbicacion,
-      combustible: this.newVheculoForm.value.selectTipoCombustible,
-      etiqueta: this.newVheculoForm.value.selectTipoEtiqueta,
-      autonomia: this.newVheculoForm.value.autonomia,
-      puertas: this.newVheculoForm.value.autonomia,
-      aireAcondicionado: this.newVheculoForm.value.aireAcondicionado,
-      plazas: this.newVheculoForm.value.plazas,
-      transmision: this.newVheculoForm.value.selectTipoTransmision,
-      marca: this.newVheculoForm.value.marca,
-      modelo: this.newVheculoForm.value.modelo,
-      precio: this.newVheculoForm.value.precio,
-      tipoVheiculo: this.newVheculoForm.value.selectTipoVheiculo,
-      id_tipo_vehiculo: this.newVheculoForm.value.id,
-      imagen: this.newVheculoForm.value.imagen,
-      reservas :this.newVheculoForm.value.reservas,
-     }
-    this.crearVehiculoService.createVhiculo(this.newVheiculoDatos)
+  console.log(valuesFormulario);
+    this.crearVehiculoService.createVhiculo(valuesFormulario)
     .subscribe({
       next: res=> console.log('Vheiculo creado',res),
       error: err=> console.error('Error al crar vheiculo',err)
     });
-    console.log(this.newVheiculoDatos);
+    //console.log(this.newVheiculoDatos);
     console.log(valuesFormulario);
     this.close();
   }
@@ -197,3 +167,24 @@ crearVheiculo(){
 //           console.log(marca)
 //         }
 //         for(let i = 0; i< this.tipoVehiculos.length;i++){
+//this.newVheiculoDatos={
+      // matricula: this.newVheculoForm.value.matricula,
+      // color: this.newVheculoForm.value.color,
+      // kilometraje: this.newVheculoForm.value.kilometraje,
+      // disponibilidad: this.newVheculoForm.value.disponibilidad,
+      // ubicacion: this.newVheculoForm.value.selectTipoUbicacion,
+      // combustible: this.newVheculoForm.value.selectTipoCombustible,
+      // etiqueta: this.newVheculoForm.value.selectTipoEtiqueta,
+      // autonomia: this.newVheculoForm.value.autonomia,
+      // puertas: this.newVheculoForm.value.autonomia,
+      // aireAcondicionado: this.newVheculoForm.value.aireAcondicionado,
+      // plazas: this.newVheculoForm.value.plazas,
+      // transmision: this.newVheculoForm.value.selectTipoTransmision,
+      // marca: this.newVheculoForm.value.marca,
+      // modelo: this.newVheculoForm.value.modelo,
+      // precio: this.newVheculoForm.value.precio,
+      // tipoVheiculo: this.newVheculoForm.value.selectTipoVheiculo,
+      // id_tipo_vehiculo: this.newVheculoForm.value.id,
+      // imagen: this.newVheculoForm.value.imagen,
+      // reservas :this.newVheculoForm.value.reservas,
+     //}
