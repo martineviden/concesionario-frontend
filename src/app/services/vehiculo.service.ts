@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import{TipoVehiculoModel} from '../models/tipo-vehiculo.model'
 import{VehiculoModel} from '../models/vehiculo.model'
 import { Provincia } from '../models/enums';
@@ -29,7 +29,9 @@ getVehiculosPorProvincia(ubicacionVehiculos: Provincia) {
 }
 
 createVehiculo(vehiculo: VehiculoModel) {
-  return this.http.post('http://localhost:8080/vehiculos', vehiculo, { withCredentials:false });
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+  return this.http.post('http://localhost:8080/vehiculos', vehiculo, { headers:headers });
 }
 
 updateVehiculo(matricula: string, vehiculo: VehiculoModel) {
