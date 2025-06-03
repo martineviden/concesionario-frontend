@@ -12,7 +12,7 @@ import {TipoVehiculo} from '../models/enums'
 })
 
 export class VehiculoService{
-
+  private apiUrl = 'http://localhost:8080/vehiculos';
   private http = inject(HttpClient);
   //private httpParams= inject(HttpParams);
 

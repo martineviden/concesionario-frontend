@@ -8,11 +8,11 @@ import { AuthService } from '../../../../services/auth.service';
 import { Rol } from '../../../../models/enums';
 import { CreartTipoVheiculoAdminComponent } from '../../creart-tipo-vheiculo-admin/creart-tipo-vheiculo-admin.component';
 import { TipoVehiculoService } from '../../../../services/tipo-vehiculo.service';
-
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-administracion',
-  imports: [ CommonModule,EditarVehiculoComponent,CreartTipoVheiculoAdminComponent],
+  imports: [ CommonModule, RouterModule, EditarVehiculoComponent, CreartTipoVheiculoAdminComponent],
   templateUrl: './perfil-administracion.component.html',
   styleUrls: ['./perfil-administracion.component.css']
 })

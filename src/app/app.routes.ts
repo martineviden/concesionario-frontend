@@ -8,6 +8,7 @@ import { EspecificacionesComponent } from './vistas/especificaciones/especificac
 import { PerfilComponent } from './vistas/perfil/perfil.component';
 import { RegistroComponent } from './shared/components/Header_Footer/registro/registro.component';
 import { LoginComponent } from './shared/components/Header_Footer/login/login.component';
+import { PerfilAdministracionComponent } from './shared/components/Perfil/perfil-administracion/perfil-administracion.component';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,5 +21,6 @@ export const routes: Routes = [
   { path: 'nosotros', component: NosotrosComponent},
   { path: 'contacto', component: ContactoComponent},
   {path: 'especificaciones/:matricula', component: EspecificacionesComponent},
-  {path: 'perfil', component: PerfilComponent}
+  {path: 'perfil', component: PerfilComponent},
+  {path: 'admin', component: PerfilAdministracionComponent}
 ];
