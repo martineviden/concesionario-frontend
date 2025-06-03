@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { UsuarioService } from '../../../services/usuario.service';
-import { AuthService } from '../../../services/auth.service';
-import { Usuario } from '../../../models/login.model';
+import { UsuarioService } from '../../../../services/usuario.service';
+import { AuthService } from '../../../../services/auth.service';
+import { Usuario } from '../../../../models/login.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

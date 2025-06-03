@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { EditarPerfilComponent } from "../editar-perfil/editar-perfil.component";
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
-import { Usuario } from '../../../models/login.model';
+import { AuthService } from '../../../../services/auth.service';
+import { Usuario } from '../../../../models/login.model';
 import { Subscription } from 'rxjs';
-import { Rol } from '../../../models/enums';
-import { HistorialDeReservasComponent } from '../historial-de-reservas/historial-de-reservas.component';
+import { Rol } from '../../../../models/enums';
+import { HistorialDeReservasComponent } from '../../historial-de-reservas/historial-de-reservas.component';
 import { CambiarContrasenaComponent } from '../cambiar-contrasena/cambiar-contrasena.component';
 
 @Component({

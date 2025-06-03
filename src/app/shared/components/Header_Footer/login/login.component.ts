@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginService } from '../../../services/login.service';
-import { AuthService } from '../../../services/auth.service';
+import { LoginService } from '../../../../services/login.service';
+import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 

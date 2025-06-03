@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from "../../shared/components/navbar/navbar.component";
-import { FooterComponent } from "../../shared/components/footer/footer.component";
-import { PerfilAdminComponent } from "../../shared/components/perfil-admin/perfil-admin.component";
-import { PerfilAdministracionComponent } from '../../shared/components/perfil-administracion/perfil-administracion.component';
+import { PerfilAdminComponent } from "../../shared/components/Perfil/perfil-admin/perfil-admin.component";
+import { PerfilAdministracionComponent } from '../../shared/components/Perfil/perfil-administracion/perfil-administracion.component';
+import { NavbarComponent } from '../../shared/components/Header_Footer/navbar/navbar.component';
+import { FooterComponent } from '../../shared/components/Header_Footer/footer/footer.component';
 
 @Component({
   selector: 'app-perfil',

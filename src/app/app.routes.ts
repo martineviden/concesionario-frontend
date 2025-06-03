@@ -3,7 +3,7 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { RegistroComponent } from './shared/components/registro/registro.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { CatalogoComponent } from './vistas/catalogo/catalogo.component';
-import { EditarPerfilComponent } from './shared/components/editar-perfil/editar-perfil.component';
+import { EditarPerfilComponent } from './shared/components/Perfil/editar-perfil/editar-perfil.component';
 import { NosotrosComponent } from './vistas/nosotros/nosotros.component';
 import { ContactoComponent } from './vistas/contacto/contacto.component';
 import { EspecificacionesComponent } from './vistas/especificaciones/especificaciones.component';

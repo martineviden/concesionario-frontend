@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { EditarVehiculoComponent } from '../editar-vehiculo/editar-vehiculo.component';
-import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
-import { Usuario } from '../../../models/login.model';
+import { EditarVehiculoComponent } from '../../editar-vehiculo/editar-vehiculo.component';
+import { TipoVehiculoModel } from '../../../../models/tipo-vehiculo.model';
+import { Usuario } from '../../../../models/login.model';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../../services/auth.service';
-import { Rol } from '../../../models/enums';
-import { CreartTipoVheiculoAdminComponent } from '../creart-tipo-vheiculo-admin/creart-tipo-vheiculo-admin.component';
-import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
+import { AuthService } from '../../../../services/auth.service';
+import { Rol } from '../../../../models/enums';
+import { CreartTipoVheiculoAdminComponent } from '../../creart-tipo-vheiculo-admin/creart-tipo-vheiculo-admin.component';
+import { TipoVehiculoService } from '../../../../services/tipo-vehiculo.service';
 
 
 @Component({

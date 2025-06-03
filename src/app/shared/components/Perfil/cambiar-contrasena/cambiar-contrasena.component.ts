@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Usuario } from '../../../models/login.model';
-import { UsuarioService } from '../../../services/usuario.service';
-import { UsuarioModel } from '../../../models/usuario.model';
-import { Rol } from '../../../models/enums';
+import { Usuario } from '../../../../models/login.model';
+import { UsuarioService } from '../../../../services/usuario.service';
+import { UsuarioModel } from '../../../../models/usuario.model';
+import { Rol } from '../../../../models/enums';
 
 @Component({
   selector: 'app-cambiar-contrasena',
@@ -81,4 +81,4 @@ export class CambiarContrasenaComponent {
       }
     });
   }
-} 
+}

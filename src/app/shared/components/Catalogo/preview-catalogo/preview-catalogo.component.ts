@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
+import { TipoVehiculoService } from '../../../../services/tipo-vehiculo.service';
 
 @Component({
   selector: 'app-preview-catalogo',

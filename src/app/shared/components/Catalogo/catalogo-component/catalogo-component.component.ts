@@ -1,15 +1,15 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
+import { TipoVehiculoService } from '../../../../services/tipo-vehiculo.service';
 import {
   Provincia,
   Combustible,
   Transmision,
   EtiquetaAmbiental,
   TipoVehiculo
-} from '../../../models/enums';
-import { VehiculoService } from '../../../services/vehiculo.service';
+} from '../../../../models/enums';
+import { VehiculoService } from '../../../../services/vehiculo.service';
 
 type EspecificationKey = 'combustible' | 'transmision' | 'etiqueta' | 'plazas';
 type DropdownKey = 'ubicacion' | EspecificationKey;

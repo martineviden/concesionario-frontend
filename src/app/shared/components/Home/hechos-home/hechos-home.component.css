@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap");
+
+.hechos-cifras {
+  background: #5937e0;
+  border-radius: 15px;
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.hechos-cifras .titulo {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hechos-cifras .descripcion {
+  font-size: 16px;
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cifra-box {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+.icono-box {
+  background: #ff9e0c;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.img-fondo {
+  position: absolute;
+  top: 0;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.coche {
+  left: 160px;
+}
+
+.llanta {
+  width: 50%;
+}
+
+.hechos-cifras > *:not(.img-fondo) {
+  position: relative;
+}
+
+.texto-box {
+  flex: 1;
+  padding: 10px 0;
+  color: black;
+  text-align: left;
+}
+
+.texto-box h3 {
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.texto-box p {
+  margin: 0;
+  font-weight: 600;
+  color: #8c8c8c;
+}
+
+.seccion-flota {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.titulo-flota {
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.descripcion-flota {
+  color: #6c757d;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.imagen-flota {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  padding-left: 80px;
+}
+
+.card {
+  background: #5937e0;
+  border-radius: 15px;
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.llanta2 {
+  width: 70%;
+}
+
+.coche2 {
+  opacity: 0.2;
+}
+
+.titulo {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 2.9rem;
+  font-weight: 700;
+}
+
+.descripcion {
+  font-size: 16px;
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.animate-section {
+  overflow: hidden;
+}
+
+.animate-element {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition-property: transform, opacity;
+  transition-duration: 1.2s;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.animate-element[data-animation="fade-up"] {
+  transform: translateY(40px);
+}
+
+.animate-element[data-animation="fade-right"] {
+  transform: translateX(-40px);
+}
+
+.animate-element[data-animation="fade-left"] {
+  transform: translateX(40px);
+}
+
+.animate-element[data-animation="slide-up"] {
+  transform: translateY(60px);
+}
+
+.animate-element[data-animation="fade-in"] {
+  opacity: 0;
+}
+
+.animate-element[data-animation="fade-scale"] {
+  transform: scale(0.9);
+}
+
+.animate-element[data-animation="rotate-in"] {
+  transform: rotate(-15deg) scale(0.9);
+  transform-origin: center center;
+}
+
+.animate-element.visible {
+  opacity: 1;
+  transform: translate(0) rotate(0) scale(1);
+}
+
+.animate-element.visible .icono-box {
+  animation: pulse 1.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-element.visible .texto-box h3 {
+  animation: countUp 2s forwards;
+}
+
+@keyframes countUp {
+  0% {
+    opacity: 0.5;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-element[data-animation="rotate-in"].visible {
+  animation: slowRotate 60s linear infinite;
+}
+
+@keyframes slowRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.disfruta-kilometros .card {
+  overflow: hidden;
+}
+
+.disfruta-kilometros .llanta2,
+.hechos-cifras .llanta {
+  position: absolute;
+  transform-origin: center center;
+}

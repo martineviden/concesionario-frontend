@@ -1,9 +1,9 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RegistroService } from '../../../services/registro.service';
-import { Usuario } from '../../../models/registro.model';
-import { Rol } from '../../../models/enums';
+import { RegistroService } from '../../../../services/registro.service';
+import { Usuario } from '../../../../models/registro.model';
+import { Rol } from '../../../../models/enums';
 
 @Component({
   selector: 'app-registrarse',

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from "@angular/core";
-import { TipoVehiculo } from '../../../models/enums';
-import { Provincia } from '../../../models/enums';
+import { TipoVehiculo } from '../../../../models/enums';
+import { Provincia } from '../../../../models/enums';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from "@angular/common";
 import { Router } from '@angular/router';
