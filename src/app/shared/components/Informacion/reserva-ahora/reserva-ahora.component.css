@@ -18,39 +18,66 @@
   margin-bottom: 20px;
 }
 
-.boton-reserva {
-  background-color: #f4a024;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 16px;
-}
-
-.boton-reserva:hover {
-  background-color: #d87f1b;
-}
-
 .coche{
   max-width: 500px;
   height: auto;
   margin-left: 40px;
   border-radius: 12px;
-  
+
 }
 .card{
   background: #5937E0;
   border-radius: 15px;
   color: white;
-  min-height: 300px; 
+  min-height: 300px;
 
 }
 
 .llanta2{
     width: 70%;
     position: absolute;
-    opacity: 0.1; 
-    z-index: 0; 
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.boton-reserva {
+  background-color: #f4a024;
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  z-index: 10;
+  pointer-events: auto !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.boton-reserva::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+}
+
+.boton-reserva:hover {
+  background-color: #d87f1b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.boton-reserva:active {
+  transform: translateY(0);
+}
+
+@media (min-width: 1200px) {
+  .boton-reserva {
+    padding: 15px 30px;
+    font-size: 18px;
+  }
 }

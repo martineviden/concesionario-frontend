@@ -108,6 +108,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   cerrarSesion() {
     this.authService.cerrarSesion();
+    window.location.href = '/'; // Redirige a la página de inicio
   }
 
   onSwitchToRegister() {
