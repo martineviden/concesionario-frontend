@@ -2,11 +2,12 @@ import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../login/login.component';
 import { RegistroComponent } from '../registro/registro.component';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
 import { Usuario } from '../../../../models/login.model';
 import { Subscription } from 'rxjs';
 import { Rol } from '../../../../models/enums';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -26,9 +27,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   usuarioActual: Usuario | null = null;
   estaAutenticado = false;
   esAdmin = false;
+  rutaActual: string = '';
   private authSubscription: Subscription | null = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router : Router) {}
+
 
   ngOnInit(): void {
     this.authSubscription = this.authService.obtenerUsuarioActual().subscribe(usuario => {
@@ -36,7 +39,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.estaAutenticado = !!usuario;
       this.esAdmin = usuario?.rol === Rol.ADMIN;
     });
+
+    // Detecta cambios de ruta
+    this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event: any) => {
+      this.rutaActual = event.urlAfterRedirects || event.url;
+    });
   }
+
+
 
   ngOnDestroy(): void {
     if (this.scrollTimeout) {
@@ -76,6 +88,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }, 300);
   }
 
+
+
   abrirLogin() {
     this.showLoginModal = true;
   }
@@ -100,4 +114,5 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.showLoginModal = false;
     this.showRegisterModal = true;
   }
+
 }
