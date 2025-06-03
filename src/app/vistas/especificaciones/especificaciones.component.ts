@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { TipoVehiculoBannerFirstComponent } from '../../shared/components/tipo-vehiculo-banner-first/tipo-vehiculo-banner-first.component';
 import { TipoVehiculoResennasComponent } from '../../shared/components/tipo-vehiculo-resennas/tipo-vehiculo-resennas.component';
-import { PreviewCatalogoComponent } from '../../shared/components/preview-catalogo/preview-catalogo.component';
 import { VehiculoModel } from '../../models/vehiculo.model';
 import { TipoVehiculoModel } from '../../models/tipo-vehiculo.model';
 import { VehiculoService } from '../../services/vehiculo.service';
 import { TipoVehiculoService } from '../../services/tipo-vehiculo.service';
 import { ActivatedRoute } from '@angular/router';
-import { MarcasBlockComponent } from "../../shared/components/marcas-block/marcas-block.component";
+import { FooterComponent } from '../../shared/components/Header_Footer/footer/footer.component';
+import { NavbarComponent } from '../../shared/components/Header_Footer/navbar/navbar.component';
+import { PreviewCatalogoComponent } from '../../shared/components/Catalogo/preview-catalogo/preview-catalogo.component';
+import { MarcasBlockComponent } from '../../shared/components/Contacto/marcas-block/marcas-block.component';
 
 @Component({
   selector: 'app-especificaciones',
