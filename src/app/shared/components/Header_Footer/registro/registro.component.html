@@ -10,7 +10,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="nombre">Nombre</label>
-          <input id="nombre" type="text" class="form-input" formControlName="nombre" maxlength="30">
+          <input id="nombre" type="text" class="form-input" formControlName="nombre" maxlength="30" (input)="soloLetras($event, 'nombre')">
           <div class="input-footer">
             <div *ngIf="showFormErrors && usuarioForm.get('nombre')?.invalid" class="field-error">
             {{ getErrorMessage('nombre') }}
@@ -21,7 +21,7 @@
 
         <div class="form-group">
           <label for="apellidos">Apellidos</label>
-          <input id="apellidos" type="text" class="form-input" formControlName="apellidos" maxlength="50">
+          <input id="apellidos" type="text" class="form-input" formControlName="apellidos" maxlength="50" (input)="soloLetras($event, 'apellido')">
           <div class="input-footer">
             <div *ngIf="showFormErrors && usuarioForm.get('apellidos')?.invalid" class="field-error">
             {{ getErrorMessage('apellidos') }}
