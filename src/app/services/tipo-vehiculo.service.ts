@@ -34,9 +34,10 @@ export class TipoVehiculoService {
     return this.http.post('http://localhost:8080/tipos-vehiculo',vehiculoT,{headers:headers});
   }
 
-  updateOneTipoVheculo(id:number,tipoVehiculo: any){
+  updateOneTipoVheculo(id:number,tipoVehiculo: TipoVehiculoSinVhiculosModel){
 
-    return this.http.get(`http://localhost:8080/tipos-vehiculo/${id}`, { withCredentials: false });
+
+    return this.http.put(`http://localhost:8080/tipos-vehiculo/${id}`,tipoVehiculo, { withCredentials:false });
   }
 
   createTipoVehiculo(vehiculoT: TipoVehiculoModel) {
@@ -49,14 +50,14 @@ export class TipoVehiculoService {
 
   }
 
-  updateTipoVehiculo(id: number, tipoVehiculo: any) {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    //return this.http.put(`http://localhost:8080/tipos-vehiculo/${id}`, tipoVehiculo, { headers: headers });
+  // updateTipoVehiculo(id: number, tipoVehiculo: any) {
+  //   const token = localStorage.getItem('token');
+  //   const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+  //   //return this.http.put(`http://localhost:8080/tipos-vehiculo/${id}`, tipoVehiculo, { headers: headers });
 
-    return this.http.put(`http://localhost:8080/tipos-vehiculo/${id}`, tipoVehiculo, { withCredentials: false });
+  //   return this.http.put(`http://localhost:8080/tipos-vehiculo/${id}`, tipoVehiculo, { withCredentials: false });
 
-  }
+  // }
 
   deleteTipoVehiculo(id: number) {
     const token = localStorage.getItem('token');
