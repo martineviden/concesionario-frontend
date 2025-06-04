@@ -2,13 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TipoVehiculoService } from '../../../../services/tipo-vehiculo.service';
-import {
-  Provincia,
-  Combustible,
-  Transmision,
-  EtiquetaAmbiental,
-  TipoVehiculo
-} from '../../../../models/enums';
+import { Provincia, Combustible, Transmision, EtiquetaAmbiental, TipoVehiculo } from '../../../../models/enums';
 import { VehiculoService } from '../../../../services/vehiculo.service';
 
 type EspecificationKey = 'combustible' | 'transmision' | 'etiqueta' | 'plazas';
@@ -182,13 +176,13 @@ export class CatalogoComponentComponent implements OnInit {
       if (!filtrosPorTipo[clave]) {
         filtrosPorTipo[clave] = new Set();
       }
-      filtrosPorTipo[clave].add(valor);
+      filtrosPorTipo[clave].add(valor.toLowerCase());
     }
 
     this.vehiculosFiltrados = this.vehiculos.filter((vehiculo) => {
       return Object.entries(filtrosPorTipo).every(([clave, valores]) => {
         const valorVehiculo = (vehiculo as any)[clave];
-        return valores.has(valorVehiculo?.toString());
+        return valores.has(valorVehiculo?.toString().toLowerCase());
       });
     });
   }
@@ -220,6 +214,7 @@ export class CatalogoComponentComponent implements OnInit {
     }
 
     this.aplicarFiltros();
+    console.log('Vehículos filtrados:', this.vehiculosFiltrados);
     this.mostrarMensajeInicial = false;
     this.mostrarMensajeSinResultados = this.vehiculosFiltrados.length === 0;
   }
@@ -234,7 +229,6 @@ export class CatalogoComponentComponent implements OnInit {
 
     if (ubicacion) {
       this.filtrosActivos.push(`ubicacion:${ubicacion}`);
-      this.aplicarBusqueda();
     }
   }
 
@@ -245,7 +239,7 @@ export class CatalogoComponentComponent implements OnInit {
     } else {
       this.filtrosActivos.push(filtro);
     }
-    this.aplicarBusqueda();
+   
   }
 
   // Alterna un dropdown

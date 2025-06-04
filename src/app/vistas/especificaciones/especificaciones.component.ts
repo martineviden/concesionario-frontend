@@ -8,7 +8,7 @@ import { TipoVehiculoService } from '../../services/tipo-vehiculo.service';
 import { ActivatedRoute } from '@angular/router';
 import { FooterComponent } from '../../shared/components/Header_Footer/footer/footer.component';
 import { NavbarComponent } from '../../shared/components/Header_Footer/navbar/navbar.component';
-import { PreviewCatalogoComponent } from '../../shared/components/Catalogo/preview-catalogo/preview-catalogo.component';
+import { PreviewCatalogoComponent } from '../../shared/components/Home/preview-catalogo/preview-catalogo.component';
 import { MarcasBlockComponent } from '../../shared/components/Contacto/marcas-block/marcas-block.component';
 
 @Component({

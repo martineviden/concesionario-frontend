@@ -5,7 +5,7 @@ import { FooterComponent } from '../../shared/components/Header_Footer/footer/fo
 import { NavbarComponent } from '../../shared/components/Header_Footer/navbar/navbar.component';
 import { DatoHomeComponent } from '../../shared/components/Home/dato-home/dato-home.component';
 import { HechosHomeComponent } from '../../shared/components/Home/hechos-home/hechos-home.component';
-import { PreviewCatalogoComponent } from '../../shared/components/Catalogo/preview-catalogo/preview-catalogo.component';
+import { PreviewCatalogoComponent } from '../../shared/components/Home/preview-catalogo/preview-catalogo.component';
 
 @Component({
   selector: 'app-home',
