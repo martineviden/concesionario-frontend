@@ -152,3 +152,9 @@
 .vehiculo-btn:hover {
   background: #3d25a0;
 }
+
+.card-header{
+ background-color:  #6366f1;
+ color: #fafafa;
+ font-size: 1rem;;
+}
