@@ -136,19 +136,26 @@ buscarTipoVehicoloID():void{
 
 }
 
-crearVheiculo(){
+crearVheiculo() {
   const datosFormulario = this.newVheculoForm.value;
-  const valuesFormulario: VehiculoModel = datosFormulario;
-  console.log(valuesFormulario);
-    this.crearVehiculoService.createVehiculo(valuesFormulario)
-    .subscribe({
-      next: res=> console.log('Vheiculo creado',res),
-      error: err=> console.error('Error al crar vheiculo',err)
-    });
-    //console.log(this.newVheiculoDatos);
-    console.log(valuesFormulario);
-    this.close();
-  }
+
+  const vehiculo: VehiculoModel = {
+    ...datosFormulario,
+    tipoVehiculo: { id: parseInt(datosFormulario.id) }, //  Corrige aquí: usa el campo correcto del formulario
+    reservas: []
+  };
+
+  console.log('Vehículo antes de enviar:', JSON.stringify(vehiculo, null, 2));
+
+  this.crearVehiculoService.createVehiculo(vehiculo).subscribe({
+    next: res => {
+      console.log(' Vehículo creado:', res);
+      this.close();
+    },
+    error: err => console.error(' Error al crear vehículo:', err)
+  });
+}
+
 
 }
 
