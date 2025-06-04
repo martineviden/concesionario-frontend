@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+<div class="admin-container">
+  <!-- Encabezado con botones -->
+  <div class="header-container">
+    <div class="admin-header">
+      <h1>Administración de vehículos</h1>
+    </div>
+  </div>
+  <div class="admin-actions">
+    <button class="btn btn-primary" (click)="abrirAgregarTipoVehiculo()">
+      <i class="fas fa-plus-circle me-2"></i>Agregar Tipo Vehículo
+    </button>
+    <button class="btn btn-primary" (click)="abrirAgregarVehiculo()">
+      <i class="fas fa-plus-circle me-2"></i>Agregar Vehículo
+    </button>
+  </div>
+  <div>
+    <h2>Tipos de Vehiculos</h2>
+    <button class="btn btn-secondary ms-2" (click)="toggleMostrarTiposVehiculos()">
+    <i class="fas fa-list me-2"></i>Ver Tipos de Vehículos
+  </button>
+  </div>
+  
+  <div class="section-divider"></div>
+
+  <!-- Tabla de tipos de vehículos -->
+  <div class="admin-section" *ngIf="mostrarTiposVehiculos">
+    <div class="card">
+      <div class="card-header bg-warning">
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>ID</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>Precio</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tipo of tipoVehiculosList">
+              <td>{{ tipo.id }}</td>
+              <td>{{ tipo.marca }}</td>
+              <td>{{ tipo.modelo }}</td>
+              <td>{{ tipo.precio | currency:'EUR' }}</td>
+              <td>{{ tipo.tipo }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Separador y título para vehículos actuales -->
+  <div class="section-divider mt-4"></div>
+  <h2>Vehículos Actuales</h2>
+  <button class="btn btn-secondary mb-3" (click)="toggleMostrarVehiculos()">
+    <i class="fas fa-car me-2"></i>
+    {{ mostrarVehiculos ? 'Ocultar Vehículos' : 'Mostrar Vehículos' }}
+  </button>
+
+  <!-- Tarjetas de vehículos -->
+  <div *ngIf="mostrarVehiculos" class="vehicles-grid mt-4 row">
+  <div class="col-md-4 mb-4" *ngFor="let item of vehiculosConTipo">
+    <div class="card h-100">
+      <img [src]="item.tipo.imagen" class="card-img-top" alt="imagen vehículo" />
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ item.tipo.marca }} {{ item.tipo.modelo }}
+        </h5>
+        <p class="card-text">
+          <strong>Matrícula:</strong> {{ item.vehiculo.matricula }}<br />
+          <strong>Color:</strong> {{ item.vehiculo.color }}<br />
+          <strong>Kilometraje:</strong> {{ item.vehiculo.kilometraje | number }} km<br />
+          <strong>Ubicación:</strong> {{ item.vehiculo.ubicacion }}<br />
+          <strong>Disponibilidad:</strong>
+          <span [ngClass]="item.vehiculo.disponibilidad ? 'text-success' : 'text-danger'">
+            {{ item.vehiculo.disponibilidad ? 'Disponible' : 'No disponible' }}
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Modales para agregar -->
+  <app-crear-tipo-vehiculo
+    *ngIf="showAgregarModalTipoVehiculo"
+    (closeModal)="cerrarAgregarTipoVehiculo()">
+  </app-crear-tipo-vehiculo>
+
+  <app-crear-vehiculo
+    *ngIf="showAgregarModalVehiculo"
+    (closeModal)="cerrarAgregarVehiculo()">
+  </app-crear-vehiculo>
+</div>

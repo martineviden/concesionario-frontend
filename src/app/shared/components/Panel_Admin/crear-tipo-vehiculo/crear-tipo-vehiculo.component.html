@@ -1,0 +1,53 @@
+<div class="modal-bg">
+  <div class="modal-form">
+    <h2>Crear Tipo de Vehículo</h2>
+
+    <form [formGroup]="newTipoVehiculoForm" (ngSubmit)="crearTipoVehiculo()">
+
+      <!-- Tipo -->
+      <label class="modal-label" for="tipo">Tipo de Vehículo</label>
+      <select id="tipo" class="modal-input" formControlName="tipo" required>
+        <option value="" disabled selected>Seleccione tipo</option>
+        <option *ngFor="let tipo of tipoV" [value]="tipo">{{ tipo }}</option>
+      </select>
+
+      <!-- Marca -->
+      <label class="modal-label" for="marca">Marca</label>
+      <input type="text" id="marca" class="modal-input"
+             placeholder="Ej: Toyota"
+             formControlName="marca"
+             required
+             maxlength="30"
+             pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+">
+
+      <!-- Modelo -->
+      <label class="modal-label" for="modelo">Modelo</label>
+      <input type="text" id="modelo" class="modal-input"
+             placeholder="Ej: Corolla"
+             formControlName="modelo"
+             required
+             maxlength="40">
+
+      <!-- Precio -->
+      <label class="modal-label" for="precio">Precio</label>
+      <div class="precio-group">
+        <input type="number" id="precio" class="modal-input" formControlName="precio" required min="0" step="0.5" placeholder="Ej: 50.00" (keypress)="preventNegative($event)">
+        <span class="precio-euro">€/día</span>
+      </div>
+
+      <!-- Imagen -->
+      <label class="modal-label" for="imagen">URL de imagen</label>
+      <input type="text" id="imagen" class="modal-input"
+             placeholder="https://..."
+             formControlName="imagen"
+             required>
+
+      <div class="modal-buttons">
+        <button type="button" class="cancel-btn" (click)="close()">Cancelar</button>
+        <button type="submit" class="save-btn">Guardar</button>
+      </div>
+    </form>
+
+    <button class="close-btn" type="button" (click)="close()">&times;</button>
+  </div>
+</div>

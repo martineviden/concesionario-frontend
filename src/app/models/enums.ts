@@ -32,7 +32,7 @@ export enum EtiquetaAmbiental {
 export enum Rol {
   CLIENTE="CLIENTE", ADMIN="ADMIN"
 }
-
+/*
 export namespace Provincia {
   export function keys(): Array<string>{
     let keys = Object.keys(Provincia);
@@ -69,11 +69,5 @@ export namespace EtiquetaAmbiental {
     return keys.slice(0,keys.length-1)
   }
 }
+  */
 
-// Elimina o comenta esto:
-// export namespace Rol {
-//   export function keys(): Array<string>{
-//     let keys = Object.keys(Rol);
-//     return keys.slice(0,keys.length-1)
-//   }
-// }

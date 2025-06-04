@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreartTipoVheiculoAdminComponent } from './creart-tipo-vheiculo-admin.component';
+import { CreartTipoVheiculoAdminComponent } from './crear-tipo-vehiculo.component';
 
 describe('CreartTipoVheiculoAdminComponent', () => {
   let component: CreartTipoVheiculoAdminComponent;

@@ -8,9 +8,7 @@ export class TipoVehiculoModel {
   modelo:string;
   imagen :string;
   tipo:TipoVehiculo;
-  vehiculo: VehiculoModel['matricula'];
-
-
+  vehiculo: VehiculoModel[];
 
 
   constructor(
@@ -20,7 +18,7 @@ export class TipoVehiculoModel {
     modelo_vehiculo:string,
     imagen_vehiculo:string,
     tipoVH:TipoVehiculo,
-    vehiculo: VehiculoModel['matricula']
+    vehiculo: VehiculoModel[]
   ){
 
     this.id = id_vehiculo;
@@ -32,45 +30,5 @@ export class TipoVehiculoModel {
     this.vehiculo = vehiculo;
 
   }
+
 }
-export class TipoVehiculoSinVhiculosModel {
-
-  precio:number;
-  marca:string;
-  modelo:string;
-  imagen :string;
-  tipo:TipoVehiculo;
-  vehiculo: VehiculoModel[ ];
-
-
-
-
-  constructor(
-
-    precio_vehiculo:number,
-    marca_vehiculo:string,
-    modelo_vehiculo:string,
-    imagen_vehiculo:string,
-    tipoVH:TipoVehiculo,
-    vehiculo: VehiculoModel[]
-  ){
-
-
-    this.precio = precio_vehiculo;
-    this.marca = marca_vehiculo;
-    this.modelo = modelo_vehiculo;
-    this.imagen = imagen_vehiculo;
-    this.tipo = tipoVH;
-    this.vehiculo = vehiculo;
-
-  }
-}
-
-
-
-
-
-
-
-
-

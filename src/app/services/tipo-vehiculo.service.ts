@@ -1,72 +1,45 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import{TipoVehiculoModel, TipoVehiculoSinVhiculosModel} from '../models/tipo-vehiculo.model'
+import { TipoVehiculoModel } from '../models/tipo-vehiculo.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root',
 })
 
 export class TipoVehiculoService {
   private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:8080/tipos-vehiculo';
 
-  listAllTipoVehiculo() {
+  listAllTipoVehiculo(): Observable<TipoVehiculoModel[]> {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    //return this.http.get('http://localhost:8080/tipos-vehiculo', { headers: headers });
-
-    return this.http.get('http://localhost:8080/tipos-vehiculo', { headers: headers });
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<TipoVehiculoModel[]>(this.apiUrl, { headers });
   }
 
-  getTipoVehiculoById(id: number) {
-    //const token = localStorage.getItem('token');
-   // const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    return this.http.get(`http://localhost:8080/tipos-vehiculo/${id}`,  { withCredentials: false });
+  getTipoVehiculoById(id: number): Observable<TipoVehiculoModel> {
+    return this.http.get<TipoVehiculoModel>(`${this.apiUrl}/${id}`);
   }
-  getOneTipoVheculo(id:number){
-    return this.http.get(`http://localhost:8080/tipos-vehiculo/${id}`,{withCredentials:false});
+
+  getTiposVehiculo(): Observable<TipoVehiculoModel[]> {
+    return this.http.get<TipoVehiculoModel[]>(this.apiUrl);
   }
-  createOneTipoVheculo(vehiculoT:TipoVehiculoModel){
-    return this.http.post('http://localhost:8080/tipos-vehiculo',vehiculoT,{withCredentials:false});
-  }
-  createOneTipoVheculoSinVheiculo(vehiculoT:TipoVehiculoSinVhiculosModel){
+
+  createTipoVehiculo(tipo: TipoVehiculoModel): Observable<any> {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    return this.http.post('http://localhost:8080/tipos-vehiculo',vehiculoT,{headers:headers});
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(this.apiUrl, tipo, { headers });
   }
 
-  updateOneTipoVheculo(id:number,tipoVehiculo: any){
-
-    return this.http.get(`http://localhost:8080/tipos-vehiculo/${id}`, { withCredentials: false });
-  }
-
-  createTipoVehiculo(vehiculoT: TipoVehiculoModel) {
+  updateTipoVehiculo(id: number, tipo: TipoVehiculoModel): Observable<any> {
     const token = localStorage.getItem('token');
-    console.log(token);
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    //return this.http.post('http://localhost:8080/tipos-vehiculo', vehiculoT, { headers: headers });
-
-    return this.http.post('http://localhost:8080/tipos-vehiculo', vehiculoT, { withCredentials: false });
-
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put(`${this.apiUrl}/${id}`, tipo, { headers });
   }
 
-  updateTipoVehiculo(id: number, tipoVehiculo: any) {
+  deleteTipoVehiculo(id: number): Observable<any> {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    //return this.http.put(`http://localhost:8080/tipos-vehiculo/${id}`, tipoVehiculo, { headers: headers });
-
-    return this.http.put(`http://localhost:8080/tipos-vehiculo/${id}`, tipoVehiculo, { withCredentials: false });
-
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers });
   }
-
-  deleteTipoVehiculo(id: number) {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    //return this.http.delete(`http://localhost:8080/tipos-vehiculo/${id}`, { headers: headers });
-
-    return this.http.delete(`http://localhost:8080/tipos-vehiculo/${id}`, { withCredentials: false });
-
-  }
-
 }
-
-

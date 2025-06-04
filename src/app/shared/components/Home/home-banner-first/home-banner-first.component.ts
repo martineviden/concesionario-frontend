@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { enumValues } from '../../../../utils/enum-utils';
 
 
 @Component({
@@ -20,8 +21,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class HomeBannerFirstComponent implements OnInit {
 
   formTipoUbicacion: FormGroup;
-  tiposVehiculo = TipoVehiculo.keys();
-  ubicaciones = Provincia.keys();
+  tiposVehiculo = enumValues(TipoVehiculo);
+  ubicaciones = enumValues(Provincia);
 
   constructor(private fb: FormBuilder, private router: Router,  private snackBar: MatSnackBar) {
     this.formTipoUbicacion = this.fb.group({
