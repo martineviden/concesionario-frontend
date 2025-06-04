@@ -142,7 +142,7 @@ crearVheiculo() {
 
   const vehiculo: VehiculoModel = {
     ...datosFormulario,
-    tipoVehiculo: { id: parseInt(datosFormulario.id) }, //  Corrige aquí: usa el campo correcto del formulario
+    tipoVehiculo: { id: parseInt(datosFormulario.tipoVehiculo) }, //  Corrige aquí: usa el campo correcto del formulario
     reservas: []
   };
 

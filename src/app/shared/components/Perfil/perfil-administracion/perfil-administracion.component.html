@@ -27,33 +27,34 @@
  (click)="ejecutar()" -->
 
 
+
+
 </div>
-<div class="col-4">
-  <button class="btn btn-success m-3"  (click)="rescatarTipoVheculos()">Cargar Tipos Vehículos</button>
-</div>
-<div class="row pt-0 m-0">
-  <div class="col-14">
+<div class="row  ">
+
+  <div>
     <div class="card">
       <div class="card-header">
-        <p>Lista tipo vheiculos</p>
+
+        <button class="btn btn-success m-3"  (click)="rescatarTipoVheculos()">Cargar Tipos Vehículos</button>
       </div>
 
-      <div class="card-body">
+      <div class="card-body ">
         <form [formGroup]="formUpdate" >
         <table class="table table-border" >
 
           <thead>
-            <tr>
+            <tr class="tabla-head">
 
-              <th>CONTROL-ELIMINAR</th>
-              <th>CONTROL-ACTUALIZAR</th>
+              <th class="casillas-ext">CONTROL-ELIMINAR</th>
+              <th class="casillas-ext">CONTROL-ACTUALIZAR</th>
 
-              <th>ID-REAL</th>
-              <th>MARCA</th>
-              <th>MODELO</th>
-              <th>PRECIO</th>
-              <th>TIPO</th>
-              <th>IMAGEN</th>
+              <th class="casillas-ext">ID-REAL</th>
+              <th class="casillas-ext">MARCA</th>
+              <th class="casillas-ext">MODELO</th>
+              <th class="casillas-ext">PRECIO</th>
+              <th class="casillas-ext">TIPO</th>
+              <th class="casillas-ext">IMAGEN</th>
               <!-- <th>MATRICULA</th>
               <th>color</th>
               <th>kilometraje</th>
@@ -75,16 +76,16 @@
 
 
               @for (tipo of tipoVehiculosList; track $index) {
-                <tr>
+                <tr class="tabla-int">
 
-                  <td><button class="btn btn-danger " (click)="eliminarById()">Eliminar</button></td>
-                  <td><button class="btn btn-secondary " (click)="actualizarTipoVheiculo()">Actualizar</button></td>
-                  <td class="esp m-1">{{tipo.id}} <input  type="number" placeholder="adadsa" formControlName="id"> </td>
-                  <td class="esp m-1"> {{tipo.marca}}<input type="text" [value]="tipo.marca" formControlName="marca" ></td>
-                  <td class="esp m-1">{{tipo.modelo}}<input type="text" [value]="tipo.modelo"formControlName="modelo"> </td>
-                  <td>{{tipo.precio}} <input type="number" [value]="tipo.precio"formControlName="precio"> </td>
-                  <td>{{tipo.tipo}}<input type="text" [value]="tipo.tipo" formControlName="tipo">  </td>
-                  <td>{{tipo.imagen}}<input type="text" [value]="tipo.imagen" formControlName="imagen"></td>
+                  <td class="casillas"><button class="btn btn-danger " (click)="eliminarById()">Eliminar</button></td>
+                  <td class="casillas"><button class="btn btn-secondary " (click)="actualizarTipoVheiculo()">Actualizar</button></td>
+                  <td class="casillas">{{tipo.id}}<input  type="number" placeholder="id" formControlName="id"></td>
+                  <td class="casillas">{{tipo.marca}}<input type="text" placeholder="marca" formControlName="marca"></td>
+                  <td class="casillas">{{tipo.modelo}}<input type="text" placeholder="modelo" formControlName="modelo"></td>
+                  <td class="casillas">{{tipo.precio}}<input type="number" placeholder="precio" formControlName="precio"></td>
+                  <td class="casillas">{{tipo.tipo}}<input type="text" placeholder="tipo" formControlName="tipo"></td>
+                  <td class="casillas">{{tipo.imagen}}<input type="text" placeholder="imagen" formControlName="imagen"></td>
 
                   <!-- @for (item of tipo.vehiculos; track $index) {
 

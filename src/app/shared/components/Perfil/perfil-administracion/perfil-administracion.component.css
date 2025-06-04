@@ -156,5 +156,34 @@
 .card-header{
  background-color:  #6366f1;
  color: #fafafa;
- font-size: 1rem;;
+ font-size: 1rem;
+  max-width: 1600px;
+
+
+}
+.row{
+ margin: 40px auto 80px auto;
+ max-width: 1600px;
+
+}
+.col-4{
+margin: 0px auto 0px auto;
+ max-width: 1400px;
+
+}
+.tabla-int{
+  display: flex;
+  justify-content: space-between;
+}
+.casillas{
+  display: grid;
+
+}
+.tabla-head{
+  display: flex;
+   justify-content: space-between;
+}
+.casillas-ext{
+  display: grid;
+
 }
