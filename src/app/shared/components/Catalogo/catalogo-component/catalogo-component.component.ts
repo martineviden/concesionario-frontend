@@ -142,7 +142,7 @@ export class CatalogoComponentComponent implements OnInit {
         marca: tipo.marca,
         modelo: tipo.modelo,
         tipo: tipo.tipo,
-        precio: +(tipo.precio / 30).toFixed(2),
+        precio: +(tipo.precio).toFixed(2),
         imagenBase: imagen.replace('.png', ''),
         imagen,
       }));

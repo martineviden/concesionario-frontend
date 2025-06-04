@@ -30,8 +30,8 @@
           </div>
           <div class="caracteristica">
             <i [ngClass]="{
-              'fas fa-gas-pump': vehiculo.combustible === 'GASOLINA' || vehiculo.combustible === 'GLP',
-              'fas fa-industry': vehiculo.combustible === 'DIESEL',
+              'bi bi-fuel-pump': vehiculo.combustible === 'GASOLINA' || vehiculo.combustible === 'GLP',
+              'bi bi-droplet': vehiculo.combustible === 'DIESEL',
               'fas fa-bolt': vehiculo.combustible === 'ELECTRICO'
             }"></i>
             <span>{{ vehiculo.combustible | titlecase }}</span>
@@ -45,5 +45,6 @@
 
       </div>
     </div>
+    
   </div>
 </div>
