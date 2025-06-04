@@ -18,7 +18,7 @@ export class PreviewCatalogoComponent implements OnInit {
     private router: Router
   ) {}
   verDetalles(vehiculo: any): void {
-  this.router.navigate(['/especificaciones'], {
+  this.router.navigate(['/especificaciones', vehiculo.matricula], {
     queryParams: {
       marca: vehiculo.marca,
       modelo: vehiculo.modelo,

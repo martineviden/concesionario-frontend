@@ -174,8 +174,7 @@
 .form-input:not(:placeholder-shown) + label {
   top: 6px;
   left: 15px;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.9);
+  color:black;
 }
 
 /* Contadores de caracteres */
