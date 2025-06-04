@@ -81,12 +81,12 @@
     text-align: center;
     font-style: normal;
     margin: 0 2rem 0 2rem;
-    min-height: 120px;
+    min-height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 500;
-    padding-bottom: 120px;
+    padding-bottom: 40px;
     /* Añade espacio para el avatar */
 }
 
@@ -134,4 +134,32 @@
     font-weight: bold;
     text-align: center;
     margin-top: 0.1rem;
+}
+
+textarea {
+    resize: none;
+}
+
+.review-score {
+    display: flex;
+}
+
+.star {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%, 
+        79% 91%, 50% 70%, 21% 91%, 32% 57%, 
+        2% 35%, 39% 35%
+    );
+}
+
+/*.star:hover,
+.star:hover ~ .star {
+    background-color: gold;
+}*/
+
+.scored {
+    background-color: gold;
 }
