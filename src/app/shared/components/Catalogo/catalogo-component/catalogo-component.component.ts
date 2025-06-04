@@ -153,19 +153,8 @@ export class CatalogoComponentComponent implements OnInit {
 
   // Navega a la página de detalles
   verDetalles(vehiculo: any): void {
-    this.router.navigate(['/especificaciones'], {
-      queryParams: {
-        marca: vehiculo.marca,
-        modelo: vehiculo.modelo,
-        transmision: vehiculo.transmision,
-        combustible: vehiculo.combustible,
-        ubicacion: vehiculo.ubicacion,
-        plazas: vehiculo.plazas,
-        precio: vehiculo.precio,
-        aireAcondicionado: vehiculo.aireAcondicionado,
-        kilometraje: vehiculo.kilometraje,
-        imagen: vehiculo.imagen
-      }
+    this.router.navigate(['/especificaciones', vehiculo.matricula], {
+      
     });
   }
 
