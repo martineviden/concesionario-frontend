@@ -71,12 +71,8 @@ newVheiculoDatos!: VehiculoModel;
     //Formulario crear vheiculo
     this.newVheculoForm = this.fb.group({
       //Definicion de FormcontrolNamesselect.Le servire directamente las ociones
-      id:[""],
-      marca:[""],
-      modelo:[""],
-      precio:[""],
-      tipo:[""],
-      imagen:[""],
+      tipoVehiculo:[{id:[""]}],
+
       ubicacion:[""],
 
        matricula: [""],
@@ -91,7 +87,7 @@ newVheiculoDatos!: VehiculoModel;
         aireAcondicionado: [],
         plazas: [],
         transmision: [],
-        reservas: [[""]]
+        reservas: [[]]
 
     });
 
@@ -112,7 +108,7 @@ newVheiculoDatos!: VehiculoModel;
 buscarTipoVehicoloID():void{
   const datoFormularioID= this.newVheculoForm.value;
   console.log(datoFormularioID);
-  const id:TipoVehiculoModel["id"] = datoFormularioID.id;
+  const id:TipoVehiculoModel["id"] = datoFormularioID.tipoVehiculo
       this.rescatarTipoVheculo.getOneTipoVheculo(id)
       .subscribe((tipos:any)=>{
         this.tipoVehiculoByID=tipos;
@@ -136,19 +132,31 @@ buscarTipoVehicoloID():void{
 
 }
 
-crearVheiculo(){
+
+
+
+
+
+crearVheiculo() {
   const datosFormulario = this.newVheculoForm.value;
-  const valuesFormulario: VehiculoModel = datosFormulario;
-  console.log(valuesFormulario);
-    this.crearVehiculoService.createVehiculo(valuesFormulario)
-    .subscribe({
-      next: res=> console.log('Vheiculo creado',res),
-      error: err=> console.error('Error al crar vheiculo',err)
-    });
-    //console.log(this.newVheiculoDatos);
-    console.log(valuesFormulario);
-    this.close();
-  }
+
+  const vehiculo: VehiculoModel = {
+    ...datosFormulario,
+    tipoVehiculo: { id: parseInt(datosFormulario.id) }, //  Corrige aquí: usa el campo correcto del formulario
+    reservas: []
+  };
+
+  console.log('Vehículo antes de enviar:', JSON.stringify(vehiculo, null, 2));
+
+  this.crearVehiculoService.createVehiculo(vehiculo).subscribe({
+    next: res => {
+      console.log(' Vehículo creado:', res);
+      this.close();
+    },
+    error: err => console.error(' Error al crear vehículo:', err)
+  });
+}
+
 
 }
 
@@ -167,24 +175,25 @@ crearVheiculo(){
 //           console.log(marca)
 //         }
 //         for(let i = 0; i< this.tipoVehiculos.length;i++){
-//this.newVheiculoDatos={
-      // matricula: this.newVheculoForm.value.matricula,
-      // color: this.newVheculoForm.value.color,
-      // kilometraje: this.newVheculoForm.value.kilometraje,
-      // disponibilidad: this.newVheculoForm.value.disponibilidad,
-      // ubicacion: this.newVheculoForm.value.selectTipoUbicacion,
-      // combustible: this.newVheculoForm.value.selectTipoCombustible,
-      // etiqueta: this.newVheculoForm.value.selectTipoEtiqueta,
-      // autonomia: this.newVheculoForm.value.autonomia,
-      // puertas: this.newVheculoForm.value.autonomia,
-      // aireAcondicionado: this.newVheculoForm.value.aireAcondicionado,
-      // plazas: this.newVheculoForm.value.plazas,
-      // transmision: this.newVheculoForm.value.selectTipoTransmision,
-      // marca: this.newVheculoForm.value.marca,
-      // modelo: this.newVheculoForm.value.modelo,
-      // precio: this.newVheculoForm.value.precio,
-      // tipoVheiculo: this.newVheculoForm.value.selectTipoVheiculo,
-      // id_tipo_vehiculo: this.newVheculoForm.value.id,
-      // imagen: this.newVheculoForm.value.imagen,
-      // reservas :this.newVheculoForm.value.reservas,
-     //}
+
+// this.newVheiculoDatos={
+//       matricula: this.newVheculoForm.value.matricula,
+//       color: this.newVheculoForm.value.color,
+//       kilometraje: this.newVheculoForm.value.kilometraje,
+//       disponibilidad: this.newVheculoForm.value.disponibilidad,
+//       ubicacion: this.newVheculoForm.value.selectTipoUbicacion,
+//       combustible: this.newVheculoForm.value.selectTipoCombustible,
+//       etiqueta: this.newVheculoForm.value.selectTipoEtiqueta,
+//       autonomia: this.newVheculoForm.value.autonomia,
+//       puertas: this.newVheculoForm.value.autonomia,
+//       aireAcondicionado: this.newVheculoForm.value.aireAcondicionado,
+//       plazas: this.newVheculoForm.value.plazas,
+//       transmision: this.newVheculoForm.value.selectTipoTransmision,
+//       marca: this.newVheculoForm.value.marca,
+//       modelo: this.newVheculoForm.value.modelo,
+//       precio: this.newVheculoForm.value.precio,
+//       tipoVheiculo: this.newVheculoForm.value.selectTipoVheiculo,
+//       id_tipo_vehiculo: this.newVheculoForm.value.id,
+//       imagen: this.newVheculoForm.value.imagen,
+//       reservas :this.newVheculoForm.value.reservas,
+//      }

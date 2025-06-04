@@ -86,7 +86,8 @@ export class EditarPerfilComponent implements OnInit {
       nombre,
       apellidos,
       correo,
-      telefono
+      telefono,
+      rol: this.usuarioActual?.rol
     };
     this.usuarioService.updateUsuario(String(usuarioId), updateData).subscribe({
       next: (res: any) => {

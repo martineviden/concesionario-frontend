@@ -1,15 +1,15 @@
 <div *ngIf="esAdmin" class="admin-menu">
   <div class="admin-header">
-    <h1 class="admin-title">Administración de vehículos</h1>
-   <div class="organizer-botones">
+    <h1 class="admin-title p-3 m-3">Administración de vehículos</h1>
+   <div class="organizer-botones p-2 m-2" >
     <ul class="lista">
-      <li>
+      <li class="espacio p-2">
         <button class="admin-add-btn" (click)="abrirAgregarTipoVehiculo()">
           <i class="bi bi-plus-circle-fill" style="font-size: 2rem"></i>
           Agregar Tipo Vehículo
         </button>
       </li>
-      <li>
+      <li class="espacio p-2">
         <button class="admin-add-btn" (click)="abrirAgregarVehiculo()">
           <i class="bi bi-plus-circle-fill" style="font-size: 2rem"></i>
           Agregar Vehículo
@@ -31,23 +31,30 @@
 <div class="col-4">
   <button class="btn btn-success m-3"  (click)="rescatarTipoVheculos()">Cargar Tipos Vehículos</button>
 </div>
-<div class="row pt-2 m-0">
-  <div class="col-15">
+<div class="row pt-0 m-0">
+  <div class="col-14">
     <div class="card">
-      <div class="card-header bg-warning">
-        <h5>Lista tipo vehículos</h5>
+      <div class="card-header">
+        <p>Lista tipo vheiculos</p>
       </div>
+
       <div class="card-body">
-        <table class="table table-border">
+        <form [formGroup]="formUpdate" >
+        <table class="table table-border" >
+
           <thead>
             <tr>
-              <th>ID</th>
+
+              <th>CONTROL-ELIMINAR</th>
+              <th>CONTROL-ACTUALIZAR</th>
+
+              <th>ID-REAL</th>
               <th>MARCA</th>
               <th>MODELO</th>
               <th>PRECIO</th>
               <th>TIPO</th>
               <th>IMAGEN</th>
-              <th>MATRICULA</th>
+              <!-- <th>MATRICULA</th>
               <th>color</th>
               <th>kilometraje</th>
               <th>disponibilidad</th>
@@ -59,23 +66,27 @@
               <th>aireAcondicionado</th>
               <th>plazas</th>
               <th>transmision</th>
-              <th>reservas</th>
+              <th>reservas</th> -->
 
             </tr>
           </thead>
+
           <tbody>
+
 
               @for (tipo of tipoVehiculosList; track $index) {
                 <tr>
-                  <td>
-                    {{$index+1}}
-                  </td>
-                  <td>{{tipo.marca}}</td>
-                  <td>{{tipo.modelo}}</td>
-                  <td>{{tipo.precio}}</td>
-                  <td>{{tipo.tipo}}</td>
-                  <td>{{tipo.imagen}}</td>
-                  @for (item of tipo.vehiculos; track $index) {
+
+                  <td><button class="btn btn-danger " (click)="eliminarById()">Eliminar</button></td>
+                  <td><button class="btn btn-secondary " (click)="actualizarTipoVheiculo()">Actualizar</button></td>
+                  <td class="esp m-1">{{tipo.id}} <input  type="number" placeholder="adadsa" formControlName="id"> </td>
+                  <td class="esp m-1"> {{tipo.marca}}<input type="text" [value]="tipo.marca" formControlName="marca" ></td>
+                  <td class="esp m-1">{{tipo.modelo}}<input type="text" [value]="tipo.modelo"formControlName="modelo"> </td>
+                  <td>{{tipo.precio}} <input type="number" [value]="tipo.precio"formControlName="precio"> </td>
+                  <td>{{tipo.tipo}}<input type="text" [value]="tipo.tipo" formControlName="tipo">  </td>
+                  <td>{{tipo.imagen}}<input type="text" [value]="tipo.imagen" formControlName="imagen"></td>
+
+                  <!-- @for (item of tipo.vehiculos; track $index) {
 
                     <td>{{item.matricula}}</td>
                     <td> {{item.color}}</td>
@@ -90,15 +101,18 @@
                     <td> {{item.plazas}}</td>
                     <td> {{item.transmision}}</td>
                     <td> {{item.reservas}}</td>
-                  }
+                  } -->
 
                 </tr>
 
               }
 
           </tbody>
+
         </table>
+        </form>
       </div>
+
     </div>
   </div>
 </div>
