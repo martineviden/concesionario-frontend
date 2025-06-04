@@ -1,0 +1,98 @@
+<div class="catalogo-container">
+  <h2 class="titulo">Selección de un vehículo</h2>
+
+  <!-- Filtros principales - SOLO tipo de vehículo y ubicación -->
+  <div class="filtros-principales">
+   <!-- Coche -->
+  <div class="filtro-tipo"
+       [ngClass]="{ 'activo': filtrosActivos.includes('tipo:COCHE') }"
+       (click)="toggleFiltro('tipo:COCHE')">
+    <img src="https://png.pngtree.com/png-clipart/20180613/ourmid/pngtree-fashion-car-private-car-orange-red-car-simulation-illustration-png-image_4484916.png"
+         alt="Coche"
+         class="icono-tipo">
+    <span>Coche</span>
+  </div>
+
+  <!-- Moto -->
+  <div class="filtro-tipo"
+       [ngClass]="{ 'activo': filtrosActivos.includes('tipo:MOTO') }"
+       (click)="toggleFiltro('tipo:MOTO')">
+    <img src="https://www.publicdomainpictures.net/pictures/500000/nahled/motorfiets-moto-suzuki-png.png"
+         alt="Moto"
+         class="icono-tipo">
+    <span>Moto</span>
+  </div>
+
+  <!-- Furgoneta -->
+  <div class="filtro-tipo"
+       [ngClass]="{ 'activo': filtrosActivos.includes('tipo:FURGONETA') }"
+       (click)="toggleFiltro('tipo:FURGONETA')">
+    <img src="https://png.pngtree.com/png-vector/20241105/ourmid/pngtree-3d-black-van-isolated-on-transparent-background-png-image_14270637.png"
+         alt="Furgoneta"
+         class="icono-tipo">
+    <span>Furgoneta</span>
+  </div>
+
+    <!-- Filtro de ubicación -->
+    <div class="filtro-ubicacion">
+      <h3 class="subtitulo-filtro">Ubicación</h3>
+      <select class="select-ubicacion" (change)="onUbicacionChange($event)">
+        <option value="">Selecciona ubicación</option>
+        <option *ngFor="let ubicacion of provincias"
+                [value]="ubicacion"
+                [selected]="filtrosActivos.includes('ubicacion:' + ubicacion)">
+          {{ ubicacion | titlecase }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Separador visual -->
+  <div class="separador"></div>
+
+  <!-- Filtros de especificaciones - SIN ubicación -->
+  <div class="filtros-especificaciones">
+    <h3 class="subtitulo-filtro">Especificaciones</h3>
+    <div class="especificaciones-grid">
+      <!-- Solo combustible, transmisión, etiqueta y plazas -->
+      <div class="especificacion" *ngFor="let espec of especificaciones">
+        <div class="especificacion-titulo">{{ getTituloEspecificacion(espec) }}</div>
+        <div class="especificacion-opciones">
+          <div *ngFor="let opcion of getOpcionesFiltro(espec)"
+             class="opcion-especificacion"
+             [ngClass]="{ 'activo': filtrosActivos.includes(espec + ':' + opcion) }"
+             (click)="seleccionarFiltro(espec, opcion)">
+          {{ opcion | titlecase }}
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acciones de filtrado -->
+  <div class="acciones-filtrado">
+    <button class="boton-limpiar" (click)="limpiarFiltros()">
+      <i class="fas fa-broom"></i> Limpiar filtros
+    </button>
+    <button class="boton-buscar" (click)="aplicarBusqueda()">
+      <i class="fas fa-search"></i> Buscar vehículos
+    </button>
+  </div>
+
+  <!-- Mensajes de estado -->
+  <div *ngIf="mostrarMensajeInicial" class="mensaje-estado">
+    <i class="fas fa-info-circle"></i>
+    <p>Por favor, selecciona al menos un tipo de vehículo y una ubicación para comenzar tu búsqueda.</p>
+  </div>
+
+  <div *ngIf="mostrarMensajeSinResultados" class="mensaje-estado mensaje-error">
+    <i class="fas fa-exclamation-triangle"></i>
+    <p>No hemos encontrado vehículos que coincidan con tus criterios de búsqueda.</p>
+    <button class="boton-secundario" (click)="limpiarFiltros()">Limpiar filtros</button>
+  </div>
+
+  <!-- Grid de vehículos -->
+  <div class="grid-vehiculos" *ngIf="!mostrarMensajeInicial && !mostrarMensajeSinResultados">
+    <!-- ... (mantener tu grid actual de vehículos) ... -->
+  </div>
+</div>

@@ -2,7 +2,11 @@ import {Provincia, TipoVehiculo} from "./enums"
 import {Combustible} from "./enums"
 import {EtiquetaAmbiental} from "./enums"
 import {Transmision} from "./enums"
+import { ReservaModel } from "./reserva.model";
+import { TipoVehiculoModel } from "./tipo-vehiculo.model";
 
+
+// Habria que corregir e incorporar reserva al vehiculo. Disponibilidad-en relacion a la reserva?
 
 export class VehiculoModel{
   matricula: string;
@@ -17,8 +21,14 @@ export class VehiculoModel{
   aireAcondicionado: boolean;
   plazas: number;
   transmision: Transmision;
-  id_tipo_vehiculo: TipoVehiculo;
 
+  marca: TipoVehiculoModel["marca"];
+  modelo: TipoVehiculoModel["modelo"];
+  precio: TipoVehiculoModel["precio"];
+  tipoVheiculo: TipoVehiculoModel["tipo"];
+  id_tipo_vehiculo: TipoVehiculoModel["id"];
+  imagen: TipoVehiculoModel["imagen"];
+  reservas:ReservaModel;
   constructor(
   matricula: string,
   color: string,
@@ -32,7 +42,14 @@ export class VehiculoModel{
   aireAcondicionado: boolean,
   plazas: number,
   transmision: Transmision,
-  id_tipo_vehiculo: TipoVehiculo, //Ver a lo mejor hace falta pasar el VheculoModelo
+  marca: string,
+  modelo: TipoVehiculoModel["modelo"],
+  precio: TipoVehiculoModel["precio"],
+  tipoVheiculo: TipoVehiculoModel["tipo"],
+  id_tipo_vehiculo: TipoVehiculoModel["id"],
+  imagen: TipoVehiculoModel["imagen"],
+  reservas:ReservaModel
+
   ){
     this.matricula = matricula;
     this.color = color;
@@ -46,8 +63,13 @@ export class VehiculoModel{
     this.plazas = plazas;
     this.aireAcondicionado = aireAcondicionado;
     this.transmision = transmision;
+    this.marca = marca;
+    this.modelo =modelo;
+    this.precio = precio;
+    this.tipoVheiculo = tipoVheiculo;
     this.id_tipo_vehiculo = id_tipo_vehiculo;
-
+    this.imagen = imagen;
+    this.reservas = reservas;
   }
 
 

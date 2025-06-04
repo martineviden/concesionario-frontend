@@ -1,0 +1,26 @@
+<div class="modal-login-bg">
+  <div class="modal-login">
+    <h2>Iniciar Sesión</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="loginUsuario()">
+      <input type="email" placeholder="Email" class="login-input"
+             formControlName="correo" [class.invalid]="loginForm.get('correo')?.invalid && loginForm.get('correo')?.touched">
+
+      <input type="password" placeholder="Contraseña" class="login-input"
+             formControlName="contrasena" [class.invalid]="loginForm.get('contrasena')?.invalid && loginForm.get('contrasena')?.touched">
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="login-btn" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Iniciar Sesión</span>
+        <span *ngIf="isLoading">Cargando...</span>
+      </button>
+
+      <div class="register-link">
+        ¿No tienes una cuenta? <a href="#" (click)="goToRegister($event)">Regístrate</a>
+      </div>
+    </form>
+    <button class="close-btn" type="button" (click)="close()">&times;</button>
+  </div>
+</div>

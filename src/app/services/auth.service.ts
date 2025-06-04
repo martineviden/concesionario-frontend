@@ -13,15 +13,29 @@ export class AuthService {
   constructor() {
     // Recuperar el estado de inicio de sesión del localStorage al iniciar
     const usuarioGuardado = localStorage.getItem('usuario');
-    if (usuarioGuardado) {
-      const usuario = JSON.parse(usuarioGuardado);
-      // Asegurarnos de que el rol se convierte al enum correctamente
-      if (usuario.rol) {
-        usuario.rol = Rol[usuario.rol as keyof typeof Rol];
+    
+    // Verifica explícitamente si existe y no es "undefined" como string
+    if (usuarioGuardado && usuarioGuardado !== 'undefined') {
+      try {
+        const usuario = JSON.parse(usuarioGuardado);
+        // Asegurarnos de que el rol se convierte al enum correctamente
+        if (usuario?.rol) {
+          usuario.rol = Rol[usuario.rol as keyof typeof Rol];
+        }
+        this.usuarioActual.next(usuario);
+        this.estaAutenticado.next(true);
+      } catch (error) {
+        console.error('Error al parsear usuario de localStorage:', error);
+        this.limpiarDatosInvalidos(); // Limpia datos corruptos
       }
-      this.usuarioActual.next(usuario);
-      this.estaAutenticado.next(true);
     }
+  }
+
+  private limpiarDatosInvalidos() {
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('token');
+    this.usuarioActual.next(null);
+    this.estaAutenticado.next(false);
   }
 
   iniciarSesion(usuario: Usuario) {
@@ -34,7 +48,7 @@ export class AuthService {
   obtenerUsuarioActual(): Observable<Usuario | null> {
     return this.usuarioActual.asObservable();
   }
-  
+
   cerrarSesion() {
     this.usuarioActual.next(null);
     this.estaAutenticado.next(false);
@@ -45,4 +59,4 @@ export class AuthService {
   obtenerEstadoAutenticacion(): Observable<boolean> {
     return this.estaAutenticado.asObservable();
   }
-} 
+}

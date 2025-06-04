@@ -26,7 +26,7 @@ export enum Transmision {
 }
 
 export enum EtiquetaAmbiental {
-  CERO="CERO", ECO="ECO", C="C", B="B", A="A"
+  CERO="CERO", ECO="ECO", C="C", B="B"
 }
 
 export enum Rol {

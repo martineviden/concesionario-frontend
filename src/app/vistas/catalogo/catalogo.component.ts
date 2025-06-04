@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
-
-import { CatalogoComponentComponent } from '../../shared/components/catalogo-component/catalogo-component.component';
-
+import { NavbarComponent } from '../../shared/components/Header_Footer/navbar/navbar.component';
+import { FooterComponent } from '../../shared/components/Header_Footer/footer/footer.component';
+import { CatalogoComponentComponent } from '../../shared/components/Catalogo/catalogo-component/catalogo-component.component';
 
 @Component({
   selector: 'app-catalogo',

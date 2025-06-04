@@ -1,0 +1,42 @@
+<div class="contenedor-banner-general">
+  <div class="contenedor-banner">
+    <div class="container-titulo-descripcion">
+      <h1 class="titulo">Concesionario KARHUB</h1>
+      <p class="parrafo">Auto, motocicleta o furgoneta, tú eliges. Nosotros te ayudamos a encontrar  el vehículo ideal.</p>
+    </div>
+
+     <form class="folmulario-banner"[formGroup]="formTipoUbicacion" (ngSubmit)="submit()">
+      <h2 class="titulo-formulario-banner">Buscar Vehiculos</h2>
+
+      <div class="folmulario-banner-interior">
+         <mat-form-field appearance="outline">
+          <mat-label>TIPO DE VEHICULO</mat-label>
+          <mat-select formControlName="selectedOptionV">
+            <mat-option *ngFor="let tipo of tiposVehiculo" [value]="tipo">{{ tipo }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>UBICACION</mat-label>
+          <mat-select formControlName="selectedOptionU">
+            <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion">{{ ubicacion }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button class="boton-resultado" type="submit">VER RESULTADO</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
