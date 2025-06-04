@@ -12,7 +12,7 @@ export class PreguntaFrecuenteComponent {
     {
       pregunta:'¿Cómo funciona?',
       respuesta:`Solo tienes que seleccionar el tipo de vehículo (coche, moto o furgoneta), 
-        ubicación, seleccionar el vehiculo de su agrado y completar la reserva. 
+        ubicación, seleccionar el vehiculo de tu agrado y completar la reserva. 
         Recibirás una confirmación inmediata, y el día del alquiler solo 
         necesitas presentar tu documentación. ¡Y a disfrutar del viaje!`
     },{
@@ -26,13 +26,13 @@ export class PreguntaFrecuenteComponent {
       pregunta:'¿Cuáles son los requisitos para alquilar un coche?',
       respuesta:` Los requisitos para alquilar un vehículo con KarHub son:
           <ul>
-            <li>Ser mayor de 21 años (la edad mínima puede variar según el vehículo).</li>
+            <li>Ser mayor de 18 años (la edad mínima puede variar según el vehículo).</li>
             <li>Tener un permiso de conducir válido y en vigor con al menos 1 año de antigüedad.</li>
             <li>Presentar un documento de identidad o pasaporte.</li>
             <li>Contar con una tarjeta de crédito o débito aceptada para el depósito.</li>
           </ul>`
     },{
-      pregunta:'¿El alquiler de coches, furgonetas me permite remolcar o acoplar un enganche al vehículo de alquiler?',
+      pregunta:'¿El alquiler de coches y furgonetas me permite remolcar o acoplar un enganche al vehículo de alquiler?',
       respuesta:`No. Por razones de seguridad y cobertura del seguro, 
         no está permitido remolcar ni instalar enganches, remolques u otros dispositivos
         en los vehículos de alquiler de KarHub. Todos nuestros vehículos deben 
