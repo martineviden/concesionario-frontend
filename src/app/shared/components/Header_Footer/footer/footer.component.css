@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .footer {
   font-family: "Inter", sans-serif;
   background-color: #fff;
@@ -10,6 +21,11 @@
   margin-top: 0;
   margin-bottom: 0;
   padding-bottom: 0;
+  opacity: 0;
+}
+
+.footer.animate-footer {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 /* Añadir estilos para el contenedor principal */

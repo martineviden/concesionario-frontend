@@ -1,1 +1,35 @@
-<p>historial-de-reservas works!</p>
+<div class="modal-historial" *ngIf="show">
+  <div class="modal-content">
+    <button class="close-btn" type="button" (click)="cerrar()">&times;</button>
+    <h2>Historial de Reservas</h2>
+    <div class="filtros">
+      <input type="text" placeholder="Filtrar por matrícula" [(ngModel)]="filtroMatricula" (input)="aplicarFiltros()">
+      <select [(ngModel)]="ordenFecha" (change)="aplicarFiltros()">
+        <option value="reciente">Más reciente primero</option>
+        <option value="antiguo">Más antiguo primero</option>
+      </select>
+      <button (click)="limpiarFiltros()">Limpiar</button>
+    </div>
+    <table class="tabla-reservas">
+      <thead>
+        <tr>
+          <th>Matrícula</th>
+          <th>Fecha Reserva</th>
+          <th>Días</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of reservasFiltradas">
+          <td>{{ r.vehiculo?.matricula }}</td>
+          <td>{{ r.fechaReserva }}</td>
+          <td>{{ r.diasReserva }}</td>
+          <td>{{ r.precio }}</td>
+        </tr>
+        <tr *ngIf="reservasFiltradas.length === 0">
+          <td colspan="4" style="text-align:center;">No hay reservas para mostrar</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
