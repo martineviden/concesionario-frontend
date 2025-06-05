@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import {  Component, inject, Input, OnInit } from '@angular/core';
 import { EditarVehiculoComponent } from '../../editar-vehiculo/editar-vehiculo.component';
-import { TipoVehiculoModel } from '../../../../models/tipo-vehiculo.model';
+import { TipoVehiculoModel, TipoVehiculoSinVhiculosModel } from '../../../../models/tipo-vehiculo.model';
 import { Usuario } from '../../../../models/login.model';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../../services/auth.service';
 import { Rol } from '../../../../models/enums';
 import { CreartTipoVheiculoAdminComponent } from '../../creart-tipo-vheiculo-admin/creart-tipo-vheiculo-admin.component';
 import { TipoVehiculoService } from '../../../../services/tipo-vehiculo.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-perfil-administracion',
-  imports: [ CommonModule,EditarVehiculoComponent,CreartTipoVheiculoAdminComponent],
+  imports: [ CommonModule,EditarVehiculoComponent,CreartTipoVheiculoAdminComponent,ReactiveFormsModule],
   templateUrl: './perfil-administracion.component.html',
   styleUrls: ['./perfil-administracion.component.css']
 })
@@ -23,13 +24,23 @@ export class PerfilAdministracionComponent{
   esAdmin = false;
   private authSubscription: Subscription | null = null;
 
+  formUpdate: FormGroup;
 
 
   @Input() vehiculoExiste?: TipoVehiculoModel;
 // private editarVehiculoComponent:EditarVehiculoComponent
  private rescatarTipoVheculo = inject(TipoVehiculoService);
  tipoVehiculosList:any[]=[];
- constructor(private authService: AuthService){
+ constructor(private authService: AuthService,private fb:FormBuilder){
+
+  this.formUpdate = this.fb.group({
+    id:[],
+    marca:[""],
+    modelo:[""],
+    precio:[""],
+    tipo:[""],
+    imagen:[""]
+  });
 
 
  }
@@ -103,6 +114,8 @@ export class PerfilAdministracionComponent{
       this.usuarioActual = usuario;
       this.estaAutenticado = !!usuario;
       this.esAdmin = usuario?.rol === Rol.ADMIN;
+
+
     });
   }
  //agregar vehiculo tipo
@@ -129,8 +142,46 @@ export class PerfilAdministracionComponent{
   rescatarTipoVheculos():void{
       this.rescatarTipoVheculo.listAllTipoVehiculo().subscribe((tipos:any)=>{
         this.tipoVehiculosList=tipos
+        console.log(this.tipoVehiculosList);
+      });
+
+}
+
+actualizarTipoVheiculo():void{
+  const id: TipoVehiculoModel["id"] = this.formUpdate.value.id;
+  console.log(id);
+
+
+  const dato: TipoVehiculoSinVhiculosModel = this.formUpdate.value;
+  console.log(dato);
+  this.rescatarTipoVheculo.updateOneTipoVheculo(id,dato).subscribe((tipos:any)=>{
+
+        if(tipos!=null){
+          this.rescatarTipoVheculos();
+        }
+
       });
 
 
 }
+
+
+
+  eliminarById():void{
+    const id: TipoVehiculoModel["id"] = this.formUpdate.value.id;
+    console.log(this.formUpdate.value.id);
+    this.rescatarTipoVheculo.deleteTipoVehiculo(id).subscribe((tipos:any)=>{
+        if(tipos !=null){
+          this.rescatarTipoVheculos();
+          console.log(tipos+"Se ha borrado");
+        }
+
+
+
+      });
+  }
 }
+
+
+
+

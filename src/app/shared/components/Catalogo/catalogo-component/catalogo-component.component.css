@@ -175,6 +175,7 @@
   max-height: 200px;
   overflow-y: auto;
 }
+
 /* Estilos generales */
 .catalogo-container {
   max-width: 1200px;
@@ -409,3 +410,90 @@
   background: #6f42c1;
   color: white;
 }
+
+/* Vehiculos Listado */
+.grid-vehiculos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.tarjeta-vehiculo {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.imagen-vehiculo img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.info-vehiculo {
+  padding: 15px;
+}
+
+.nombre-precio-vehiculo {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.nombre-vehiculo h3 {
+  font-weight: bold;
+}
+
+.precio {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  text-align: left;
+  font-size: 1.9em;
+  color: #6f42c1;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.por-dia {
+  font-size: 0.6em;
+  color: #000000;
+  font-weight: normal;
+  margin-top: -5px;
+}
+
+.caracteristicas-vehiculo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.caracteristica {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.boton-detalles {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  background: #6f42c1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.dropdown-opciones {
+  max-height: 200px;
+  overflow-y: auto;
+}
+

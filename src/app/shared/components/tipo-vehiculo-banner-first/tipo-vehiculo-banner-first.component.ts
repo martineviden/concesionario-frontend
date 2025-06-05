@@ -17,12 +17,14 @@ import { NgOptimizedImage } from '@angular/common';
   templateUrl: './tipo-vehiculo-banner-first.component.html',
   styleUrls: ['./tipo-vehiculo-banner-first.component.css']
 })
+export class TipoVehiculoBannerFirstComponent {
+  showMostrarReserva = false;
 export class TipoVehiculoBannerFirstComponent implements OnInit {
   mostrarFormularioAlquilar = false;
-  
+
   @Input() vehiculo!: VehiculoModel;
   @Input() tipoVehiculo!: TipoVehiculoModel;
-  
+
   esAdmin: boolean = false;
   matricula: string = '';
 
@@ -125,6 +127,12 @@ export class TipoVehiculoBannerFirstComponent implements OnInit {
       perla: '#EAE0C8',
       esmeralda: '#50C878'
     };
+  return colorMap[color.toLowerCase()] || '#000000';
+}
+
+  mostrarFormularioReserva(){
+    this.showMostrarReserva = true;
+  }
     return colorMap[color.toLowerCase()] || '#000000';
   }
 
