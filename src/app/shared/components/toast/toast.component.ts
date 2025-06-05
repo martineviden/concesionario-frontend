@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastService } from '../../../services/toast.service';
+import { ToastService, Toast } from '../../../services/toast.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,7 +20,7 @@ export class ToastComponent implements OnInit, OnDestroy {
   constructor(private toastService: ToastService) {}
 
   ngOnInit() {
-    this.subscription = this.toastService.toast$.subscribe(toast => {
+    this.subscription = this.toastService.toast$.subscribe((toast: Toast | null) => {
       if (toast) {
         this.showToast(toast);
       } else {
@@ -38,7 +38,7 @@ export class ToastComponent implements OnInit, OnDestroy {
     }
   }
 
-  private showToast(toast: any) {
+  private showToast(toast: Toast) {
     if (this.timeout) {
       clearTimeout(this.timeout);
     }

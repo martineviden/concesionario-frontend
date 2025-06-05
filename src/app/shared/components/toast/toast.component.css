@@ -1,11 +1,21 @@
 .toast-container {
   position: fixed;
   top: 72px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 32px;
+  left: auto;
+  transform: none;
   z-index: 3000;
   transition: opacity 0.3s, transform 0.3s;
   pointer-events: none;
+  width: auto;
+  max-width: 420px;
+}
+@media (max-width: 600px) {
+  .toast-container {
+    right: 8px;
+    top: 64px;
+    max-width: 95vw;
+  }
 }
 
 .toast-content {
