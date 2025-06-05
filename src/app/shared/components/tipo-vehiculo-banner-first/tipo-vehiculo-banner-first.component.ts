@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormularioAlquilarComponent } from "../formulario-alquilar/formulario-alquilar.component";
+import { FormularioResenaComponent } from "../formulario-resena/formulario-resena.component";
 import { LoginComponent } from "../Header_Footer/login/login.component";
 import { VehiculoModel } from '../../../models/vehiculo.model';
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
@@ -12,12 +13,13 @@ import { VehiculoService } from '../../../services/vehiculo.service';
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
   standalone: true,
-  imports: [CommonModule, FormularioAlquilarComponent, LoginComponent],
+  imports: [CommonModule, FormularioAlquilarComponent, FormularioResenaComponent, LoginComponent],
   templateUrl: './tipo-vehiculo-banner-first.component.html',
   styleUrls: ['./tipo-vehiculo-banner-first.component.css']
 })
 export class TipoVehiculoBannerFirstComponent {
   showMostrarReserva = false;
+  showMostrarResena = false;
   showLoginModal = false;
   @Input() vehiculo!: VehiculoModel;
   @Input() tipoVehiculo!: TipoVehiculoModel;
@@ -144,10 +146,17 @@ export class TipoVehiculoBannerFirstComponent {
       esmeralda: '#50C878', // No hay nombre directo, usamos hexadecimal
     };
   return colorMap[color.toLowerCase()] || '#000000'; 
-}
-  mostrarFormularioReserva(){
+}  mostrarFormularioReserva(){
     if (this.estaAutenticado) {
       this.showMostrarReserva = true;
+    } else {
+      this.showLoginModal = true;
+    }
+  }
+
+  mostrarFormularioResena(){
+    if (this.estaAutenticado) {
+      this.showMostrarResena = true;
     } else {
       this.showLoginModal = true;
     }

@@ -155,6 +155,26 @@
   background: #3d25a0;
 }
 
+.btn-resena {
+  width: 50%;
+  max-width: 350px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 14px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-resena:hover {
+  background: linear-gradient(135deg, #1e7e34 0%, #17a2b8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+}
+
 .btn-eliminar {
   width: 50%;
   max-width: 350px;

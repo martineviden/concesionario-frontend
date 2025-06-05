@@ -1,0 +1,189 @@
+<div class="modal-login-bg">
+  <div class="modal-resena-flex">
+    <!-- Resumen del coche -->
+    <div class="car-summary">
+      <div class="car-header">
+        <h2 class="car-title">{{ tipoVehiculo.marca || 'Vehículo desconocido' }} {{ tipoVehiculo.modelo || '' }}</h2>
+        <div class="rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">Excelente</span>
+        </div>
+      </div>
+      
+      <div class="car-image-container">
+        <img [src]="tipoVehiculo.imagen || 'assets/img/catalogo/default.png'" [alt]="tipoVehiculo.modelo || 'Vehículo'" class="car-img" />
+      </div>
+      
+      <div class="car-features-grid">
+        <div class="feature-item">
+          <img src="assets/img/icono-vehiculo/matricula.png" alt="Matrícula" class="feature-icon">
+          <span>{{ vehiculo.matricula || 'No disponible' }}</span>
+        </div>
+        <div class="feature-item">
+          <img src="assets/img/icono-vehiculo/cajaDeCambios.png" alt="Transmisión" class="feature-icon">
+          <span>{{ vehiculo.transmision || 'No disponible' }}</span>
+        </div>
+        <div class="feature-item">
+          <img src="assets/img/icono-vehiculo/gasolina.png" alt="Combustible" class="feature-icon">
+          <span>{{ vehiculo.combustible || 'No disponible' }}</span>
+        </div>
+        <div class="feature-item">
+          <img src="assets/img/icono-vehiculo/puerta.png" alt="Puertas" class="feature-icon">
+          <span>{{ vehiculo.puertas || 'No disponible' }} puertas</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">❄️</span>
+          <span>{{ vehiculo.aireAcondicionado ? 'A/C' : 'Sin A/C' }}</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">👥</span>
+          <span>{{ vehiculo.plazas || 'No disponible' }} asientos</span>
+        </div>
+        <div class="feature-item">
+          <img src="assets/img/icono-vehiculo/kilometraje.png" alt="Kilometraje" class="feature-icon">
+          <span>{{ vehiculo.kilometraje || 'No disponible' }} km</span>
+        </div>
+        <div class="feature-item">
+          <img src="assets/img/icono-vehiculo/color.png" alt="Color" class="feature-icon">
+          <span>{{ vehiculo.color || 'No disponible' }}</span>
+        </div>
+        <div class="feature-item">
+          <img src="assets/img/icono-vehiculo/ruta.png" alt="Ubicación" class="feature-icon">
+          <span>{{ vehiculo.ubicacion || 'No disponible' }}</span>
+        </div>
+        <div class="feature-item">
+          <img src="assets/img/icono-vehiculo/etiqueta.png" alt="Etiqueta" class="feature-icon">
+          <span>{{ vehiculo.etiqueta || 'No disponible' }}</span>
+        </div>
+      </div>
+      
+      <div class="car-price">
+        <span class="price-amount">€{{ tipoVehiculo.precio || 0 }}</span>
+        <span class="price-dia">/ día</span>
+      </div>
+    </div>    
+    
+    <!-- Formulario de reseña -->
+    <div class="modal-login">
+      <button class="close-btn" type="button" (click)="cerrar()">×</button>
+      <form [formGroup]="resenaForm" (ngSubmit)="confirmarResena()">
+        <div class="form-header">
+          <h2>✍️ Escribir Reseña</h2>
+          <p class="form-subtitle">Comparte tu experiencia con este vehículo</p>
+        </div>
+        
+        <!-- Información del Usuario -->
+        <div class="user-info-section" *ngIf="usuarioActual">
+          <h3>👤 Información del Usuario</h3>
+          <div class="user-info">
+            <div class="user-detail">
+              <span class="user-label">Nombre:</span>
+              <span class="user-value">{{ usuarioActual.nombre }} {{ usuarioActual.apellidos }}</span>
+            </div>
+            <div class="user-detail">
+              <span class="user-label">Email:</span>
+              <span class="user-value">{{ usuarioActual.correo }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calificación -->
+        <h3>⭐ Calificación</h3>
+        
+        <div class="form-group">
+          <label class="form-label">
+            <span class="label-icon">🌟</span>
+            ¿Cómo calificarías tu experiencia?
+          </label>
+          <div class="rating-selector">
+            <button 
+              type="button" 
+              *ngFor="let star of [1,2,3,4,5]" 
+              class="star-btn"
+              [class.active]="star <= selectedRating"
+              (click)="setRating(star)">
+              ★
+            </button>
+          </div>
+          <div class="rating-text" *ngIf="selectedRating > 0">
+            <span [ngSwitch]="selectedRating">
+              <span *ngSwitchCase="1">😞 Muy malo</span>
+              <span *ngSwitchCase="2">😐 Regular</span>
+              <span *ngSwitchCase="3">🙂 Bueno</span>
+              <span *ngSwitchCase="4">😊 Muy bueno</span>
+              <span *ngSwitchCase="5">🤩 Excelente</span>
+            </span>
+          </div>
+          <div class="error" *ngIf="resenaForm.get('puntuacion')?.touched && resenaForm.get('puntuacion')?.errors?.['required']">
+            ⚠️ La calificación es obligatoria
+          </div>
+          <div class="error" *ngIf="resenaForm.get('puntuacion')?.touched && resenaForm.get('puntuacion')?.errors?.['min']">
+            ⚠️ Debes seleccionar al menos 1 estrella
+          </div>
+        </div>
+
+        <!-- Comentario -->
+        <h3>💭 Tu Comentario</h3>
+        
+        <div class="form-group">
+          <label for="texto" class="form-label">
+            <span class="label-icon">✏️</span>
+            Cuéntanos sobre tu experiencia
+          </label>
+          <textarea 
+            id="texto" 
+            formControlName="texto" 
+            class="login-textarea"
+            rows="5"
+            placeholder="Escribe aquí tu opinión sobre el vehículo: comodidad, rendimiento, estado, etc.">
+          </textarea>
+          <div class="character-counter">
+            <span class="characters-remaining" [class.warning]="caracteresRestantes < 50">
+              {{ caracteresRestantes }} caracteres restantes
+            </span>
+          </div>
+          <div class="error" *ngIf="resenaForm.get('texto')?.touched && resenaForm.get('texto')?.errors?.['required']">
+            ⚠️ El comentario es obligatorio
+          </div>
+          <div class="error" *ngIf="resenaForm.get('texto')?.touched && resenaForm.get('texto')?.errors?.['minlength']">
+            ⚠️ El comentario debe tener al menos 10 caracteres
+          </div>
+          <div class="error" *ngIf="resenaForm.get('texto')?.touched && resenaForm.get('texto')?.errors?.['maxlength']">
+            ⚠️ El comentario no puede exceder 500 caracteres
+          </div>
+        </div>
+
+        <!-- Resumen de la Reseña -->
+        <div class="review-summary" *ngIf="selectedRating > 0 && resenaForm.get('texto')?.value?.length > 0">
+          <h3>📝 Resumen de tu Reseña</h3>
+          <div class="summary-content">
+            <div class="summary-rating">
+              <span class="summary-stars">
+                <span *ngFor="let star of [1,2,3,4,5]" 
+                      class="summary-star" 
+                      [class.filled]="star <= selectedRating">★</span>
+              </span>
+              <span class="summary-rating-text">{{ selectedRating }}/5 estrellas</span>
+            </div>
+            <div class="summary-preview">
+              <p>"{{ resenaForm.get('texto')?.value?.substring(0, 100) }}{{ resenaForm.get('texto')?.value?.length > 100 ? '...' : '' }}"</p>
+            </div>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="login-btn" 
+          [disabled]="resenaForm.invalid || isLoading"
+          [class.loading]="isLoading">
+          <span *ngIf="!isLoading">✅ Publicar Reseña</span>
+          <span *ngIf="isLoading">🔄 Publicando...</span>
+        </button>
+
+        <div class="form-footer">
+          <p class="terms">Tu reseña será pública y ayudará a otros usuarios</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
