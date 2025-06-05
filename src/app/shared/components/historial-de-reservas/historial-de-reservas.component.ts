@@ -29,8 +29,8 @@ export class HistorialDeReservasComponent implements OnInit {
 
   cargarReservas() {
     console.log('ID usuario recibido:', this.idUsuario);
-    this.reservaService.listAllReserva().subscribe((res: any) => {
-      this.reservas = res.filter((r: any) => String(r.id_usuario) === String(this.idUsuario));
+    this.reservaService.getReservasByUsuario(this.idUsuario).subscribe((res: any) => {
+      this.reservas = res;
       this.reservasFiltradas = [...this.reservas];
       this.aplicarFiltros();
     });
