@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UsuarioService } from '../../../../services/usuario.service';
 import { AuthService } from '../../../../services/auth.service';
+import { ToastService } from '../../../../services/toast.service';
 import { Usuario } from '../../../../models/login.model';
 import { CommonModule } from '@angular/common';
 
@@ -27,7 +28,8 @@ export class EditarPerfilComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastService: ToastService
   ) {
     this.perfilForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -93,20 +95,17 @@ export class EditarPerfilComponent implements OnInit {
       next: (res: any) => {
         this.mensaje = '';
         this.error = false;
-        this.toastMensaje = 'Perfil actualizado correctamente';
-        this.toastVisible = true;
+        this.toastService.show({ message: 'Perfil actualizado correctamente', type: 'success' });
         this.authService.obtenerUsuarioActual().subscribe(usuario => {
           if (usuario) {
             const actualizado = { ...usuario, nombre, apellidos, correo, telefono };
             localStorage.setItem('usuario', JSON.stringify(actualizado));
           }
         }).unsubscribe();
-        setTimeout(() => {
-          this.toastVisible = false;
-          this.close();
-        }, 1800);
+        this.close();
       },
       error: (err: any) => {
+        this.toastService.show({ message: err?.error?.message || 'Error al actualizar el perfil', type: 'error' });
         this.mensaje = err?.error?.message || 'Error al actualizar el perfil';
         this.error = true;
         this.cargando = false;

@@ -4,6 +4,7 @@ import { LoginComponent } from '../login/login.component';
 import { RegistroComponent } from '../registro/registro.component';
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
+import { ToastService } from '../../../../services/toast.service';
 import { Usuario } from '../../../../models/login.model';
 import { Subscription } from 'rxjs';
 import { Rol } from '../../../../models/enums';
@@ -27,7 +28,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -62,6 +64,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   cerrarSesion() {
     this.authService.cerrarSesion();
+    this.toastService.show({ message: 'Sesión cerrada correctamente', type: 'success' });
     this.router.navigate(['/']);
   }
 
