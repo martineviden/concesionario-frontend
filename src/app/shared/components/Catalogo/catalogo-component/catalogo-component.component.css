@@ -1,96 +1,50 @@
-/*
+/* =========================
+   Animaciones y Reset Global
+========================= */
+
+/* Fade-in al cargar */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reset básico */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+/* =========================
+   Contenedor Principal
+========================= */
 .catalogo-container {
-  max-width: 1500px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  text-align: center;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .titulo {
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 2rem;
 }
 
-.filtros {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 70px;
-  margin-bottom: 50px;
-}
-
-.filtro {
-  background-color: #eee;
-  width: 190px;
-  height: auto;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  position: relative;
-}
-
-.filtro.activo {
-  background-color: #6f42c1;
-  color: white;
-  font-weight: bold;
-}
-
-.contador {
-  font-weight: bold;
-  margin-left: 6px;
-  background-color: #dc3545;
-  color: white;
-  border-radius: 10px;
-  padding: 2px 6px;
-  font-size: 0.75rem;
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
-
-.filtro-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-opciones {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  width: 190px;
-  margin-top: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-opciones button {
-  padding: 10px;
-  border: none;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-size: 14px;
-}
-
-.dropdown-opciones button:hover {
-  background-color: #f0f0f0;
-}
-
-.dropdown-opciones button.activo {
-  background-color: #6f42c1;
-  color: white;
-  font-weight: bold;
-}
-
-
-*/
+/* =========================
+   Grid de Vehículos
+========================= */
 .grid-vehiculos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -100,6 +54,22 @@
   margin: 0 auto;
 }
 
+/* Adaptación en distintos dispositivos */
+@media (max-width: 1024px) {
+  .grid-vehiculos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-vehiculos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   Tarjeta de Vehículo
+========================= */
 .tarjeta-vehiculo {
   background: #fff;
   border-radius: 8px;
@@ -107,14 +77,40 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-vehiculo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* =========================
+   Imagen del Vehículo
+========================= */
+.imagen-vehiculo {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  /* Usamos aspect-ratio para mantener proporción (compatible con la mayoría de navegadores modernos) */
+  aspect-ratio: 16 / 9;
 }
 
 .imagen-vehiculo img {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
 }
 
+.imagen-vehiculo img:hover {
+  transform: scale(1.05);
+}
+
+/* =========================
+   Información del Vehículo
+========================= */
 .info-vehiculo {
   padding: 15px;
 }
@@ -123,10 +119,13 @@
   display: flex;
   justify-content: space-between;
   text-align: left;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .nombre-vehiculo h3 {
   font-weight: bold;
+  margin: 0;
 }
 
 .precio {
@@ -144,11 +143,14 @@
 
 .por-dia {
   font-size: 0.6em;
-  color: #000000;
+  color: #000;
   font-weight: normal;
   margin-top: -5px;
 }
 
+/* =========================
+   Características del Vehículo
+========================= */
 .caracteristicas-vehiculo {
   display: flex;
   justify-content: space-between;
@@ -161,6 +163,7 @@
   gap: 8px;
 }
 
+/* Botón de Ver Detalles */
 .boton-detalles {
   margin-top: 15px;
   width: 100%;
@@ -170,36 +173,35 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
+
+.boton-detalles:hover {
+  background: #5a36a9;
+  transform: scale(1.02);
+}
+
+/* =========================
+   Dropdown Opciones (por si lo requieres)
+========================= */
 .dropdown-opciones {
   max-height: 200px;
   overflow-y: auto;
 }
 
-/* Estilos generales */
-.catalogo-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.titulo {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
-  font-size: 2rem;
-}
-
-/* Filtros principales */
+/* =========================
+   Filtros Principales y Tipo
+========================= */
 .filtros-principales {
   display: flex;
   gap: 30px;
   margin-bottom: 30px;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .filtro-ubicacion {
-  width: 300px; /* Ancho fijo para mejor alineación */
+  width: 300px;
 }
 
 .filtro-tipo-container {
@@ -216,6 +218,7 @@
 .filtros-tipo {
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .filtro-tipo {
@@ -247,6 +250,7 @@
   background: #5a36a9;
 }
 
+/* Ícono dentro del filtro tipo */
 .icono-tipo {
   width: 200px;
   height: 200px;
@@ -254,6 +258,9 @@
   object-fit: contain;
 }
 
+/* =========================
+   Select de Ubicación
+========================= */
 .select-ubicacion {
   width: 100%;
   padding: 12px;
@@ -269,14 +276,18 @@
   border-color: #6f42c1;
 }
 
-/* Separador */
+/* =========================
+   Separador Visual
+========================= */
 .separador {
   height: 1px;
   background: linear-gradient(to right, transparent, #ddd, transparent);
   margin: 30px 0;
 }
 
-/* Especificaciones */
+/* =========================
+   Filtros de Especificaciones
+========================= */
 .filtros-especificaciones {
   margin-bottom: 30px;
 }
@@ -287,11 +298,22 @@
   gap: 20px;
 }
 
+@media (max-width: 768px) {
+  .especificaciones-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .especificacion {
   background: #f9f9f9;
   border-radius: 10px;
   padding: 15px;
   border: 1px solid #eee;
+  transition: box-shadow 0.3s ease;
+}
+
+.especificacion:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .especificacion-titulo {
@@ -327,7 +349,9 @@
   border-color: #5a36a9;
 }
 
-/* Acciones */
+/* =========================
+   Acciones de Filtrado
+========================= */
 .acciones-filtrado {
   display: flex;
   justify-content: flex-end;
@@ -335,7 +359,8 @@
   margin-bottom: 30px;
 }
 
-.boton-limpiar, .boton-buscar {
+.boton-limpiar,
+.boton-buscar {
   padding: 12px 20px;
   border-radius: 8px;
   border: none;
@@ -368,7 +393,9 @@
   box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3);
 }
 
-/* Mensajes de estado */
+/* =========================
+   Mensajes de Estado
+========================= */
 .mensaje-estado {
   background: #f8f9fa;
   border-radius: 10px;
@@ -410,90 +437,3 @@
   background: #6f42c1;
   color: white;
 }
-
-/* Vehiculos Listado */
-.grid-vehiculos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-content: center;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.tarjeta-vehiculo {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.imagen-vehiculo img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.info-vehiculo {
-  padding: 15px;
-}
-
-.nombre-precio-vehiculo {
-  display: flex;
-  justify-content: space-between;
-  text-align: left;
-}
-
-.nombre-vehiculo h3 {
-  font-weight: bold;
-}
-
-.precio {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  text-align: left;
-  font-size: 1.9em;
-  color: #6f42c1;
-  font-weight: bold;
-  line-height: 1.1;
-}
-
-.por-dia {
-  font-size: 0.6em;
-  color: #000000;
-  font-weight: normal;
-  margin-top: -5px;
-}
-
-.caracteristicas-vehiculo {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.caracteristica {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.boton-detalles {
-  margin-top: 15px;
-  width: 100%;
-  padding: 10px;
-  background: #6f42c1;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.dropdown-opciones {
-  max-height: 200px;
-  overflow-y: auto;
-}
-
