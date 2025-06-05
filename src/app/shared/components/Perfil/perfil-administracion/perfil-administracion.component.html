@@ -30,11 +30,227 @@
 
 
 </div>
+<div class="row  ">
+
+  <div>
+    <div class="card">
+      <div class="card-header">
+
+        <button class="btn btn-success m-3"  (click)="rescatarTipoVheculos()">Cargar Tipos Vehículos</button>
+      </div>
+
+      <div class="card-body ">
+        <form [formGroup]="formUpdate" >
+        <table class="table table-border" >
+
+          <thead>
+            <tr class="tabla-head">
+
+              <th class="casillas-ext">CONTROL-ELIMINAR</th>
+              <th class="casillas-ext">CONTROL-ACTUALIZAR</th>
+
+              <th class="casillas-ext">ID-REAL</th>
+              <th class="casillas-ext">MARCA</th>
+              <th class="casillas-ext">MODELO</th>
+              <th class="casillas-ext">PRECIO</th>
+              <th class="casillas-ext">TIPO</th>
+              <th class="casillas-ext">IMAGEN</th>
+              <!-- <th>MATRICULA</th>
+              <th>color</th>
+              <th>kilometraje</th>
+              <th>disponibilidad</th>
+              <th>ubicacion</th>
+              <th>combustible</th>
+              <th>etiqueta</th>
+              <th>autonomia</th>
+              <th>puertas</th>
+              <th>aireAcondicionado</th>
+              <th>plazas</th>
+              <th>transmision</th>
+              <th>reservas</th> -->
+
+            </tr>
+          </thead>
+
+          <tbody>
 
 
-  
+              @for (tipo of tipoVehiculosList; track $index) {
+                <tr class="tabla-int">
 
-<app-creart-tipo-vheiculo-admin
+                  <td class="casillas"><button class="btn btn-danger " (click)="eliminarById()">Eliminar</button></td>
+                  <td class="casillas"><button class="btn btn-secondary " (click)="actualizarTipoVheiculo()">Actualizar</button></td>
+                  <td class="casillas">{{tipo.id}}<input  type="number" placeholder="id" formControlName="id"></td>
+                  <td class="casillas">{{tipo.marca}}<input type="text" placeholder="marca" formControlName="marca"></td>
+                  <td class="casillas">{{tipo.modelo}}<input type="text" placeholder="modelo" formControlName="modelo"></td>
+                  <td class="casillas">{{tipo.precio}}<input type="number" placeholder="precio" formControlName="precio"></td>
+                  <td class="casillas">{{tipo.tipo}}<input type="text" placeholder="tipo" formControlName="tipo"></td>
+                  <td class="casillas">{{tipo.imagen}}<input type="text" placeholder="imagen" formControlName="imagen"></td>
+
+                  <!-- @for (item of tipo.vehiculos; track $index) {
+
+                    <td>{{item.matricula}}</td>
+                    <td> {{item.color}}</td>
+                    <td> {{item.kilometraje}}</td>
+                    <td> {{item.disponibilidad}}</td>
+                    <td> {{item.ubicacion}}</td>
+                    <td> {{item.combustible}}</td>
+                    <td> {{item.etiqueta}}</td>
+                    <td> {{item.autonomia}}</td>
+                    <td> {{item.puertas}}</td>
+                    <td> {{item.aireAcondicionado}}</td>
+                    <td> {{item.plazas}}</td>
+                    <td> {{item.transmision}}</td>
+                    <td> {{item.reservas}}</td>
+                  } -->
+
+                </tr>
+
+              }
+
+          </tbody>
+
+        </table>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <div class="card-header">
+
+        <button class="btn btn-success m-3"  (click)="rescatarVheculos()">Cargar Vehículos</button>
+      </div>
+
+      <div class="card-body ">
+        <form [formGroup]="formUpdateVheiculo" >
+        <table class="table table-border" >
+
+          <thead>
+            <tr class="tabla-head">
+
+              <th class="casillas-ext">CONTROL-ELIMINAR</th>
+              <th class="casillas-ext">CONTROL-ACTUALIZAR</th>
+
+              <th class="casillas-ext">MATRICULA</th>
+               <th class="casillas-ext">UBICACION</th>
+              <th class="casillas-ext">COLOR</th>
+              <th class="casillas-ext">KILOMETRAJE</th>
+              <th class="casillas-ext">DISPONIBILIDAD</th>
+              <th class="casillas-ext">COMBUSTIBLE</th>
+              <th class="casillas-ext">ETIQUETA</th>
+              <th class="casillas-ext">AUTONOMIA</th>
+              <th class="casillas-ext">PUERTAS</th>
+              <th class="casillas-ext">PLAZAS</th>
+              <th class="casillas-ext">TRANSMISION</th>
+              <!-- <th class="casillas-ext">RESERVAS</th> -->
+            </tr>
+          </thead>
+
+          <tbody>
+
+
+              @for (vheiculo of vehiculosList; track $index) {
+                <tr class="tabla-int">
+
+                  <td class="casillas"><button class="btn btn-danger " (click)="eliminarByIdVehiculo()">Eliminar</button></td>
+                  <td class="casillas"><button class="btn btn-secondary " (click)="actualizarVihiculo()">Actualizar</button></td>
+                  <td class="casillas">{{vheiculo.matricula}}<input  type="text" placeholder="matricula" formControlName="matricula"></td>
+                  <td class="casillas">{{vheiculo.ubicacion}}<input type="text" placeholder="ubicacion" formControlName="ubicacion"></td>
+                  <td class="casillas">{{vheiculo.color}}<input type="text" placeholder="color" formControlName="color"></td>
+                  <td class="casillas">{{vheiculo.kilometraje}}<input type="checkbox" placeholder="disponibilidad" formControlName="disponibilidad"></td>
+                  <td class="casillas">{{vheiculo.disponibilidad}}<input type="text" placeholder="combustible" formControlName="combustible"></td>
+                  <td class="casillas">{{vheiculo.etiqueta}}<input type="text" placeholder="etiqueta" formControlName="etiqueta"></td>
+                  <td class="casillas">{{vheiculo.autonomia}}<input type="number" placeholder="autonomia" formControlName="autonomia"></td>
+                  <td class="casillas">{{vheiculo.aireAcondicionado}}<input type="checkbox" placeholder="aireAcondicionado" formControlName="aireAcondicionado"></td>
+                  <td class="casillas">{{vheiculo.plazas}}<input type="number" placeholder="plazas" formControlName="plazas"></td>
+                  <td class="casillas">{{vheiculo.transmision}}<input type="text" placeholder="transmision" formControlName="transmision"></td>
+
+                  <!-- @for (item of tipo.vehiculos; track $index) {
+
+                    <td>{{item.matricula}}</td>
+                    <td> {{item.color}}</td>
+                    <td> {{item.kilometraje}}</td>
+                    <td> {{item.disponibilidad}}</td>
+                    <td> {{item.ubicacion}}</td>
+                    <td> {{item.combustible}}</td>
+                    <td> {{item.etiqueta}}</td>
+                    <td> {{item.autonomia}}</td>
+                    <td> {{item.puertas}}</td>
+                    <td> {{item.aireAcondicionado}}</td>
+                    <td> {{item.plazas}}</td>
+                    <td> {{item.transmision}}</td>
+                    <td> {{item.reservas}}</td>
+                  } -->
+
+                </tr>
+
+              }
+
+          </tbody>
+
+        </table>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- <div class="vehiculos-grid">
+  <div class="vehiculo-card" *ngFor="let veh of vehiculos">
+    <button class="vehiculo-delete" title="Eliminar">&#128465;</button>
+    <img
+      class="vehiculo-img"
+      [src]="veh.imagen"
+      [alt]="veh.nombre + ' ' + veh.modelo"
+    />
+    <div class="vehiculo-row">
+      <div>
+        <div class="vehiculo-nombre">{{ veh.nombre }}</div>
+        <div class="vehiculo-modelo">{{ veh.modelo }}</div>
+        <div class="vehiculo-anio">{{ veh.anio }}</div>
+      </div>
+      <div>
+        <span class="vehiculo-precio">{{ veh.precio }}</span>
+        <span class="vehiculo-dia">por día</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="vehiculos-grid">
+    <div class="vehiculo-card" *ngFor="let veh of vehiculos">
+      <button class="vehiculo-delete" title="Eliminar">&#128465;</button>
+      <img class="vehiculo-img" [src]="veh.imagen" [alt]="veh.nombre + ' ' + veh.modelo">
+      <div class="vehiculo-row">
+        <div>
+          <div class="vehiculo-nombre">{{ veh.nombre }}</div>
+          <div class="vehiculo-modelo">{{ veh.modelo }}</div>
+          <div class="vehiculo-anio">{{ veh.anio }}</div>
+        </div>
+        <div>
+          <span class="vehiculo-precio">{{ veh.precio }}</span>
+          <span class="vehiculo-dia">por día</span>
+        </div>
+      </div>
+      <div class="vehiculo-specs">
+        <div class="vehiculo-spec" *ngFor="let spec of veh.specs">{{ spec }}</div>
+      </div>
+      <button class="vehiculo-btn" >Editar</button>
+    </div>
+    <button class="vehiculo-btn">Editar</button>
+  </div> -->
+<!-- </div> -->
+
+  <app-creart-tipo-vheiculo-admin
   *ngIf="showAgregarModalTipoVheiculo"
   (closeModal)="cerrarAgregarTipoVehiculo()">
 </app-creart-tipo-vheiculo-admin>
