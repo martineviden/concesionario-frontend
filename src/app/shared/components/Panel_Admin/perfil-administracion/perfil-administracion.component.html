@@ -30,7 +30,7 @@
   <!-- Tabla de tipos de vehículo -->
   <div class="admin-section" *ngIf="mostrarTiposVehiculos">
     <div class="card">
-      <div class="card-header bg-warning"></div>
+      <div class="card-header"></div>
       <div class="card-body table-responsive">
         <table class="table table-striped table-hover">
           <thead class="thead-dark">
@@ -40,6 +40,7 @@
               <th>Modelo</th>
               <th>Precio</th>
               <th>Tipo</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +50,11 @@
               <td>{{ tipo.modelo }}</td>
               <td>{{ tipo.precio | currency:'EUR' }}</td>
               <td>{{ tipo.tipo }}</td>
+              <td> <!-- EDITAR TIPO VEHICULO -->
+                <button class="btn btn-warning btn-sm" (click)="abrirEditarTipoVehiculo()">
+                  <i class="fas fa-edit"></i> Editar
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -76,12 +82,19 @@
             <strong>Matrícula:</strong> {{ item.vehiculo.matricula }}<br />
             <strong>Color:</strong> {{ item.vehiculo.color }}<br />
             <strong>Kilometraje:</strong> {{ item.vehiculo.kilometraje | number }} km<br />
+            <strong>Transmision:</strong> {{ item.vehiculo.transmision }}<br />
+            <strong>Combustible:</strong> {{ item.vehiculo.combustible }}<br />
+            <strong>Etiqueta:</strong> {{ item.vehiculo.etiqueta }}<br />
+            <strong>Plazas:</strong> {{ item.vehiculo.plazas }}<br />
             <strong>Ubicación:</strong> {{ item.vehiculo.ubicacion }}<br />
             <strong>Disponibilidad:</strong>
             <span [ngClass]="item.vehiculo.disponibilidad ? 'text-success' : 'text-danger'">
               {{ item.vehiculo.disponibilidad ? 'Disponible' : 'No disponible' }}
             </span>
           </p>
+          <button class="btn btn-warning btn-sm mt-2" (click)="abrirEditarVehiculo()">
+            <i class="fas fa-edit"></i> Editar
+          </button>
         </div>
       </div>
     </div>
@@ -97,4 +110,14 @@
     *ngIf="showAgregarModalVehiculo"
     (closeModal)="cerrarAgregarVehiculo()">
   </app-crear-vehiculo>
+
+  <app-editar-tipo-vehiculo
+    *ngIf="showEditarModalTipoVehiculo "
+    (closeModal)="cerrarEditarTipoVehiculo()">
+  </app-editar-tipo-vehiculo>
+
+  <app-editar-vehiculo
+    *ngIf="showEditarModalVehiculo"
+    (closeModal)="cerrarEditarVehiculo()">
+  </app-editar-vehiculo>
 </div>

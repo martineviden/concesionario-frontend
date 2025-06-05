@@ -1,0 +1,45 @@
+<div class="modal-bg">
+  <form class="modal-form" (ngSubmit)="guardar()">
+    <h2>Editar Tipo de Vehículo</h2>
+    <button class="close-btn" type="button" (click)="close()">&times;</button>
+
+    <div class="form-scroll-area">
+      <div class="two-columns">
+
+        <!-- Marca -->
+        <div>
+          <label class="modal-label" for="marca">Marca</label>
+          <input id="marca" [(ngModel)]="tipoEditado.marca" name="marca" class="modal-input" required />
+        </div>
+
+        <!-- Modelo -->
+        <div>
+          <label class="modal-label" for="modelo">Modelo</label>
+          <input id="modelo" [(ngModel)]="tipoEditado.modelo" name="modelo" class="modal-input" required />
+        </div>
+
+        <!-- Precio -->
+        <div>
+          <label class="modal-label" for="precio">Precio (€)</label>
+          <input id="precio" type="number" min="0" [(ngModel)]="tipoEditado.precio" name="precio" class="modal-input" required />
+        </div>
+
+        <!-- Tipo de Vehículo -->
+        <div>
+          <label class="modal-label" for="tipo">Tipo de Vehículo</label>
+          <select id="tipo" [(ngModel)]="tipoEditado.tipo" name="tipo" class="modal-input" required>
+            <option value="" disabled selected>Seleccione tipo</option>
+            <option *ngFor="let tipo of tiposVehiculo" [value]="tipo">{{ tipo }}</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal-buttons">
+      <button type="button" class="cancel-btn" (click)="close()">Cancelar</button>
+      <button type="submit" class="save-btn">Guardar</button>
+      <button type="button" class="btn btn-danger" (click)="eliminar()">Eliminar</button>
+    </div>
+  </form>
+</div>

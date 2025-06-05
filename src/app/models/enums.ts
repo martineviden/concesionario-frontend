@@ -32,6 +32,7 @@ export enum EtiquetaAmbiental {
 export enum Rol {
   CLIENTE="CLIENTE", ADMIN="ADMIN"
 }
+
 /*
 export namespace Provincia {
   export function keys(): Array<string>{

@@ -75,6 +75,11 @@
   z-index: 1000;
 }
 
+.card-header {
+  background-color: #5937E0;
+  height: 20px;
+}
+
 .card-img-top {
   width: 100%;      /* Que ocupe el ancho completo del contenedor */
   height: 180px;    /* Alto fijo para que todas las imágenes tengan la misma altura */

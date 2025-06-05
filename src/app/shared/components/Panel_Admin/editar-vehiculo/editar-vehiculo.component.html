@@ -1,0 +1,105 @@
+<div class="modal-bg">
+  <form class="modal-form" [formGroup]="newVehiculoForm" (ngSubmit)="guardar()">
+    <h2>Editar Vehículo</h2>
+    <button class="close-btn" type="button" (click)="close()">&times;</button>
+
+
+    <!-- Formulario scrollable -->
+    <div class="form-scroll-area">
+      <div class="two-columns">
+        <!-- Provincia -->
+        <div>
+        <label class="modal-label" for="ubicacion">Provincia</label>
+          <select id="ubicacion" formControlName="ubicacion" class="modal-input">
+            <option value="" disabled selected>Seleccione provincia</option>
+            <option *ngFor="let prov of provincias" [value]="prov">{{ prov }}</option>
+          </select>
+        </div>
+        <!-- Tipo de transmisión -->
+        <div>
+          <label class="modal-label" for="transmision">Transmisión</label>
+          <select id="transmision" formControlName="transmision" class="modal-input">
+            <option value="" disabled selected>Seleccione transmisión</option>
+            <option *ngFor="let trans of transmisiones" [value]="trans">{{ trans }}</option>
+          </select>
+        </div>
+        <!-- Combustible -->
+        <div>
+          <label class="modal-label" for="combustible">Combustible</label>
+          <select id="combustible" formControlName="combustible" class="modal-input">
+            <option value="" disabled selected>Seleccione combustible</option>
+            <option *ngFor="let c of combustibles" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+        <!-- Etiqueta Ambiental -->
+        <div>
+        <label class="modal-label" for="etiqueta">Etiqueta Ambiental</label>
+          <select id="etiqueta" formControlName="etiqueta" class="modal-input">
+            <option value="" disabled selected>Seleccione etiqueta</option>
+            <option *ngFor="let e of etiquetas" [value]="e">{{ e }}</option>
+          </select>
+        </div>
+      <!-- Color -->
+        <div>
+          <label class="modal-label" for="color">Color</label>
+          <select id="color" formControlName="color" class="modal-input">
+            <option value="" disabled selected>Seleccione color</option>
+            <option *ngFor="let color of ['Gris', 'Blanco', 'Negro', 'Plateado', 'Rojo', 'Azul', 'Amarillo', 'Naranja']" [value]="color">
+              {{ color }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Kilometraje -->
+        <div>
+          <label class="modal-label" for="kilometraje">Kilometraje</label>
+          <input id="kilometraje" type="number" min="0" formControlName="kilometraje" class="modal-input" (keydown)="preventNegative($event)" />
+        </div>
+
+        <!-- Autonomía -->
+        <div>
+          <label class="modal-label" for="autonomia">Autonomía (km)</label>
+          <input id="autonomia" type="number" min="0" formControlName="autonomia" class="modal-input" (keydown)="preventNegative($event)" />
+        </div>
+
+        <!-- Plazas -->
+        <div>
+          <label class="modal-label" for="plazas">Plazas</label>
+          <select id="plazas" formControlName="plazas" class="modal-input">
+            <option *ngFor="let plaza of [2, 4, 5, 6, 7, 9]" [value]="plaza">{{ plaza }}</option>
+          </select>
+        </div>
+
+        <!-- Puertas -->
+        <div>
+          <label class="modal-label" for="puertas">Puertas</label>
+          <select id="puertas" formControlName="puertas" class="modal-input">
+            <option *ngFor="let puerta of [2, 3, 5]" [value]="puerta">{{ puerta }}</option>
+          </select>
+        </div>
+
+        <!-- Matrícula -->
+        <div>
+          <label class="modal-label" for="matricula">Matrícula</label>
+          <input id="matricula" type="text" formControlName="matricula" class="modal-input" placeholder="1234-ABC" />
+        </div>
+
+        <!-- Disponibilidad -->
+        <div>
+          <label class="modal-label">
+            <input type="checkbox" formControlName="disponibilidad" />
+            Disponible
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="modal-buttons">
+      <button type="button" class="cancel-btn" (click)="close()">Cancelar</button>
+      <button type="submit" class="save-btn" [disabled]="newVehiculoForm.invalid">Guardar</button>
+      <button type="button" class="btn btn-danger" (click)="eliminar()">Eliminar</button>
+    </div>
+  </form>
+</div>

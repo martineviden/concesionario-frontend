@@ -12,11 +12,13 @@ import { VehiculoService } from '../../../../services/vehiculo.service';
 import { forkJoin, Subscription } from 'rxjs';
 import { CrearTipoVehiculoComponent } from '../crear-tipo-vehiculo/crear-tipo-vehiculo.component';
 import { CrearVehiculoComponent } from '../crear-vehiculo/crear-vehiculo.component';
+import { EditarTipoVehiculoComponent } from '../editar-tipo-vehiculo/editar-tipo-vehiculo.component';
+import { EditarVehiculoComponent } from "../editar-vehiculo/editar-vehiculo.component";
 
 @Component({
   selector: 'app-perfil-administracion',
   standalone: true,
-  imports: [ CommonModule, RouterModule, CrearVehiculoComponent, CrearTipoVehiculoComponent, NavbarComponent],
+  imports: [CommonModule, RouterModule, CrearVehiculoComponent, CrearTipoVehiculoComponent, NavbarComponent, EditarTipoVehiculoComponent, EditarVehiculoComponent],
   templateUrl: './perfil-administracion.component.html',
   styleUrls: ['./perfil-administracion.component.css']
 })
@@ -29,12 +31,15 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   tipoVehiculosList: TipoVehiculoModel[] = [];
   vehiculosList: VehiculoModel[] = [];
   vehiculosConTipo: Array<{ vehiculo: VehiculoModel, tipo: TipoVehiculoModel }> = [];
+  tipoEnEdicion: TipoVehiculoModel | null = null; 
 
   private authSubscription: Subscription | null = null;
 
   // Mostrar modales
   showAgregarModalVehiculo = false;
   showAgregarModalTipoVehiculo = false;
+  showEditarModalTipoVehiculo = false;
+  showEditarModalVehiculo = false;
 
   mostrarTiposVehiculos: boolean = false; // Para mostrar/ocultar tabla tipos
   mostrarVehiculos: boolean = true;       // Para mostrar/ocultar vehículos
@@ -91,7 +96,6 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   abrirAgregarVehiculo(): void {
     this.showAgregarModalVehiculo = true;
   }
-
   cerrarAgregarVehiculo(): void {
     this.showAgregarModalVehiculo = false;
   }
@@ -100,11 +104,27 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   abrirAgregarTipoVehiculo(): void {
     this.showAgregarModalTipoVehiculo = true;
   }
-
   cerrarAgregarTipoVehiculo(): void {
     this.showAgregarModalTipoVehiculo = false;
   }
 
+  // Modal de editar tipo de vehículo
+  abrirEditarTipoVehiculo(): void {
+    this.showEditarModalTipoVehiculo = true;
+  }
+  cerrarEditarTipoVehiculo(): void {
+    this.showEditarModalTipoVehiculo = false;
+  }
+
+  // Modal de editar vehículo
+  abrirEditarVehiculo(): void {
+    this.showEditarModalVehiculo = true;
+  }
+  cerrarEditarVehiculo(): void {
+    this.showEditarModalVehiculo = false;
+  }
+
+  // Mostrar/ocultar tablas
   toggleMostrarTiposVehiculos(): void {
     this.mostrarTiposVehiculos = !this.mostrarTiposVehiculos;
   }
@@ -112,6 +132,52 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   toggleMostrarVehiculos(): void {
     this.mostrarVehiculos = !this.mostrarVehiculos;
   }
+
+  // Mostrar el formulario de edición
+  editarTipo(tipo: TipoVehiculoModel): void {
+    this.tipoEnEdicion = tipo;
+    this.showEditarModalTipoVehiculo = true;
+  }
+
+  cerrarEditarModal(): void {
+    this.showEditarModalTipoVehiculo = false;
+    this.tipoEnEdicion = null;
+  }
+
+   // Cancelar edición
+  cancelarEdicion(): void {
+    this.tipoEnEdicion = null;
+  }
+
+  guardarTipoEditado(tipoActualizado: TipoVehiculoModel): void {
+    if (!tipoActualizado.id) return;
+
+    this.tipoVehiculoService.updateTipoVehiculo(tipoActualizado.id, tipoActualizado).subscribe(() => {
+      this.showEditarModalTipoVehiculo = false;
+      this.tipoEnEdicion = null;
+      this.cargarTipoVehiculos();
+    }, error => {
+      console.error('Error actualizando tipo vehículo:', error);
+    });
+  }
+
+  eliminarTipo(): void {
+    if (!this.tipoEnEdicion?.id) return;
+
+    this.tipoVehiculoService.deleteTipoVehiculo(this.tipoEnEdicion.id).subscribe(() => {
+      this.showEditarModalTipoVehiculo = false;
+      this.tipoEnEdicion = null;
+      this.cargarTipoVehiculos();
+    }, error => {
+      console.error('Error eliminando tipo vehículo:', error);
+    });
+  }
+
+  editarVehiculo(item: { vehiculo: VehiculoModel, tipo: TipoVehiculoModel }): void {
+    console.log('Editar vehículo:', item);
+    // Aquí puedes abrir un modal, navegar, etc.
+  }
+
 
   getImagenPorTipoYModelo(tipo: string, modelo: string): string {
   const tipoLower = tipo.toLowerCase();
