@@ -8,11 +8,8 @@
         <span class="price-dia">/ día</span>
       </p>
 
-       <div class="main-image">
-        <img [src]="getCarImage()"
-             [alt]="tipoVehiculo.modelo"
-             width="700"
-             height="400">
+      <div class="main-image">
+        <img [src]="getCarImage()" [alt]="tipoVehiculo.modelo" width="700" height="400">
       </div>
 
 
@@ -78,10 +75,7 @@
         <button *ngIf="esAdmin" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
       </div>
 
-      <app-formulario-alquilar
-        [tipoVehiculo]="tipoVehiculo"
-        [vehiculo]="vehiculo"
-        *ngIf="showMostrarReserva"
+      <app-formulario-alquilar [tipoVehiculo]="tipoVehiculo" [vehiculo]="vehiculo" *ngIf="showMostrarReserva"
         (cerrarModal)="showMostrarReserva = false">
       </app-formulario-alquilar>
     </div>
