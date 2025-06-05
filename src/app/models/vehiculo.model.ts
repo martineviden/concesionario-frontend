@@ -23,7 +23,7 @@ export class VehiculoModel{
   plazas: number;
   transmision: Transmision;
 
-  id_tipo_vehiculo: number; // FK al tipo de vehículo
+  tipoVehiculo: TipoVehiculoModel; // FK al tipo de vehículo
   reservas: ReservaModel[]; // array, no un único objeto
 
 
@@ -41,7 +41,7 @@ export class VehiculoModel{
     aireAcondicionado: boolean,
     plazas: number,
     transmision: Transmision,
-    id_tipo_vehiculo: number,
+    tipoVehiculo: TipoVehiculoModel,
     reservas: ReservaModel[] = []
 
   ) {
@@ -58,7 +58,7 @@ export class VehiculoModel{
     this.aireAcondicionado = aireAcondicionado;
     this.plazas = plazas;
     this.transmision = transmision;
-    this.id_tipo_vehiculo = id_tipo_vehiculo;
+    this.tipoVehiculo = tipoVehiculo;
     this.reservas = reservas;
   }
 

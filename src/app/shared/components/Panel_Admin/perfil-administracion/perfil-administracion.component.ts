@@ -9,7 +9,7 @@ import { Rol } from '../../../../models/enums';
 import { AuthService } from '../../../../services/auth.service';
 import { TipoVehiculoService } from '../../../../services/tipo-vehiculo.service';
 import { VehiculoService } from '../../../../services/vehiculo.service';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { CrearTipoVehiculoComponent } from '../crear-tipo-vehiculo/crear-tipo-vehiculo.component';
 import { CrearVehiculoComponent } from '../crear-vehiculo/crear-vehiculo.component';
 
@@ -28,6 +28,7 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
 
   tipoVehiculosList: TipoVehiculoModel[] = [];
   vehiculosList: VehiculoModel[] = [];
+  vehiculosConTipo: Array<{ vehiculo: VehiculoModel, tipo: TipoVehiculoModel }> = [];
 
   private authSubscription: Subscription | null = null;
 
@@ -51,12 +52,27 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
       this.esAdmin = usuario?.rol === Rol.ADMIN;
     });
 
-    this.cargarTipoVehiculos();
-    this.cargarVehiculos();
+    this.cargarDatosVehiculosYTipos();
   }
 
   ngOnDestroy(): void {
     this.authSubscription?.unsubscribe();
+  }
+
+  cargarDatosVehiculosYTipos(): void {
+    forkJoin({
+      tipos: this.tipoVehiculoService.listAllTipoVehiculo(),
+      vehiculos: this.vehiculoService.listAllVehiculo()
+    }).subscribe(({ tipos, vehiculos }) => {
+      console.log('Tipos:', tipos);
+      console.log('Vehículos:', vehiculos);
+
+      this.tipoVehiculosList = tipos;
+      this.vehiculosList = vehiculos;
+
+      this.vehiculosConTipo = vehiculos.filter(v => v.tipoVehiculo) // filtra nulos o undefined
+      .map(vehiculo => ({ vehiculo, tipo: vehiculo.tipoVehiculo! }));
+    });
   }
 
   cargarTipoVehiculos(): void {
@@ -65,18 +81,10 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
     });
   }
 
-  vehiculosConTipo: Array<{ vehiculo: VehiculoModel, tipo: TipoVehiculoModel }> = [];
-
   cargarVehiculos(): void {
     this.vehiculoService.listAllVehiculo().subscribe((vehiculos: VehiculoModel[]) => {
-    this.vehiculosList = vehiculos;
-
-    // Combinar con los tipos de vehículo ya cargados
-    this.vehiculosConTipo = this.vehiculosList.map(vehiculo => {
-      const tipo = this.tipoVehiculosList.find(t => t.id === vehiculo.id_tipo_vehiculo)!;
-      return { vehiculo, tipo };
+      this.vehiculosList = vehiculos;
     });
-  });
   }
 
   // Modal de agregar vehículo
@@ -104,4 +112,73 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   toggleMostrarVehiculos(): void {
     this.mostrarVehiculos = !this.mostrarVehiculos;
   }
+
+  getImagenPorTipoYModelo(tipo: string, modelo: string): string {
+  const tipoLower = tipo.toLowerCase();
+  const modeloLower = modelo.toLowerCase();
+
+  switch (tipoLower) {
+    case 'coche':
+      switch (modeloLower) {
+        case 'a3':
+          return 'assets/img/catalogo/a3.png';
+        case 'serie 3':
+          return 'assets/img/catalogo/serie3.png';
+        case 'focus':
+          return 'assets/img/catalogo/focus.png';
+        case 'i20n':
+          return 'assets/img/catalogo/i20n.png';
+        case '208':
+          return 'assets/img/catalogo/208.png';
+        case 'clio':
+          return 'assets/img/catalogo/clio.png';
+        case 'ibiza':
+          return 'assets/img/catalogo/ibiza.png';
+        case 'model 3':
+          return 'assets/img/catalogo/model3.png';
+        case 'corolla':
+          return 'assets/img/catalogo/corolla.png';
+        default:
+          return 'assets/img/catalogo/default.png';
+      }
+
+    case 'moto':
+      switch (modeloLower) {
+        case 'monster 821':
+          return 'assets/img/catalogo/monster821.png';
+        case 'iron 883':
+          return 'assets/img/catalogo/iron883.png';
+        case 'cbr600rr':
+          return 'assets/img/catalogo/cbr600rr.png';
+        case 'gsx-r750':
+          return 'assets/img/catalogo/gsx-r750.png';
+        case 'ninja 400':
+          return 'assets/img/catalogo/ninja400.png';
+        case 'mt-07':
+          return 'assets/img/catalogo/mt-07.png';
+        default:
+          return 'assets/img/catalogo/default.png';
+      }
+
+    case 'furgoneta':
+      switch (modeloLower) {
+        case 'berlingo':
+          return 'assets/img/catalogo/berlingo.png';
+        case 'ducato':
+          return 'assets/img/catalogo/ducato.png';
+        case 'sprinter':
+          return 'assets/img/catalogo/sprinter.png';
+        case 'combo life':
+          return 'assets/img/catalogo/combolife.png';
+        case 'transporter':
+          return 'assets/img/catalogo/transporter.png';
+        default:
+          return 'assets/img/catalogo/default.png';
+      }
+
+    default:
+      return 'assets/img/catalogo/default.png';
+  }
+}
+
 }
