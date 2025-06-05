@@ -24,28 +24,19 @@
               <span class="por-dia">por día</span>
             </div>
           </div>
-          <div class="caracteristicas-vehiculo">
-            <div class="caracteristica">
-              <i [ngClass]="vehiculo.transmision === 'MANUAL' ? 'fas fa-cog' : 'fas fa-car'"></i>
-              <span>{{ vehiculo.transmision | titlecase }}</span>
-            </div>
-            <div class="caracteristica">
-              <i [ngClass]="{
-                'fas fa-gas-pump': vehiculo.combustible === 'GASOLINA' || vehiculo.combustible === 'GLP',
-                'fas fa-industry': vehiculo.combustible === 'DIESEL',
-                'fas fa-bolt': vehiculo.combustible === 'ELECTRICO'
-              }"></i>
-              <span>{{ vehiculo.combustible | titlecase }}</span>
-            </div>
-            <div class="caracteristica">
-              <i class="fas fa-snowflake"></i>
-              <span>{{ vehiculo.aireAcondicionado ? 'A/A' : 'Sin A/A' }}</span>
-            </div>
+          <div class="caracteristica">
+            <i [ngClass]="{
+              'bi bi-fuel-pump': vehiculo.combustible === 'GASOLINA' || vehiculo.combustible === 'GLP',
+              'bi bi-droplet': vehiculo.combustible === 'DIESEL',
+              'fas fa-bolt': vehiculo.combustible === 'ELECTRICO'
+            }"></i>
+            <span>{{ vehiculo.combustible | titlecase }}</span>
           </div>
           <button class="boton-detalles" (click)="verDetalles(vehiculo)">Ver detalles</button>
 
         </div>
       </div>
     </div>
+    
   </div>
 </div>

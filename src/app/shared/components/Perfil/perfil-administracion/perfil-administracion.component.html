@@ -1,15 +1,15 @@
 <div *ngIf="esAdmin" class="admin-menu">
   <div class="admin-header">
-    <h1 class="admin-title">Administración de vehículos</h1>
-   <div class="organizer-botones">
+    <h1 class="admin-title p-3 m-3">Administración de vehículos</h1>
+   <div class="organizer-botones p-2 m-2" >
     <ul class="lista">
-      <li>
+      <li class="espacio p-2">
         <button class="admin-add-btn" (click)="abrirAgregarTipoVehiculo()">
           <i class="bi bi-plus-circle-fill" style="font-size: 2rem"></i>
           Agregar Tipo Vehículo
         </button>
       </li>
-      <li>
+      <li class="espacio p-2">
         <button class="admin-add-btn" (click)="abrirAgregarVehiculo()">
           <i class="bi bi-plus-circle-fill" style="font-size: 2rem"></i>
           Agregar Vehículo
@@ -27,27 +27,35 @@
  (click)="ejecutar()" -->
 
 
+
+
 </div>
-<div class="col-4">
-  <button class="btn btn-success m-3"  (click)="rescatarTipoVheculos()">Cargar Tipos Vehículos</button>
-</div>
-<div class="row pt-2 m-0">
-  <div class="col-15">
+<div class="row  ">
+
+  <div>
     <div class="card">
-      <div class="card-header bg-warning">
-        <h5>Lista tipo vehículos</h5>
+      <div class="card-header">
+
+        <button class="btn btn-success m-3"  (click)="rescatarTipoVheculos()">Cargar Tipos Vehículos</button>
       </div>
-      <div class="card-body">
-        <table class="table table-border">
+
+      <div class="card-body ">
+        <form [formGroup]="formUpdate" >
+        <table class="table table-border" >
+
           <thead>
-            <tr>
-              <th>ID</th>
-              <th>MARCA</th>
-              <th>MODELO</th>
-              <th>PRECIO</th>
-              <th>TIPO</th>
-              <th>IMAGEN</th>
-              <th>MATRICULA</th>
+            <tr class="tabla-head">
+
+              <th class="casillas-ext">CONTROL-ELIMINAR</th>
+              <th class="casillas-ext">CONTROL-ACTUALIZAR</th>
+
+              <th class="casillas-ext">ID-REAL</th>
+              <th class="casillas-ext">MARCA</th>
+              <th class="casillas-ext">MODELO</th>
+              <th class="casillas-ext">PRECIO</th>
+              <th class="casillas-ext">TIPO</th>
+              <th class="casillas-ext">IMAGEN</th>
+              <!-- <th>MATRICULA</th>
               <th>color</th>
               <th>kilometraje</th>
               <th>disponibilidad</th>
@@ -59,23 +67,27 @@
               <th>aireAcondicionado</th>
               <th>plazas</th>
               <th>transmision</th>
-              <th>reservas</th>
+              <th>reservas</th> -->
 
             </tr>
           </thead>
+
           <tbody>
 
+
               @for (tipo of tipoVehiculosList; track $index) {
-                <tr>
-                  <td>
-                    {{$index+1}}
-                  </td>
-                  <td>{{tipo.marca}}</td>
-                  <td>{{tipo.modelo}}</td>
-                  <td>{{tipo.precio}}</td>
-                  <td>{{tipo.tipo}}</td>
-                  <td>{{tipo.imagen}}</td>
-                  @for (item of tipo.vehiculos; track $index) {
+                <tr class="tabla-int">
+
+                  <td class="casillas"><button class="btn btn-danger " (click)="eliminarById()">Eliminar</button></td>
+                  <td class="casillas"><button class="btn btn-secondary " (click)="actualizarTipoVheiculo()">Actualizar</button></td>
+                  <td class="casillas">{{tipo.id}}<input  type="number" placeholder="id" formControlName="id"></td>
+                  <td class="casillas">{{tipo.marca}}<input type="text" placeholder="marca" formControlName="marca"></td>
+                  <td class="casillas">{{tipo.modelo}}<input type="text" placeholder="modelo" formControlName="modelo"></td>
+                  <td class="casillas">{{tipo.precio}}<input type="number" placeholder="precio" formControlName="precio"></td>
+                  <td class="casillas">{{tipo.tipo}}<input type="text" placeholder="tipo" formControlName="tipo"></td>
+                  <td class="casillas">{{tipo.imagen}}<input type="text" placeholder="imagen" formControlName="imagen"></td>
+
+                  <!-- @for (item of tipo.vehiculos; track $index) {
 
                     <td>{{item.matricula}}</td>
                     <td> {{item.color}}</td>
@@ -90,15 +102,18 @@
                     <td> {{item.plazas}}</td>
                     <td> {{item.transmision}}</td>
                     <td> {{item.reservas}}</td>
-                  }
+                  } -->
 
                 </tr>
 
               }
 
           </tbody>
+
         </table>
+        </form>
       </div>
+
     </div>
   </div>
 </div>

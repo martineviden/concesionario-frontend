@@ -16,7 +16,7 @@ import { VehiculoService } from '../../../services/vehiculo.service';
   styleUrls: ['./tipo-vehiculo-banner-first.component.css']
 })
 export class TipoVehiculoBannerFirstComponent {
-  mostrarFormularioAlquilar = false;
+  showMostrarReserva = false;
   @Input() vehiculo!: VehiculoModel;
   @Input() tipoVehiculo!: TipoVehiculoModel;
   esAdmin: boolean = false;
@@ -139,4 +139,8 @@ export class TipoVehiculoBannerFirstComponent {
     };
   return colorMap[color.toLowerCase()] || '#000000'; 
 }
+
+  mostrarFormularioReserva(){
+    this.showMostrarReserva = true;
+  }
 }
