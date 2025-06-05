@@ -7,6 +7,8 @@ import { AuthService } from '../../../services/auth.service';
 import { Rol } from '../../../models/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VehiculoService } from '../../../services/vehiculo.service';
+import { ReservaService } from '../../../services/reserva.service';
+import { ResenaService } from '../../../services/resena.service';
 
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
@@ -28,25 +30,41 @@ export class TipoVehiculoBannerFirstComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private vehiculoService: VehiculoService,
+    private reservaService: ReservaService,
+    private resenaService: ResenaService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.authService.obtenerUsuarioActual().subscribe(usuario => {
-      this.esAdmin = usuario?.rol === Rol.ADMIN;
+  eliminarVehiculo() {
+    this.matricula = this.route.snapshot.paramMap.get('matricula') || '';
+
+    this.reservaService.deleteReservasByMatricula(this.matricula).subscribe({
+      next: () => {
+        console.log('Reservas eliminadas con matricula: ' + this.matricula);
+      },
+      error: err => console.log('Error al eliminar reservas por matricula: ', err)
+    });
+
+    this.resenaService.deleteResenasByMatricula(this.matricula).subscribe({
+      next: () => {
+        console.log('Resenas eliminadas con matricula: ' + this.matricula);
+      },
+      error: err => console.log('Error al eliminar resenas por matricula: ', err)
+    });
+
+    this.vehiculoService.deleteVehiculo(this.matricula).subscribe({
+      next: res => {
+        console.log('Vehiculo eliminado con matricula: ' + this.matricula);
+        this.router.navigate(['/catalogo']);
+      },
+      error: err => console.log('Error al eliminar vehiculo: ', err)
     });
   }
 
-  eliminarVehiculo() {
-    // Se utiliza la matrícula del objeto vehiculo si existe; de lo contrario, se intenta obtener de la ruta.
-    this.matricula = this.vehiculo?.matricula || this.route.snapshot.paramMap.get('matricula') || '';
-    this.vehiculoService.deleteVehiculo(this.matricula).subscribe({
-      next: () => {
-        console.log('Vehículo eliminado con matrícula: ' + this.matricula);
-        this.router.navigate(['/catalogo']);
-      },
-      error: err => console.error('Error al eliminar vehículo', err)
+  ngOnInit() {
+    this.authService.obtenerUsuarioActual().subscribe(usuario => {
+      this.esAdmin = usuario?.rol === Rol.ADMIN;
     });
   }
 
