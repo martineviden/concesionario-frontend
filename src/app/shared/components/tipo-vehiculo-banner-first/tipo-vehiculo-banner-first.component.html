@@ -1,21 +1,26 @@
-<div class="main-body">
+<div class="main-body" *ngIf="vehiculo && tipoVehiculo">
   <div class="car-container">
     <!-- IZQUIERDA -->
     <div class="left-panel">
-      <h1>{{ tipoVehiculo.marca }} {{tipoVehiculo.modelo}}</h1>
+      <h1>{{ tipoVehiculo?.marca }} {{ tipoVehiculo?.modelo }}</h1>
       <p class="price">
-        <span class="price-amount">€{{ tipoVehiculo.precio }}</span>
+        <span class="price-amount">€{{ tipoVehiculo?.precio }}</span>
         <span class="price-dia">/ día</span>
       </p>
 
-      <div class="main-image">
-        <img [src]="tipoVehiculo.imagen" [alt]="tipoVehiculo.modelo">
+       <div class="main-image">
+        <img [src]="getCarImage()"
+             [alt]="tipoVehiculo?.modelo"
+             width="700"
+             height="400">
       </div>
 
+
       <div class="thumbnails">
-        <img src="assets/img/catalogo/7.jpg" alt="Miniatura 1">
-        <img src="assets/img/catalogo/7.jpg" alt="Miniatura 3">
-        <img src="assets/img/catalogo/7.jpg" alt="Miniatura 2">
+        <!-- Se usan las imágenes del modelo a través del método getCarImage() -->
+        <img [src]="getCarImage()" alt="Miniatura 1">
+        <img [src]="getCarImage()" alt="Miniatura 2">
+        <img [src]="getCarImage()" alt="Miniatura 3">
       </div>
     </div>
 
@@ -26,50 +31,50 @@
         <div class="spec-card">
           <div class="spec-icon">🏎️</div>
           <span>Transmisión</span>
-          <p>{{ vehiculo.transmision }}</p>
+          <p>{{ vehiculo?.transmision }}</p>
         </div>
         <div class="spec-card">
           <div class="spec-icon">⛽</div>
           <span>Combustible</span>
-          <p>{{ vehiculo.combustible }}</p>
+          <p>{{ vehiculo?.combustible }}</p>
         </div>
         <div class="spec-card">
           <div class="spec-icon">🚪</div>
           <span>Puertas</span>
-          <p>{{ vehiculo.puertas }}</p>
+          <p>{{ vehiculo?.puertas }}</p>
         </div>
         <div class="spec-card">
           <div class="spec-icon">❄️</div>
           <span>Aire Acondicionado</span>
-          <p>{{ vehiculo.aireAcondicionado ? 'Sí' : 'No' }}</p>
+          <p>{{ vehiculo?.aireAcondicionado ? 'Sí' : 'No' }}</p>
         </div>
         <div class="spec-card">
           <div class="spec-icon">🧑‍🤝‍🧑</div>
           <span>Asientos</span>
-          <p>{{ vehiculo.plazas }}</p>
+          <p>{{ vehiculo?.plazas }}</p>
         </div>
         <div class="spec-card">
           <div class="spec-icon">🛣️</div>
           <span>Kilometraje</span>
-          <p>{{ vehiculo.kilometraje }} km</p>
+          <p>{{ vehiculo?.kilometraje }} km</p>
         </div>
         <div class="spec-card">
           <div class="spec-icon">📍</div>
           <span>Ubicación</span>
-          <p>{{ vehiculo.ubicacion }}</p>
+          <p>{{ vehiculo?.ubicacion }}</p>
         </div>
         <div class="spec-card">
           <div class="spec-icon">🎨</div>
           <span>Color</span>
           <div class="color-display">
-            <span class="color-circle" [style.backgroundColor]="getColorCSS(vehiculo.color)"></span>
-            <p>{{ vehiculo.color }}</p>
+            <span class="color-circle" [style.backgroundColor]="getColorCSS(vehiculo?.color)"></span>
+            <p>{{ vehiculo?.color }}</p>
           </div>
         </div>
-        <div class="spec-card etiqueta-badge" [ngClass]="vehiculo.etiqueta.toLowerCase()">
+        <div class="spec-card etiqueta-badge" [ngClass]="vehiculo?.etiqueta?.toLowerCase()">
           <div class="spec-icon">♻️</div>
           <span>Etiqueta</span>
-          <p>{{ vehiculo.etiqueta }}</p>
+          <p>{{ vehiculo?.etiqueta }}</p>
         </div>
       </div>
 

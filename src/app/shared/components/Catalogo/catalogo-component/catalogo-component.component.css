@@ -89,6 +89,8 @@
   font-weight: bold;
 }
 
+
+*/
 .grid-vehiculos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -173,7 +175,6 @@
   max-height: 200px;
   overflow-y: auto;
 }
-*/
 /* Estilos generales */
 .catalogo-container {
   max-width: 1200px;

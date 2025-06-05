@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormularioAlquilarComponent } from "../formulario-alquilar/formulario-alquilar.component";
 import { VehiculoModel } from '../../../models/vehiculo.model';
@@ -7,18 +7,22 @@ import { AuthService } from '../../../services/auth.service';
 import { Rol } from '../../../models/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VehiculoService } from '../../../services/vehiculo.service';
+import { NgOptimizedImage } from '@angular/common';
+
 
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
   standalone: true,
-  imports: [CommonModule, FormularioAlquilarComponent],
+  imports: [CommonModule, FormularioAlquilarComponent,NgOptimizedImage],
   templateUrl: './tipo-vehiculo-banner-first.component.html',
   styleUrls: ['./tipo-vehiculo-banner-first.component.css']
 })
-export class TipoVehiculoBannerFirstComponent {
+export class TipoVehiculoBannerFirstComponent implements OnInit {
   mostrarFormularioAlquilar = false;
+  
   @Input() vehiculo!: VehiculoModel;
   @Input() tipoVehiculo!: TipoVehiculoModel;
+  
   esAdmin: boolean = false;
   matricula: string = '';
 
@@ -29,114 +33,123 @@ export class TipoVehiculoBannerFirstComponent {
     private router: Router
   ) {}
 
-  eliminarVehiculo() {
-    this.matricula = this.route.snapshot.paramMap.get('matricula') || '';
-    this.vehiculoService.deleteVehiculo(this.matricula).subscribe({
-      next: () => {
-        console.log('Vehiculo eliminado con matricula: ' + this.matricula);
-        this.router.navigate(['/catalogo']);
-      },
-      error: err => console.log('Error al eliminar vehiculo')
-    })
-  }
-
   ngOnInit() {
     this.authService.obtenerUsuarioActual().subscribe(usuario => {
       this.esAdmin = usuario?.rol === Rol.ADMIN;
     });
   }
 
-  getColorCSS(color: string): string {
+  eliminarVehiculo() {
+    // Se utiliza la matrícula del objeto vehiculo si existe; de lo contrario, se intenta obtener de la ruta.
+    this.matricula = this.vehiculo?.matricula || this.route.snapshot.paramMap.get('matricula') || '';
+    this.vehiculoService.deleteVehiculo(this.matricula).subscribe({
+      next: () => {
+        console.log('Vehículo eliminado con matrícula: ' + this.matricula);
+        this.router.navigate(['/catalogo']);
+      },
+      error: err => console.error('Error al eliminar vehículo', err)
+    });
+  }
+
+  // Se modifica la firma para aceptar string o undefined
+  getColorCSS(color: string | undefined): string {
+    if (!color) return '#000000';
     const colorMap: { [key: string]: string } = {
-      // Colores básicos
-      rojo: 'red', // #FF0000
-      azul: 'blue', // #0000FF
-      verde: 'green', // #008000
-      negro: 'black', // #000000
-      blanco: 'white', // #FFFFFF
-      amarillo: 'yellow', // #FFFF00
-      naranja: 'orange', // #FFA500
-      morado: 'purple', // #800080
-      rosa: 'pink', // #FFC0CB
-      gris: 'gray', // #808080
-      marrón: 'brown', // #A52A2A
-      cian: 'cyan', // #00FFFF
-      magenta: 'magenta', // #FF00FF
-      lima: 'lime', // #00FF00
-      oliva: 'olive', // #808000
-      turquesa: 'turquoise', // #40E0D0
-      violeta: 'violet', // #EE82EE
-      dorado: 'gold', // #FFD700
-      plateado: 'silver', // #C0C0C0
-
-      // Tonos de rojo
-      escarlata: 'scarlet', // #FF2400
-      carmesí: 'crimson', // #DC143C
-      tomate: 'tomato', // #FF6347
-      coral: 'coral', // #FF7F50
-      salmón: 'salmon', // #FA8072
-      granate: 'maroon', // #800000
-      bermellón: 'vermilion', // #E34234
-
-      // Tonos de azul
-      azul_marino: 'navy', // #000080
-      azul_cielo: 'skyblue', // #87CEEB
-      azul_acero: 'steelblue', // #4682B4
-      azul_real: 'royalblue', // #4169E1
-      añil: 'indigo', // #4B0082
-      celeste: 'lightblue', // #ADD8E6
-      zafiro: '#0F52BA', // No hay nombre directo en CSS, usamos hexadecimal
-
-      // Tonos de verde
-      verde_oliva: 'olive', // #808000
-      verde_lima: 'limegreen', // #32CD32
-      verde_esmeralda: 'emerald', // #50C878
-      verde_menta: 'mintcream', // #F5FFFA
-      verde_bosque: 'forestgreen', // #228B22
-      verde_manzana: '#8FBC8F', // No hay nombre directo, usamos hexadecimal
-      jade: '#00A86B', // No hay nombre directo, usamos hexadecimal
-
-      // Tonos de amarillo
-      ámbar: 'amber', // #FFBF00
-      mostaza: '#FFDB58', // No hay nombre directo, usamos hexadecimal
-      ocre: '#CC7722', // No hay nombre directo, usamos hexadecimal
-      limón: 'lemonchiffon', // #FFFACD
-
-      // Tonos de gris
-      gris_oscuro: 'darkgray', // #A9A9A9
-      gris_claro: 'lightgray', // #D3D3D3
-      pizarra: 'slategray', // #708090
-      carbón: 'charcoal', // #36454F
-
-      // Tonos de marrón
-      caoba: '#4A2C2A', // No hay nombre directo, usamos hexadecimal
-      chocolate: 'chocolate', // #D2691E
-      terracota: '#E2725B', // No hay nombre directo, usamos hexadecimal
-      bronce: '#CD7F32', // No hay nombre directo, usamos hexadecimal
-
-      // Tonos de rosa
-      fucsia: 'fuchsia', // #FF00FF
-      rosa_pálido: 'lightpink', // #FFB6C1
-      rosa_caliente: 'hotpink', // #FF69B4
-
-      // Tonos de morado
-      púrpura: 'purple', // #800080
-      lavanda: 'lavender', // #E6E6FA
-      malva: 'mauve', // #E0B0FF
-      lila: '#C8A2C8', // No hay nombre directo, usamos hexadecimal
-
-      // Otros colores
-      beige: 'beige', // #F5F5DC
-      marfil: 'ivory', // #FFFFF0
-      crema: 'cream', // #FFFDD0
-      menta: 'mintcream', // #F5FFFA
-      aguamarina: 'aquamarine', // #7FFFD4
-      coral_claro: 'lightcoral', // #F08080
-      albaricoque: '#FBCEB1', // No hay nombre directo, usamos hexadecimal
-      durazno: 'peachpuff', // #FFDAB9
-      perla: '#EAE0C8', // No hay nombre directo, usamos hexadecimal
-      esmeralda: '#50C878', // No hay nombre directo, usamos hexadecimal
+      rojo: 'red',
+      azul: 'blue',
+      verde: 'green',
+      negro: 'black',
+      blanco: 'white',
+      amarillo: 'yellow',
+      naranja: 'orange',
+      morado: 'purple',
+      rosa: 'pink',
+      gris: 'gray',
+      marrón: 'brown',
+      cian: 'cyan',
+      magenta: 'magenta',
+      lima: 'lime',
+      oliva: 'olive',
+      turquesa: 'turquoise',
+      violeta: 'violet',
+      dorado: 'gold',
+      plateado: 'silver',
+      escarlata: 'scarlet',
+      carmesí: 'crimson',
+      tomate: 'tomato',
+      coral: 'coral',
+      salmón: 'salmon',
+      granate: 'maroon',
+      bermellón: 'vermilion',
+      azul_marino: 'navy',
+      azul_cielo: 'skyblue',
+      azul_acero: 'steelblue',
+      azul_real: 'royalblue',
+      añil: 'indigo',
+      celeste: 'lightblue',
+      zafiro: '#0F52BA',
+      verde_oliva: 'olive',
+      verde_lima: 'limegreen',
+      verde_esmeralda: 'emerald',
+      verde_menta: 'mintcream',
+      verde_bosque: 'forestgreen',
+      verde_manzana: '#8FBC8F',
+      jade: '#00A86B',
+      ámbar: 'amber',
+      mostaza: '#FFDB58',
+      ocre: '#CC7722',
+      limón: 'lemonchiffon',
+      gris_oscuro: 'darkgray',
+      gris_claro: 'lightgray',
+      pizarra: 'slategray',
+      carbón: 'charcoal',
+      caoba: '#4A2C2A',
+      chocolate: 'chocolate',
+      terracota: '#E2725B',
+      bronce: '#CD7F32',
+      fucsia: 'fuchsia',
+      rosa_pálido: 'lightpink',
+      rosa_caliente: 'hotpink',
+      púrpura: 'purple',
+      lavanda: 'lavender',
+      malva: 'mauve',
+      lila: '#C8A2C8',
+      beige: 'beige',
+      marfil: 'ivory',
+      crema: 'cream',
+      menta: 'mintcream',
+      aguamarina: 'aquamarine',
+      coral_claro: 'lightcoral',
+      albaricoque: '#FBCEB1',
+      durazno: 'peachpuff',
+      perla: '#EAE0C8',
+      esmeralda: '#50C878'
     };
-  return colorMap[color.toLowerCase()] || '#000000'; 
-}
+    return colorMap[color.toLowerCase()] || '#000000';
+  }
+
+  // Retorna la imagen del coche, ya sea la definida en el modelo o una imagen por defecto.
+  getCarImage(): string {
+    if (this.tipoVehiculo?.modelo) {
+      const basePath = 'assets/img/catalogo/';
+      // Convertir el modelo a minúsculas y reemplazar espacios por guiones bajos para formar el nombre de archivo.
+      const modelName = this.tipoVehiculo.modelo.toLowerCase().replace(/\s+/g, '_');
+      // Retorna la ruta asumiendo que la imagen está en formato PNG.
+      return `${basePath}${modelName}.png`;
+    }
+    return 'assets/img/catalogo/default.png';
+  }
+
+  // Si por alguna razón la imagen en PNG no se encuentra, intenta cambiar la extensión a JPG.
+  handleImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    // Si el src termina en .png, se intenta cambiar a .jpg
+    if(target.src.includes('.png')) {
+      target.src = target.src.replace('.png', '.jpg');
+    } else {
+      // Si ya intentó con JPG o el nombre no coincide, se asigna una imagen default
+      target.src = 'assets/img/catalogo/default.png';
+    }
+  }
+
 }
