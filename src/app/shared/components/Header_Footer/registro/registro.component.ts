@@ -27,7 +27,11 @@ export class RegistroComponent {
     this.usuarioForm = this.fb.group({
       nombre: ['', [Validators.required, this.validarSoloLetras]],
       apellidos: ['', [Validators.required, this.validarSoloLetras]],
-      correo: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
+      correo: ['', [
+        Validators.required,
+        Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+        Validators.maxLength(100)
+      ]],
       telefono: ['', [Validators.required, Validators.maxLength(15), this.validarSoloNumeros]],
       dni: ['', [Validators.required, Validators.maxLength(9)]],
       contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
@@ -112,6 +116,13 @@ export class RegistroComponent {
     if (control?.errors?.['email']) {
       return 'Correo electrónico no válido';
     }
+
+    if (control?.errors?.['pattern']) {
+    if (controlName === 'correo') {
+      return 'El formato del correo debe ser texto@texto.com';
+    }
+    return 'Formato inválido';
+  }
 
     if (control?.errors?.['minlength']) {
       return `Mínimo ${control.errors?.['minlength'].requiredLength} caracteres`;

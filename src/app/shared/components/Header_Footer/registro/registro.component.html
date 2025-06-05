@@ -36,11 +36,13 @@
         <div class="form-group">
           <label for="correo">Correo Electrónico</label>
           <input id="correo" type="email" class="form-input" formControlName="correo" maxlength="100">
-          <div class="input-footer">
-            <div *ngIf="showFormErrors && usuarioForm.get('correo')?.invalid" class="field-error">
+          
+          <!-- Contador debajo del input -->
+          <span class="char-counter">{{ usuarioForm.get('correo')?.value?.length || 0 }}/100</span>
+          
+          <!-- Mensaje de error debajo del contador -->
+          <div *ngIf="showFormErrors && usuarioForm.get('correo')?.invalid" class="field-error">
             {{ getErrorMessage('correo') }}
-            </div>
-            <span class="char-counter">{{ usuarioForm.get('correo')?.value?.length || 0 }}/100</span>
           </div>
         </div>
 
