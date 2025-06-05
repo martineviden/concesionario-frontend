@@ -4,7 +4,9 @@
   <div class="contenedor">
     <header class="cabecera">
       <h1>Elige el vehículo que más te convenga</h1>
-      <a [routerLink]="['/catalogo']" class="ver-todos">Ver todos <i class="fas fa-arrow-right"></i></a>
+      <a [routerLink]="['/catalogo']" class="ver-todos">
+        Ver todos <i class="fas fa-arrow-right"></i>
+      </a>
     </header>
 
     <div class="cuadricula-vehiculos">
@@ -24,19 +26,34 @@
               <span class="por-dia">por día</span>
             </div>
           </div>
-          <div class="caracteristica">
-            <i [ngClass]="{
-              'bi bi-fuel-pump': vehiculo.combustible === 'GASOLINA' || vehiculo.combustible === 'GLP',
-              'bi bi-droplet': vehiculo.combustible === 'DIESEL',
-              'fas fa-bolt': vehiculo.combustible === 'ELECTRICO'
-            }"></i>
-            <span>{{ vehiculo.combustible | titlecase }}</span>
-          </div>
-          <button class="boton-detalles" (click)="verDetalles(vehiculo)">Ver detalles</button>
 
+          <!-- Sección de características agregadas -->
+          <div class="caracteristicas-vehiculo">
+            <!-- Transmisión -->
+            <div class="caracteristica">
+              <i [ngClass]="vehiculo.transmision === 'MANUAL' ? 'fas fa-gear' : 'fas fa-car-side'"></i>
+              <span>{{ vehiculo.transmision | titlecase }}</span>
+            </div>
+            <!-- Combustible -->
+            <div class="caracteristica">
+              <i [ngClass]="{
+                'bi bi-fuel-pump': vehiculo.combustible === 'GASOLINA' || vehiculo.combustible === 'GLP',
+                'bi bi-droplet': vehiculo.combustible === 'DIESEL',
+                'fas fa-bolt': vehiculo.combustible === 'ELECTRICO'
+              }"></i>
+              <span>{{ vehiculo.combustible | titlecase }}</span>
+            </div>
+            <!-- Aire acondicionado -->
+            <div class="caracteristica">
+              <i class="fas fa-wind"></i>
+              <span>{{ vehiculo.aireAcondicionado ? 'A/A' : 'Sin A/A' }}</span>
+            </div>
+          </div>
+
+          <button class="boton-detalles" (click)="verDetalles(vehiculo)">Ver detalles</button>
         </div>
       </div>
     </div>
-    
+
   </div>
 </div>

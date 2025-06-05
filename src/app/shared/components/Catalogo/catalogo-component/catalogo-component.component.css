@@ -232,6 +232,7 @@ body, html {
   cursor: pointer;
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  animation: slideInFromLeft 0.8s ease-out forwards;
 }
 
 .filtro-tipo:hover {
@@ -246,6 +247,11 @@ body, html {
   border-color: #5a36a9;
 }
 
+
+
+
+
+
 .filtro-tipo.activo:hover {
   background: #5a36a9;
 }
@@ -256,6 +262,9 @@ body, html {
   height: 200px;
   margin-bottom: 10px;
   object-fit: contain;
+   position: relative;
+  display: block;
+
 }
 
 /* =========================
@@ -436,4 +445,15 @@ body, html {
 .boton-secundario:hover {
   background: #6f42c1;
   color: white;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
