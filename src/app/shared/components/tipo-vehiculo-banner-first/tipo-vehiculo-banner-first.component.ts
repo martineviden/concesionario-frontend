@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormularioAlquilarComponent } from "../formulario-alquilar/formulario-alquilar.component";
+import { LoginComponent } from "../Header_Footer/login/login.component";
 import { VehiculoModel } from '../../../models/vehiculo.model';
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
 import { AuthService } from '../../../services/auth.service';
@@ -11,15 +12,17 @@ import { VehiculoService } from '../../../services/vehiculo.service';
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
   standalone: true,
-  imports: [CommonModule, FormularioAlquilarComponent],
+  imports: [CommonModule, FormularioAlquilarComponent, LoginComponent],
   templateUrl: './tipo-vehiculo-banner-first.component.html',
   styleUrls: ['./tipo-vehiculo-banner-first.component.css']
 })
 export class TipoVehiculoBannerFirstComponent {
   showMostrarReserva = false;
+  showLoginModal = false;
   @Input() vehiculo!: VehiculoModel;
   @Input() tipoVehiculo!: TipoVehiculoModel;
   esAdmin: boolean = false;
+  estaAutenticado: boolean = false;
   matricula: string = '';
 
   constructor(
@@ -39,10 +42,13 @@ export class TipoVehiculoBannerFirstComponent {
       error: err => console.log('Error al eliminar vehiculo')
     })
   }
-
   ngOnInit() {
     this.authService.obtenerUsuarioActual().subscribe(usuario => {
       this.esAdmin = usuario?.rol === Rol.ADMIN;
+    });
+    
+    this.authService.obtenerEstadoAutenticacion().subscribe(autenticado => {
+      this.estaAutenticado = autenticado;
     });
   }
 
@@ -139,8 +145,20 @@ export class TipoVehiculoBannerFirstComponent {
     };
   return colorMap[color.toLowerCase()] || '#000000'; 
 }
-
   mostrarFormularioReserva(){
+    if (this.estaAutenticado) {
+      this.showMostrarReserva = true;
+    } else {
+      this.showLoginModal = true;
+    }
+  }
+
+  cerrarLoginModal() {
+    this.showLoginModal = false;
+  }
+
+  onLoginSuccess() {
+    this.showLoginModal = false;
     this.showMostrarReserva = true;
   }
 }

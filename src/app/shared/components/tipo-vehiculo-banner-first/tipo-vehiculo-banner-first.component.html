@@ -77,13 +77,18 @@
         <button class="btn-alquilar" (click)="mostrarFormularioReserva()">Alquilar</button>
         <button *ngIf="esAdmin" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
       </div>
-      
-      <app-formulario-alquilar 
+        <app-formulario-alquilar 
         [tipoVehiculo]="tipoVehiculo" 
         [vehiculo]="vehiculo" 
         *ngIf="showMostrarReserva" 
         (cerrarModal)="showMostrarReserva = false">
       </app-formulario-alquilar>
+        <app-login 
+        *ngIf="showLoginModal"
+        (closeModal)="cerrarLoginModal()"
+        (loginSuccess)="onLoginSuccess()"
+        (switchToRegister)="cerrarLoginModal()">
+      </app-login>
     </div>
   </div>
 </div>

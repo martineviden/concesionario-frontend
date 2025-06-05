@@ -5,6 +5,8 @@ import { VehiculoModel } from '../../../models/vehiculo.model';
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
 import { ReservaService } from '../../../services/reserva.service';
 import { ReservaModel } from '../../../models/reserva.model';
+import { AuthService } from '../../../services/auth.service';
+import { Usuario } from '../../../models/login.model';
 
 @Component({
   selector: 'app-formulario-alquilar',
@@ -18,25 +20,19 @@ export class FormularioAlquilarComponent implements OnInit {
   @Input() vehiculo!: VehiculoModel;
   @Input() tipoVehiculo!: TipoVehiculoModel;
   alquilerForm: FormGroup;
+  usuarioActual: Usuario | null = null;
+  precioTotal: number = 0;
 
-  constructor(private fb: FormBuilder, private reservaService: ReservaService) {
+  constructor(
+    private fb: FormBuilder, 
+    private reservaService: ReservaService,
+    private authService: AuthService
+  ) {
     this.alquilerForm = this.fb.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.email]],
-      telefono: ['', Validators.required],
-      dni: ['', Validators.required],
-      dniIgualCarnet: [false],
-      calle: ['', Validators.required],
-      numero: ['', Validators.required],
-      codigoPostal: ['', Validators.required],
-      localidad: ['', Validators.required],
-      metodoPago: ['', Validators.required],
       fechaReserva: ['', Validators.required],
       diasReserva: [1, [Validators.required, Validators.min(1)]]
     });
   }
-
   ngOnInit() {
     // Verificar que las entradas estén definidas
     if (!this.vehiculo) {
@@ -47,25 +43,56 @@ export class FormularioAlquilarComponent implements OnInit {
       console.warn('TipoVehículo no definido en FormularioAlquilarComponent');
       this.tipoVehiculo = {} as TipoVehiculoModel;
     }
+
+    // Obtener usuario actual
+    this.authService.obtenerUsuarioActual().subscribe(usuario => {
+      this.usuarioActual = usuario;
+    });
+
+    // Calcular precio inicial
+    this.calcularPrecioTotal();
+
+    // Escuchar cambios en días de reserva para actualizar precio
+    this.alquilerForm.get('diasReserva')?.valueChanges.subscribe(() => {
+      this.calcularPrecioTotal();
+    });
+
     console.log('Vehículo recibido:', this.vehiculo);
     console.log('TipoVehículo recibido:', this.tipoVehiculo);
+  }
+
+  calcularPrecioTotal() {
+    const dias = this.alquilerForm.get('diasReserva')?.value || 1;
+    this.precioTotal = (this.tipoVehiculo?.precio || 0) * dias;
+  }
+
+  getMinDate(): string {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
   }
 
   cerrar() {
     this.cerrarModal.emit();
   }
-
   confirmarReserva(){
-    // si el usuario no esta registrado que se registre
-    const usuarioId= '';
-    const vehiculoMatricula = this.vehiculo.matricula;
+    if (this.alquilerForm.invalid) {
+      this.alquilerForm.markAllAsTouched();
+      return;
+    }
 
-    const reserva = new ReservaModel(
-      vehiculoMatricula,
-      usuarioId,
-      new Date(this.alquilerForm.value.fechaReserva),
-      this.alquilerForm.value.diasReserva,
-      this.tipoVehiculo.precio * this.alquilerForm.value.diasReserva,
+    if (!this.usuarioActual) {
+      console.error('Usuario no autenticado');
+      return;
+    }
+
+    const fechaReserva = new Date(this.alquilerForm.value.fechaReserva);
+    const diasReserva = this.alquilerForm.value.diasReserva;
+    const precio = this.precioTotal;    const reserva = new ReservaModel(
+      this.vehiculo.matricula,
+      this.usuarioActual.id.toString(),
+      fechaReserva,
+      diasReserva,
+      precio,
       '' // el id se genera en el backend
     );
 

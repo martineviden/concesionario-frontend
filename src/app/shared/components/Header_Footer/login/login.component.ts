@@ -16,6 +16,7 @@ export class LoginComponent {
   @Output() closeModal = new EventEmitter<void>();
   @Output() openRegister = new EventEmitter<void>();
   @Output() switchToRegister = new EventEmitter<void>();
+  @Output() loginSuccess = new EventEmitter<void>();
 
   loginForm: FormGroup;
   errorMessage: string = '';
@@ -65,10 +66,10 @@ export class LoginComponent {
 
     this.loginService.loginUsuario(datosLogin).subscribe({
       next: (res: any) => {
-        this.isLoading = false;
-        if (res.token) {
+        this.isLoading = false;        if (res.token) {
           this.authService.iniciarSesion(res.usuario);
           localStorage.setItem('token', res.token);
+          this.loginSuccess.emit();
           this.close();
           this.router.navigate(['/perfil']);
         } else {
