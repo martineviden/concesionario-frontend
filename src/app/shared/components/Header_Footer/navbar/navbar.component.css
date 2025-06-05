@@ -39,9 +39,8 @@
 }
 
 .navbar-brand img:first-child {
-  border-radius: 6px;
-  border: 1.9px solid #6c5ce7;
-  background: #fff;
+  height: 30px;
+  width: 30px;
 }
 
 .navbar-brand img:last-child {
