@@ -1,96 +1,3 @@
-/*
-.catalogo-container {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-}
-
-.titulo {
-  margin-bottom: 20px;
-}
-
-.filtros {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 70px;
-  margin-bottom: 50px;
-}
-
-.filtro {
-  background-color: #eee;
-  width: 190px;
-  height: auto;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  position: relative;
-}
-
-.filtro.activo {
-  background-color: #6f42c1;
-  color: white;
-  font-weight: bold;
-}
-
-.contador {
-  font-weight: bold;
-  margin-left: 6px;
-  background-color: #dc3545;
-  color: white;
-  border-radius: 10px;
-  padding: 2px 6px;
-  font-size: 0.75rem;
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
-
-.filtro-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-opciones {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  width: 190px;
-  margin-top: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-opciones button {
-  padding: 10px;
-  border: none;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-size: 14px;
-}
-
-.dropdown-opciones button:hover {
-  background-color: #f0f0f0;
-}
-
-.dropdown-opciones button.activo {
-  background-color: #6f42c1;
-  color: white;
-  font-weight: bold;
-}
-
-
-*/
 .grid-vehiculos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -195,15 +102,7 @@
   display: flex;
   gap: 30px;
   margin-bottom: 30px;
-  align-items: flex-start;
-}
-
-.filtro-ubicacion {
-  width: 300px; /* Ancho fijo para mejor alineación */
-}
-
-.filtro-tipo-container {
-  flex: 1;
+ 
 }
 
 .subtitulo-filtro {
@@ -214,8 +113,7 @@
 }
 
 .filtros-tipo {
-  display: flex;
-  gap: 15px;
+   gap: 15px;
 }
 
 .filtro-tipo {
@@ -497,3 +395,21 @@
   overflow-y: auto;
 }
 
+@media (max-width: 768px) {
+  .filtros-principales {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .filtro-tipo,
+  .filtro-ubicacion {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .icono-tipo {
+    width: 120px;
+    height: 120px;
+  }
+}
