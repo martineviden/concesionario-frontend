@@ -8,7 +8,7 @@ export class TipoVehiculoModel {
   modelo:string;
   imagen :string;
   tipo:TipoVehiculo;
-  vehiculo: VehiculoModel[];
+  vehiculos: VehiculoModel[];
 
 
   constructor(
@@ -18,7 +18,7 @@ export class TipoVehiculoModel {
     modelo_vehiculo:string,
     imagen_vehiculo:string,
     tipoVH:TipoVehiculo,
-    vehiculo: VehiculoModel[]
+    vehiculos: VehiculoModel[]
   ){
 
     this.id = id_vehiculo;
@@ -27,7 +27,7 @@ export class TipoVehiculoModel {
     this.modelo = modelo_vehiculo;
     this.imagen = imagen_vehiculo;
     this.tipo = tipoVH;
-    this.vehiculo = vehiculo;
+    this.vehiculos = vehiculos;
 
   }
 

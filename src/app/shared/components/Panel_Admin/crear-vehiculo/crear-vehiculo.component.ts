@@ -16,16 +16,23 @@ import { VehiculoModel } from '../../../../models/vehiculo.model';
 })
 export class CrearVehiculoComponent implements OnInit {
   @Output() closeModal = new EventEmitter<void>();
-
   newVehiculoForm: FormGroup;
 
   tipoVehiculosList: any[] = [];
   tipoVehiculoByID: any;
+  isLoading = false;
+  showSuccessMessage = false;
+  showErrorMessage = false;
+  errorMessage = '';
 
   provincias = enumValues(Provincia);
   combustibles = enumValues(Combustible);
   transmisiones = enumValues(Transmision);
   etiquetas = enumValues(EtiquetaAmbiental);
+  colores = [
+    'Rojo', 'Azul', 'Verde', 'Negro', 'Blanco', 'Amarillo', 'Naranja', 
+    'Morado', 'Rosa', 'Gris', 'Marrón', 'Plateado', 'Dorado'
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -35,8 +42,8 @@ export class CrearVehiculoComponent implements OnInit {
       ubicacion: ['', Validators.required],
       transmision: ['', Validators.required],
       combustible: ['', Validators.required],
-      puertas: [5, [Validators.required, Validators.min(2), Validators.max(5)]],
-      plazas: [5, [Validators.required, Validators.min(2), Validators.max(9)]],
+      puertas: [2, [Validators.required, Validators.min(2), Validators.max(5)]],
+      plazas: [2, [Validators.required, Validators.min(2), Validators.max(9)]],
       autonomia: [0, [Validators.required, Validators.min(0)]],
       etiqueta: ['', Validators.required],
       matricula: ['', [
@@ -46,7 +53,8 @@ export class CrearVehiculoComponent implements OnInit {
       ]],
       color: ['', Validators.required],
       kilometraje: [0, [Validators.required, Validators.min(0)]],
-      disponibilidad: [false]
+      aireAcondicionado: [false],
+      disponibilidad: [true]
     });
   }
 
@@ -65,41 +73,56 @@ export class CrearVehiculoComponent implements OnInit {
     } else {
       this.tipoVehiculoByID = null;
     }
-  }
-
-  crearVehiculo(): void {
+  }  crearVehiculo(): void {
     if (this.newVehiculoForm.invalid) {
       this.newVehiculoForm.markAllAsTouched();
+      this.showErrorMessage = true;
+      this.errorMessage = 'Por favor, complete todos los campos requeridos correctamente.';
       return;
     }
 
+    this.isLoading = true;
+    this.showErrorMessage = false;
+    this.showSuccessMessage = false;
+
     const formData = this.newVehiculoForm.value;
-    const nuevoTipo = new VehiculoModel(
-      0, // El ID será asignado por el backend
-      formData.ubicacion,
-      formData.transmision,
-      formData.combustible,
-      formData.puertas,
-      formData.plazas,
-      formData.autonomia,
-      formData.etiqueta,
-      formData.matricula,
-      formData.color,
-      formData.kilometraje,
-      this.tipoVehiculoByID, // Asignar el tipo de vehículo seleccionado
-      formData.disponibilidad,
-      this.tipoVehiculoByID?.id // id_tipo_vehiculo
-    );
+    
+    // Create the vehicle object to match backend expectations
+    const vehiculoData = {
+      matricula: formData.matricula,
+      tipoVehiculo: {
+        id: formData.id
+      },
+      color: formData.color,
+      kilometraje: formData.kilometraje,
+      disponibilidad: formData.disponibilidad,
+      ubicacion: formData.ubicacion,
+      combustible: formData.combustible,
+      etiqueta: formData.etiqueta,
+      autonomia: formData.autonomia,
+      puertas: formData.puertas,
+      aireAcondicionado: formData.aireAcondicionado,
+      plazas: formData.plazas,
+      transmision: formData.transmision
+    };
 
-    console.log('Creando vehículo:', formData);
+    console.log('Enviando datos del vehículo:', vehiculoData);
 
-    this.vehiculoService.createVehiculo(nuevoTipo).subscribe({
+    this.vehiculoService.createVehiculo(vehiculoData).subscribe({
       next: (res) => {
-        console.log('Se ha creado el tipo vehículo:', res);
-        this.close();
+        console.log('Vehículo creado exitosamente:', res);
+        this.isLoading = false;
+        this.showSuccessMessage = true;
+        this.newVehiculoForm.reset();
+        setTimeout(() => {
+          this.close();
+        }, 1500);
       },
       error: (err) => {
-        console.error('Error al crear tipo vehículo:', err);
+        console.error('Error al crear vehículo:', err);
+        this.isLoading = false;
+        this.showErrorMessage = true;
+        this.errorMessage = err.error?.message || 'Error al crear el vehículo. Intente nuevamente.';
       },
     });
   }

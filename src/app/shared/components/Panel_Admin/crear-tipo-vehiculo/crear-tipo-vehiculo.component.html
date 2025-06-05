@@ -1,53 +1,98 @@
 <div class="modal-bg">
   <div class="modal-form">
     <h1>Crear Tipo de Vehículo</h1>
+    <button class="close-btn" type="button" (click)="close()">&times;</button>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Creando tipo de vehículo...</p>
+    </div>
+
+    <!-- Success Message -->
+    <div *ngIf="showSuccessMessage" class="success-message">
+      <strong>¡Éxito!</strong> El tipo de vehículo se ha creado correctamente.
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="showErrorMessage" class="error-message">
+      <strong>Error:</strong> {{ errorMessage }}
+    </div>
 
     <form [formGroup]="newTipoVehiculoForm" (ngSubmit)="crearTipoVehiculo()">
 
       <!-- Tipo -->
-      <label class="modal-label" for="tipo">Tipo de Vehículo</label>
-      <select id="tipo" class="modal-input" formControlName="tipo" required>
-        <option value="" disabled selected>Seleccione tipo</option>
-        <option *ngFor="let tipo of tipoV" [value]="tipo">{{ tipo }}</option>
-      </select>
+      <div class="form-group">
+        <label class="modal-label" for="tipo">Tipo de Vehículo *</label>
+        <select id="tipo" class="modal-input" formControlName="tipo" required>
+          <option value="" disabled selected>Seleccione tipo</option>
+          <option *ngFor="let tipo of tipoV" [value]="tipo">{{ tipo }}</option>
+        </select>
+        <div *ngIf="newTipoVehiculoForm.get('tipo')?.touched && newTipoVehiculoForm.get('tipo')?.hasError('required')" class="field-error">
+          El tipo de vehículo es requerido
+        </div>
+      </div>
 
       <!-- Marca -->
-      <label class="modal-label" for="marca">Marca</label>
-      <input type="text" id="marca" class="modal-input"
-             placeholder="Ej: Toyota"
-             formControlName="marca"
-             required
-             maxlength="30"
-             pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+">
+      <div class="form-group">
+        <label class="modal-label" for="marca">Marca *</label>
+        <input type="text" id="marca" class="modal-input"
+               placeholder="Ej: Toyota"
+               formControlName="marca"
+               required
+               maxlength="30"
+               pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+">
+        <div *ngIf="newTipoVehiculoForm.get('marca')?.touched && newTipoVehiculoForm.get('marca')?.errors" class="field-error">
+          <span *ngIf="newTipoVehiculoForm.get('marca')?.hasError('required')">La marca es requerida</span>
+          <span *ngIf="newTipoVehiculoForm.get('marca')?.hasError('pattern')">Solo se permiten letras y espacios</span>
+          <span *ngIf="newTipoVehiculoForm.get('marca')?.hasError('maxlength')">Máximo 30 caracteres</span>
+        </div>
+      </div>
 
       <!-- Modelo -->
-      <label class="modal-label" for="modelo">Modelo</label>
-      <input type="text" id="modelo" class="modal-input"
-             placeholder="Ej: Corolla"
-             formControlName="modelo"
-             required
-             maxlength="40">
+      <div class="form-group">
+        <label class="modal-label" for="modelo">Modelo *</label>
+        <input type="text" id="modelo" class="modal-input"
+               placeholder="Ej: Corolla"
+               formControlName="modelo"
+               required
+               maxlength="40">
+        <div *ngIf="newTipoVehiculoForm.get('modelo')?.touched && newTipoVehiculoForm.get('modelo')?.errors" class="field-error">
+          <span *ngIf="newTipoVehiculoForm.get('modelo')?.hasError('required')">El modelo es requerido</span>
+          <span *ngIf="newTipoVehiculoForm.get('modelo')?.hasError('maxlength')">Máximo 40 caracteres</span>
+        </div>
+      </div>
 
       <!-- Precio -->
-      <label class="modal-label" for="precio">Precio</label>
-      <div class="precio-group">
-        <input type="number" id="precio" class="modal-input" formControlName="precio" required min="0" step="0.5" placeholder="Ej: 50.00" (keypress)="preventNegative($event)">
-        <span class="precio-euro">€/día</span>
+      <div class="form-group">
+        <label class="modal-label" for="precio">Precio por día *</label>
+        <div class="precio-group">
+          <input type="number" id="precio" class="modal-input" formControlName="precio" required min="0.5" step="0.5" placeholder="Ej: 50.00" (keydown)="preventNegative($event)">
+          <span class="precio-euro">€/día</span>
+        </div>
+        <div *ngIf="newTipoVehiculoForm.get('precio')?.touched && newTipoVehiculoForm.get('precio')?.errors" class="field-error">
+          <span *ngIf="newTipoVehiculoForm.get('precio')?.hasError('required')">El precio es requerido</span>
+          <span *ngIf="newTipoVehiculoForm.get('precio')?.hasError('min')">El precio mínimo es 0.50€</span>
+        </div>
       </div>
 
       <!-- Imagen -->
-      <label class="modal-label" for="imagen">URL de imagen</label>
-      <input type="text" id="imagen" class="modal-input"
-             placeholder="https://..."
-             formControlName="imagen"
-             required>
+      <div class="form-group">
+        <label class="modal-label" for="imagen">URL de imagen *</label>
+        <input type="url" id="imagen" class="modal-input"
+               placeholder="https://ejemplo.com/imagen.jpg"
+               formControlName="imagen"
+               required>
+        <div *ngIf="newTipoVehiculoForm.get('imagen')?.touched && newTipoVehiculoForm.get('imagen')?.hasError('required')" class="field-error">
+          La URL de la imagen es requerida
+        </div>
+      </div>
 
       <div class="modal-buttons">
-        <button type="button" class="cancel-btn" (click)="close()">Cancelar</button>
-        <button type="submit" class="save-btn">Guardar</button>
+        <button type="button" class="cancel-btn" (click)="close()" [disabled]="isLoading">Cancelar</button>
+        <button type="submit" class="save-btn" [disabled]="newTipoVehiculoForm.invalid || isLoading">
+          <span *ngIf="!isLoading">Crear Tipo de Vehículo</span>
+          <span *ngIf="isLoading">Creando...</span>      </button>
       </div>
     </form>
-
-    <button class="close-btn" type="button" (click)="close()">&times;</button>
   </div>
-</div>

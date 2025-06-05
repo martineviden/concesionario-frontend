@@ -30,8 +30,7 @@ export class VehiculoService {
       .set('ubicacion', ubicacion);
     return this.http.get<VehiculoModel[]>(`${this.apiUrl}/buscar`, { params });
   }
-
-  createVehiculo(vehiculo: VehiculoModel): Observable<any> {
+  createVehiculo(vehiculo: any): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(this.apiUrl, vehiculo, { headers });

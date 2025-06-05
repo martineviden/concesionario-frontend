@@ -1,117 +1,204 @@
 <div class="modal-bg">
   <form class="modal-form" [formGroup]="newVehiculoForm" (ngSubmit)="crearVehiculo()">
-    <h2>Crear Vehículo</h2>
-    <button class="close-btn" type="button" (click)="close()">&times;</button>
-
-    <!-- Tipo Vehículo -->
-    <label class="modal-label" for="id">Tipo de Vehículo</label>
-    <select id="id" formControlName="id" class="modal-input" required>
-      <option value="" disabled>Seleccione tipo</option>
-      <option *ngFor="let tipo of tipoVehiculosList" [value]="tipo.id">{{ tipo.tipo }}</option>
-    </select>
-
-    <div *ngIf="tipoVehiculoByID" style="margin-bottom: 16px;">
-      <small><strong>Marca:</strong> {{ tipoVehiculoByID.marca }}</small><br />
-      <small><strong>Modelo:</strong> {{ tipoVehiculoByID.modelo }}</small><br />
-      <small><strong>Precio:</strong> {{ tipoVehiculoByID.precio }} €</small>
+    <div class="modal-header">
+      <h2>Crear Vehículo</h2>
+      <button class="close-btn" type="button" (click)="close()">&times;</button>
     </div>
-    <div class="section-divider"></div>
 
-    <div class="form-scroll-area">
-      <div class="two-columns">
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Creando vehículo...</p>
+    </div>
 
-        <!-- Provincia -->
-        <div>
-          <label class="modal-label" for="ubicacion">Provincia</label>
-          <select id="ubicacion" formControlName="ubicacion" class="modal-input">
-            <option value="" disabled selected>Seleccione provincia</option>
-            <option *ngFor="let prov of provincias" [value]="prov">{{ prov }}</option>
-          </select>
+    <!-- Success Message -->
+    <div *ngIf="showSuccessMessage" class="success-message">
+      <p>✓ Vehículo creado exitosamente</p>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="showErrorMessage" class="error-message-container">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+    <div class="form-content" [class.disabled]="isLoading">
+      <!-- Tipo Vehículo -->
+      <div class="form-group">
+        <label class="modal-label" for="id">Tipo de Vehículo *</label>
+        <select id="id" formControlName="id" class="modal-input" required (change)="onTipoVehiculoChange()">
+          <option value="" disabled>Seleccione tipo</option>
+          <option *ngFor="let tipo of tipoVehiculosList" [value]="tipo.id">
+            {{ tipo.marca }} {{ tipo.modelo }} ({{ tipo.tipo }})
+          </option>
+        </select>
+        <div *ngIf="newVehiculoForm.get('id')?.touched && newVehiculoForm.get('id')?.hasError('required')" class="field-error">
+          El tipo de vehículo es requerido
         </div>
+      </div>
 
-        <!-- Transmisión -->
-        <div>
-          <label class="modal-label" for="transmision">Transmisión</label>
-          <select id="transmision" formControlName="transmision" class="modal-input">
-            <option value="" disabled>Seleccione transmisión</option>
-            <option *ngFor="let trans of transmisiones" [value]="trans">{{ trans }}</option>
-          </select>
+      <div *ngIf="tipoVehiculoByID" class="vehicle-info">
+        <div class="info-card">
+          <small><strong>Marca:</strong> {{ tipoVehiculoByID.marca }}</small><br />
+          <small><strong>Modelo:</strong> {{ tipoVehiculoByID.modelo }}</small><br />
+          <small><strong>Precio:</strong> {{ tipoVehiculoByID.precio }} €</small>
         </div>
+      </div>
 
-        <!-- Combustible -->
-        <div>
-          <label class="modal-label" for="combustible">Combustible</label>
-          <select id="combustible" formControlName="combustible" class="modal-input">
-            <option value="" disabled selected>Seleccione combustible</option>
-            <option *ngFor="let c of combustibles" [value]="c">{{ c }}</option>
-          </select>
+      <div class="section-divider"></div>      <div class="form-scroll-area">
+        <div class="two-columns">
+
+          <!-- Provincia -->
+          <div class="form-group">
+            <label class="modal-label" for="ubicacion">Provincia *</label>
+            <select id="ubicacion" formControlName="ubicacion" class="modal-input">
+              <option value="" disabled selected>Seleccione provincia</option>
+              <option *ngFor="let prov of provincias" [value]="prov">{{ prov }}</option>
+            </select>
+            <div *ngIf="newVehiculoForm.get('ubicacion')?.touched && newVehiculoForm.get('ubicacion')?.hasError('required')" class="field-error">
+              La provincia es requerida
+            </div>
+          </div>
+
+          <!-- Transmisión -->
+          <div class="form-group">
+            <label class="modal-label" for="transmision">Transmisión *</label>
+            <select id="transmision" formControlName="transmision" class="modal-input">
+              <option value="" disabled>Seleccione transmisión</option>
+              <option *ngFor="let trans of transmisiones" [value]="trans">{{ trans }}</option>
+            </select>
+            <div *ngIf="newVehiculoForm.get('transmision')?.touched && newVehiculoForm.get('transmision')?.hasError('required')" class="field-error">
+              La transmisión es requerida
+            </div>
+          </div>
+
+          <!-- Combustible -->
+          <div class="form-group">
+            <label class="modal-label" for="combustible">Combustible *</label>
+            <select id="combustible" formControlName="combustible" class="modal-input">
+              <option value="" disabled selected>Seleccione combustible</option>
+              <option *ngFor="let c of combustibles" [value]="c">{{ c }}</option>
+            </select>
+            <div *ngIf="newVehiculoForm.get('combustible')?.touched && newVehiculoForm.get('combustible')?.hasError('required')" class="field-error">
+              El combustible es requerido
+            </div>
+          </div>
+
+          <!-- Etiqueta Ambiental -->
+          <div class="form-group">
+            <label class="modal-label" for="etiqueta">Etiqueta Ambiental *</label>
+            <select id="etiqueta" formControlName="etiqueta" class="modal-input">
+              <option value="" disabled selected>Seleccione etiqueta</option>
+              <option *ngFor="let e of etiquetas" [value]="e">{{ e }}</option>
+            </select>
+            <div *ngIf="newVehiculoForm.get('etiqueta')?.touched && newVehiculoForm.get('etiqueta')?.hasError('required')" class="field-error">
+              La etiqueta ambiental es requerida
+            </div>
+          </div>
+
+          <!-- Color -->
+          <div class="form-group">
+            <label class="modal-label" for="color">Color *</label>
+            <select id="color" formControlName="color" class="modal-input">
+              <option value="" disabled selected>Seleccione color</option>
+              <option *ngFor="let color of colores" [value]="color">{{ color }}</option>
+            </select>
+            <div *ngIf="newVehiculoForm.get('color')?.touched && newVehiculoForm.get('color')?.hasError('required')" class="field-error">
+              El color es requerido
+            </div>
+          </div>
+
+          <!-- Kilometraje -->
+          <div class="form-group">
+            <label class="modal-label" for="kilometraje">Kilometraje *</label>
+            <input id="kilometraje" type="number" min="0" formControlName="kilometraje" class="modal-input" 
+                   (keydown)="preventNegative($event)" placeholder="0" />
+            <div *ngIf="newVehiculoForm.get('kilometraje')?.touched && newVehiculoForm.get('kilometraje')?.hasError('required')" class="field-error">
+              El kilometraje es requerido
+            </div>
+            <div *ngIf="newVehiculoForm.get('kilometraje')?.touched && newVehiculoForm.get('kilometraje')?.hasError('min')" class="field-error">
+              El kilometraje debe ser mayor o igual a 0
+            </div>
+          </div>
+
+          <!-- Autonomía -->
+          <div class="form-group">
+            <label class="modal-label" for="autonomia">Autonomía (km) *</label>
+            <input id="autonomia" type="number" min="0" formControlName="autonomia" class="modal-input" 
+                   (keydown)="preventNegative($event)" placeholder="0" />
+            <div *ngIf="newVehiculoForm.get('autonomia')?.touched && newVehiculoForm.get('autonomia')?.hasError('required')" class="field-error">
+              La autonomía es requerida
+            </div>
+            <div *ngIf="newVehiculoForm.get('autonomia')?.touched && newVehiculoForm.get('autonomia')?.hasError('min')" class="field-error">
+              La autonomía debe ser mayor o igual a 0
+            </div>
+          </div>
+
+          <!-- Plazas -->
+          <div class="form-group">
+            <label class="modal-label" for="plazas">Plazas *</label>
+            <select id="plazas" formControlName="plazas" class="modal-input">
+              <option *ngFor="let plaza of [2, 4, 5, 6, 7, 9]" [value]="plaza">{{ plaza }}</option>
+            </select>
+            <div *ngIf="newVehiculoForm.get('plazas')?.touched && newVehiculoForm.get('plazas')?.hasError('required')" class="field-error">
+              El número de plazas es requerido
+            </div>
+          </div>
+
+          <!-- Puertas -->
+          <div class="form-group">
+            <label class="modal-label" for="puertas">Puertas *</label>
+            <select id="puertas" formControlName="puertas" class="modal-input">
+              <option *ngFor="let puerta of [2, 3, 5]" [value]="puerta">{{ puerta }}</option>
+            </select>
+            <div *ngIf="newVehiculoForm.get('puertas')?.touched && newVehiculoForm.get('puertas')?.hasError('required')" class="field-error">
+              El número de puertas es requerido
+            </div>
+          </div>
+
+          <!-- Matrícula -->
+          <div class="form-group">
+            <label class="modal-label" for="matricula">Matrícula *</label>
+            <input id="matricula" type="text" formControlName="matricula" class="modal-input" placeholder="1234-ABC" />
+            <div *ngIf="newVehiculoForm.get('matricula')?.touched && newVehiculoForm.get('matricula')?.hasError('required')" class="field-error">
+              La matrícula es requerida
+            </div>
+            <div *ngIf="newVehiculoForm.get('matricula')?.touched && newVehiculoForm.get('matricula')?.hasError('maxlength')" class="field-error">
+              La matrícula no puede tener más de 10 caracteres
+            </div>
+            <div *ngIf="newVehiculoForm.get('matricula')?.touched && newVehiculoForm.get('matricula')?.hasError('pattern')" class="field-error">
+              La matrícula solo puede contener letras, números, espacios y guiones
+            </div>
+          </div>
+
+          <!-- Aire Acondicionado -->
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" formControlName="aireAcondicionado" class="checkbox-input" />
+              <span class="checkmark"></span>
+              Aire Acondicionado
+            </label>
+          </div>
+
+          <!-- Disponibilidad -->
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" formControlName="disponibilidad" class="checkbox-input" />
+              <span class="checkmark"></span>
+              Disponible
+            </label>
+          </div>
+
         </div>
-
-        <!-- Etiqueta Ambiental -->
-        <div>
-          <label class="modal-label" for="etiqueta">Etiqueta Ambiental</label>
-          <select id="etiqueta" formControlName="etiqueta" class="modal-input">
-            <option value="" disabled selected>Seleccione etiqueta</option>
-            <option *ngFor="let e of etiquetas" [value]="e">{{ e }}</option>
-          </select>
-        </div>
-
-        <!-- Color -->
-        <div>
-          <label class="modal-label" for="color">Color</label>
-          <select id="color" formControlName="color" class="modal-input">
-            <option value="" disabled selected>Seleccione color</option>
-            <option *ngFor="let color of ['Gris', 'Blanco', 'Negro', 'Plateado', 'Rojo', 'Azul', 'Amarillo', 'Naranja']" [value]="color">{{ color }}</option>
-          </select>
-        </div>
-
-        <!-- Kilometraje -->
-        <div>
-          <label class="modal-label" for="kilometraje">Kilometraje</label>
-          <input id="kilometraje" type="number" min="0" formControlName="kilometraje" class="modal-input" (keydown)="preventNegative($event)" />
-        </div>
-
-        <!-- Autonomía -->
-        <div>
-          <label class="modal-label" for="autonomia">Autonomía (km)</label>
-          <input id="autonomia" type="number" min="0" formControlName="autonomia" class="modal-input" (keydown)="preventNegative($event)" />
-        </div>
-
-        <!-- Plazas -->
-        <div>
-          <label class="modal-label" for="plazas">Plazas</label>
-          <select id="plazas" formControlName="plazas" class="modal-input">
-            <option *ngFor="let plaza of [2, 4, 5, 6, 7, 9]" [value]="plaza">{{ plaza }}</option>
-          </select>
-        </div>
-
-        <!-- Puertas -->
-        <div>
-          <label class="modal-label" for="puertas">Puertas</label>
-          <select id="puertas" formControlName="puertas" class="modal-input">
-            <option *ngFor="let puerta of [2, 3, 5]" [value]="puerta">{{ puerta }}</option>
-          </select>
-        </div>
-
-        <!-- Matrícula -->
-        <div>
-          <label class="modal-label" for="matricula">Matrícula</label>
-          <input id="matricula" type="text" formControlName="matricula" class="modal-input" placeholder="1234-ABC" />
-        </div>
-
-        <!-- Disponibilidad -->
-        <div>
-          <label class="modal-label">
-            <input type="checkbox" formControlName="disponibilidad" /> Disponible
-          </label>
-        </div>
-
       </div>
     </div>
+
     <!-- Botones -->
     <div class="modal-buttons">
-      <button type="button" class="cancel-btn" (click)="close()">Cancelar</button>
-      <button type="submit" class="save-btn" [disabled]="newVehiculoForm.invalid">Guardar</button>
+      <button type="button" class="cancel-btn" (click)="close()" [disabled]="isLoading">Cancelar</button>
+      <button type="submit" class="save-btn" [disabled]="newVehiculoForm.invalid || isLoading">
+        <span *ngIf="isLoading" class="button-spinner"></span>
+        {{ isLoading ? 'Guardando...' : 'Guardar' }}
+      </button>
     </div>
   </form>
 </div>
