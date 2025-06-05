@@ -121,7 +121,7 @@ export class RegistroComponent {
 
     if (control?.errors?.['pattern']) {
     if (controlName === 'correo') {
-      return 'El formato del correo debe ser texto@texto.com';
+      return 'El formato debe ser texto@texto.com';
     }
     return 'Formato inválido';
   }
