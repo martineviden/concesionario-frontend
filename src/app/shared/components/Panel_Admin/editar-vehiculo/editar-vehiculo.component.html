@@ -3,6 +3,27 @@
     <h2>Editar Vehículo</h2>
     <button class="close-btn" type="button" (click)="close()">&times;</button>
 
+    <!-- Sección de datos actuales del vehículo -->
+    <div class="datos-actuales mb-3" *ngIf="vehiculo?.vehiculo">
+      <h4>Datos actuales</h4>
+      <div class="datos-grid">
+        <div><strong>Matrícula:</strong> {{ vehiculo.vehiculo.matricula }}</div>
+        <div><strong>Color:</strong> {{ vehiculo.vehiculo.color }}</div>
+        <div><strong>Kilometraje:</strong> {{ vehiculo.vehiculo.kilometraje | number }} km</div>
+        <div><strong>Transmisión:</strong> {{ vehiculo.vehiculo.transmision }}</div>
+        <div><strong>Combustible:</strong> {{ vehiculo.vehiculo.combustible }}</div>
+        <div><strong>Etiqueta Ambiental:</strong> {{ vehiculo.vehiculo.etiqueta }}</div>
+        <div><strong>Plazas:</strong> {{ vehiculo.vehiculo.plazas }}</div>
+        <div><strong>Ubicación:</strong> {{ vehiculo.vehiculo.ubicacion }}</div>
+        <div><strong>Disponibilidad:</strong> 
+          <span [ngClass]="vehiculo.vehiculo.disponibilidad ? 'text-success' : 'text-danger'">
+            {{ vehiculo.vehiculo.disponibilidad ? 'Disponible' : 'No disponible' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
 
     <!-- Formulario scrollable -->
     <div class="form-scroll-area">
@@ -11,7 +32,7 @@
         <div>
         <label class="modal-label" for="ubicacion">Provincia</label>
           <select id="ubicacion" formControlName="ubicacion" class="modal-input">
-            <option value="" disabled selected>Seleccione provincia</option>
+            <option value="" disabled>Seleccione provincia</option>
             <option *ngFor="let prov of provincias" [value]="prov">{{ prov }}</option>
           </select>
         </div>
@@ -19,7 +40,7 @@
         <div>
           <label class="modal-label" for="transmision">Transmisión</label>
           <select id="transmision" formControlName="transmision" class="modal-input">
-            <option value="" disabled selected>Seleccione transmisión</option>
+            <option value="" disabled >Seleccione transmisión</option>
             <option *ngFor="let trans of transmisiones" [value]="trans">{{ trans }}</option>
           </select>
         </div>
@@ -27,7 +48,7 @@
         <div>
           <label class="modal-label" for="combustible">Combustible</label>
           <select id="combustible" formControlName="combustible" class="modal-input">
-            <option value="" disabled selected>Seleccione combustible</option>
+            <option value="" disabled >Seleccione combustible</option>
             <option *ngFor="let c of combustibles" [value]="c">{{ c }}</option>
           </select>
         </div>
@@ -35,7 +56,7 @@
         <div>
         <label class="modal-label" for="etiqueta">Etiqueta Ambiental</label>
           <select id="etiqueta" formControlName="etiqueta" class="modal-input">
-            <option value="" disabled selected>Seleccione etiqueta</option>
+            <option value="" disabled >Seleccione etiqueta</option>
             <option *ngFor="let e of etiquetas" [value]="e">{{ e }}</option>
           </select>
         </div>
@@ -43,7 +64,7 @@
         <div>
           <label class="modal-label" for="color">Color</label>
           <select id="color" formControlName="color" class="modal-input">
-            <option value="" disabled selected>Seleccione color</option>
+            <option value="" disabled >Seleccione color</option>
             <option *ngFor="let color of ['Gris', 'Blanco', 'Negro', 'Plateado', 'Rojo', 'Azul', 'Amarillo', 'Naranja']" [value]="color">
               {{ color }}
             </option>

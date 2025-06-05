@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(30, 30, 30, 0.45);
+  background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -48,18 +48,16 @@
 }
 
 .modal-form {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 32px 28px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  background: white;
+  border-radius: 8px;
   width: 600px;
-  max-width: 90vh;
-  max-height: 90vh;
-  overflow: hidden;
-  position: relative;
+  max-height: 90vh; /* máximo alto ventana */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 20px;
+  position: relative; /* para posicionar el botón cerrar */
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  overflow: hidden; /* ocultar scroll aquí, lo tendrá la sección */
 }
 
 .modal-form h2 {
@@ -85,9 +83,8 @@
 
 .modal-buttons {
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  width: 100%;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .cancel-btn,
@@ -119,24 +116,24 @@
   background: #b0b0b0;
 }
 
+/* Botón cerrar en esquina superior derecha */
 .close-btn {
   position: absolute;
-  top: 16px;
-  right: 20px;
-  background: none;
+  top: 10px;
+  right: 10px;
+  background: transparent;
   border: none;
-  color: #666;
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-size: 26px;
   cursor: pointer;
+  line-height: 1;
 }
 
-
+/* Scroll solo para el área del formulario */
 .form-scroll-area {
   overflow-y: auto;
-  flex: 1;
-  margin-top: 16px;
-  padding-right: 10px;
+  max-height: 50vh; /* ajusta para que no ocupe todo */
+  padding-right: 10px; /* para que no tape scroll contenido */
+  margin-bottom: 15px;
 }
 
 /* Dos columnas responsivas */
@@ -153,4 +150,26 @@
 .scrollable-form-area::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 3px;
+}
+
+.datos-actuales {
+  width: 100%;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.datos-actuales h4 {
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: #444;
+}
+
+.datos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 20px;
+  color: #333;
 }

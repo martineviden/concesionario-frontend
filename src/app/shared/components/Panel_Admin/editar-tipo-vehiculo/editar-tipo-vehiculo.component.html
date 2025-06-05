@@ -3,27 +3,37 @@
     <h2>Editar Tipo de Vehículo</h2>
     <button class="close-btn" type="button" (click)="close()">&times;</button>
 
+    <!-- Sección de datos actuales -->
+    <div class="datos-actuales">
+      <h4>Datos actuales</h4>
+      <div class="datos-grid">
+        <div><strong>Marca:</strong> {{ tipo.marca }}</div>
+        <div><strong>Modelo:</strong> {{ tipo.modelo }}</div>
+        <div><strong>Precio:</strong> {{ tipo.precio }} €</div>
+        <div><strong>Tipo:</strong> {{ tipo.tipo }}</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+    
+    <!-- Formulario scrollable -->
     <div class="form-scroll-area">
       <div class="two-columns">
-
         <!-- Marca -->
         <div>
           <label class="modal-label" for="marca">Marca</label>
           <input id="marca" [(ngModel)]="tipoEditado.marca" name="marca" class="modal-input" required />
         </div>
-
         <!-- Modelo -->
         <div>
           <label class="modal-label" for="modelo">Modelo</label>
           <input id="modelo" [(ngModel)]="tipoEditado.modelo" name="modelo" class="modal-input" required />
         </div>
-
         <!-- Precio -->
         <div>
           <label class="modal-label" for="precio">Precio (€)</label>
           <input id="precio" type="number" min="0" [(ngModel)]="tipoEditado.precio" name="precio" class="modal-input" required />
         </div>
-
         <!-- Tipo de Vehículo -->
         <div>
           <label class="modal-label" for="tipo">Tipo de Vehículo</label>
@@ -32,7 +42,6 @@
             <option *ngFor="let tipo of tiposVehiculo" [value]="tipo">{{ tipo }}</option>
           </select>
         </div>
-
       </div>
     </div>
 

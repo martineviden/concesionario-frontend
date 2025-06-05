@@ -131,7 +131,6 @@
   cursor: pointer;
 }
 
-
 .form-scroll-area {
   overflow-y: auto;
   flex: 1;
@@ -154,3 +153,26 @@
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 3px;
 }
+
+.datos-actuales {
+  width: 100%;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.datos-actuales h4 {
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: #444;
+}
+
+.datos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 20px;
+  color: #333;
+}
+
