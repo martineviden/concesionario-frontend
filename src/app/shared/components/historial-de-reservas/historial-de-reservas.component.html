@@ -21,9 +21,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let r of reservasFiltradas">
-          <td>{{ r.matricula }}</td>
-          <td>{{ r.fecha_reserva }}</td>
-          <td>{{ r.dias_reserva }}</td>
+          <td>{{ r.vehiculo?.matricula }}</td>
+          <td>{{ r.fechaReserva }}</td>
+          <td>{{ r.diasReserva }}</td>
           <td>{{ r.precio }}</td>
         </tr>
         <tr *ngIf="reservasFiltradas.length === 0">
