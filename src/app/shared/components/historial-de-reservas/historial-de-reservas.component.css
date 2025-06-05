@@ -84,6 +84,13 @@ h2 {
   color: #6366f1;
   font-weight: 700;
 }
+.tabla-reservas tr:nth-child(even) {
+  background: #f9fafb;
+}
+.tabla-reservas tr:hover {
+  background: #e0e7ff;
+  transition: background 0.2s;
+}
 @media (max-width: 600px) {
   .modal-content {
     min-width: 0;

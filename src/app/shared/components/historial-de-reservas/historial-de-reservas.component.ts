@@ -37,12 +37,13 @@ export class HistorialDeReservasComponent implements OnInit {
   }
 
   aplicarFiltros() {
-    let filtradas = this.reservas.filter(r =>
-      (!this.filtroMatricula || r.matricula.includes(this.filtroMatricula))
-    );
+    let filtradas = this.reservas.filter(r => {
+      const matricula = r.vehiculo?.matricula || '';
+      return !this.filtroMatricula || matricula.includes(this.filtroMatricula);
+    });
     filtradas = filtradas.sort((a, b) => {
-      const fechaA = new Date(a.fecha_reserva).getTime();
-      const fechaB = new Date(b.fecha_reserva).getTime();
+      const fechaA = new Date(a.fechaReserva).getTime();
+      const fechaB = new Date(b.fechaReserva).getTime();
       return this.ordenFecha === 'reciente' ? fechaB - fechaA : fechaA - fechaB;
     });
     this.reservasFiltradas = filtradas;
