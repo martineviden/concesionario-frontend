@@ -13,15 +13,19 @@
   margin: 40px auto 0 auto;
   gap: 40px;
   padding: 0 40px;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
+
 .left-panel {
+
+  margin-top: auto;
   flex: 1.2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: 300px; 
+  min-width: 300px;
+  margin-bottom: auto;
 }
 
 .left-panel h1 {
@@ -63,21 +67,7 @@
   filter: brightness(0.95);
 }
 
-.thumbnails {
-  display: flex;
-  gap: 1rem; 
-  margin-top: 1.5rem;
-  flex-wrap: wrap; 
-}
 
-.thumbnails img {
-  width: 140px;
-  height: 110px;
-  border-radius: 16px;
-  object-fit: cover;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
-  background: #eee;
-}
 
 .right-panel {
   flex: 1.5;
@@ -86,15 +76,17 @@
   align-items: center;
   justify-content: flex-start;
   padding-top: 0;
-  min-width: 300px; 
+  min-width: 300px;
+  margin-top: auto;
+
 }
 
 .specs-title {
+
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
-  text-align: center; 
-  padding-bottom: 40px;
+  text-align: center;
+
 }
 
 .specs-grid {
@@ -102,7 +94,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   width: 100%;
-  margin-bottom: 3rem;
+  margin-top: 3rem;
 }
 
 .spec-card {
@@ -138,6 +130,7 @@
 }
 
 .btn-alquilar {
+  margin-top: auto;
   width: 50%;
   max-width: 350px;
   background: #5636d8;
@@ -320,7 +313,7 @@
   }
 
   .specs-grid {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     gap: 0.8rem;
   }
 

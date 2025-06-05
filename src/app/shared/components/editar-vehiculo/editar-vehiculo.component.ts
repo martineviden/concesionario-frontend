@@ -7,7 +7,7 @@ import { VehiculoModel } from '../../../models/vehiculo.model';
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
 import { VehiculoService } from '../../../services/vehiculo.service';
 import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-editar-vehiculo',
@@ -30,7 +30,7 @@ import { TipoVehiculoService } from '../../../services/tipo-vehiculo.service';
 // 2* Ver todos tipos Vheiculos.
 // 3* Crear Vheiculo en base a id_ tipo vheculo id- as nombre marca tal vez.
 // 4* Ver todos vheiculo
-// 5* todo correspondiente al update y eliminacion
+// 5* todo correspondiente al update y eliminacion->Dentro de la tabla ya
 
 // Para crear el vheiculo nos hace falta id_tipo de vheiculo principalmente. Seguramente haycrar un servicio que reciba id
 export class EditarVehiculoComponent implements OnInit{
@@ -67,7 +67,7 @@ newVheiculoDatos!: VehiculoModel;
 
 
 
-  constructor( private fb:FormBuilder){
+  constructor( private fb:FormBuilder,private snackBar: MatSnackBar){
     //Formulario crear vheiculo
     this.newVheculoForm = this.fb.group({
       //Definicion de FormcontrolNamesselect.Le servire directamente las ociones
@@ -132,11 +132,6 @@ buscarTipoVehicoloID():void{
 
 }
 
-
-
-
-
-
 crearVheiculo() {
   const datosFormulario = this.newVheculoForm.value;
 
@@ -151,49 +146,18 @@ crearVheiculo() {
   this.crearVehiculoService.createVehiculo(vehiculo).subscribe({
     next: res => {
       console.log(' Vehículo creado:', res);
+      this.openSnackBar("Vehiculo creado con exito");
       this.close();
     },
     error: err => console.error(' Error al crear vehículo:', err)
   });
 }
 
+//-------Mensajería
+openSnackBar(mensaje:string) {
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 3000,
+    });
+  }
 
 }
-
-// this.tipoVehiculos =tipos;
-//       console.log([this.tipoVehiculos])
-//       for(let i in this.tipoVehiculos){
-//           this.tipoVehiculos[i]
-//       }
-//         console.log(this.tipoVehiculos[0].id);
-//         for(let i = 0; i< this.tipoVehiculos.length;i++){
-//           const ids = this.tipoVehiculos[i].id
-//           console.log(ids)
-//         }
-//         for(let i = 0; i< this.tipoVehiculos.length;i++){
-//            const marca = this.tipoVehiculos[i].marca
-//           console.log(marca)
-//         }
-//         for(let i = 0; i< this.tipoVehiculos.length;i++){
-
-// this.newVheiculoDatos={
-//       matricula: this.newVheculoForm.value.matricula,
-//       color: this.newVheculoForm.value.color,
-//       kilometraje: this.newVheculoForm.value.kilometraje,
-//       disponibilidad: this.newVheculoForm.value.disponibilidad,
-//       ubicacion: this.newVheculoForm.value.selectTipoUbicacion,
-//       combustible: this.newVheculoForm.value.selectTipoCombustible,
-//       etiqueta: this.newVheculoForm.value.selectTipoEtiqueta,
-//       autonomia: this.newVheculoForm.value.autonomia,
-//       puertas: this.newVheculoForm.value.autonomia,
-//       aireAcondicionado: this.newVheculoForm.value.aireAcondicionado,
-//       plazas: this.newVheculoForm.value.plazas,
-//       transmision: this.newVheculoForm.value.selectTipoTransmision,
-//       marca: this.newVheculoForm.value.marca,
-//       modelo: this.newVheculoForm.value.modelo,
-//       precio: this.newVheculoForm.value.precio,
-//       tipoVheiculo: this.newVheculoForm.value.selectTipoVheiculo,
-//       id_tipo_vehiculo: this.newVheculoForm.value.id,
-//       imagen: this.newVheculoForm.value.imagen,
-//       reservas :this.newVheculoForm.value.reservas,
-//      }

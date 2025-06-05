@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TipoVehiculo } from '../../../models/enums';
 import { TipoVehiculoModel, TipoVehiculoSinVhiculosModel } from '../../../models/tipo-vehiculo.model';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creart-tipo-vheiculo-admin',
@@ -29,7 +30,7 @@ newTipoVheiculoForm!: FormGroup;
 tipoV = TipoVehiculo.keys();
 
 //---Constructor
-constructor(private forBuildetTipoVheiculo:FormBuilder ){
+constructor(private forBuildetTipoVheiculo:FormBuilder, private snackBar: MatSnackBar){
   // Crecion de Formulario
     this.newTipoVheiculoForm = this.forBuildetTipoVheiculo.group({
         marca: [""],
@@ -50,15 +51,22 @@ crearTipoVheiculo():void{
       this.crearTipoVheiculoSinVheculo.createOneTipoVheculoSinVheiculo(valuesTipoFormulario)
       .subscribe({
         next: res=>{
+          this.openSnackBar("Se ha creado el tipo vheiculo con exito");
           console.log("Se ha creado el tipo vheiculo",res)
         },
         error: err=>{
-          console.log("Han habido problemas con el post",err)
+          console.log("Han habido problemas con el post",err);
+          this.openSnackBar("Han habido problemas para crear el tipo vhiculo");
         }
       });
       this.close();
     }
-
+// Mensajería
+  openSnackBar(mensaje:string) {
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 3000,
+    });
+  }
 
 
 

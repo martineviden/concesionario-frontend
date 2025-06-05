@@ -1,8 +1,10 @@
+
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [CommonModule, RouterModule
+  ],
   templateUrl:'./footer.component.html',
   styleUrl: './footer.component.css'
 })

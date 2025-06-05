@@ -153,10 +153,9 @@ export class CatalogoComponentComponent implements OnInit {
 
   // Navega a la página de detalles
   verDetalles(vehiculo: any): void {
-    this.router.navigate(['/especificaciones', vehiculo.matricula], {
-      
-    });
-  }
+  this.router.navigate(['/especificaciones', vehiculo.matricula]);
+}
+
 
   // Aplica los filtros seleccionados
   aplicarFiltros(): void {
