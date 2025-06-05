@@ -31,8 +31,8 @@ export class ReservaService{
      return this.http.delete(`http://localhost:8080/reservas/${id}`, { withCredentials:false });
   }
 
-  deleteReservasByMatricula(matricula: string){
-    return this.http.delete(`http://localhost:8080/reservas/matricula/${matricula}`, { withCredentials:false });
+  getReservasByUsuario(idUsuario: string | number) {
+    return this.http.get(`http://localhost:8080/reservas/usuario/${idUsuario}`, { withCredentials: false });
   }
 
 }

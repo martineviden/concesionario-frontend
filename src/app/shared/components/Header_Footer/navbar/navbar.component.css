@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .navbar {
   font-family: "Inter", sans-serif;
   font-weight: 500;
@@ -19,6 +30,7 @@
   justify-content: space-between;
   min-height: 52.5px;
   margin-bottom: 0;
+  animation: fadeInDown 0.8s ease-out;
 }
 
 /* Remove animation classes */

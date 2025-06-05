@@ -5,6 +5,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { ToastService } from '../../../../services/toast.service';
 import { Usuario } from '../../../../models/login.model';
 import { CommonModule } from '@angular/common';
+import { Rol } from '../../../../models/enums';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -96,12 +97,8 @@ export class EditarPerfilComponent implements OnInit {
         this.mensaje = '';
         this.error = false;
         this.toastService.show({ message: 'Perfil actualizado correctamente', type: 'success' });
-        this.authService.obtenerUsuarioActual().subscribe(usuario => {
-          if (usuario) {
-            const actualizado = { ...usuario, nombre, apellidos, correo, telefono };
-            localStorage.setItem('usuario', JSON.stringify(actualizado));
-          }
-        }).unsubscribe();
+        const actualizado = { ...this.usuarioActual, nombre, apellidos, correo, telefono, id: usuarioId, dni: this.usuarioActual?.dni ?? '', contrasena: this.usuarioActual?.contrasena ?? '', rol: this.usuarioActual?.rol ?? Rol.CLIENTE };
+        this.authService.iniciarSesion(actualizado);
         this.close();
       },
       error: (err: any) => {
