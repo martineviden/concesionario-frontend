@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../../../../models/login.model';
 import { UsuarioService } from '../../../../services/usuario.service';
+import { ToastService } from '../../../../services/toast.service';
 import { UsuarioModel } from '../../../../models/usuario.model';
 import { Rol } from '../../../../models/enums';
 
@@ -25,7 +26,7 @@ export class CambiarContrasenaComponent {
   toastVisible = false;
   toastMensaje = '';
 
-  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
+  constructor(private fb: FormBuilder, private usuarioService: UsuarioService, private toastService: ToastService) {
     this.form = this.fb.group({
       contrasena_actual: ['', Validators.required],
       nueva_contrasena: ['', [Validators.required, Validators.minLength(6)]],
@@ -64,14 +65,11 @@ export class CambiarContrasenaComponent {
       next: () => {
         this.mensaje = '';
         this.error = false;
-        this.toastMensaje = 'Contraseña actualizada correctamente';
-        this.toastVisible = true;
-        setTimeout(() => {
-          this.toastVisible = false;
-          this.close();
-        }, 1800);
+        this.toastService.show({ message: 'Contraseña actualizada correctamente', type: 'success' });
+        this.close();
       },
       error: (err: any) => {
+        this.toastService.show({ message: err?.error?.message || 'Error al cambiar la contraseña', type: 'error' });
         this.mensaje = err?.error?.message || 'Error al cambiar la contraseña';
         this.error = true;
         this.cargando = false;
