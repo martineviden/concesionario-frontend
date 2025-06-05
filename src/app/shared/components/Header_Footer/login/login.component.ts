@@ -66,7 +66,8 @@ export class LoginComponent {
 
     this.loginService.loginUsuario(datosLogin).subscribe({
       next: (res: any) => {
-        this.isLoading = false;        if (res.token) {
+        this.isLoading = false;        
+        if (res.token) {
           this.authService.iniciarSesion(res.usuario);
           localStorage.setItem('token', res.token);
           this.loginSuccess.emit();
