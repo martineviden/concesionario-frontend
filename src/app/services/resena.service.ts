@@ -3,8 +3,6 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ResenaModel } from '../models/resena.model';
 
-
-
 @Injectable({
   providedIn:'root'
 })
@@ -29,6 +27,10 @@ export class ResenaService{
 
   deleteResena(id: string){
     return this.http.delete(`http://localhost:8080/resenas/${id}`, { withCredentials:false });
+  }
+
+  deleteResenasByMatricula(matricula: string){
+    return this.http.delete(`http://localhost:8080/resenas/matricula/${matricula}`, { withCredentials: false });
   }
 
 }
