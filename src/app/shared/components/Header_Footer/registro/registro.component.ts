@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegistroService } from '../../../../services/registro.service';
+import { ToastService } from '../../../../services/toast.service';
 import { Usuario } from '../../../../models/registro.model';
 import { Rol } from '../../../../models/enums';
 
@@ -22,7 +23,8 @@ export class RegistroComponent {
 
   constructor(
     private fb: FormBuilder,
-    private registroService: RegistroService
+    private registroService: RegistroService,
+    private toastService: ToastService
   ) {
     this.usuarioForm = this.fb.group({
       nombre: ['', [Validators.required, this.validarSoloLetras]],
@@ -150,11 +152,11 @@ export class RegistroComponent {
 
     this.registroService.crearUsuario(nuevoUsuario).subscribe({
       next: res => {
-        console.log('Usuario creado:', res);
+        this.toastService.show({ message: 'Usuario registrado correctamente', type: 'success' });
         this.close();
       },
       error: err => {
-        console.error('Error al crear usuario:', err);
+        this.toastService.show({ message: 'Error al registrar usuario', type: 'error' });
         // Puedes agregar manejo de errores específicos del servidor aquí
       }
     });
