@@ -7,18 +7,14 @@ import { AuthService } from '../../../services/auth.service';
 import { Rol } from '../../../models/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VehiculoService } from '../../../services/vehiculo.service';
-import { NgOptimizedImage } from '@angular/common';
-
 
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
   standalone: true,
-  imports: [CommonModule, FormularioAlquilarComponent,NgOptimizedImage],
+  imports: [CommonModule, FormularioAlquilarComponent],
   templateUrl: './tipo-vehiculo-banner-first.component.html',
   styleUrls: ['./tipo-vehiculo-banner-first.component.css']
 })
-export class TipoVehiculoBannerFirstComponent {
-  showMostrarReserva = false;
 export class TipoVehiculoBannerFirstComponent implements OnInit {
   mostrarFormularioAlquilar = false;
 
@@ -27,6 +23,7 @@ export class TipoVehiculoBannerFirstComponent implements OnInit {
 
   esAdmin: boolean = false;
   matricula: string = '';
+  showMostrarReserva: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -127,13 +124,11 @@ export class TipoVehiculoBannerFirstComponent implements OnInit {
       perla: '#EAE0C8',
       esmeralda: '#50C878'
     };
-  return colorMap[color.toLowerCase()] || '#000000';
-}
+    return colorMap[color.toLowerCase()] || '#000000';
+  }
 
   mostrarFormularioReserva(){
     this.showMostrarReserva = true;
-  }
-    return colorMap[color.toLowerCase()] || '#000000';
   }
 
   // Retorna la imagen del coche, ya sea la definida en el modelo o una imagen por defecto.
@@ -159,5 +154,5 @@ export class TipoVehiculoBannerFirstComponent implements OnInit {
       target.src = 'assets/img/catalogo/default.png';
     }
   }
-
 }
+
