@@ -43,11 +43,11 @@ eliminarVehiculo() {
 
   this.reservaService.deleteReservasByMatricula(this.matricula).pipe(
     switchMap(() => {
-      console.log('Reservas eliminadas');
+      console.log('Reservas y reseñas eliminadas');
       return this.resenaService.deleteResenasByMatricula(this.matricula);
     }),
     switchMap(() => {
-      console.log('Reseñas eliminadas');
+      console.log('Vehiculo eliminado');
       return this.vehiculoService.deleteVehiculo(this.matricula);
     })
   ).subscribe({
