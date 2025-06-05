@@ -32,6 +32,7 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   vehiculosList: VehiculoModel[] = [];
   vehiculosConTipo: Array<{ vehiculo: VehiculoModel, tipo: TipoVehiculoModel }> = [];
   tipoEnEdicion: TipoVehiculoModel | null = null; 
+  vehiculoEnEdicion: { vehiculo: VehiculoModel, tipo: TipoVehiculoModel } | null = null;
 
   private authSubscription: Subscription | null = null;
 
@@ -120,9 +121,7 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   abrirEditarVehiculo(): void {
     this.showEditarModalVehiculo = true;
   }
-  cerrarEditarVehiculo(): void {
-    this.showEditarModalVehiculo = false;
-  }
+
 
   // Mostrar/ocultar tablas
   toggleMostrarTiposVehiculos(): void {
@@ -173,11 +172,37 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Mostrar el formulario de edición de vehículo
   editarVehiculo(item: { vehiculo: VehiculoModel, tipo: TipoVehiculoModel }): void {
-    console.log('Editar vehículo:', item);
-    // Aquí puedes abrir un modal, navegar, etc.
+    this.vehiculoEnEdicion = item;
+    this.showEditarModalVehiculo = true;
   }
+  cerrarEditarVehiculo(): void {
+  this.showEditarModalVehiculo = false;
+  this.vehiculoEnEdicion = null;
+  }
+  guardarVehiculoEditado(vehiculoActualizado: VehiculoModel): void {
+    if (!vehiculoActualizado.id) return;
 
+    this.vehiculoService.updateVehiculo(vehiculoActualizado.id.toString(), vehiculoActualizado).subscribe(() => {
+      this.showEditarModalVehiculo = false;
+      this.vehiculoEnEdicion = null;
+      this.cargarDatosVehiculosYTipos();
+    }, error => {
+      console.error('Error actualizando vehículo:', error);
+    });
+  }
+  eliminarVehiculo(): void {
+    if (!this.vehiculoEnEdicion?.vehiculo?.id) return;
+    
+    this.vehiculoService.deleteVehiculo(this.vehiculoEnEdicion.vehiculo.id.toString()).subscribe(() => {
+      this.showEditarModalVehiculo = false;
+      this.vehiculoEnEdicion = null;
+      this.cargarDatosVehiculosYTipos();
+    }, error => {
+      console.error('Error eliminando vehículo:', error);
+    });
+  }
 
   getImagenPorTipoYModelo(tipo: string, modelo: string): string {
   const tipoLower = tipo.toLowerCase();

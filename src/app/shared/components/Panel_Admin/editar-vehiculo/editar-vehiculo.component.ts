@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } 
 import { TipoVehiculoModel } from '../../../../models/tipo-vehiculo.model';
 import { Provincia, Transmision, Combustible, EtiquetaAmbiental } from '../../../../models/enums';
 import { enumValues } from '../../../../utils/enum-utils';
+import { VehiculoModel } from '../../../../models/vehiculo.model';
 
 @Component({
   selector: 'app-editar-vehiculo',
@@ -13,9 +14,9 @@ import { enumValues } from '../../../../utils/enum-utils';
   styleUrls: ['./editar-vehiculo.component.css']
 })
 export class EditarVehiculoComponent implements OnInit {
-  @Input() tipo!: TipoVehiculoModel;
+  @Input() vehiculo!: { vehiculo: VehiculoModel};
   @Output() closeModal = new EventEmitter<void>();
-  @Output() onSave = new EventEmitter<TipoVehiculoModel>();
+  @Output() onSave = new EventEmitter<VehiculoModel>();
   @Output() onDelete = new EventEmitter<void>();
 
   newVehiculoForm!: FormGroup;
@@ -29,16 +30,16 @@ export class EditarVehiculoComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    console.log('🚗 EditarVehiculoComponent abierto con:', this.vehiculo);
     this.initForm();
 
-    if (this.tipo) {
-      this.newVehiculoForm.patchValue(this.tipo);
+    if (this.vehiculo) {
+      this.newVehiculoForm.patchValue(this.vehiculo.vehiculo);
     }
   }
 
   initForm(): void {
     this.newVehiculoForm = this.fb.group({
-      id: [this.tipo?.id ?? '', Validators.required],
       ubicacion: ['', Validators.required],
       transmision: ['', Validators.required],
       combustible: ['', Validators.required],
@@ -59,7 +60,7 @@ export class EditarVehiculoComponent implements OnInit {
 
   guardar(): void {
     if (this.newVehiculoForm.valid) {
-      const vehiculoEditado: TipoVehiculoModel = this.newVehiculoForm.value;
+      const vehiculoEditado: VehiculoModel = this.newVehiculoForm.value;
       this.onSave.emit(vehiculoEditado);
     } else {
       this.newVehiculoForm.markAllAsTouched();

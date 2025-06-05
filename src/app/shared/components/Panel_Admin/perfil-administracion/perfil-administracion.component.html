@@ -51,7 +51,7 @@
               <td>{{ tipo.precio | currency:'EUR' }}</td>
               <td>{{ tipo.tipo }}</td>
               <td> <!-- EDITAR TIPO VEHICULO -->
-                <button class="btn btn-warning btn-sm" (click)="abrirEditarTipoVehiculo()">
+                <button class="btn btn-warning btn-sm" (click)="editarTipo(tipo)">
                   <i class="fas fa-edit"></i> Editar
                 </button>
               </td>
@@ -92,7 +92,7 @@
               {{ item.vehiculo.disponibilidad ? 'Disponible' : 'No disponible' }}
             </span>
           </p>
-          <button class="btn btn-warning btn-sm mt-2" (click)="abrirEditarVehiculo()">
+          <button class="btn btn-warning btn-sm mt-2" (click)="editarVehiculo(item)">
             <i class="fas fa-edit"></i> Editar
           </button>
         </div>
@@ -111,13 +111,21 @@
     (closeModal)="cerrarAgregarVehiculo()">
   </app-crear-vehiculo>
 
-  <app-editar-tipo-vehiculo
-    *ngIf="showEditarModalTipoVehiculo "
-    (closeModal)="cerrarEditarTipoVehiculo()">
-  </app-editar-tipo-vehiculo>
+  <ng-container *ngIf="showEditarModalTipoVehiculo && tipoEnEdicion">
+    <app-editar-tipo-vehiculo
+      [tipo]="tipoEnEdicion"
+      (closeModal)="cerrarEditarTipoVehiculo()"
+      (onSave)="guardarTipoEditado($event)"
+      (onDelete)="eliminarTipo()">
+    </app-editar-tipo-vehiculo>
+  </ng-container>
 
-  <app-editar-vehiculo
-    *ngIf="showEditarModalVehiculo"
-    (closeModal)="cerrarEditarVehiculo()">
-  </app-editar-vehiculo>
+  <ng-container *ngIf="showEditarModalVehiculo && vehiculoEnEdicion">
+    <app-editar-vehiculo
+      [vehiculo]="vehiculoEnEdicion"
+      (closeModal)="cerrarEditarVehiculo()"
+      (onSave)="guardarVehiculoEditado($event)"
+      (onDelete)="eliminarVehiculo()">
+    </app-editar-vehiculo>
+  </ng-container>
 </div>
