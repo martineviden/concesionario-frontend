@@ -35,15 +35,11 @@
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 0.225rem;
-}
-
-.navbar-brand img:first-child {
-  height: 30px;
-  width: 30px;
+  gap: 0.1rem;
 }
 
 .navbar-brand img:last-child {
+  margin-top: 0.3rem;
   margin-left: 0.15rem;
 }
 
