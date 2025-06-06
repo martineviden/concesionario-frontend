@@ -39,12 +39,32 @@ export class ResenaService{
         return filteredReviews;
       })
     );
-  }
-  createResena(resena: ResenaModel): Observable<ResenaModel>{
+  }  createResena(resena: ResenaModel): Observable<ResenaModel>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<ResenaModel>(this.apiUrl, resena, { headers, withCredentials:false });
+      // Create a clean payload for the backend
+    const payload = {
+      comentario: resena.comentario,
+      puntuacion: resena.puntuacion,
+      fecha: resena.fecha,
+      usuario: resena.usuario ? {
+        id: resena.usuario.id,
+        nombre: resena.usuario.nombre,
+        apellidos: resena.usuario.apellidos,
+        correo: resena.usuario.correo
+      } : null,
+      vehiculo: resena.vehiculo && typeof resena.vehiculo === 'object' && 'matricula' in resena.vehiculo ? {
+        matricula: resena.vehiculo.matricula
+      } : resena.vehiculo
+    };
+    
+    console.log('Creating review with data:', resena);
+    console.log('API URL:', this.apiUrl);
+    console.log('Clean payload being sent:', payload);
+    console.log('Payload JSON:', JSON.stringify(payload));
+    
+    return this.http.post<ResenaModel>(this.apiUrl, payload, { headers, withCredentials:false });
   }
 
   checkUserReviewExists(matricula: string, usuarioId: number): Observable<boolean> {

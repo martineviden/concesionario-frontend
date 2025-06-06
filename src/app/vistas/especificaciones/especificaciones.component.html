@@ -1,10 +1,12 @@
 <app-navbar></app-navbar>
 <app-tipo-vehiculo-banner-first
+  *ngIf="vehiculoSeleccionado && tipoVehiculoSeleccionado"
   [tipoVehiculo]="tipoVehiculoSeleccionado"
   [vehiculo]="vehiculoSeleccionado"
   (reviewAdded)="refreshReviews()">
 </app-tipo-vehiculo-banner-first>
 <app-tipo-vehiculo-resennas 
+  *ngIf="vehiculoSeleccionado"
   #reviewsComponent
   [vehiculo]="vehiculoSeleccionado">
 </app-tipo-vehiculo-resennas>

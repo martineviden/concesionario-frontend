@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TipoVehiculoBannerFirstComponent } from '../../shared/components/tipo-vehiculo-banner-first/tipo-vehiculo-banner-first.component';
 import { TipoVehiculoResennasComponent } from '../../shared/components/tipo-vehiculo-resennas/tipo-vehiculo-resennas.component';
 import { VehiculoModel } from '../../models/vehiculo.model';
@@ -15,6 +16,7 @@ import { MarcasBlockComponent } from '../../shared/components/Contacto/marcas-bl
   selector: 'app-especificaciones',
   standalone: true,
   imports: [
+    CommonModule,
     FooterComponent,
     NavbarComponent,
     TipoVehiculoBannerFirstComponent,
@@ -40,9 +42,8 @@ export class EspecificacionesComponent implements OnInit {
   this.route.paramMap.subscribe(params => {
     const matricula = params.get('matricula');
     if (matricula) {
-      this.vehiculoService.getVehiculoPorMatricula(matricula).subscribe({
-        next: (vehiculo: any) => {
-          console.log('Vehículo recibido:', vehiculo);
+      this.vehiculoService.getVehiculoPorMatricula(matricula).subscribe({        next: (vehiculo: any) => {
+          console.log('🚗 Vehículo recibido en especificaciones:', vehiculo);
           this.vehiculoSeleccionado = vehiculo;
 
           // Prueba accediendo directamente a diferentes posibilidades:
