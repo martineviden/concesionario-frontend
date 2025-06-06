@@ -2,8 +2,10 @@ import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UsuarioService } from '../../../../services/usuario.service';
 import { AuthService } from '../../../../services/auth.service';
+import { ToastService } from '../../../../services/toast.service';
 import { Usuario } from '../../../../models/login.model';
 import { CommonModule } from '@angular/common';
+import { Rol } from '../../../../models/enums';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -27,7 +29,8 @@ export class EditarPerfilComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastService: ToastService
   ) {
     this.perfilForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -86,26 +89,20 @@ export class EditarPerfilComponent implements OnInit {
       nombre,
       apellidos,
       correo,
-      telefono
+      telefono,
+      rol: this.usuarioActual?.rol
     };
     this.usuarioService.updateUsuario(String(usuarioId), updateData).subscribe({
       next: (res: any) => {
         this.mensaje = '';
         this.error = false;
-        this.toastMensaje = 'Perfil actualizado correctamente';
-        this.toastVisible = true;
-        this.authService.obtenerUsuarioActual().subscribe(usuario => {
-          if (usuario) {
-            const actualizado = { ...usuario, nombre, apellidos, correo, telefono };
-            localStorage.setItem('usuario', JSON.stringify(actualizado));
-          }
-        }).unsubscribe();
-        setTimeout(() => {
-          this.toastVisible = false;
-          this.close();
-        }, 1800);
+        this.toastService.show({ message: 'Perfil actualizado correctamente', type: 'success' });
+        const actualizado = { ...this.usuarioActual, nombre, apellidos, correo, telefono, id: usuarioId, dni: this.usuarioActual?.dni ?? '', contrasena: this.usuarioActual?.contrasena ?? '', rol: this.usuarioActual?.rol ?? Rol.CLIENTE };
+        this.authService.iniciarSesion(actualizado);
+        this.close();
       },
       error: (err: any) => {
+        this.toastService.show({ message: err?.error?.message || 'Error al actualizar el perfil', type: 'error' });
         this.mensaje = err?.error?.message || 'Error al actualizar el perfil';
         this.error = true;
         this.cargando = false;

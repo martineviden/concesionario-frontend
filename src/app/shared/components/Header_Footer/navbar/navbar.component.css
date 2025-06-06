@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .navbar {
   font-family: "Inter", sans-serif;
   font-weight: 500;
@@ -7,9 +18,11 @@
   box-shadow: 0 3px 18px 0 rgba(108, 92, 231, 0.13);
   border-radius: 0 0 14px 14px;
   padding: 0.375rem 1.5rem;
-  position: static;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  transition: transform 0.4s ease-in-out, box-shadow 0.2s, position 0.4s ease-in-out;
   border: 1.9px solid #5937E0;
   border-top: none;
   display: flex;
@@ -17,41 +30,28 @@
   justify-content: space-between;
   min-height: 52.5px;
   margin-bottom: 0;
+  animation: fadeInDown 0.8s ease-out;
 }
 
-.navbar.hidden {
-  transform: translateY(-100%);
-}
-
-/* Nueva clase para cuando el navbar se sobrepone */
-.navbar.overlay {
+/* Remove animation classes */
+.navbar.hidden,
+.navbar.overlay,
+.navbar.instant-hide {
+  transform: none;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(8px);
-}
-
-/* Nueva clase para desaparición inmediata */
-.navbar.instant-hide {
-  transition: none;
-  transform: translateY(-100%);
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 0.225rem;
-}
-
-.navbar-brand img:first-child {
-  border-radius: 6px;
-  border: 1.9px solid #6c5ce7;
-  background: #fff;
+  gap: 0.1rem;
 }
 
 .navbar-brand img:last-child {
+  margin-top: 0.3rem;
   margin-left: 0.15rem;
 }
 
@@ -165,7 +165,7 @@
 
 /* Eliminar el padding-top del body ya que no es necesario por defecto */
 body {
-  padding-top: 0;
+  padding-top: 60px;
 }
 
 @media (max-width: 1100px) {
@@ -185,21 +185,17 @@ body {
     padding: 0.375rem 0.75rem;
     font-size: 0.75rem;
   }
-
+  
   /* Ajustes para los iconos en móvil */
   .nav-icon {
     width: 18px;
     height: 18px;
     margin-right: 0.375rem;
   }
-
+  
   .nav-icon i,
   .ms-auto .nav-link i {
     font-size: 0.675rem;
-  }
-
-  body {
-    padding-top: 0;
   }
 }
 
@@ -222,24 +218,4 @@ body {
 .welcome-text i {
   color: #6c5ce7;
   font-size: 0.9rem;
-}
-
-/* Añade estos estilos para el estado activo */
-.navbar-nav .nav-link.active {
-  color: #fff !important;
-  background: #6c5ce7 !important;
-  border-color: #6c5ce7 !important;
-  box-shadow: 0 3px 12px 0 rgba(108, 92, 231, 0.3) !important;
-  font-weight: 600;
-}
-
-.navbar-nav .nav-link.active .nav-icon {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  color: white !important;
-}
-
-/* Para el botón de inicio que usa href="/" */
-.navbar-nav .nav-link[href="/"].active {
-  color: #fff !important;
-  background: #6c5ce7 !important;
 }

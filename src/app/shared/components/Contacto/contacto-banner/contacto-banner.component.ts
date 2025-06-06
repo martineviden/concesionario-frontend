@@ -21,7 +21,7 @@ export class ContactoBannerComponent {
     },
     {
       pregunta: '¿Tienen soporte telefónico?',
-      respuesta: 'Sí, nuestro número de atención al cliente es +34 123 456 789.'
+      respuesta: 'Sí, nuestro número de atención al cliente es +34 923456789.'
     },
     {
       pregunta: '¿Cuáles son los horarios de atención?',

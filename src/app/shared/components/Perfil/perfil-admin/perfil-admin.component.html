@@ -110,12 +110,12 @@
   (closeModal)="cerrarEditPerfil()">
 </app-editar-perfil>
 
-<!--<app-historial-de-reservas 
+<app-historial-de-reservas 
   *ngIf="showHistorialReservasModal && usuarioActual"
-  >[show]="showHistorialReservasModal"
+  [show]="showHistorialReservasModal"
   [idUsuario]="usuarioActual.id"
   (close)="showHistorialReservasModal = false">
-</app-historial-de-reservas>-->
+</app-historial-de-reservas>
 
 <app-cambiar-contrasena
   *ngIf="showCambioContrasenaModal"

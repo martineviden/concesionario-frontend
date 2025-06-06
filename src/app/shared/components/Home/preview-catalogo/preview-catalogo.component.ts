@@ -18,19 +18,8 @@ export class PreviewCatalogoComponent implements OnInit {
     private router: Router
   ) {}
   verDetalles(vehiculo: any): void {
-  this.router.navigate(['/especificaciones'], {
-    queryParams: {
-      marca: vehiculo.marca,
-      modelo: vehiculo.modelo,
-      transmision: vehiculo.transmision,
-      combustible: vehiculo.combustible,
-      ubicacion: vehiculo.ubicacion,
-      plazas: vehiculo.plazas,
-      precio: vehiculo.precio,
-      aireAcondicionado: vehiculo.aireAcondicionado,
-      kilometraje: vehiculo.kilometraje,
-      imagen: vehiculo.imagen
-    }
+  this.router.navigate(['/especificaciones', vehiculo.matricula], {
+  
   });
 }
 
@@ -49,7 +38,7 @@ export class PreviewCatalogoComponent implements OnInit {
           marca: tipo.marca,
           modelo: tipo.modelo,
           tipo: tipo.tipo,
-          precio: +(tipo.precio / 30).toFixed(2),
+          precio: +(tipo.precio).toFixed(2),
           imagenBase: imagen.replace('.png', ''),
           imagen
         }));

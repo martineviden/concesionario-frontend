@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../login/login.component';
 import { RegistroComponent } from '../registro/registro.component';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
+import { ToastService } from '../../../../services/toast.service';
 import { Usuario } from '../../../../models/login.model';
 import { Subscription } from 'rxjs';
 import { Rol } from '../../../../models/enums';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -21,74 +21,30 @@ import { filter } from 'rxjs/operators';
 export class NavbarComponent implements OnInit, OnDestroy {
   showLoginModal = false;
   showRegisterModal = false;
-  private lastScrollTop = 0;
-  private scrollTimeout: any = null;
-  private isScrolling = false;
   usuarioActual: Usuario | null = null;
   estaAutenticado = false;
   esAdmin = false;
-  rutaActual: string = '';
   private authSubscription: Subscription | null = null;
 
-  constructor(private authService: AuthService, private router : Router) {}
-
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.obtenerUsuarioActual().subscribe(usuario => {
+    this.authSubscription = this.authService.obtenerUsuarioActual().subscribe((usuario: Usuario | null) => {
       this.usuarioActual = usuario;
       this.estaAutenticado = !!usuario;
       this.esAdmin = usuario?.rol === Rol.ADMIN;
     });
-
-    // Detecta cambios de ruta
-    this.router.events
-    .pipe(filter(event => event instanceof NavigationEnd))
-    .subscribe((event: any) => {
-      this.rutaActual = event.urlAfterRedirects || event.url;
-    });
   }
 
-
-
   ngOnDestroy(): void {
-    if (this.scrollTimeout) {
-      clearTimeout(this.scrollTimeout);
-    }
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
   }
-
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll() {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const navbar = document.getElementById('mainNavbar');
-    if (!navbar) return;
-
-    this.isScrolling = true;
-
-    if (currentScrollTop > 50) {
-      navbar.classList.remove('hidden');
-      navbar.classList.add('instant-hide');
-      navbar.classList.add('overlay');
-    } else {
-      navbar.classList.remove('overlay');
-    }
-
-    this.lastScrollTop = currentScrollTop;
-
-    if (this.scrollTimeout) {
-      clearTimeout(this.scrollTimeout);
-    }
-
-    this.scrollTimeout = setTimeout(() => {
-      this.isScrolling = false;
-      navbar.classList.remove('instant-hide');
-      navbar.classList.remove('hidden');
-    }, 300);
-  }
-
-
 
   abrirLogin() {
     this.showLoginModal = true;
@@ -108,12 +64,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   cerrarSesion() {
     this.authService.cerrarSesion();
-    window.location.href = '/'; // Redirige a la página de inicio
+    this.toastService.show({ message: 'Sesión cerrada correctamente', type: 'success' });
+    this.router.navigate(['/']);
   }
 
   onSwitchToRegister() {
     this.showLoginModal = false;
     this.showRegisterModal = true;
   }
-
 }

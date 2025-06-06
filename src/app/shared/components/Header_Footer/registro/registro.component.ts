@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegistroService } from '../../../../services/registro.service';
+import { ToastService } from '../../../../services/toast.service';
 import { Usuario } from '../../../../models/registro.model';
 import { Rol } from '../../../../models/enums';
 
@@ -22,12 +23,17 @@ export class RegistroComponent {
 
   constructor(
     private fb: FormBuilder,
-    private registroService: RegistroService
+    private registroService: RegistroService,
+    private toastService: ToastService
   ) {
     this.usuarioForm = this.fb.group({
       nombre: ['', [Validators.required, this.validarSoloLetras]],
       apellidos: ['', [Validators.required, this.validarSoloLetras]],
-      correo: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
+      correo: ['', [
+        Validators.required,
+        Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+        Validators.maxLength(100)
+      ]],
       telefono: ['', [Validators.required, Validators.maxLength(15), this.validarSoloNumeros]],
       dni: ['', [Validators.required, Validators.maxLength(9)]],
       contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
@@ -113,6 +119,13 @@ export class RegistroComponent {
       return 'Correo electrónico no válido';
     }
 
+    if (control?.errors?.['pattern']) {
+    if (controlName === 'correo') {
+      return 'El formato debe ser texto@texto.com';
+    }
+    return 'Formato inválido';
+  }
+
     if (control?.errors?.['minlength']) {
       return `Mínimo ${control.errors?.['minlength'].requiredLength} caracteres`;
     }
@@ -139,11 +152,11 @@ export class RegistroComponent {
 
     this.registroService.crearUsuario(nuevoUsuario).subscribe({
       next: res => {
-        console.log('Usuario creado:', res);
+        this.toastService.show({ message: 'Usuario registrado correctamente', type: 'success' });
         this.close();
       },
       error: err => {
-        console.error('Error al crear usuario:', err);
+        this.toastService.show({ message: 'Error al registrar usuario', type: 'error' });
         // Puedes agregar manejo de errores específicos del servidor aquí
       }
     });

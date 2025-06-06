@@ -1,22 +1,19 @@
-<div class="main-body">
+<div class="main-body" *ngIf="vehiculo && tipoVehiculo">
   <div class="car-container">
     <!-- IZQUIERDA -->
     <div class="left-panel">
-      <h1>{{ tipoVehiculo.marca }} {{tipoVehiculo.modelo}}</h1>
+      <h1>{{ tipoVehiculo.marca }} {{ tipoVehiculo.modelo }}</h1>
       <p class="price">
         <span class="price-amount">€{{ tipoVehiculo.precio }}</span>
         <span class="price-dia">/ día</span>
       </p>
 
       <div class="main-image">
-        <img [src]="tipoVehiculo.imagen" [alt]="tipoVehiculo.modelo">
+        <img [src]="getCarImage()" [alt]="tipoVehiculo.modelo" width="700" height="400">
       </div>
 
-      <div class="thumbnails">
-        <img src="assets/img/catalogo/7.jpg" alt="Miniatura 1">
-        <img src="assets/img/catalogo/7.jpg" alt="Miniatura 3">
-        <img src="assets/img/catalogo/7.jpg" alt="Miniatura 2">
-      </div>
+
+
     </div>
 
     <!-- DERECHA -->
@@ -74,15 +71,12 @@
       </div>
 
       <div class="boton-container">
-        <button class="btn-alquilar" (click)="mostrarFormularioAlquilar = true">Alquilar</button>
+        <button class="btn-alquilar" (click)="mostrarFormularioReserva()">Alquilar</button>
         <button *ngIf="esAdmin" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
       </div>
-      
-      <app-formulario-alquilar 
-        [tipoVehiculo]="tipoVehiculo" 
-        [vehiculo]="vehiculo" 
-        *ngIf="mostrarFormularioAlquilar" 
-        (cerrarModal)="mostrarFormularioAlquilar = false">
+
+      <app-formulario-alquilar [tipoVehiculo]="tipoVehiculo" [vehiculo]="vehiculo" *ngIf="showMostrarReserva"
+        (cerrarModal)="showMostrarReserva = false">
       </app-formulario-alquilar>
     </div>
   </div>

@@ -10,7 +10,7 @@
         <li><strong>Puertas:</strong> {{ vehiculo.puertas || 'No disponible' }}</li>
         <li><strong>Aire Acondicionado:</strong> {{ vehiculo.aireAcondicionado ? 'Sí' : 'No' }}</li>
         <li><strong>Asientos:</strong> {{ vehiculo.plazas || 'No disponible' }}</li>
-        <li><strong>Distancia:</strong> {{ vehiculo.kilometraje || 'No disponible' }} km</li>
+        <li><strong>Kilometraje</strong> {{ vehiculo.kilometraje || 'No disponible' }} km</li>
         <li><strong>Color:</strong> {{ vehiculo.color || 'No disponible' }}</li>
         <li><strong>Ubicación:</strong> {{ vehiculo.ubicacion || 'No disponible' }}</li>
         <li><strong>Etiqueta:</strong> {{ vehiculo.etiqueta || 'No disponible' }}</li>
@@ -20,7 +20,7 @@
         <span class="price-dia">/ día</span>
       </div>
     </div>
-    <!-- Formulario de alquiler -->
+    <!-- Formulario de reserva -->
     <div class="modal-login">
       <button class="close-btn" type="button" (click)="cerrar()">×</button>
       <form [formGroup]="alquilerForm">
@@ -90,7 +90,7 @@
           El método de pago es obligatorio
         </div>
 
-        <button type="button" class="login-btn" disabled>Confirmar Alquiler (Solo vista)</button>
+        <button type="button" class="login-btn" (click)="confirmarReserva()">Confirmar Alquiler</button>
       </form>
     </div>
   </div>

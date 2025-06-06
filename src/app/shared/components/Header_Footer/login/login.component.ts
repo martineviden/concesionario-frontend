@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../../../../services/login.service';
 import { AuthService } from '../../../../services/auth.service';
+import { ToastService } from '../../../../services/toast.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -25,6 +26,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private loginService: LoginService,
     private authService: AuthService,
+    private toastService: ToastService,
     private router: Router
   ) {
     this.loginForm = this.fb.group({
@@ -69,6 +71,7 @@ export class LoginComponent {
         if (res.token) {
           this.authService.iniciarSesion(res.usuario);
           localStorage.setItem('token', res.token);
+          this.toastService.show({ message: 'Inicio de sesión exitoso', type: 'success' });
           this.close();
           this.router.navigate(['/perfil']);
         } else {

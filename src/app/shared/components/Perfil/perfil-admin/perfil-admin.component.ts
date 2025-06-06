@@ -11,7 +11,7 @@ import { CambiarContrasenaComponent } from '../cambiar-contrasena/cambiar-contra
 
 @Component({
   selector: 'app-perfil-admin',
-  imports: [EditarPerfilComponent, CommonModule, RouterModule, CambiarContrasenaComponent],
+  imports: [EditarPerfilComponent, CommonModule, RouterModule, CambiarContrasenaComponent, HistorialDeReservasComponent],
   templateUrl: './perfil-admin.component.html',
   styleUrl: './perfil-admin.component.css'
 })
