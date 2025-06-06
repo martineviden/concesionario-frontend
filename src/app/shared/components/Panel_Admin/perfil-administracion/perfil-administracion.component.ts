@@ -264,15 +264,19 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
           return 'assets/img/catalogo/model3.png';
         case 'corolla':
           return 'assets/img/catalogo/corolla.png';
+        case 'leaf':
+          return 'assets/img/catalogo/leaf.png'
+        case 'serie3':
+          return 'assets/img/catalogo/serie3.png'
         default:
           return 'assets/img/catalogo/default.png';
       }
 
     case 'moto':
       switch (modeloLower) {
-        case 'monster 821':
+        case 'monster821':
           return 'assets/img/catalogo/monster821.png';
-        case 'iron 883':
+        case 'iron883':
           return 'assets/img/catalogo/iron883.png';
         case 'cbr600rr':
           return 'assets/img/catalogo/cbr600rr.png';
@@ -294,7 +298,7 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
           return 'assets/img/catalogo/ducato.png';
         case 'sprinter':
           return 'assets/img/catalogo/sprinter.png';
-        case 'combo life':
+        case 'combolife':
           return 'assets/img/catalogo/combolife.png';
         case 'transporter':
           return 'assets/img/catalogo/transporter.png';
