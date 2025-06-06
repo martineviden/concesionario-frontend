@@ -31,7 +31,7 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   tipoVehiculosList: TipoVehiculoModel[] = [];
   vehiculosList: VehiculoModel[] = [];
   vehiculosConTipo: Array<{ vehiculo: VehiculoModel, tipo: TipoVehiculoModel }> = [];
-  tipoEnEdicion: TipoVehiculoModel | null = null; 
+  tipoEnEdicion: TipoVehiculoModel | null = null;
   vehiculoEnEdicion: { vehiculo: VehiculoModel, tipo: TipoVehiculoModel } | null = null;
 
   private authSubscription: Subscription | null = null;
@@ -76,8 +76,43 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
       this.tipoVehiculosList = tipos;
       this.vehiculosList = vehiculos;
 
-      this.vehiculosConTipo = vehiculos.filter(v => v.tipoVehiculo) // filtra nulos o undefined
-      .map(vehiculo => ({ vehiculo, tipo: vehiculo.tipoVehiculo! }));
+      // Crear un map de tipos por ID para un rápido lookup
+      const tiposMap = new Map<number, TipoVehiculoModel>();
+      tipos.forEach(tipo => tiposMap.set(tipo.id, tipo));
+
+     // Map vehicles to their types
+      this.vehiculosConTipo = vehiculos.map(vehiculo => {
+        // Get the type ID - handles both cases where tipoVehiculo is an object or just an ID
+        let tipoId: number;
+
+        if (typeof vehiculo.tipoVehiculo === 'object' && vehiculo.tipoVehiculo !== null) {
+          // Case when tipoVehiculo is the full object
+          tipoId = vehiculo.tipoVehiculo.id;
+        } else {
+          // Case when tipoVehiculo is just the ID
+          tipoId = vehiculo.tipoVehiculo as number;
+        }
+
+        if (!tipoId) {
+          console.warn('Vehicle has no type ID:', vehiculo);
+          return {
+            vehiculo,
+            tipo: { marca: 'Desconocida', modelo: 'Desconocido' } as TipoVehiculoModel
+          };
+        }
+
+        const tipo = tiposMap.get(tipoId);
+        if (!tipo) {
+          console.warn('Type not found for ID:', tipoId, 'in vehicle:', vehiculo);
+        }
+
+        return {
+          vehiculo,
+          tipo: tipo || { marca: 'Desconocida', modelo: 'Desconocido' } as TipoVehiculoModel
+        };
+      });
+
+      console.log('Final vehicles with types:', this.vehiculosConTipo);
     });
   }
 
@@ -194,7 +229,7 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   }
   eliminarVehiculo(): void {
     if (!this.vehiculoEnEdicion?.vehiculo?.id) return;
-    
+
     this.vehiculoService.deleteVehiculo(this.vehiculoEnEdicion.vehiculo.id.toString()).subscribe(() => {
       this.showEditarModalVehiculo = false;
       this.vehiculoEnEdicion = null;
