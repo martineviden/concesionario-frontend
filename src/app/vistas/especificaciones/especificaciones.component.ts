@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TipoVehiculoBannerFirstComponent } from '../../shared/components/tipo-vehiculo-banner-first/tipo-vehiculo-banner-first.component';
 import { TipoVehiculoResennasComponent } from '../../shared/components/tipo-vehiculo-resennas/tipo-vehiculo-resennas.component';
 import { VehiculoModel } from '../../models/vehiculo.model';
@@ -28,6 +28,7 @@ import { MarcasBlockComponent } from '../../shared/components/Contacto/marcas-bl
 export class EspecificacionesComponent implements OnInit {
   tipoVehiculoSeleccionado!: TipoVehiculoModel;
   vehiculoSeleccionado!: VehiculoModel;
+  @ViewChild(TipoVehiculoResennasComponent) reviewsComponent!: TipoVehiculoResennasComponent;
 
   constructor(
     private vehiculoService: VehiculoService,
@@ -67,9 +68,13 @@ export class EspecificacionesComponent implements OnInit {
         error: err => {
           console.error('No se encontró el vehículo con esa matrícula', err);
         }
-      });
-    }
+      });    }
   });
 }
 
+  refreshReviews() {
+    if (this.reviewsComponent) {
+      this.reviewsComponent.loadReviews();
+    }
+  }
 }

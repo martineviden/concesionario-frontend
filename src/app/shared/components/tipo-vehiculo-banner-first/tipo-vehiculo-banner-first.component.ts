@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormularioAlquilarComponent } from "../formulario-alquilar/formulario-alquilar.component";
-import { FormularioResenaComponent } from "../formulario-resena/formulario-resena.component";
 import { LoginComponent } from "../Header_Footer/login/login.component";
+import { ReviewModalComponent } from "../review-modal/review-modal.component";
 import { VehiculoModel } from '../../../models/vehiculo.model';
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
 import { AuthService } from '../../../services/auth.service';
@@ -13,16 +13,17 @@ import { VehiculoService } from '../../../services/vehiculo.service';
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
   standalone: true,
-  imports: [CommonModule, FormularioAlquilarComponent, FormularioResenaComponent, LoginComponent],
+  imports: [CommonModule, FormularioAlquilarComponent, LoginComponent, ReviewModalComponent],
   templateUrl: './tipo-vehiculo-banner-first.component.html',
   styleUrls: ['./tipo-vehiculo-banner-first.component.css']
 })
 export class TipoVehiculoBannerFirstComponent {
   showMostrarReserva = false;
-  showMostrarResena = false;
   showLoginModal = false;
+  showReviewModal = false;
   @Input() vehiculo!: VehiculoModel;
   @Input() tipoVehiculo!: TipoVehiculoModel;
+  @Output() reviewAdded = new EventEmitter<void>();
   esAdmin: boolean = false;
   estaAutenticado: boolean = false;
   matricula: string = '';
@@ -146,17 +147,10 @@ export class TipoVehiculoBannerFirstComponent {
       esmeralda: '#50C878', // No hay nombre directo, usamos hexadecimal
     };
   return colorMap[color.toLowerCase()] || '#000000'; 
-}  mostrarFormularioReserva(){
+}
+  mostrarFormularioReserva(){
     if (this.estaAutenticado) {
       this.showMostrarReserva = true;
-    } else {
-      this.showLoginModal = true;
-    }
-  }
-
-  mostrarFormularioResena(){
-    if (this.estaAutenticado) {
-      this.showMostrarResena = true;
     } else {
       this.showLoginModal = true;
     }
@@ -165,9 +159,25 @@ export class TipoVehiculoBannerFirstComponent {
   cerrarLoginModal() {
     this.showLoginModal = false;
   }
-
   onLoginSuccess() {
     this.showLoginModal = false;
     this.showMostrarReserva = true;
+  }
+
+  mostrarFormularioReview() {
+    if (this.estaAutenticado) {
+      this.showReviewModal = true;
+    } else {
+      this.showLoginModal = true;
+    }
+  }
+
+  cerrarReviewModal() {
+    this.showReviewModal = false;
+  }
+  onReviewSubmitted() {
+    // Emit an event or refresh reviews if needed
+    // This will be handled by the parent component
+    this.reviewAdded.emit();
   }
 }
