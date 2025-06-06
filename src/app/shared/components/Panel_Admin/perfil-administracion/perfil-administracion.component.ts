@@ -80,16 +80,16 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
       const tiposMap = new Map<number, TipoVehiculoModel>();
       tipos.forEach(tipo => tiposMap.set(tipo.id, tipo));
 
-     // Map vehicles to their types
+     // Asignar vehículos a sus tipos
       this.vehiculosConTipo = vehiculos.map(vehiculo => {
-        // Get the type ID - handles both cases where tipoVehiculo is an object or just an ID
+        //Obtener el ID de tipo: maneja ambos casos en los que tipoVehiculo es un objeto o simplemente un ID
         let tipoId: number;
 
         if (typeof vehiculo.tipoVehiculo === 'object' && vehiculo.tipoVehiculo !== null) {
-          // Case when tipoVehiculo is the full object
+          // Caso en el que tipoVehiculo es el objeto completo
           tipoId = vehiculo.tipoVehiculo.id;
         } else {
-          // Case when tipoVehiculo is just the ID
+          // Caso en el que tipoVehiculo es solo el ID
           tipoId = vehiculo.tipoVehiculo as number;
         }
 
