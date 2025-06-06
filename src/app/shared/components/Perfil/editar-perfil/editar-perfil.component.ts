@@ -98,7 +98,7 @@ export class EditarPerfilComponent implements OnInit {
         this.error = false;
         this.toastService.show({ message: 'Perfil actualizado correctamente', type: 'success' });
         const actualizado = { ...this.usuarioActual, nombre, apellidos, correo, telefono, id: usuarioId, dni: this.usuarioActual?.dni ?? '', contrasena: this.usuarioActual?.contrasena ?? '', rol: this.usuarioActual?.rol ?? Rol.CLIENTE };
-        this.authService.iniciarSesion(actualizado);
+        this.authService.iniciarSesion(actualizado, res.token);
         this.close();
       },
       error: (err: any) => {

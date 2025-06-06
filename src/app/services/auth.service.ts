@@ -38,11 +38,12 @@ export class AuthService {
     this.estaAutenticado.next(false);
   }
 
-  iniciarSesion(usuario: Usuario) {
+  iniciarSesion(usuario: Usuario, token: string) {
     console.log('Usuario que inicia sesión:', usuario);
     this.usuarioActual.next(usuario);
     this.estaAutenticado.next(true);
     localStorage.setItem('usuario', JSON.stringify(usuario));
+    localStorage.setItem('token', token);
   }
 
   obtenerUsuarioActual(): Observable<Usuario | null> {

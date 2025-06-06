@@ -69,7 +69,7 @@ export class LoginComponent {
       next: (res: any) => {
         this.isLoading = false;
         if (res.token) {
-          this.authService.iniciarSesion(res.usuario);
+          this.authService.iniciarSesion(res.usuario, res.token );
           localStorage.setItem('token', res.token);
           this.toastService.show({ message: 'Inicio de sesión exitoso', type: 'success' });
           this.close();
