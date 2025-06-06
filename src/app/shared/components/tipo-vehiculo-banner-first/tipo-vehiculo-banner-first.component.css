@@ -171,7 +171,7 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: auto;
+  margin-top: 50px;
 }
 /* Color dentro de spec-card */
 .color-display {
