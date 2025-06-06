@@ -40,12 +40,19 @@ export class ResenaService{
       })
     );
   }
-
   createResena(resena: ResenaModel): Observable<ResenaModel>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     return this.http.post<ResenaModel>(this.apiUrl, resena, { headers, withCredentials:false });
+  }
+
+  checkUserReviewExists(matricula: string, usuarioId: number): Observable<boolean> {
+    return this.getReviewsByMatricula(matricula).pipe(
+      map((reviews: ResenaModel[]) => 
+        reviews.some(review => review.usuario?.id === usuarioId)
+      )
+    );
   }
 
   updateResena(id: string, resena: ResenaModel): Observable<ResenaModel>{

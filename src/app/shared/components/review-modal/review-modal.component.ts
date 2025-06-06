@@ -18,10 +18,11 @@ export class ReviewModalComponent implements OnInit {
   @Input() vehiculo!: VehiculoModel;
   @Output() closeModal = new EventEmitter<void>();
   @Output() reviewSubmitted = new EventEmitter<void>();
-
   reviewForm: FormGroup;
   currentUser: Usuario | null = null;
   isSubmitting = false;
+  hasExistingReview = false;
+  checkingExistingReview = true;
 
   constructor(
     private fb: FormBuilder,
@@ -33,11 +34,28 @@ export class ReviewModalComponent implements OnInit {
       puntuacion: [5, [Validators.required, Validators.min(1), Validators.max(5)]]
     });
   }
-
   ngOnInit() {
     this.authService.obtenerUsuarioActual().subscribe(user => {
       this.currentUser = user;
+      if (user) {
+        this.checkForExistingReview();
+      }
     });
+  }
+
+  checkForExistingReview() {
+    if (this.currentUser) {
+      this.resenaService.checkUserReviewExists(this.vehiculo.matricula, this.currentUser.id).subscribe({
+        next: (exists) => {
+          this.hasExistingReview = exists;
+          this.checkingExistingReview = false;
+        },
+        error: (error) => {
+          console.error('Error checking existing review:', error);
+          this.checkingExistingReview = false;
+        }
+      });
+    }
   }
 
   submitReview() {

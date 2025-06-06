@@ -8,19 +8,53 @@
     <div *ngIf="!isLoading && reviews.length === 0" class="no-reviews-message">
         No hay reseñas disponibles para este vehículo. ¡Sé el primero en escribir una!
     </div>
-    
-    <div class="review-list" *ngIf="!isLoading && reviews.length > 0">
-        <div class="review-card" *ngFor="let review of reviews">
-            <div class="review-quote">"</div>
-            <p>{{ review.comentario }}</p>
-            <div class="review-score">
-                <div class="star scored" *ngFor="let star of getStars(review.puntuacion)"></div>
-                <div class="star" *ngFor="let star of getEmptyStars(review.puntuacion)"></div>
-            </div>            <div class="review-footer">
-                <img class="review-avatar" src="assets/img/FotosPerfiles/FotoDePerfil.png" [alt]="getUserDisplayName(review)">
-                <div class="review-location">{{ review.fecha }}</div>
-                <div class="review-name">{{ getUserDisplayName(review) }}</div>
+      <div class="reviews-carousel-container" *ngIf="!isLoading && reviews.length > 0">
+        <!-- Navigation arrows -->
+        <button 
+            class="carousel-arrow carousel-arrow-left" 
+            [class.disabled]="!canNavigatePrevious || isAnimating"
+            (click)="previousReviews()"
+            [disabled]="!canNavigatePrevious || isAnimating"
+            *ngIf="reviews.length > maxVisibleReviews">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+
+        <!-- Reviews carousel -->
+        <div class="reviews-carousel-wrapper">
+            <div class="review-list" [class.animating]="isAnimating">
+                <div class="review-card" *ngFor="let review of visibleReviews; trackBy: trackByReview">
+                    <div class="review-quote">"</div>
+                    <p>{{ review.comentario }}</p>
+                    <div class="review-score">
+                        <div class="star scored" *ngFor="let star of getStars(review.puntuacion)"></div>
+                        <div class="star" *ngFor="let star of getEmptyStars(review.puntuacion)"></div>
+                    </div>
+                    <div class="review-footer">
+                        <img class="review-avatar" src="assets/img/FotosPerfiles/FotoDePerfil.png" [alt]="getUserDisplayName(review)">
+                        <div class="review-location">{{ review.fecha }}</div>
+                        <div class="review-name">{{ getUserDisplayName(review) }}</div>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!-- Right navigation arrow -->
+        <button 
+            class="carousel-arrow carousel-arrow-right" 
+            [class.disabled]="!canNavigateNext || isAnimating"
+            (click)="nextReviews()"
+            [disabled]="!canNavigateNext || isAnimating"
+            *ngIf="reviews.length > maxVisibleReviews">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+
+        <!-- Pagination dots -->
+        <div class="carousel-pagination" *ngIf="reviews.length > maxVisibleReviews">
+            <span class="pagination-info">{{ currentPage }} de {{ totalPages }}</span>
         </div>
     </div>
 </div>

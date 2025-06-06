@@ -4,9 +4,24 @@
       <div class="modal-header">
         <h5 class="modal-title">Escribir Reseña</h5>
         <button type="button" class="btn-close" (click)="closeModal.emit()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+      </div>      <div class="modal-body">
+        <div *ngIf="checkingExistingReview" class="loading-message">
+          Verificando reseñas existentes...
+        </div>
+        
+        <div *ngIf="!checkingExistingReview && hasExistingReview" class="existing-review-message">
+          <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            Ya has escrito una reseña para este vehículo. Solo se permite una reseña por usuario.
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-primary" (click)="closeModal.emit()">
+              Entendido
+            </button>
+          </div>
+        </div>
+        
+        <form *ngIf="!checkingExistingReview && !hasExistingReview" [formGroup]="reviewForm" (ngSubmit)="submitReview()">
           <div class="form-group">
             <label class="form-label">Puntuación</label>
             <div class="rating-container">
