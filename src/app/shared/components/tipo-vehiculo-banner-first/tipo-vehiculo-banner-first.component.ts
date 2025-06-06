@@ -38,26 +38,27 @@ export class TipoVehiculoBannerFirstComponent implements OnInit {
     private router: Router
   ) {}
 
-  eliminarVehiculo() {
-    this.matricula = this.route.snapshot.paramMap.get('matricula') || '';
+ eliminarVehiculo() {
+  this.matricula = this.route.snapshot.paramMap.get('matricula') || '';
 
-    // Primero eliminamos el vehículo
-    this.vehiculoService.deleteVehiculo(this.matricula).pipe(
-      switchMap(() => {
-        console.log('Vehículo eliminado');
-        // Luego eliminamos las reseñas
-        return this.resenaService.deleteResenasByMatricula(this.matricula);
-      })
-    ).subscribe({
-      next: () => {
-        console.log('Proceso de eliminación completado');
-        this.router.navigate(['/catalogo']);
-      },
-      error: (err: Error) => {
-        console.error('Error en el proceso de eliminación: ', err);
-      }
-    });
-  }
+  //Primero elimina las reservas asociadas a la matrícula
+  this.reservaService.deleteReserva(this.matricula).pipe(
+    switchMap(() => {
+      console.log('Reservas eliminadas');
+      // Solo después elimina el vehículo
+      return this.vehiculoService.deleteVehiculo(this.matricula);
+    })
+  ).subscribe({
+    next: () => {
+      console.log('Proceso de eliminación completado');
+      this.router.navigate(['/catalogo']);
+    },
+    error: (err: Error) => {
+      console.error('Error en el proceso de eliminación: ', err);
+    }
+  });
+}
+
 
 
   ngOnInit() {

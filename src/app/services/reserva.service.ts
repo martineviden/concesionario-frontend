@@ -28,7 +28,7 @@ export class ReservaService{
   }
 
   deleteReserva(id: string){
-     return this.http.delete(`http://localhost:8080/reservas/${id}`, { withCredentials:false });
+     return this.http.delete(`http://localhost:8080/reservas/matricula/${id}`, { withCredentials:false });
   }
 
   getReservasByUsuario(idUsuario: string | number) {
