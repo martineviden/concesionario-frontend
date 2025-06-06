@@ -22,9 +22,12 @@ export class TipoVehiculoService {
     return this.http.get<TipoVehiculoModel[]>(this.apiUrl);
   }
 
-  createTipoVehiculo(tipo: any): Observable<any> {
-    return this.http.post(this.apiUrl, tipo);
-  }
+createTipoVehiculo(tipo: any): Observable<any> {
+  console.log('JSON enviado al backend:', JSON.stringify(tipo, null, 2));
+
+  return this.http.post(this.apiUrl, tipo);
+}
+
 
   updateTipoVehiculo(id: number, tipo: TipoVehiculoModel): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, tipo);
