@@ -220,14 +220,10 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   }
 
   guardarVehiculoEditado(vehiculoActualizado: VehiculoModel): void {
-    console.log('Datos a actualizar:', vehiculoActualizado);
     if (!vehiculoActualizado.matricula) return;
-
-    console.log('Actualizando vehículo con matrícula:', vehiculoActualizado.matricula);
 
     this.vehiculoService.updateVehiculo(vehiculoActualizado.matricula, vehiculoActualizado).subscribe({
       next: () => {
-        console.log('Vehículo actualizado correctamente');
         this.showEditarModalVehiculo = false;
         this.vehiculoEnEdicion = null;
         this.cargarDatosVehiculosYTipos();

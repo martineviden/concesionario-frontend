@@ -61,11 +61,6 @@ export class EditarVehiculoComponent implements OnInit {
   }
 
   guardar(): void {
-    console.log('Intentando guardar...'); // Esto debe aparecer al hacer click
-    console.log('Formulario válido:', this.newVehiculoForm.valid);
-    console.log('Errores:', this.newVehiculoForm.errors);
-    console.log('Valores:', this.newVehiculoForm.value);
-
     if (this.newVehiculoForm.valid) {
       const vehiculoEditado: VehiculoModel = {
         ...this.newVehiculoForm.value,
