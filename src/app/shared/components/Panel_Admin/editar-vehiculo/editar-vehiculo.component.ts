@@ -40,29 +40,43 @@ export class EditarVehiculoComponent implements OnInit {
 
   initForm(): void {
     this.newVehiculoForm = this.fb.group({
-      ubicacion: ['', Validators.required],
-      transmision: ['', Validators.required],
-      combustible: ['', Validators.required],
-      puertas: [5, [Validators.required, Validators.min(2), Validators.max(5)]],
-      plazas: [5, [Validators.required, Validators.min(2), Validators.max(9)]],
-      autonomia: [0, [Validators.required, Validators.min(0)]],
-      etiqueta: ['', Validators.required],
       matricula: ['', [
         Validators.required,
         Validators.maxLength(10),
         Validators.pattern(/^[A-Za-z0-9\- ]+$/)
       ]],
+      tipoVehiculo: [null, Validators.required],
       color: ['', Validators.required],
       kilometraje: [0, [Validators.required, Validators.min(0)]],
-      disponibilidad: [false]
+      disponibilidad: [false],
+      ubicacion: ['', Validators.required],
+      combustible: ['', Validators.required],
+      etiqueta: ['', Validators.required],
+      autonomia: [0, [Validators.required, Validators.min(0)]],
+      puertas: [5, [Validators.required, Validators.min(2), Validators.max(5)]],
+      aireAcondicionado: [false],
+      plazas: [5, [Validators.required, Validators.min(2), Validators.max(9)]],
+      transmision: ['', Validators.required]
     });
   }
 
   guardar(): void {
+    console.log('Intentando guardar...'); // Esto debe aparecer al hacer click
+    console.log('Formulario válido:', this.newVehiculoForm.valid);
+    console.log('Errores:', this.newVehiculoForm.errors);
+    console.log('Valores:', this.newVehiculoForm.value);
+
     if (this.newVehiculoForm.valid) {
-      const vehiculoEditado: VehiculoModel = this.newVehiculoForm.value;
+      const vehiculoEditado: VehiculoModel = {
+        ...this.newVehiculoForm.value,
+        matricula: this.vehiculo?.vehiculo?.matricula, // Mantener la matrícula original
+        tipoVehiculo: this.vehiculo?.vehiculo?.tipoVehiculo
+      };
+
+      console.log('Datos a guardar:', vehiculoEditado);
       this.onSave.emit(vehiculoEditado);
     } else {
+      console.log('Formulario inválido');
       this.newVehiculoForm.markAllAsTouched();
     }
   }

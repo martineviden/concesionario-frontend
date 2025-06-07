@@ -1,5 +1,5 @@
 <div class="modal-bg">
-  <form class="modal-form" [formGroup]="newVehiculoForm" (ngSubmit)="guardar()">
+  <form class="modal-form" [formGroup]="newVehiculoForm" (ngSubmit)="guardar()" novalidate>
     <h2>Editar Vehículo</h2>
     <button class="close-btn" type="button" (click)="close()">&times;</button>
 
@@ -15,7 +15,7 @@
         <div><strong>Etiqueta Ambiental:</strong> {{ vehiculo.vehiculo.etiqueta }}</div>
         <div><strong>Plazas:</strong> {{ vehiculo.vehiculo.plazas }}</div>
         <div><strong>Ubicación:</strong> {{ vehiculo.vehiculo.ubicacion }}</div>
-        <div><strong>Disponibilidad:</strong> 
+        <div><strong>Disponibilidad:</strong>
           <span [ngClass]="vehiculo.vehiculo.disponibilidad ? 'text-success' : 'text-danger'">
             {{ vehiculo.vehiculo.disponibilidad ? 'Disponible' : 'No disponible' }}
           </span>

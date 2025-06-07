@@ -9,7 +9,6 @@ import { TipoVehiculoModel } from "./tipo-vehiculo.model";
 // Habria que corregir e incorporar reserva al vehiculo. Disponibilidad-en relacion a la reserva?
 
 export class VehiculoModel{
-  id: number;
   matricula: string;
   color: string;
   kilometraje: number;
@@ -28,7 +27,6 @@ export class VehiculoModel{
 
 
   constructor(
-    id: number,
     matricula: string,
     color: string,
     kilometraje: number,
@@ -45,7 +43,6 @@ export class VehiculoModel{
     reservas: ReservaModel[] = []
 
   ) {
-    this.id = id;
     this.matricula = matricula;
     this.color = color;
     this.kilometraje = kilometraje;

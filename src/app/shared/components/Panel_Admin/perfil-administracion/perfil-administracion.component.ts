@@ -209,34 +209,58 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
 
   // Mostrar el formulario de edición de vehículo
   editarVehiculo(item: { vehiculo: VehiculoModel, tipo: TipoVehiculoModel }): void {
+    console.log('Editando vehículo:', item);
     this.vehiculoEnEdicion = item;
     this.showEditarModalVehiculo = true;
   }
+
   cerrarEditarVehiculo(): void {
   this.showEditarModalVehiculo = false;
   this.vehiculoEnEdicion = null;
   }
-  guardarVehiculoEditado(vehiculoActualizado: VehiculoModel): void {
-    if (!vehiculoActualizado.id) return;
 
-    this.vehiculoService.updateVehiculo(vehiculoActualizado.id.toString(), vehiculoActualizado).subscribe(() => {
-      this.showEditarModalVehiculo = false;
-      this.vehiculoEnEdicion = null;
-      this.cargarDatosVehiculosYTipos();
-    }, error => {
-      console.error('Error actualizando vehículo:', error);
+  guardarVehiculoEditado(vehiculoActualizado: VehiculoModel): void {
+    console.log('Datos a actualizar:', vehiculoActualizado);
+    if (!vehiculoActualizado.matricula) return;
+
+    console.log('Actualizando vehículo con matrícula:', vehiculoActualizado.matricula);
+
+    this.vehiculoService.updateVehiculo(vehiculoActualizado.matricula, vehiculoActualizado).subscribe({
+      next: () => {
+        console.log('Vehículo actualizado correctamente');
+        this.showEditarModalVehiculo = false;
+        this.vehiculoEnEdicion = null;
+        this.cargarDatosVehiculosYTipos();
+      },
+      error: (error) => {
+        console.error('Error al actualizar vehículo:', error);
+      }
     });
   }
-  eliminarVehiculo(): void {
-    if (!this.vehiculoEnEdicion?.vehiculo?.id) return;
 
-    this.vehiculoService.deleteVehiculo(this.vehiculoEnEdicion.vehiculo.id.toString()).subscribe(() => {
-      this.showEditarModalVehiculo = false;
-      this.vehiculoEnEdicion = null;
-      this.cargarDatosVehiculosYTipos();
-    }, error => {
-      console.error('Error eliminando vehículo:', error);
-    });
+  eliminarVehiculo(): void {
+    console.log('Vehiculo en edición:', this.vehiculoEnEdicion); // Verifica este objeto
+    const matricula = this.vehiculoEnEdicion?.vehiculo?.matricula;
+    console.log('Matrícula a eliminar:', matricula);
+
+    if (!matricula) {
+      console.error('No hay matrícula para eliminar');
+      return;
+    }
+
+    if (confirm('¿Estás seguro de eliminar este vehículo?')) {
+      this.vehiculoService.deleteVehiculo(matricula).subscribe({
+        next: () => {
+          console.log('Vehículo eliminado correctamente');
+          this.showEditarModalVehiculo = false;
+          this.vehiculoEnEdicion = null;
+          this.cargarDatosVehiculosYTipos();
+        },
+        error: (error) => {
+          console.error('Error al eliminar vehículo:', error);
+        }
+      });
+    }
   }
 
   getImagenPorTipoYModelo(tipo: string, modelo: string): string {

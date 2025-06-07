@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { VehiculoModel } from '../models/vehiculo.model';
 import { Provincia, TipoVehiculo } from '../models/enums';
 
@@ -37,10 +38,18 @@ export class VehiculoService {
   }
 
   updateVehiculo(matricula: string, vehiculo: VehiculoModel): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${matricula}`, vehiculo);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    console.log(`Actualizando vehículo con matrícula: ${matricula}`, vehiculo);
+    return this.http.put(`${this.apiUrl}/${matricula}`, vehiculo, { headers });
   }
 
   deleteVehiculo(matricula: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${matricula}`);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    console.log(`Eliminando vehículo con matrícula: ${matricula}`);
+    return this.http.delete(`${this.apiUrl}/${matricula}`, { headers });
   }
 }
