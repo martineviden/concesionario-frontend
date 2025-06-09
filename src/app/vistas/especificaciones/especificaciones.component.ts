@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TipoVehiculoBannerFirstComponent } from '../../shared/components/tipo-vehiculo-banner-first/tipo-vehiculo-banner-first.component';
 import { TipoVehiculoResennasComponent } from '../../shared/components/tipo-vehiculo-resennas/tipo-vehiculo-resennas.component';
 import { VehiculoModel } from '../../models/vehiculo.model';
@@ -15,6 +16,7 @@ import { MarcasBlockComponent } from '../../shared/components/Contacto/marcas-bl
   selector: 'app-especificaciones',
   standalone: true,
   imports: [
+    CommonModule,
     FooterComponent,
     NavbarComponent,
     TipoVehiculoBannerFirstComponent,
@@ -29,6 +31,7 @@ import { MarcasBlockComponent } from '../../shared/components/Contacto/marcas-bl
 export class EspecificacionesComponent implements OnInit {
   tipoVehiculoSeleccionado!: TipoVehiculoModel;
   vehiculoSeleccionado!: VehiculoModel;
+  @ViewChild(TipoVehiculoResennasComponent) reviewsComponent!: TipoVehiculoResennasComponent;
 
   constructor(
     private vehiculoService: VehiculoService,
@@ -37,13 +40,12 @@ export class EspecificacionesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      const matricula = params.get('matricula');
-      if (matricula) {
-        this.vehiculoService.getVehiculoPorMatricula(matricula).subscribe({
-          next: (vehiculo: any) => {
-            console.log('Vehículo recibido:', vehiculo);
-            this.vehiculoSeleccionado = vehiculo;
+  this.route.paramMap.subscribe(params => {
+    const matricula = params.get('matricula');
+    if (matricula) {
+      this.vehiculoService.getVehiculoPorMatricula(matricula).subscribe({        next: (vehiculo: any) => {
+          console.log('🚗 Vehículo recibido en especificaciones:', vehiculo);
+          this.vehiculoSeleccionado = vehiculo;
 
             // Prueba accediendo directamente a diferentes posibilidades:
             const idTipo =
@@ -51,25 +53,30 @@ export class EspecificacionesComponent implements OnInit {
               vehiculo.idTipoVehiculo ??
               vehiculo.tipoVehiculo?.id;
 
-            if (idTipo) {
-              this.tipoVehiculoService.getTipoVehiculoById(idTipo).subscribe({
-                next: (tipo: any) => {
-                  console.log('TipoVehiculo:', tipo);
-                  this.tipoVehiculoSeleccionado = tipo;
-                },
-                error: err => {
-                  console.error('Error cargando tipo de vehículo', err);
-                }
-              });
-            } else {
-              console.error('⚠️ El vehículo no tiene ID de tipo. Vehículo:', vehiculo);
-            }
-          },
-          error: err => {
-            console.error('No se encontró el vehículo con esa matrícula', err);
+          if (idTipo) {
+            this.tipoVehiculoService.getTipoVehiculoById(idTipo).subscribe({
+              next: (tipo: any) => {
+                console.log('TipoVehiculo:', tipo);
+                this.tipoVehiculoSeleccionado = tipo;
+              },
+              error: err => {
+                console.error('Error cargando tipo de vehículo', err);
+              }
+            });
+          } else {
+            console.error('⚠️ El vehículo no tiene ID de tipo. Vehículo:', vehiculo);
           }
-        });
-      }
-    });
+        },
+        error: err => {
+          console.error('No se encontró el vehículo con esa matrícula', err);
+        }
+      });    }
+  });
+}
+
+  refreshReviews() {
+    if (this.reviewsComponent) {
+      this.reviewsComponent.loadReviews();
+    }
   }
 }

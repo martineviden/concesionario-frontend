@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormularioAlquilarComponent } from "../formulario-alquilar/formulario-alquilar.component";
+import { LoginComponent } from "../Header_Footer/login/login.component";
+import { ReviewModalComponent } from "../review-modal/review-modal.component";
 import { VehiculoModel } from '../../../models/vehiculo.model';
 import { TipoVehiculoModel } from '../../../models/tipo-vehiculo.model';
 import { AuthService } from '../../../services/auth.service';
@@ -15,17 +17,19 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
   standalone: true,
-  imports: [CommonModule, FormularioAlquilarComponent],
+  imports: [CommonModule, FormularioAlquilarComponent, LoginComponent, ReviewModalComponent],
   templateUrl: './tipo-vehiculo-banner-first.component.html',
   styleUrls: ['./tipo-vehiculo-banner-first.component.css']
 })
-export class TipoVehiculoBannerFirstComponent implements OnInit {
-  mostrarFormularioAlquilar = false;
-
+export class TipoVehiculoBannerFirstComponent {
+  showMostrarReserva = false;
+  showLoginModal = false;
+  showReviewModal = false;
   @Input() vehiculo!: VehiculoModel;
   @Input() tipoVehiculo!: TipoVehiculoModel;
-
+  @Output() reviewAdded = new EventEmitter<void>();
   esAdmin: boolean = false;
+  estaAutenticado: boolean = false;
   matricula: string = '';
   showMostrarReserva: boolean = false;
 
@@ -38,32 +42,23 @@ export class TipoVehiculoBannerFirstComponent implements OnInit {
     private router: Router
   ) {}
 
- eliminarVehiculo() {
-  this.matricula = this.route.snapshot.paramMap.get('matricula') || '';
-
-  //Primero elimina las reservas asociadas a la matrícula
-  this.reservaService.deleteReserva(this.matricula).pipe(
-    switchMap(() => {
-      console.log('Reservas eliminadas');
-      // Solo después elimina el vehículo
-      return this.vehiculoService.deleteVehiculo(this.matricula);
+  eliminarVehiculo() {
+    this.matricula = this.route.snapshot.paramMap.get('matricula') || '';
+    this.vehiculoService.deleteVehiculo(this.matricula).subscribe({
+      next: () => {
+        console.log('Vehiculo eliminado con matricula: ' + this.matricula);
+        this.router.navigate(['/catalogo']);
+      },
+      error: err => console.log('Error al eliminar vehiculo')
     })
-  ).subscribe({
-    next: () => {
-      console.log('Proceso de eliminación completado');
-      this.router.navigate(['/catalogo']);
-    },
-    error: (err: Error) => {
-      console.error('Error en el proceso de eliminación: ', err);
-    }
-  });
-}
-
-
-
+  }
   ngOnInit() {
     this.authService.obtenerUsuarioActual().subscribe(usuario => {
       this.esAdmin = usuario?.rol === Rol.ADMIN;
+    });
+    
+    this.authService.obtenerEstadoAutenticacion().subscribe(autenticado => {
+      this.estaAutenticado = autenticado;
     });
   }
 
@@ -141,35 +136,38 @@ export class TipoVehiculoBannerFirstComponent implements OnInit {
       perla: '#EAE0C8',
       esmeralda: '#50C878'
     };
-    return colorMap[color.toLowerCase()] || '#000000';
+  return colorMap[color.toLowerCase()] || '#000000'; 
+}
+  mostrarFormularioReserva(){
+    if (this.estaAutenticado) {
+      this.showMostrarReserva = true;
+    } else {
+      this.showLoginModal = true;
+    }
   }
 
-  mostrarFormularioReserva(){
+  cerrarLoginModal() {
+    this.showLoginModal = false;
+  }
+  onLoginSuccess() {
+    this.showLoginModal = false;
     this.showMostrarReserva = true;
   }
 
-  // Retorna la imagen del coche, ya sea la definida en el modelo o una imagen por defecto.
-  getCarImage(): string {
-    if (this.tipoVehiculo?.modelo) {
-      const basePath = 'assets/img/catalogo/';
-      // Convertir el modelo a minúsculas y reemplazar espacios por guiones bajos para formar el nombre de archivo.
-      const modelName = this.tipoVehiculo.modelo.toLowerCase().replace(/\s+/g, '_');
-      // Retorna la ruta asumiendo que la imagen está en formato PNG.
-      return `${basePath}${modelName}.png`;
+  mostrarFormularioReview() {
+    if (this.estaAutenticado) {
+      this.showReviewModal = true;
+    } else {
+      this.showLoginModal = true;
     }
-    return 'assets/img/catalogo/default.png';
   }
 
-  // Si por alguna razón la imagen en PNG no se encuentra, intenta cambiar la extensión a JPG.
-  handleImageError(event: Event) {
-    const target = event.target as HTMLImageElement;
-    // Si el src termina en .png, se intenta cambiar a .jpg
-    if(target.src.includes('.png')) {
-      target.src = target.src.replace('.png', '.jpg');
-    } else {
-      // Si ya intentó con JPG o el nombre no coincide, se asigna una imagen default
-      target.src = 'assets/img/catalogo/default.png';
-    }
+  cerrarReviewModal() {
+    this.showReviewModal = false;
+  }
+  onReviewSubmitted() {
+    // Emit an event or refresh reviews if needed
+    // This will be handled by the parent component
+    this.reviewAdded.emit();
   }
 }
-

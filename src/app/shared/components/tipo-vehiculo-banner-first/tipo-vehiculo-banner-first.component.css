@@ -130,16 +130,17 @@
 }
 
 .btn-alquilar {
-  margin-top: auto;
-  width: 50%;
-  max-width: 350px;
+  width: auto;
+  min-width: 120px;
+  max-width: 200px;
+  flex: 1;
   background: #5636d8;
   color: #fff;
   font-size: 1.2rem;
   font-weight: 500;
   border: none;
   border-radius: 14px;
-  padding: 1rem ;
+  padding: 1rem;
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -148,16 +149,38 @@
   background: #3d25a0;
 }
 
+.btn-review {
+  width: auto;
+  min-width: 120px;
+  max-width: 200px;
+  flex: 1;
+  background: #10b981;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 14px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-review:hover {
+  background: #059669;
+}
+
 .btn-eliminar {
-  width: 50%;
-  max-width: 350px;
+  width: auto;
+  min-width: 120px;
+  max-width: 200px;
+  flex: 1;
   background: red;
   color: #fff;
   font-size: 1.2rem;
   font-weight: 500;
   border: none;
   border-radius: 14px;
-  padding: 1rem ;
+  padding: 1rem;
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -167,12 +190,13 @@
 }
 
 .boton-container{
-  width: 100%;
-  display: flex;
+  width: 100%;  display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 50px;
+  margin-top: auto;
+  flex-wrap: wrap;
 }
+
 /* Color dentro de spec-card */
 .color-display {
   display: flex;

@@ -18,8 +18,7 @@ export class ReservaService{
   getReservaById(id: string){
     return this.http.get(`http://localhost:8080/reservas/${id}`, { withCredentials:false });
   }
-
-  createReserva(reserva: ReservaModel){
+  createReserva(reserva: any){
     return this.http.post('http://localhost:8080/reservas', reserva, { withCredentials:false });
   }
 

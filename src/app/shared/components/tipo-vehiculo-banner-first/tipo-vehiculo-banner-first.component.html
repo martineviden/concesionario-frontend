@@ -65,16 +65,28 @@
           <span>Etiqueta</span>
           <p>{{ vehiculo.etiqueta }}</p>
         </div>
-      </div>
-
-      <div class="boton-container">
+      </div>      <div class="boton-container">
         <button class="btn-alquilar" (click)="mostrarFormularioReserva()">Alquilar</button>
+        <button *ngIf="estaAutenticado" class="btn-review" (click)="mostrarFormularioReview()">Escribir Reseña</button>
         <button *ngIf="esAdmin" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
-      </div>
-
-      <app-formulario-alquilar [tipoVehiculo]="tipoVehiculo" [vehiculo]="vehiculo" *ngIf="showMostrarReserva"
+      </div>      <app-formulario-alquilar 
+        [tipoVehiculo]="tipoVehiculo" 
+        [vehiculo]="vehiculo" 
+        *ngIf="showMostrarReserva" 
         (cerrarModal)="showMostrarReserva = false">
       </app-formulario-alquilar>
+      <app-review-modal
+        [vehiculo]="vehiculo"
+        *ngIf="showReviewModal"
+        (closeModal)="cerrarReviewModal()"
+        (reviewSubmitted)="onReviewSubmitted()">
+      </app-review-modal>
+      <app-login 
+        *ngIf="showLoginModal"
+        (closeModal)="cerrarLoginModal()"
+        (loginSuccess)="onLoginSuccess()"
+        (switchToRegister)="cerrarLoginModal()">
+      </app-login>
     </div>
   </div>
 </div>
