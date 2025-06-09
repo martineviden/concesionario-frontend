@@ -22,7 +22,6 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./tipo-vehiculo-banner-first.component.css']
 })
 export class TipoVehiculoBannerFirstComponent {
-  showMostrarReserva = false;
   showLoginModal = false;
   showReviewModal = false;
   @Input() vehiculo!: VehiculoModel;
@@ -144,6 +143,18 @@ export class TipoVehiculoBannerFirstComponent {
     } else {
       this.showLoginModal = true;
     }
+  }
+
+  // Retorna la imagen del coche, ya sea la definida en el modelo o una imagen por defecto.
+  getCarImage(): string {
+    if (this.tipoVehiculo?.modelo) {
+      const basePath = 'assets/img/catalogo/';
+      // Convertir el modelo a minúsculas y reemplazar espacios por guiones bajos para formar el nombre de archivo.
+      const modelName = this.tipoVehiculo.modelo.toLowerCase().replace(/\s+/g, '_');
+      // Retorna la ruta asumiendo que la imagen está en formato PNG.
+      return `${basePath}${modelName}.png`;
+    }
+    return 'assets/img/catalogo/default.png';
   }
 
   cerrarLoginModal() {
