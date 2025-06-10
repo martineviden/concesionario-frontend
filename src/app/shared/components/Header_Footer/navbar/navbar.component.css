@@ -18,7 +18,7 @@
   box-shadow: 0 3px 18px 0 rgba(108, 92, 231, 0.13);
   border-radius: 0 0 14px 14px;
   padding: 0.375rem 1.5rem;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -31,17 +31,6 @@
   min-height: 52.5px;
   margin-bottom: 0;
   animation: fadeInDown 0.8s ease-out;
-}
-
-/* Remove animation classes */
-.navbar.hidden,
-.navbar.overlay,
-.navbar.instant-hide {
-  transform: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
 }
 
 .navbar-brand {
