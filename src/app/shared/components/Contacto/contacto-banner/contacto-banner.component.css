@@ -24,8 +24,7 @@
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  animation: fadeInDown 0.8s ease-out;
+  color: white;
 }
 
 .breadcrumb {
@@ -38,25 +37,25 @@
 }
 
 .breadcrumb a {
-  color: orange;
+  color: white;
   text-decoration: none;
   transition: color 0.3s ease;
   padding: 0.5rem;
 }
 
 .breadcrumb a:hover {
-  color: #f5d15a;
+  color: #f58b5a;
 }
 
 .breadcrumb .actual {
-  color: var(--naranja-oscuro);
+  color: #e68900;
   font-weight: 600;
   padding: 0.5rem;
-  animation: pulse 2s infinite;
 }
 
 .breadcrumb span {
   margin: 0 10px;
+  color: white;
 }
 
 /* Animaciones */
@@ -118,6 +117,7 @@
   margin-bottom: 1rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
+  color: white;
 }
 
 .subtitle {

@@ -167,7 +167,7 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
     this.mostrarVehiculos = !this.mostrarVehiculos;
   }
 
-  // Mostrar el formulario de edición
+  // Mostrar el formulario de edición de Tipo Vehiculo
   editarTipo(tipo: TipoVehiculoModel): void {
     this.tipoEnEdicion = tipo;
     this.showEditarModalTipoVehiculo = true;
@@ -178,11 +178,11 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
     this.tipoEnEdicion = null;
   }
 
-   // Cancelar edición
   cancelarEdicion(): void {
     this.tipoEnEdicion = null;
   }
 
+  // Funciones CRUD
   guardarTipoEditado(tipoActualizado: TipoVehiculoModel): void {
     if (!tipoActualizado.id) return;
 
@@ -219,6 +219,7 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
   this.vehiculoEnEdicion = null;
   }
 
+  // Funciones CRUD
   guardarVehiculoEditado(vehiculoActualizado: VehiculoModel): void {
     if (!vehiculoActualizado.matricula) return;
 
@@ -259,6 +260,7 @@ export class PerfilAdministracionComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Visualizacion de imagenes de vehiculos
   getImagenPorTipoYModelo(tipo: string, modelo: string): string {
   const tipoLower = tipo.toLowerCase();
   const modeloLower = modelo.toLowerCase();

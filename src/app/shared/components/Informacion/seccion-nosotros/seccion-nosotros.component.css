@@ -49,6 +49,9 @@
   height: auto;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
 }
 .step-number {
   display: inline-block;
@@ -79,6 +82,7 @@
   max-width: 600px;
   margin-left: auto;
   padding-right: 40px;
+  margin-top: 25px;
 }
 
 .contenido h2 {
@@ -106,6 +110,73 @@
     position: absolute;
     top: 0;
     opacity: 0.1; 
+}
+
+@media (max-width: 900px) {
+  .bloque-recuerdos {
+    flex-direction: column;
+    padding: 30px 10px;
+    gap: 20px;
+  }
+  .izquierda h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .punto {
+    width: 100%;
+  }
+  .derecha {
+    margin-top: 1rem;
+  }
+  .moto {
+    width: 90vw;
+    left: 0;
+    bottom: 0;
+    position: static;
+    display: block;
+    margin: 0 auto;
+  }
+  .contenido {
+    padding-right: 0;
+    margin-left: 0;
+    max-width: 100%;
+  }
+  .contenido h2 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .bloque-recuerdos.container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
+  }
+  .izquierda h2 {
+    font-size: 1.3rem;
+  }
+  .derecha img {
+    max-width: 98vw !important;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+  .moto {
+    width: 98vw;
+    left: 0;
+    bottom: 0;
+    position: static;
+    display: block;
+    margin: 0 auto;
+  }
+  .contenido h2 {
+    font-size: 1.2rem;
+  }
 }
 
 

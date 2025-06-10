@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ToastService } from '../../../../services/toast.service';
 
 
 @Component({
@@ -9,6 +10,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './contacto-banner.component.html',
   styleUrl: './contacto-banner.component.css'
 })
+
 export class ContactoBannerComponent {
  preguntasFrecuentes = [
     {
@@ -28,4 +30,12 @@ export class ContactoBannerComponent {
       respuesta: 'Nuestro equipo está disponible de lunes a viernes de 9:00 a 18:00 y sábados de 10:00 a 14:00.'
     }
   ];
+
+  constructor(
+    private toastService :  ToastService
+  ){}
+
+  enviarContacto(){
+    this.toastService.show({ message: 'Correo enviado', type: 'success' });
+  }
 }
