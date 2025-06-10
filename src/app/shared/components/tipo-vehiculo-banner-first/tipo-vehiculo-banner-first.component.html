@@ -53,35 +53,51 @@
           <p>{{ vehiculo.ubicacion }}</p>
         </div>
         <div class="spec-card">
-          <div class="spec-icon">🎨</div>
-          <span>Color</span>
-          <div class="color-display">
-            <span class="color-circle" [style.backgroundColor]="getColorCSS(vehiculo.color)"></span>
-            <p>{{ vehiculo.color }}</p>
-          </div>
-        </div>
+  <div class="spec-icon">🎨</div>
+  <span>Color</span>
+  <div class="color-display">
+    <span
+      class="color-circle"
+      *ngIf="vehiculo.color"
+      [style.backgroundColor]="getColorCSS(vehiculo.color)"
+    ></span>
+
+    <select [(ngModel)]="vehiculo.color">
+      <option value="" disabled>Seleccionar</option>
+      <option *ngFor="let color of colorKeys" [value]="color">
+        {{ color | titlecase }}
+      </option>
+    </select>
+  </div>
+</div>
+
         <div class="spec-card etiqueta-badge" [ngClass]="vehiculo.etiqueta.toLowerCase()">
           <div class="spec-icon">♻️</div>
           <span>Etiqueta</span>
           <p>{{ vehiculo.etiqueta }}</p>
         </div>
-      </div>      
+      </div>
+
       <div class="boton-container">
         <button class="btn-alquilar" (click)="mostrarFormularioReserva()">Alquilar</button>
         <button *ngIf="estaAutenticado" class="btn-review" (click)="mostrarFormularioReview()">Escribir Reseña</button>
         <button *ngIf="esAdmin" class="btn-eliminar" (click)="eliminarVehiculo()">Eliminar</button>
-      </div>      <app-formulario-alquilar 
+      </div>
+
+      <app-formulario-alquilar 
         [tipoVehiculo]="tipoVehiculo" 
         [vehiculo]="vehiculo" 
         *ngIf="showMostrarReserva" 
         (cerrarModal)="showMostrarReserva = false">
       </app-formulario-alquilar>
+
       <app-review-modal
         [vehiculo]="vehiculo"
         *ngIf="showReviewModal"
         (closeModal)="cerrarReviewModal()"
         (reviewSubmitted)="onReviewSubmitted()">
       </app-review-modal>
+
       <app-login 
         *ngIf="showLoginModal"
         (closeModal)="cerrarLoginModal()"

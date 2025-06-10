@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { FormularioAlquilarComponent } from "../formulario-alquilar/formulario-alquilar.component";
 import { LoginComponent } from "../Header_Footer/login/login.component";
 import { ReviewModalComponent } from "../review-modal/review-modal.component";
@@ -17,7 +18,7 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-tipo-vehiculo-banner-first',
   standalone: true,
-  imports: [CommonModule, FormularioAlquilarComponent, LoginComponent, ReviewModalComponent],
+  imports: [CommonModule,FormsModule, FormularioAlquilarComponent, LoginComponent, ReviewModalComponent],
   templateUrl: './tipo-vehiculo-banner-first.component.html',
   styleUrls: ['./tipo-vehiculo-banner-first.component.css']
 })
@@ -61,82 +62,48 @@ export class TipoVehiculoBannerFirstComponent {
     });
   }
 
-  // Se modifica la firma para aceptar string o undefined
-  getColorCSS(color: string | undefined): string {
-    if (!color) return '#000000';
-    const colorMap: { [key: string]: string } = {
-      rojo: 'red',
-      azul: 'blue',
-      verde: 'green',
-      negro: 'black',
-      blanco: 'white',
-      amarillo: 'yellow',
-      naranja: 'orange',
-      morado: 'purple',
-      rosa: 'pink',
-      gris: 'gray',
-      marrón: 'brown',
-      cian: 'cyan',
-      magenta: 'magenta',
-      lima: 'lime',
-      oliva: 'olive',
-      turquesa: 'turquoise',
-      violeta: 'violet',
-      dorado: 'gold',
-      plateado: 'silver',
-      escarlata: 'scarlet',
-      carmesí: 'crimson',
-      tomate: 'tomato',
-      coral: 'coral',
-      salmón: 'salmon',
-      granate: 'maroon',
-      bermellón: 'vermilion',
-      azul_marino: 'navy',
-      azul_cielo: 'skyblue',
-      azul_acero: 'steelblue',
-      azul_real: 'royalblue',
-      añil: 'indigo',
-      celeste: 'lightblue',
-      zafiro: '#0F52BA',
-      verde_oliva: 'olive',
-      verde_lima: 'limegreen',
-      verde_esmeralda: 'emerald',
-      verde_menta: 'mintcream',
-      verde_bosque: 'forestgreen',
-      verde_manzana: '#8FBC8F',
-      jade: '#00A86B',
-      ámbar: 'amber',
-      mostaza: '#FFDB58',
-      ocre: '#CC7722',
-      limón: 'lemonchiffon',
-      gris_oscuro: 'darkgray',
-      gris_claro: 'lightgray',
-      pizarra: 'slategray',
-      carbón: 'charcoal',
-      caoba: '#4A2C2A',
-      chocolate: 'chocolate',
-      terracota: '#E2725B',
-      bronce: '#CD7F32',
-      fucsia: 'fuchsia',
-      rosa_pálido: 'lightpink',
-      rosa_caliente: 'hotpink',
-      púrpura: 'purple',
-      lavanda: 'lavender',
-      malva: 'mauve',
-      lila: '#C8A2C8',
-      beige: 'beige',
-      marfil: 'ivory',
-      crema: 'cream',
-      menta: 'mintcream',
-      aguamarina: 'aquamarine',
-      coral_claro: 'lightcoral',
-      albaricoque: '#FBCEB1',
-      durazno: 'peachpuff',
-      perla: '#EAE0C8',
-      esmeralda: '#50C878'
-    };
-  return colorMap[color.toLowerCase()] || '#000000'; 
+  colorMap: { [key: string]: string } = {
+  rojo: 'red',
+  azul: 'blue',
+  verde: 'green',
+  negro: 'black',
+  blanco: 'white',
+  amarillo: 'yellow',
+  naranja: 'orange',
+  morado: 'purple',
+  rosa: 'pink',
+  gris: 'gray',
+  marrón: 'brown',
+  cian: 'cyan',
+  magenta: 'magenta',
+  lima: 'lime',
+  oliva: 'olive',
+  turquesa: 'turquoise',
+  violeta: 'violet',
+  dorado: 'gold',
+  plateado: 'silver',
+  escarlata: 'scarlet',
+  carmesí: 'crimson',
+  tomate: 'tomato',
+  coral: 'coral',
+  salmón: 'salmon',
+  granate: 'maroon',
+  bermellón: 'vermilion',
+  azul_marino: 'navy',
+  azul_cielo: 'skyblue',
+  azul_acero: 'steelblue',
+  azul_real: 'royalblue',
+  añil: 'indigo',
+  celeste: 'lightblue',
+  zafiro: '#0F52BA',
+};
+
+getColorCSS(color: string | undefined): string {
+  if (!color) return '#000000';
+  return this.colorMap[color.toLowerCase()] || '#000000';
 }
+colorKeys: string[] = Object.keys(this.colorMap);
+
   mostrarFormularioReserva(){
     if (this.estaAutenticado) {
       this.showMostrarReserva = true;

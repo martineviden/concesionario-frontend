@@ -45,7 +45,8 @@
         </div>
         <div class="feature-item">
           <img src="assets/img/icono-vehiculo/color.png" alt="Color" class="feature-icon">
-          <span>{{ vehiculo.color || 'No disponible' }}</span>
+          <span>{{ vehiculo.color ? (vehiculo.color | titlecase) : 'No disponible' }}</span>
+
         </div>
         <div class="feature-item">
           <img src="assets/img/icono-vehiculo/ruta.png" alt="Ubicación" class="feature-icon">
