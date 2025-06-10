@@ -236,3 +236,52 @@
   position: absolute;
   transform-origin: center center;
 }
+
+@media (max-width: 900px) {
+  .hechos-cifras .titulo, .titulo {
+    font-size: 2rem;
+  }
+  .cifra-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 8px;
+  }
+  .icono-box {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .hechos-cifras .titulo, .titulo {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  .descripcion, .hechos-cifras .descripcion {
+    font-size: 0.95rem;
+    padding: 0 4px;
+  }
+  .cifra-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 2px;
+  }
+  .icono-box {
+    margin-right: 0;
+    margin-bottom: 8px;
+    padding: 10px;
+  }
+  .texto-box h3 {
+    font-size: 1.1rem;
+  }
+  .seccion-flota {
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+  }
+  .titulo-flota {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  .imagen-flota {
+    padding-left: 0;
+  }
+}

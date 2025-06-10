@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TipoVehiculoModel } from '../../../../models/tipo-vehiculo.model';
 import { Provincia, Transmision, Combustible, EtiquetaAmbiental } from '../../../../models/enums';
 import { enumValues } from '../../../../utils/enum-utils';
 import { VehiculoModel } from '../../../../models/vehiculo.model';
@@ -65,7 +64,7 @@ export class EditarVehiculoComponent implements OnInit {
       const vehiculoEditado: VehiculoModel = {
         ...this.newVehiculoForm.value,
         matricula: this.vehiculo?.vehiculo?.matricula, // Mantener la matrícula original
-        tipoVehiculo: this.vehiculo?.vehiculo?.tipoVehiculo
+        tipoVehiculo: this.vehiculo?.vehiculo?.tipoVehiculo // Mantener el tipo original
       };
 
       console.log('Datos a guardar:', vehiculoEditado);

@@ -17,6 +17,18 @@
     max-width: 90vw;
   }
 }
+@media (max-width: 400px) {
+  .toast-container {
+    right: 2px;
+    top: 48px;
+    max-width: 98vw;
+    padding: 0 2px;
+  }
+  .toast-content {
+    font-size: 0.85rem;
+    padding: 6px 6px;
+  }
+}
 
 .toast-content {
   display: flex;

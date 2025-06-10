@@ -401,6 +401,24 @@
   }
 }
 
+@media (max-width: 900px) {
+  .footer-container, .footer-links-container {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    max-width: 98vw;
+  }
+  .footer-brand, .footer-contact, .footer-links, .footer-brands {
+    max-width: 100%;
+    min-width: unset;
+    text-align: center;
+  }
+  .footer-logo img:first-child, .footer-logo img:last-child {
+    margin: 0 auto;
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
@@ -426,6 +444,23 @@
 
   .footer-links a:hover, .brand-item:hover {
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-container, .footer-links-container {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+  .footer-slogan, .contact-info, .contact-label {
+    font-size: 0.9rem;
+  }
+  .footer-logo img:first-child {
+    width: 32px;
+    height: 32px;
+  }
+  .footer-logo img:last-child {
+    height: 18px;
   }
 }
 
