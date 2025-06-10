@@ -24,7 +24,7 @@ export class FormularioAlquilarComponent implements OnInit {
   precioTotal: number = 0;
   isLoading: boolean = false;
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private reservaService: ReservaService,
     private authService: AuthService
   ) {
@@ -32,33 +32,41 @@ export class FormularioAlquilarComponent implements OnInit {
       fechaReserva: ['', Validators.required],
       diasReserva: [1, [Validators.required, Validators.min(1), Validators.max(30)]]
     });
-  }ngOnInit() {
-    // Verificar que las entradas estén definidas
-    if (!this.vehiculo) {
-      console.warn('Vehículo no definido en FormularioAlquilarComponent');
-      this.vehiculo = {} as VehiculoModel;
-    }
-    if (!this.tipoVehiculo) {
-      console.warn('TipoVehículo no definido en FormularioAlquilarComponent');
-      this.tipoVehiculo = {} as TipoVehiculoModel;
-    }
-
-    // Obtener usuario actual
-    this.authService.obtenerUsuarioActual().subscribe(usuario => {
-      this.usuarioActual = usuario;
-    });
-
-    // Calcular precio inicial
-    this.calcularPrecioTotal();
-
-    // Escuchar cambios en días de reserva para actualizar precio
-    this.alquilerForm.get('diasReserva')?.valueChanges.subscribe(() => {
-      this.calcularPrecioTotal();
-    });
-
-    console.log('Vehículo recibido:', this.vehiculo);
-    console.log('TipoVehículo recibido:', this.tipoVehiculo);
   }
+  ngOnInit() {
+  // Verificar que las entradas estén definidas
+  if (!this.vehiculo) {
+    console.warn('Vehículo no definido en FormularioAlquilarComponent');
+    this.vehiculo = {} as VehiculoModel;
+  }
+  if (!this.tipoVehiculo) {
+    console.warn('TipoVehículo no definido en FormularioAlquilarComponent');
+    this.tipoVehiculo = {} as TipoVehiculoModel;
+  }
+
+  // Generar ruta de imagen si no está definida
+  if (!this.tipoVehiculo.imagen && this.tipoVehiculo.modelo) {
+    const modeloNombre = this.tipoVehiculo.modelo.toLowerCase().replace(/\s+/g, '');
+    this.tipoVehiculo.imagen = `assets/img/catalogo/${modeloNombre}.png`;
+  }
+
+  // Obtener usuario actual
+  this.authService.obtenerUsuarioActual().subscribe(usuario => {
+    this.usuarioActual = usuario;
+  });
+
+  // Calcular precio inicial
+  this.calcularPrecioTotal();
+
+  // Escuchar cambios en días de reserva para actualizar precio
+  this.alquilerForm.get('diasReserva')?.valueChanges.subscribe(() => {
+    this.calcularPrecioTotal();
+  });
+
+  console.log('Vehículo recibido:', this.vehiculo);
+  console.log('TipoVehículo recibido:', this.tipoVehiculo);
+}
+
 
   calcularPrecioTotal() {
     const dias = this.alquilerForm.get('diasReserva')?.value || 1;
@@ -139,9 +147,9 @@ export class FormularioAlquilarComponent implements OnInit {
       error: (err) => {
         console.error('Error al crear la reserva:', err);
         this.isLoading = false;
-        
+
         let errorMessage = 'Ocurrió un error al procesar tu reserva. ';
-        
+
         if (err.error && err.error.message) {
           errorMessage += err.error.message;
         } else if (err.status === 400) {
@@ -151,7 +159,7 @@ export class FormularioAlquilarComponent implements OnInit {
         } else {
           errorMessage += 'Inténtalo de nuevo más tarde.';
         }
-        
+
         alert(errorMessage);
       }
     });
