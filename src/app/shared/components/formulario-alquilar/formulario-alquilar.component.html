@@ -9,11 +9,11 @@
           <span class="rating-text">Excelente</span>
         </div>
       </div>
-      
+
       <div class="car-image-container">
-        <img [src]="tipoVehiculo.imagen || 'assets/img/catalogo/default.png'" [alt]="tipoVehiculo.modelo || 'Vehículo'" class="car-img" />
+        <img [src]="getCarImage()" [alt]="tipoVehiculo.modelo || 'Vehículo'" class="car-img" />
       </div>
-      
+
       <div class="car-features-grid">
         <div class="feature-item">
           <img src="assets/img/icono-vehiculo/matricula.png" alt="Matrícula" class="feature-icon">
@@ -56,12 +56,12 @@
           <span>{{ vehiculo.etiqueta || 'No disponible' }}</span>
         </div>
       </div>
-      
+
       <div class="car-price">
         <span class="price-amount">€{{ tipoVehiculo.precio || 0 }}</span>
         <span class="price-dia">/ día</span>
       </div>
-    </div>    
+    </div>
     <!-- Formulario de reserva -->
     <div class="modal-login">
       <button class="close-btn" type="button" (click)="cerrar()">×</button>
@@ -70,7 +70,7 @@
           <h2>Confirmar Alquiler</h2>
           <p class="form-subtitle">Completa los datos para finalizar tu reserva</p>
         </div>
-        
+
         <!-- Información del Usuario -->
         <div class="user-info-section" *ngIf="usuarioActual">
           <h3>👤 Información del Cliente</h3>
@@ -92,15 +92,15 @@
 
         <!-- Fechas de Reserva -->
         <h3>📅 Fechas de Alquiler</h3>
-        
+
         <div class="form-group">
           <label for="fechaReserva" class="form-label">
             Fecha de inicio
           </label>
-          <input 
-            type="date" 
-            id="fechaReserva" 
-            formControlName="fechaReserva" 
+          <input
+            type="date"
+            id="fechaReserva"
+            formControlName="fechaReserva"
             class="login-input"
             [min]="getMinDate()" />
           <div class="error" *ngIf="alquilerForm.get('fechaReserva')?.touched && alquilerForm.get('fechaReserva')?.errors?.['required']">
@@ -114,12 +114,12 @@
           </label>
           <div class="input-with-controls">
             <button type="button" class="qty-btn" (click)="decrementDays()" [disabled]="alquilerForm.get('diasReserva')?.value <= 1">-</button>
-            <input 
-              type="number" 
-              id="diasReserva" 
-              formControlName="diasReserva" 
-              class="login-input qty-input" 
-              min="1" 
+            <input
+              type="number"
+              id="diasReserva"
+              formControlName="diasReserva"
+              class="login-input qty-input"
+              min="1"
               max="30" />
             <button type="button" class="qty-btn" (click)="incrementDays()" [disabled]="alquilerForm.get('diasReserva')?.value >= 30">+</button>
           </div>
@@ -151,9 +151,9 @@
           </div>
         </div>
 
-        <button 
-          type="submit" 
-          class="login-btn" 
+        <button
+          type="submit"
+          class="login-btn"
           [disabled]="alquilerForm.invalid || isLoading"
           [class.loading]="isLoading">
           <span *ngIf="!isLoading">✅ Confirmar Reserva</span>

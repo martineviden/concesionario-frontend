@@ -259,6 +259,7 @@
   border-radius: 12px;
   object-fit: cover;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-left: 30px;
 }
 
 .car-features-grid {
@@ -472,18 +473,18 @@
     max-height: 95vh;
     margin: 10px;
   }
-  
+
   .car-summary {
     max-width: 100%;
     border-radius: 20px 20px 0 0;
   }
-  
+
   .modal-login {
     max-width: 100%;
     border-radius: 0 0 20px 20px;
     padding: 20px;
   }
-  
+
   .car-features-grid {
     grid-template-columns: 1fr;
     gap: 8px;
@@ -495,12 +496,12 @@
     flex-direction: column;
     gap: 0;
   }
-  
+
   .car-summary {
     max-width: 100%;
     border-radius: 20px 20px 0 0;
   }
-  
+
   .modal-login {
     border-radius: 0 0 20px 20px;
     max-height: 60vh;

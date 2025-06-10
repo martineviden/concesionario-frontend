@@ -24,7 +24,7 @@ export class FormularioAlquilarComponent implements OnInit {
   precioTotal: number = 0;
   isLoading: boolean = false;
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private reservaService: ReservaService,
     private authService: AuthService
   ) {
@@ -83,6 +83,17 @@ export class FormularioAlquilarComponent implements OnInit {
       this.alquilerForm.get('diasReserva')?.setValue(currentValue - 1);
     }
   }
+  // Retorna la imagen del coche, ya sea la definida en el modelo o una imagen por defecto.
+  getCarImage(): string {
+    if (this.tipoVehiculo?.modelo) {
+      const basePath = 'assets/img/catalogo/';
+      // Convertir el modelo a minúsculas y reemplazar espacios por guiones bajos para formar el nombre de archivo.
+      const modelName = this.tipoVehiculo.modelo.toLowerCase().replace(/\s+/g, '_');
+      // Retorna la ruta asumiendo que la imagen está en formato PNG.
+      return `${basePath}${modelName}.png`;
+    }
+    return 'assets/img/catalogo/default.png';
+  }
 
   cerrar() {
     this.cerrarModal.emit();
@@ -139,9 +150,9 @@ export class FormularioAlquilarComponent implements OnInit {
       error: (err) => {
         console.error('Error al crear la reserva:', err);
         this.isLoading = false;
-        
+
         let errorMessage = 'Ocurrió un error al procesar tu reserva. ';
-        
+
         if (err.error && err.error.message) {
           errorMessage += err.error.message;
         } else if (err.status === 400) {
@@ -151,7 +162,7 @@ export class FormularioAlquilarComponent implements OnInit {
         } else {
           errorMessage += 'Inténtalo de nuevo más tarde.';
         }
-        
+
         alert(errorMessage);
       }
     });
