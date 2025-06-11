@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ToastService } from '../../../../services/toast.service';
+
 
 
 @Component({
@@ -31,11 +31,4 @@ export class ContactoBannerComponent {
     }
   ];
 
-  constructor(
-    private toastService :  ToastService
-  ){}
-
-  enviarContacto(){
-    this.toastService.show({ message: 'Correo enviado', type: 'success' });
-  }
 }
